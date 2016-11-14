@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10.14
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
--- Хост: localhost:3306
--- Время создания: Окт 16 2016 г., 13:45
--- Версия сервера: 5.5.49-cll-lve
--- Версия PHP: 5.6.20
+-- Host: 127.0.0.1
+-- Generation Time: Nov 15, 2016 at 01:17 AM
+-- Server version: 5.5.25
+-- PHP Version: 5.3.13
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- База данных: `rlestate`
+-- Database: `rlestate`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_assets`
+-- Table structure for table `h0qwo_assets`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_assets` (
@@ -32,17 +32,17 @@ CREATE TABLE IF NOT EXISTS `h0qwo_assets` (
   `lft` int(11) NOT NULL DEFAULT '0' COMMENT 'Nested set lft.',
   `rgt` int(11) NOT NULL DEFAULT '0' COMMENT 'Nested set rgt.',
   `level` int(10) unsigned NOT NULL COMMENT 'The cached level in the nested tree.',
-  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'The unique name for the asset.\n',
-  `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'The descriptive title for the asset.',
-  `rules` varchar(5120) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'JSON encoded access control.',
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The unique name for the asset.\n',
+  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The descriptive title for the asset.',
+  `rules` varchar(5120) COLLATE utf8_unicode_ci NOT NULL COMMENT 'JSON encoded access control.',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_asset_name` (`name`),
   KEY `idx_lft_rgt` (`lft`,`rgt`),
   KEY `idx_parent_id` (`parent_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=80 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=80 ;
 
 --
--- Дамп данных таблицы `h0qwo_assets`
+-- Dumping data for table `h0qwo_assets`
 --
 
 INSERT INTO `h0qwo_assets` (`id`, `parent_id`, `lft`, `rgt`, `level`, `name`, `title`, `rules`) VALUES
@@ -77,66 +77,66 @@ INSERT INTO `h0qwo_assets` (`id`, `parent_id`, `lft`, `rgt`, `level`, `name`, `t
 (30, 19, 64, 65, 2, 'com_newsfeeds.category.5', 'Uncategorised', '{"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[],"core.edit.own":[]}'),
 (32, 24, 76, 77, 1, 'com_users.category.7', 'Uncategorised', '{"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[]}'),
 (33, 1, 81, 82, 1, 'com_finder', 'com_finder', '{"core.admin":{"7":1},"core.manage":{"6":1}}'),
-(35, 8, 20, 23, 2, 'com_content.category.9', 'Blog', '{"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[],"core.edit.own":[]}'),
+(35, 8, 20, 23, 2, 'com_content.category.9', 'Аренда', '{"core.create":[],"core.delete":[],"core.edit":[],"core.edit.state":[],"core.edit.own":[]}'),
 (41, 1, 83, 84, 1, 'com_users.category.10', 'Uncategorised', ''),
 (42, 1, 85, 86, 1, 'com_joomlaupdate', 'com_joomlaupdate', '{"core.admin":[],"core.manage":[],"core.delete":[],"core.edit.state":[]}'),
 (44, 1, 87, 88, 1, 'com_tags', 'com_tags', '{"core.admin":{"8":1},"core.manage":{"7":1},"core.create":{"6":1,"3":1},"core.delete":{"6":1},"core.edit":{"6":1,"4":1},"core.edit.state":{"6":1,"5":1}}'),
 (45, 1, 89, 90, 1, 'com_contenthistory', 'com_contenthistory', '{}'),
 (46, 1, 91, 92, 1, 'com_ajax', 'com_ajax', '{}'),
 (47, 1, 93, 94, 1, 'com_postinstall', 'com_postinstall', '{}'),
-(48, 8, 24, 25, 2, 'com_content.category.10', 'Rental of property', '{}'),
-(50, 8, 26, 27, 2, 'com_content.category.11', 'Mortgage', '{}'),
-(52, 8, 28, 31, 2, 'com_content.category.12', 'The property', '{}'),
-(53, 52, 29, 30, 3, 'com_content.category.13', 'Country estate', '{}'),
+(48, 8, 24, 25, 2, 'com_content.category.10', 'Благоустройство', '{}'),
+(50, 8, 26, 27, 2, 'com_content.category.11', 'Закон', '{}'),
+(52, 8, 28, 29, 2, 'com_content.category.12', 'Квартиры', '{}'),
+(53, 8, 32, 33, 2, 'com_content.category.13', 'Новостройки', '{}'),
 (55, 1, 95, 96, 1, 'com_sppagebuilder', 'SP Page Builder', '{}'),
 (56, 18, 54, 55, 2, 'com_modules.module.93', 'SP Page Builder', '{}'),
 (57, 18, 56, 57, 2, 'com_modules.module.94', 'SP Page Builder Admin Menu', '{}'),
 (58, 18, 58, 59, 2, 'com_modules.module.95', 'JSitemap module', '{}'),
 (59, 18, 60, 61, 2, 'com_modules.module.96', 'JSitemap Quickicons', '{}'),
 (60, 1, 97, 98, 1, 'com_jmap', 'JMap', '{}'),
-(71, 8, 32, 33, 2, 'com_content.category.14', 'Resellers', '{}'),
+(71, 8, 30, 31, 2, 'com_content.category.14', 'Проекты', '{}'),
 (79, 35, 21, 22, 3, 'com_content.article.27', 'Когда новостройка почти построена, есть ли риск при покупке?', '{"core.admin":{"7":1},"core.manage":{"6":1},"core.create":{"3":1},"core.delete":[],"core.edit":{"4":1},"core.edit.state":{"5":1},"core.edit.own":[]}');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_associations`
+-- Table structure for table `h0qwo_associations`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_associations` (
   `id` int(11) NOT NULL COMMENT 'A reference to the associated item.',
-  `context` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'The context of the associated item.',
-  `key` char(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'The key for the association computed from an md5 on associated ids.',
+  `context` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The context of the associated item.',
+  `key` char(32) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The key for the association computed from an md5 on associated ids.',
   PRIMARY KEY (`context`,`id`),
   KEY `idx_key` (`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_banners`
+-- Table structure for table `h0qwo_banners`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_banners` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL DEFAULT '0',
   `type` int(11) NOT NULL DEFAULT '0',
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `alias` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '',
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `alias` varchar(400) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
   `imptotal` int(11) NOT NULL DEFAULT '0',
   `impmade` int(11) NOT NULL DEFAULT '0',
   `clicks` int(11) NOT NULL DEFAULT '0',
-  `clickurl` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `clickurl` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `state` tinyint(3) NOT NULL DEFAULT '0',
   `catid` int(10) unsigned NOT NULL DEFAULT '0',
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `custombannercode` varchar(2048) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `custombannercode` varchar(2048) COLLATE utf8_unicode_ci NOT NULL,
   `sticky` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `ordering` int(11) NOT NULL DEFAULT '0',
-  `metakey` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `params` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `metakey` text COLLATE utf8_unicode_ci NOT NULL,
+  `params` text COLLATE utf8_unicode_ci NOT NULL,
   `own_prefix` tinyint(1) NOT NULL DEFAULT '0',
-  `metakey_prefix` varchar(400) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `metakey_prefix` varchar(400) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `purchase_type` tinyint(4) NOT NULL DEFAULT '-1',
   `track_clicks` tinyint(4) NOT NULL DEFAULT '-1',
   `track_impressions` tinyint(4) NOT NULL DEFAULT '-1',
@@ -146,50 +146,50 @@ CREATE TABLE IF NOT EXISTS `h0qwo_banners` (
   `publish_down` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `reset` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `language` char(7) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `language` char(7) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `created_by` int(10) unsigned NOT NULL DEFAULT '0',
-  `created_by_alias` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `created_by_alias` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified_by` int(10) unsigned NOT NULL DEFAULT '0',
   `version` int(10) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `idx_state` (`state`),
   KEY `idx_own_prefix` (`own_prefix`),
-  KEY `idx_metakey_prefix` (`metakey_prefix`(100)),
   KEY `idx_banner_catid` (`catid`),
-  KEY `idx_language` (`language`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+  KEY `idx_language` (`language`),
+  KEY `idx_metakey_prefix` (`metakey_prefix`(100))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_banner_clients`
+-- Table structure for table `h0qwo_banner_clients`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_banner_clients` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `contact` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `extrainfo` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `contact` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `extrainfo` text COLLATE utf8_unicode_ci NOT NULL,
   `state` tinyint(3) NOT NULL DEFAULT '0',
   `checked_out` int(10) unsigned NOT NULL DEFAULT '0',
   `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `metakey` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `metakey` text COLLATE utf8_unicode_ci NOT NULL,
   `own_prefix` tinyint(4) NOT NULL DEFAULT '0',
-  `metakey_prefix` varchar(400) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `metakey_prefix` varchar(400) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `purchase_type` tinyint(4) NOT NULL DEFAULT '-1',
   `track_clicks` tinyint(4) NOT NULL DEFAULT '-1',
   `track_impressions` tinyint(4) NOT NULL DEFAULT '-1',
   PRIMARY KEY (`id`),
   KEY `idx_own_prefix` (`own_prefix`),
   KEY `idx_metakey_prefix` (`metakey_prefix`(100))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_banner_tracks`
+-- Table structure for table `h0qwo_banner_tracks`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_banner_tracks` (
@@ -201,12 +201,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_banner_tracks` (
   KEY `idx_track_date` (`track_date`),
   KEY `idx_track_type` (`track_type`),
   KEY `idx_banner_id` (`banner_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_categories`
+-- Table structure for table `h0qwo_categories`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_categories` (
@@ -216,39 +216,39 @@ CREATE TABLE IF NOT EXISTS `h0qwo_categories` (
   `lft` int(11) NOT NULL DEFAULT '0',
   `rgt` int(11) NOT NULL DEFAULT '0',
   `level` int(10) unsigned NOT NULL DEFAULT '0',
-  `path` varchar(400) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `extension` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alias` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '',
-  `note` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `description` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path` varchar(400) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `extension` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `alias` varchar(400) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `note` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `description` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `published` tinyint(1) NOT NULL DEFAULT '0',
   `checked_out` int(11) unsigned NOT NULL DEFAULT '0',
   `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `access` int(10) unsigned NOT NULL DEFAULT '0',
-  `params` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `metadesc` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'The meta description for the page.',
-  `metakey` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'The meta keywords for the page.',
-  `metadata` varchar(2048) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'JSON encoded metadata properties.',
+  `params` text COLLATE utf8_unicode_ci NOT NULL,
+  `metadesc` varchar(1024) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The meta description for the page.',
+  `metakey` varchar(1024) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The meta keywords for the page.',
+  `metadata` varchar(2048) COLLATE utf8_unicode_ci NOT NULL COMMENT 'JSON encoded metadata properties.',
   `created_user_id` int(10) unsigned NOT NULL DEFAULT '0',
   `created_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified_user_id` int(10) unsigned NOT NULL DEFAULT '0',
   `modified_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `hits` int(10) unsigned NOT NULL DEFAULT '0',
-  `language` char(7) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `language` char(7) COLLATE utf8_unicode_ci NOT NULL,
   `version` int(10) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `cat_idx` (`extension`,`published`,`access`),
   KEY `idx_access` (`access`),
   KEY `idx_checkout` (`checked_out`),
-  KEY `idx_path` (`path`(100)),
   KEY `idx_left_right` (`lft`,`rgt`),
-  KEY `idx_alias` (`alias`(100)),
-  KEY `idx_language` (`language`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=15 ;
+  KEY `idx_language` (`language`),
+  KEY `idx_path` (`path`(100)),
+  KEY `idx_alias` (`alias`(100))
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
 
 --
--- Дамп данных таблицы `h0qwo_categories`
+-- Dumping data for table `h0qwo_categories`
 --
 
 INSERT INTO `h0qwo_categories` (`id`, `asset_id`, `parent_id`, `lft`, `rgt`, `level`, `path`, `extension`, `title`, `alias`, `note`, `description`, `published`, `checked_out`, `checked_out_time`, `access`, `params`, `metadesc`, `metakey`, `metadata`, `created_user_id`, `created_time`, `modified_user_id`, `modified_time`, `hits`, `language`, `version`) VALUES
@@ -258,59 +258,59 @@ INSERT INTO `h0qwo_categories` (`id`, `asset_id`, `parent_id`, `lft`, `rgt`, `le
 (4, 29, 1, 5, 6, 1, 'uncategorised', 'com_contact', 'Uncategorised', 'uncategorised', '', '', 1, 0, '0000-00-00 00:00:00', 1, '{"target":"","image":""}', '', '', '{"page_title":"","author":"","robots":""}', 528, '2011-01-01 00:00:01', 0, '0000-00-00 00:00:00', 0, '*', 1),
 (5, 30, 1, 7, 8, 1, 'uncategorised', 'com_newsfeeds', 'Uncategorised', 'uncategorised', '', '', 1, 0, '0000-00-00 00:00:00', 1, '{"target":"","image":""}', '', '', '{"page_title":"","author":"","robots":""}', 528, '2011-01-01 00:00:01', 0, '0000-00-00 00:00:00', 0, '*', 1),
 (7, 32, 1, 9, 10, 1, 'uncategorised', 'com_users', 'Uncategorised', 'uncategorised', '', '', 1, 0, '0000-00-00 00:00:00', 1, '{"target":"","image":""}', '', '', '{"page_title":"","author":"","robots":""}', 528, '2011-01-01 00:00:01', 0, '0000-00-00 00:00:00', 0, '*', 1),
-(9, 35, 1, 11, 12, 1, 'blog', 'com_content', 'Blog', 'blog', '', '', 1, 0, '0000-00-00 00:00:00', 1, '{"category_layout":"","image":""}', '', '', '{"author":"","robots":""}', 528, '2011-01-01 00:00:01', 0, '0000-00-00 00:00:00', 0, '*', 1),
-(10, 48, 1, 13, 14, 1, 'rental-of-property', 'com_content', 'Rental of property', 'rental-of-property', '', '', 1, 0, '0000-00-00 00:00:00', 1, '{"category_layout":"","image":"","image_alt":""}', '', '', '{"author":"","robots":""}', 528, '2016-04-10 07:26:14', 528, '2016-04-12 10:41:10', 0, '*', 1),
-(11, 50, 1, 15, 16, 1, 'mortgage', 'com_content', 'Mortgage', 'mortgage', '', '', 1, 0, '0000-00-00 00:00:00', 1, '{"category_layout":"","image":"","image_alt":""}', '', '', '{"author":"","robots":""}', 528, '2016-04-10 07:45:17', 528, '2016-04-13 11:22:34', 0, '*', 1),
-(12, 52, 1, 17, 20, 1, 'the-property', 'com_content', 'The property', 'the-property', '', '', 1, 0, '0000-00-00 00:00:00', 1, '{"category_layout":"","image":"","image_alt":""}', '', '', '{"author":"","robots":""}', 528, '2016-04-10 12:05:38', 0, '2016-04-10 12:05:38', 0, '*', 1),
-(13, 53, 12, 18, 19, 2, 'the-property/country-estate', 'com_content', 'Country estate', 'country-estate', '', '', 1, 0, '0000-00-00 00:00:00', 1, '{"category_layout":"","image":"","image_alt":""}', '', '', '{"author":"","robots":""}', 528, '2016-04-10 12:06:39', 528, '2016-04-10 12:12:09', 0, '*', 1),
-(14, 71, 1, 21, 22, 1, 'resellers', 'com_content', 'Resellers', 'resellers', '', '', 1, 528, '2016-04-15 08:21:05', 1, '{"category_layout":"","image":"","image_alt":""}', '', '', '{"author":"","robots":""}', 528, '2016-04-15 07:55:18', 0, '2016-04-15 07:55:18', 0, '*', 1);
+(9, 35, 1, 11, 12, 1, 'arenda', 'com_content', 'Аренда', 'arenda', '', '', 1, 0, '0000-00-00 00:00:00', 1, '{"category_layout":"","image":"","image_alt":""}', '', '', '{"author":"","robots":""}', 528, '2011-01-01 00:00:01', 528, '2016-11-14 18:23:57', 0, '*', 1),
+(10, 48, 1, 13, 14, 1, 'blagoustrojstvo', 'com_content', 'Благоустройство', 'blagoustrojstvo', '', '', 1, 0, '0000-00-00 00:00:00', 1, '{"category_layout":"","image":"","image_alt":""}', '', '', '{"author":"","robots":""}', 528, '2016-04-10 07:26:14', 528, '2016-11-14 18:24:49', 0, '*', 1),
+(11, 50, 1, 15, 16, 1, 'zakon', 'com_content', 'Закон', 'zakon', '', '', 1, 0, '0000-00-00 00:00:00', 1, '{"category_layout":"","image":"","image_alt":""}', '', '', '{"author":"","robots":""}', 528, '2016-04-10 07:45:17', 528, '2016-11-14 18:25:36', 0, '*', 1),
+(12, 52, 1, 17, 18, 1, 'kvartiry', 'com_content', 'Квартиры', 'kvartiry', '', '', 1, 0, '0000-00-00 00:00:00', 1, '{"category_layout":"","image":"","image_alt":""}', '', '', '{"author":"","robots":""}', 528, '2016-04-10 12:05:38', 528, '2016-11-14 18:26:19', 0, '*', 1),
+(13, 53, 1, 21, 22, 1, 'novostrojki', 'com_content', 'Новостройки', 'novostrojki', '', '', 1, 0, '0000-00-00 00:00:00', 1, '{"category_layout":"","image":"","image_alt":""}', '', '', '{"author":"","robots":""}', 528, '2016-04-10 12:06:39', 528, '2016-11-14 18:27:14', 0, '*', 1),
+(14, 71, 1, 19, 20, 1, 'proekty', 'com_content', 'Проекты', 'proekty', '', '', 1, 0, '0000-00-00 00:00:00', 1, '{"category_layout":"","image":"","image_alt":""}', '', '', '{"author":"","robots":""}', 528, '2016-04-15 07:55:18', 528, '2016-11-14 18:28:03', 0, '*', 1);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_contact_details`
+-- Table structure for table `h0qwo_contact_details`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_contact_details` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `alias` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '',
-  `con_position` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci,
-  `suburb` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `state` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `postcode` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `telephone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fax` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `misc` mediumtext COLLATE utf8mb4_unicode_ci,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email_to` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `alias` varchar(400) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `con_position` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8_unicode_ci,
+  `suburb` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `state` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `country` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `postcode` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `telephone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `fax` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `misc` mediumtext COLLATE utf8_unicode_ci,
+  `image` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email_to` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `default_con` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `published` tinyint(1) NOT NULL DEFAULT '0',
   `checked_out` int(10) unsigned NOT NULL DEFAULT '0',
   `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `ordering` int(11) NOT NULL DEFAULT '0',
-  `params` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `params` text COLLATE utf8_unicode_ci NOT NULL,
   `user_id` int(11) NOT NULL DEFAULT '0',
   `catid` int(11) NOT NULL DEFAULT '0',
   `access` int(10) unsigned NOT NULL DEFAULT '0',
-  `mobile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `webpage` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `sortname1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sortname2` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sortname3` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `language` char(7) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mobile` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `webpage` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `sortname1` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `sortname2` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `sortname3` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `language` char(7) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `created_by` int(10) unsigned NOT NULL DEFAULT '0',
-  `created_by_alias` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `created_by_alias` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified_by` int(10) unsigned NOT NULL DEFAULT '0',
-  `metakey` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `metadesc` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `metadata` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `metakey` text COLLATE utf8_unicode_ci NOT NULL,
+  `metadesc` text COLLATE utf8_unicode_ci NOT NULL,
+  `metadata` text COLLATE utf8_unicode_ci NOT NULL,
   `featured` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Set if article is featured.',
-  `xreference` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'A reference to enable linkages to external data sets.',
+  `xreference` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT 'A reference to enable linkages to external data sets.',
   `publish_up` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `publish_down` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `version` int(10) unsigned NOT NULL DEFAULT '1',
@@ -324,45 +324,45 @@ CREATE TABLE IF NOT EXISTS `h0qwo_contact_details` (
   KEY `idx_featured_catid` (`featured`,`catid`),
   KEY `idx_language` (`language`),
   KEY `idx_xreference` (`xreference`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_content`
+-- Table structure for table `h0qwo_content`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_content` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `asset_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'FK to the #__assets table.',
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `alias` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '',
-  `introtext` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fulltext` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `alias` varchar(400) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `introtext` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `fulltext` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `state` tinyint(3) NOT NULL DEFAULT '0',
   `catid` int(10) unsigned NOT NULL DEFAULT '0',
   `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `created_by` int(10) unsigned NOT NULL DEFAULT '0',
-  `created_by_alias` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `created_by_alias` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified_by` int(10) unsigned NOT NULL DEFAULT '0',
   `checked_out` int(10) unsigned NOT NULL DEFAULT '0',
   `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `publish_up` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `publish_down` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `images` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `urls` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `attribs` varchar(5120) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `images` text COLLATE utf8_unicode_ci NOT NULL,
+  `urls` text COLLATE utf8_unicode_ci NOT NULL,
+  `attribs` varchar(5120) COLLATE utf8_unicode_ci NOT NULL,
   `version` int(10) unsigned NOT NULL DEFAULT '1',
   `ordering` int(11) NOT NULL DEFAULT '0',
-  `metakey` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `metadesc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `metakey` text COLLATE utf8_unicode_ci NOT NULL,
+  `metadesc` text COLLATE utf8_unicode_ci NOT NULL,
   `access` int(10) unsigned NOT NULL DEFAULT '0',
   `hits` int(10) unsigned NOT NULL DEFAULT '0',
-  `metadata` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `metadata` text COLLATE utf8_unicode_ci NOT NULL,
   `featured` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Set if article is featured.',
-  `language` char(7) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'The language code for the article.',
-  `xreference` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'A reference to enable linkages to external data sets.',
+  `language` char(7) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The language code for the article.',
+  `xreference` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT 'A reference to enable linkages to external data sets.',
   PRIMARY KEY (`id`),
   KEY `idx_access` (`access`),
   KEY `idx_checkout` (`checked_out`),
@@ -372,10 +372,10 @@ CREATE TABLE IF NOT EXISTS `h0qwo_content` (
   KEY `idx_featured_catid` (`featured`,`catid`),
   KEY `idx_language` (`language`),
   KEY `idx_xreference` (`xreference`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=28 ;
 
 --
--- Дамп данных таблицы `h0qwo_content`
+-- Dumping data for table `h0qwo_content`
 --
 
 INSERT INTO `h0qwo_content` (`id`, `asset_id`, `title`, `alias`, `introtext`, `fulltext`, `state`, `catid`, `created`, `created_by`, `created_by_alias`, `modified`, `modified_by`, `checked_out`, `checked_out_time`, `publish_up`, `publish_down`, `images`, `urls`, `attribs`, `version`, `ordering`, `metakey`, `metadesc`, `access`, `hits`, `metadata`, `featured`, `language`, `xreference`) VALUES
@@ -384,11 +384,11 @@ INSERT INTO `h0qwo_content` (`id`, `asset_id`, `title`, `alias`, `introtext`, `f
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_contentitem_tag_map`
+-- Table structure for table `h0qwo_contentitem_tag_map`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_contentitem_tag_map` (
-  `type_alias` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `type_alias` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `core_content_id` int(10) unsigned NOT NULL COMMENT 'PK from the core content table',
   `content_item_id` int(11) NOT NULL COMMENT 'PK from the content type table',
   `tag_id` int(10) unsigned NOT NULL COMMENT 'PK from the tag table',
@@ -398,22 +398,22 @@ CREATE TABLE IF NOT EXISTS `h0qwo_contentitem_tag_map` (
   KEY `idx_tag_type` (`tag_id`,`type_id`),
   KEY `idx_date_id` (`tag_date`,`tag_id`),
   KEY `idx_core_content_id` (`core_content_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Maps items from content tables to tags';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Maps items from content tables to tags';
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_content_frontpage`
+-- Table structure for table `h0qwo_content_frontpage`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_content_frontpage` (
   `content_id` int(11) NOT NULL DEFAULT '0',
   `ordering` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`content_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Дамп данных таблицы `h0qwo_content_frontpage`
+-- Dumping data for table `h0qwo_content_frontpage`
 --
 
 INSERT INTO `h0qwo_content_frontpage` (`content_id`, `ordering`) VALUES
@@ -442,38 +442,38 @@ INSERT INTO `h0qwo_content_frontpage` (`content_id`, `ordering`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_content_rating`
+-- Table structure for table `h0qwo_content_rating`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_content_rating` (
   `content_id` int(11) NOT NULL DEFAULT '0',
   `rating_sum` int(10) unsigned NOT NULL DEFAULT '0',
   `rating_count` int(10) unsigned NOT NULL DEFAULT '0',
-  `lastip` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `lastip` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`content_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_content_types`
+-- Table structure for table `h0qwo_content_types`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_content_types` (
   `type_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `type_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `type_alias` varchar(400) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `table` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `rules` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `field_mappings` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `router` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `content_history_options` varchar(5120) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'JSON string for com_contenthistory options',
+  `type_title` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `type_alias` varchar(400) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `table` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `rules` text COLLATE utf8_unicode_ci NOT NULL,
+  `field_mappings` text COLLATE utf8_unicode_ci NOT NULL,
+  `router` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `content_history_options` varchar(5120) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'JSON string for com_contenthistory options',
   PRIMARY KEY (`type_id`),
   KEY `idx_alias` (`type_alias`(100))
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
 --
--- Дамп данных таблицы `h0qwo_content_types`
+-- Dumping data for table `h0qwo_content_types`
 --
 
 INSERT INTO `h0qwo_content_types` (`type_id`, `type_title`, `type_alias`, `table`, `rules`, `field_mappings`, `router`, `content_history_options`) VALUES
@@ -494,34 +494,34 @@ INSERT INTO `h0qwo_content_types` (`type_id`, `type_title`, `type_alias`, `table
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_core_log_searches`
+-- Table structure for table `h0qwo_core_log_searches`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_core_log_searches` (
-  `search_term` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `search_term` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `hits` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_extensions`
+-- Table structure for table `h0qwo_extensions`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_extensions` (
   `extension_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `element` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `folder` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `type` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `element` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `folder` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `client_id` tinyint(3) NOT NULL,
   `enabled` tinyint(3) NOT NULL DEFAULT '1',
   `access` int(10) unsigned NOT NULL DEFAULT '1',
   `protected` tinyint(3) NOT NULL DEFAULT '0',
-  `manifest_cache` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `params` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `custom_data` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `system_data` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `manifest_cache` text COLLATE utf8_unicode_ci NOT NULL,
+  `params` text COLLATE utf8_unicode_ci NOT NULL,
+  `custom_data` text COLLATE utf8_unicode_ci NOT NULL,
+  `system_data` text COLLATE utf8_unicode_ci NOT NULL,
   `checked_out` int(10) unsigned NOT NULL DEFAULT '0',
   `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `ordering` int(11) DEFAULT '0',
@@ -530,10 +530,10 @@ CREATE TABLE IF NOT EXISTS `h0qwo_extensions` (
   KEY `element_clientid` (`element`,`client_id`),
   KEY `element_folder_clientid` (`element`,`folder`,`client_id`),
   KEY `extension` (`type`,`element`,`folder`,`client_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=10015 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10016 ;
 
 --
--- Дамп данных таблицы `h0qwo_extensions`
+-- Dumping data for table `h0qwo_extensions`
 --
 
 INSERT INTO `h0qwo_extensions` (`extension_id`, `name`, `type`, `element`, `folder`, `client_id`, `enabled`, `access`, `protected`, `manifest_cache`, `params`, `custom_data`, `system_data`, `checked_out`, `checked_out_time`, `ordering`, `state`) VALUES
@@ -562,16 +562,16 @@ INSERT INTO `h0qwo_extensions` (`extension_id`, `name`, `type`, `element`, `fold
 (24, 'com_redirect', 'component', 'com_redirect', '', 1, 1, 0, 1, '{"name":"com_redirect","type":"component","creationDate":"April 2006","author":"Joomla! Project","copyright":"(C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"COM_REDIRECT_XML_DESCRIPTION","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (25, 'com_users', 'component', 'com_users', '', 1, 1, 0, 1, '{"name":"com_users","type":"component","creationDate":"April 2006","author":"Joomla! Project","copyright":"(C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"COM_USERS_XML_DESCRIPTION","group":"","filename":"users"}', '{"allowUserRegistration":"0","new_usertype":"2","guest_usergroup":"9","sendpassword":"1","useractivation":"1","mail_to_admin":"0","captcha":"","frontend_userparams":"1","site_language":"0","change_login_name":"0","reset_count":"10","reset_time":"1","minimum_length":"4","minimum_integers":"0","minimum_symbols":"0","minimum_uppercase":"0","save_history":"1","history_limit":5,"mailSubjectPrefix":"","mailBodySuffix":""}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (27, 'com_finder', 'component', 'com_finder', '', 1, 1, 0, 0, '{"name":"com_finder","type":"component","creationDate":"August 2011","author":"Joomla! Project","copyright":"(C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"COM_FINDER_XML_DESCRIPTION","group":"","filename":"finder"}', '{"show_description":"1","description_length":255,"allow_empty_query":"0","show_url":"1","show_advanced":"1","expand_advanced":"0","show_date_filters":"0","highlight_terms":"1","opensearch_name":"","opensearch_description":"","batch_size":"50","memory_table_limit":30000,"title_multiplier":"1.7","text_multiplier":"0.7","meta_multiplier":"1.2","path_multiplier":"2.0","misc_multiplier":"0.3","stemmer":"snowball"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(28, 'com_joomlaupdate', 'component', 'com_joomlaupdate', '', 1, 1, 0, 1, '{"name":"com_joomlaupdate","type":"component","creationDate":"February 2012","author":"Joomla! Project","copyright":"(C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.6.0","description":"COM_JOOMLAUPDATE_XML_DESCRIPTION","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(28, 'com_joomlaupdate', 'component', 'com_joomlaupdate', '', 1, 1, 0, 1, '{"name":"com_joomlaupdate","type":"component","creationDate":"February 2012","author":"Joomla! Project","copyright":"(C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.6.2","description":"COM_JOOMLAUPDATE_XML_DESCRIPTION","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (29, 'com_tags', 'component', 'com_tags', '', 1, 1, 1, 1, '{"name":"com_tags","type":"component","creationDate":"December 2013","author":"Joomla! Project","copyright":"(C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.1.0","description":"COM_TAGS_XML_DESCRIPTION","group":"","filename":"tags"}', '{"tag_layout":"_:default","save_history":"1","history_limit":5,"show_tag_title":"0","tag_list_show_tag_image":"0","tag_list_show_tag_description":"0","tag_list_image":"","show_tag_num_items":"0","tag_list_orderby":"title","tag_list_orderby_direction":"ASC","show_headings":"0","tag_list_show_date":"0","tag_list_show_item_image":"0","tag_list_show_item_description":"0","tag_list_item_maximum_characters":0,"return_any_or_all":"1","include_children":"0","maximum":200,"tag_list_language_filter":"all","tags_layout":"_:default","all_tags_orderby":"title","all_tags_orderby_direction":"ASC","all_tags_show_tag_image":"0","all_tags_show_tag_descripion":"0","all_tags_tag_maximum_characters":20,"all_tags_show_tag_hits":"0","filter_field":"1","show_pagination_limit":"1","show_pagination":"2","show_pagination_results":"1","tag_field_ajax_mode":"1","show_feed_link":"1"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (30, 'com_contenthistory', 'component', 'com_contenthistory', '', 1, 1, 1, 0, '{"name":"com_contenthistory","type":"component","creationDate":"May 2013","author":"Joomla! Project","copyright":"(C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.2.0","description":"COM_CONTENTHISTORY_XML_DESCRIPTION","group":"","filename":"contenthistory"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (31, 'com_ajax', 'component', 'com_ajax', '', 1, 1, 1, 1, '{"name":"com_ajax","type":"component","creationDate":"August 2013","author":"Joomla! Project","copyright":"(C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.2.0","description":"COM_AJAX_XML_DESCRIPTION","group":"","filename":"ajax"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (32, 'com_postinstall', 'component', 'com_postinstall', '', 1, 1, 1, 1, '{"name":"com_postinstall","type":"component","creationDate":"September 2013","author":"Joomla! Project","copyright":"(C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.2.0","description":"COM_POSTINSTALL_XML_DESCRIPTION","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(102, 'phputf8', 'library', 'phputf8', '', 0, 1, 1, 1, '{"name":"phputf8","type":"library","creationDate":"2006","author":"Harry Fuecks","copyright":"Copyright various authors","authorEmail":"hfuecks@gmail.com","authorUrl":"http:\\/\\/sourceforge.net\\/projects\\/phputf8","version":"0.5","description":"LIB_PHPUTF8_XML_DESCRIPTION","group":"","filename":"phputf8"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(103, 'Joomla! Platform', 'library', 'joomla', '', 0, 1, 1, 1, '{"name":"Joomla! Platform","type":"library","creationDate":"2008","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"https:\\/\\/www.joomla.org","version":"13.1","description":"LIB_JOOMLA_XML_DESCRIPTION","group":"","filename":"joomla"}', '{"mediaversion":"5a9e8aabc5d451d5c70394ac591f33dd"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(104, 'IDNA Convert', 'library', 'idna_convert', '', 0, 1, 1, 1, '{"name":"IDNA Convert","type":"library","creationDate":"2004","author":"phlyLabs","copyright":"2004-2011 phlyLabs Berlin, http:\\/\\/phlylabs.de","authorEmail":"phlymail@phlylabs.de","authorUrl":"http:\\/\\/phlylabs.de","version":"0.8.0","description":"LIB_IDNA_XML_DESCRIPTION","group":"","filename":"idna_convert"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(102, 'LIB_PHPUTF8', 'library', 'phputf8', '', 0, 1, 1, 1, '{"name":"LIB_PHPUTF8","type":"library","creationDate":"2006","author":"Harry Fuecks","copyright":"Copyright various authors","authorEmail":"hfuecks@gmail.com","authorUrl":"http:\\/\\/sourceforge.net\\/projects\\/phputf8","version":"0.5","description":"LIB_PHPUTF8_XML_DESCRIPTION","group":"","filename":"phputf8"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(103, 'LIB_JOOMLA', 'library', 'joomla', '', 0, 1, 1, 1, '{"name":"LIB_JOOMLA","type":"library","creationDate":"2008","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"https:\\/\\/www.joomla.org","version":"13.1","description":"LIB_JOOMLA_XML_DESCRIPTION","group":"","filename":"joomla"}', '{"mediaversion":"3ca21bca4bb3f3c2bc2da3ffe4812dfd"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(104, 'LIB_IDNA', 'library', 'idna_convert', '', 0, 1, 1, 1, '{"name":"LIB_IDNA","type":"library","creationDate":"2004","author":"phlyLabs","copyright":"2004-2011 phlyLabs Berlin, http:\\/\\/phlylabs.de","authorEmail":"phlymail@phlylabs.de","authorUrl":"http:\\/\\/phlylabs.de","version":"0.8.0","description":"LIB_IDNA_XML_DESCRIPTION","group":"","filename":"idna_convert"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (105, 'FOF', 'library', 'fof', '', 0, 1, 1, 1, '{"name":"FOF","type":"library","creationDate":"2015-04-22 13:15:32","author":"Nicholas K. Dionysopoulos \\/ Akeeba Ltd","copyright":"(C)2011-2015 Nicholas K. Dionysopoulos","authorEmail":"nicholas@akeebabackup.com","authorUrl":"https:\\/\\/www.akeebabackup.com","version":"2.4.3","description":"LIB_FOF_XML_DESCRIPTION","group":"","filename":"fof"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(106, 'PHPass', 'library', 'phpass', '', 0, 1, 1, 1, '{"name":"PHPass","type":"library","creationDate":"2004-2006","author":"Solar Designer","copyright":"","authorEmail":"solar@openwall.com","authorUrl":"http:\\/\\/www.openwall.com\\/phpass\\/","version":"0.3","description":"LIB_PHPASS_XML_DESCRIPTION","group":"","filename":"phpass"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(106, 'LIB_PHPASS', 'library', 'phpass', '', 0, 1, 1, 1, '{"name":"LIB_PHPASS","type":"library","creationDate":"2004-2006","author":"Solar Designer","copyright":"","authorEmail":"solar@openwall.com","authorUrl":"http:\\/\\/www.openwall.com\\/phpass\\/","version":"0.3","description":"LIB_PHPASS_XML_DESCRIPTION","group":"","filename":"phpass"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (200, 'mod_articles_archive', 'module', 'mod_articles_archive', '', 0, 1, 1, 0, '{"name":"mod_articles_archive","type":"module","creationDate":"July 2006","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"MOD_ARTICLES_ARCHIVE_XML_DESCRIPTION","group":"","filename":"mod_articles_archive"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (201, 'mod_articles_latest', 'module', 'mod_articles_latest', '', 0, 1, 1, 0, '{"name":"mod_articles_latest","type":"module","creationDate":"July 2004","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"MOD_LATEST_NEWS_XML_DESCRIPTION","group":"","filename":"mod_articles_latest"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (202, 'mod_articles_popular', 'module', 'mod_articles_popular', '', 0, 1, 1, 0, '{"name":"mod_articles_popular","type":"module","creationDate":"July 2006","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"MOD_POPULAR_XML_DESCRIPTION","group":"","filename":"mod_articles_popular"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
@@ -621,9 +621,9 @@ INSERT INTO `h0qwo_extensions` (`extension_id`, `name`, `type`, `element`, `fold
 (407, 'plg_content_pagebreak', 'plugin', 'pagebreak', 'content', 0, 1, 1, 0, '{"name":"plg_content_pagebreak","type":"plugin","creationDate":"November 2005","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"PLG_CONTENT_PAGEBREAK_XML_DESCRIPTION","group":"","filename":"pagebreak"}', '{"title":"1","multipage_toc":"1","showall":"1"}', '', '', 0, '0000-00-00 00:00:00', 4, 0),
 (408, 'plg_content_pagenavigation', 'plugin', 'pagenavigation', 'content', 0, 1, 1, 0, '{"name":"plg_content_pagenavigation","type":"plugin","creationDate":"January 2006","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"PLG_PAGENAVIGATION_XML_DESCRIPTION","group":"","filename":"pagenavigation"}', '{"position":"1"}', '', '', 0, '0000-00-00 00:00:00', 5, 0),
 (409, 'plg_content_vote', 'plugin', 'vote', 'content', 0, 1, 1, 0, '{"name":"plg_content_vote","type":"plugin","creationDate":"November 2005","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"PLG_VOTE_XML_DESCRIPTION","group":"","filename":"vote"}', '', '', '', 0, '0000-00-00 00:00:00', 6, 0),
-(410, 'plg_editors_codemirror', 'plugin', 'codemirror', 'editors', 0, 1, 1, 1, '{"name":"plg_editors_codemirror","type":"plugin","creationDate":"28 March 2011","author":"Marijn Haverbeke","copyright":"Copyright (C) 2014 by Marijn Haverbeke <marijnh@gmail.com> and others","authorEmail":"marijnh@gmail.com","authorUrl":"http:\\/\\/codemirror.net\\/","version":"5.15.2","description":"PLG_CODEMIRROR_XML_DESCRIPTION","group":"","filename":"codemirror"}', '{"lineNumbers":"1","lineWrapping":"1","matchTags":"1","matchBrackets":"1","marker-gutter":"1","autoCloseTags":"1","autoCloseBrackets":"1","autoFocus":"1","theme":"default","tabmode":"indent"}', '', '', 0, '0000-00-00 00:00:00', 1, 0),
+(410, 'plg_editors_codemirror', 'plugin', 'codemirror', 'editors', 0, 1, 1, 1, '{"name":"plg_editors_codemirror","type":"plugin","creationDate":"28 March 2011","author":"Marijn Haverbeke","copyright":"Copyright (C) 2014 by Marijn Haverbeke <marijnh@gmail.com> and others","authorEmail":"marijnh@gmail.com","authorUrl":"http:\\/\\/codemirror.net\\/","version":"5.18.0","description":"PLG_CODEMIRROR_XML_DESCRIPTION","group":"","filename":"codemirror"}', '{"lineNumbers":"1","lineWrapping":"1","matchTags":"1","matchBrackets":"1","marker-gutter":"1","autoCloseTags":"1","autoCloseBrackets":"1","autoFocus":"1","theme":"default","tabmode":"indent"}', '', '', 0, '0000-00-00 00:00:00', 1, 0),
 (411, 'plg_editors_none', 'plugin', 'none', 'editors', 0, 1, 1, 1, '{"name":"plg_editors_none","type":"plugin","creationDate":"September 2005","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"PLG_NONE_XML_DESCRIPTION","group":"","filename":"none"}', '', '', '', 0, '0000-00-00 00:00:00', 2, 0),
-(412, 'plg_editors_tinymce', 'plugin', 'tinymce', 'editors', 0, 1, 1, 0, '{"name":"plg_editors_tinymce","type":"plugin","creationDate":"2005-2016","author":"Ephox Corporation","copyright":"Ephox Corporation","authorEmail":"N\\/A","authorUrl":"http:\\/\\/www.tinymce.com","version":"4.3.12","description":"PLG_TINY_XML_DESCRIPTION","group":"","filename":"tinymce"}', '{"mode":"1","skin":"0","mobile":"0","entity_encoding":"raw","lang_mode":"1","text_direction":"ltr","content_css":"1","content_css_custom":"","relative_urls":"1","newlines":"0","invalid_elements":"script,applet,iframe","extended_elements":"","html_height":"550","html_width":"750","resizing":"1","element_path":"1","fonts":"1","paste":"1","searchreplace":"1","insertdate":"1","colors":"1","table":"1","smilies":"1","hr":"1","link":"1","media":"1","print":"1","directionality":"1","fullscreen":"1","alignment":"1","visualchars":"1","visualblocks":"1","nonbreaking":"1","template":"1","blockquote":"1","wordcount":"1","advlist":"1","autosave":"1","contextmenu":"1","inlinepopups":"1","custom_plugin":"","custom_button":""}', '', '', 0, '0000-00-00 00:00:00', 3, 0),
+(412, 'plg_editors_tinymce', 'plugin', 'tinymce', 'editors', 0, 1, 1, 0, '{"name":"plg_editors_tinymce","type":"plugin","creationDate":"2005-2016","author":"Ephox Corporation","copyright":"Ephox Corporation","authorEmail":"N\\/A","authorUrl":"http:\\/\\/www.tinymce.com","version":"4.4.3","description":"PLG_TINY_XML_DESCRIPTION","group":"","filename":"tinymce"}', '{"mode":"1","skin":"0","mobile":"0","entity_encoding":"raw","lang_mode":"1","text_direction":"ltr","content_css":"1","content_css_custom":"","relative_urls":"1","newlines":"0","invalid_elements":"script,applet,iframe","extended_elements":"","html_height":"550","html_width":"750","resizing":"1","element_path":"1","fonts":"1","paste":"1","searchreplace":"1","insertdate":"1","colors":"1","table":"1","smilies":"1","hr":"1","link":"1","media":"1","print":"1","directionality":"1","fullscreen":"1","alignment":"1","visualchars":"1","visualblocks":"1","nonbreaking":"1","template":"1","blockquote":"1","wordcount":"1","advlist":"1","autosave":"1","contextmenu":"1","inlinepopups":"1","custom_plugin":"","custom_button":""}', '', '', 0, '0000-00-00 00:00:00', 3, 0),
 (413, 'plg_editors-xtd_article', 'plugin', 'article', 'editors-xtd', 0, 1, 1, 0, '{"name":"plg_editors-xtd_article","type":"plugin","creationDate":"October 2009","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"PLG_ARTICLE_XML_DESCRIPTION","group":"","filename":"article"}', '', '', '', 0, '0000-00-00 00:00:00', 1, 0),
 (414, 'plg_editors-xtd_image', 'plugin', 'image', 'editors-xtd', 0, 1, 1, 0, '{"name":"plg_editors-xtd_image","type":"plugin","creationDate":"August 2004","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"PLG_IMAGE_XML_DESCRIPTION","group":"","filename":"image"}', '', '', '', 0, '0000-00-00 00:00:00', 2, 0),
 (415, 'plg_editors-xtd_pagebreak', 'plugin', 'pagebreak', 'editors-xtd', 0, 1, 1, 0, '{"name":"plg_editors-xtd_pagebreak","type":"plugin","creationDate":"August 2004","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"PLG_EDITORSXTD_PAGEBREAK_XML_DESCRIPTION","group":"","filename":"pagebreak"}', '', '', '', 0, '0000-00-00 00:00:00', 3, 0),
@@ -662,7 +662,7 @@ INSERT INTO `h0qwo_extensions` (`extension_id`, `name`, `type`, `element`, `fold
 (449, 'plg_authentication_cookie', 'plugin', 'cookie', 'authentication', 0, 1, 1, 0, '{"name":"plg_authentication_cookie","type":"plugin","creationDate":"July 2013","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"PLG_AUTH_COOKIE_XML_DESCRIPTION","group":"","filename":"cookie"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (450, 'plg_twofactorauth_yubikey', 'plugin', 'yubikey', 'twofactorauth', 0, 0, 1, 0, '{"name":"plg_twofactorauth_yubikey","type":"plugin","creationDate":"September 2013","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.2.0","description":"PLG_TWOFACTORAUTH_YUBIKEY_XML_DESCRIPTION","group":"","filename":"yubikey"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (451, 'plg_search_tags', 'plugin', 'tags', 'search', 0, 1, 1, 0, '{"name":"plg_search_tags","type":"plugin","creationDate":"March 2014","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.0.0","description":"PLG_SEARCH_TAGS_XML_DESCRIPTION","group":"","filename":"tags"}', '{"search_limit":"50","show_tagged_items":"1"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(452, 'plg_system_updatenotification', 'plugin', 'updatenotification', 'system', 0, 1, 1, 0, '{"name":"plg_system_updatenotification","type":"plugin","creationDate":"May 2015","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.5.0","description":"PLG_SYSTEM_UPDATENOTIFICATION_XML_DESCRIPTION","group":"","filename":"updatenotification"}', '{"lastrun":1476627101}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(452, 'plg_system_updatenotification', 'plugin', 'updatenotification', 'system', 0, 1, 1, 0, '{"name":"plg_system_updatenotification","type":"plugin","creationDate":"May 2015","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.5.0","description":"PLG_SYSTEM_UPDATENOTIFICATION_XML_DESCRIPTION","group":"","filename":"updatenotification"}', '{"lastrun":1479138501}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (453, 'plg_editors-xtd_module', 'plugin', 'module', 'editors-xtd', 0, 1, 1, 0, '{"name":"plg_editors-xtd_module","type":"plugin","creationDate":"October 2015","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.5.0","description":"PLG_MODULE_XML_DESCRIPTION","group":"","filename":"module"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (454, 'plg_system_stats', 'plugin', 'stats', 'system', 0, 1, 1, 0, '{"name":"plg_system_stats","type":"plugin","creationDate":"November 2013","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.5.0","description":"PLG_SYSTEM_STATS_XML_DESCRIPTION","group":"","filename":"stats"}', '{"mode":3,"lastrun":"","unique_id":"f41989027489c7605c111db4767151af80e7dddb","interval":12}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (455, 'plg_installer_packageinstaller', 'plugin', 'packageinstaller', 'installer', 0, 1, 1, 1, '{"name":"plg_installer_packageinstaller","type":"plugin","creationDate":"May 2016","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.6.0","description":"PLG_INSTALLER_PACKAGEINSTALLER_PLUGIN_XML_DESCRIPTION","group":"","filename":"packageinstaller"}', '', '', '', 0, '0000-00-00 00:00:00', 1, 0),
@@ -672,13 +672,13 @@ INSERT INTO `h0qwo_extensions` (`extension_id`, `name`, `type`, `element`, `fold
 (504, 'hathor', 'template', 'hathor', '', 1, 1, 1, 0, '{"name":"hathor","type":"template","creationDate":"May 2010","author":"Andrea Tarr","copyright":"Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"","version":"3.0.0","description":"TPL_HATHOR_XML_DESCRIPTION","group":"","filename":"templateDetails"}', '{"showSiteName":"0","colourChoice":"0","boldText":"0"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (506, 'protostar', 'template', 'protostar', '', 0, 1, 1, 0, '{"name":"protostar","type":"template","creationDate":"4\\/30\\/2012","author":"Kyle Ledbetter","copyright":"Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"","version":"1.0","description":"TPL_PROTOSTAR_XML_DESCRIPTION","group":"","filename":"templateDetails"}', '{"templateColor":"","logoFile":"","googleFont":"1","googleFontName":"Open+Sans","fluidContainer":"0"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (507, 'isis', 'template', 'isis', '', 1, 1, 1, 0, '{"name":"isis","type":"template","creationDate":"3\\/30\\/2012","author":"Kyle Ledbetter","copyright":"Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"","version":"1.0","description":"TPL_ISIS_XML_DESCRIPTION","group":"","filename":"templateDetails"}', '{"templateColor":"","logoFile":""}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(600, 'English (en-GB)', 'language', 'en-GB', '', 0, 1, 1, 1, '{"name":"English (en-GB)","type":"language","creationDate":"July 2016","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.6.0","description":"en-GB site language","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(601, 'English (en-GB)', 'language', 'en-GB', '', 1, 1, 1, 1, '{"name":"English (en-GB)","type":"language","creationDate":"July 2016","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.6.0","description":"en-GB administrator language","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(700, 'files_joomla', 'file', 'joomla', '', 0, 1, 1, 1, '{"name":"files_joomla","type":"file","creationDate":"July 2016","author":"Joomla! Project","copyright":"(C) 2005 - 2016 Open Source Matters. All rights reserved","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.6.0","description":"FILES_JOOMLA_XML_DESCRIPTION","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(802, 'English (en-GB) Language Pack', 'package', 'pkg_en-GB', '', 0, 1, 1, 1, '{"name":"English (en-GB) Language Pack","type":"package","creationDate":"July 2016","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.6.0.1","description":"en-GB language pack","group":"","filename":"pkg_en-GB"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(10001, 'Helix3 - Ajax', 'plugin', 'helix3', 'ajax', 0, 1, 1, 0, '{"name":"Helix3 - Ajax","type":"plugin","creationDate":"Jan 2015","author":"JoomShaper.com","copyright":"Copyright (C) 2010 - 2015 JoomShaper. All rights reserved.","authorEmail":"support@joomshaper.com","authorUrl":"www.joomshaper.com","version":"1.2","description":"Helix3 Framework - Joomla Template Framework by JoomShaper","group":"","filename":"helix3"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(10002, 'System - Helix3 Framework', 'plugin', 'helix3', 'system', 0, 1, 1, 0, '{"name":"System - Helix3 Framework","type":"plugin","creationDate":"Jan 2015","author":"JoomShaper.com","copyright":"Copyright (C) 2010 - 2015 JoomShaper. All rights reserved.","authorEmail":"support@joomshaper.com","authorUrl":"www.joomshaper.com","version":"1.2","description":"Helix3 Framework - Joomla Template Framework by JoomShaper","group":"","filename":"helix3"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(10003, 'shaper_helix3', 'template', 'shaper_helix3', '', 0, 1, 1, 0, '{"name":"shaper_helix3","type":"template","creationDate":"Jan 2015","author":"JoomShaper.com","copyright":"Copyright (C) 2010 - 2015 JoomShaper.com. All rights reserved.","authorEmail":"support@joomshaper.com","authorUrl":"http:\\/\\/www.joomshaper.com","version":"1.2","description":"Shaper Helix3 - Starter Template of Helix3 framework","group":"","filename":"templateDetails"}', '{"sticky_header":"1","boxed_layout":"0","logo_type":"image","logo_position":"logo","body_bg_repeat":"inherit","body_bg_size":"inherit","body_bg_attachment":"inherit","body_bg_position":"0 0","enabled_copyright":"1","copyright_position":"footer1","copyright":"\\u00a9 2015 Your Company. All Rights Reserved. Designed By JoomShaper","show_social_icons":"1","social_position":"top1","enable_contactinfo":"1","contact_position":"top2","contact_phone":"+228 872 4444","contact_email":"contact@email.com","comingsoon_mode":"0","comingsoon_title":"Coming Soon Title","comingsoon_date":"5-10-2018","comingsoon_content":"Coming soon content","preset":"preset1","preset1_bg":"#ffffff","preset1_text":"#000000","preset1_major":"#26aae1","preset2_bg":"#ffffff","preset2_text":"#000000","preset2_major":"#3d449a","preset3_bg":"#ffffff","preset3_text":"#000000","preset3_major":"#2bb673","preset4_bg":"#ffffff","preset4_text":"#000000","preset4_major":"#eb4947","menu":"mainmenu","menu_type":"mega_offcanvas","menu_animation":"menu-fade","enable_body_font":"1","body_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"300\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h1_font":"1","h1_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"800\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h2_font":"1","h2_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"600\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h3_font":"1","h3_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"regular\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h4_font":"1","h4_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"regular\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h5_font":"1","h5_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"600\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h6_font":"1","h6_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"600\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_navigation_font":"0","enable_custom_font":"0","compress_css":"0","compress_js":"0","lessoption":"0","show_post_format":"1","commenting_engine":"disabled","disqus_devmode":"0","intensedebate_acc":"","fb_width":"500","fb_cpp":"10","comments_count":"0","social_share":"1","image_small":"0","image_small_size":"100X100","image_thumbnail":"1","image_thumbnail_size":"200X200","image_medium":"0","image_medium_size":"300X300","image_large":"0","image_large_size":"600X600","blog_list_image":"default"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(600, 'English (en-GB)', 'language', 'en-GB', '', 0, 1, 1, 1, '{"name":"English (en-GB)","type":"language","creationDate":"October 2016","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.6.4","description":"en-GB site language","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(601, 'English (en-GB)', 'language', 'en-GB', '', 1, 1, 1, 1, '{"name":"English (en-GB)","type":"language","creationDate":"October 2016","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.6.4","description":"en-GB administrator language","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(700, 'files_joomla', 'file', 'joomla', '', 0, 1, 1, 1, '{"name":"files_joomla","type":"file","creationDate":"October 2016","author":"Joomla! Project","copyright":"(C) 2005 - 2016 Open Source Matters. All rights reserved","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.6.4","description":"FILES_JOOMLA_XML_DESCRIPTION","group":""}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(802, 'English (en-GB) Language Pack', 'package', 'pkg_en-GB', '', 0, 1, 1, 1, '{"name":"English (en-GB) Language Pack","type":"package","creationDate":"October 2016","author":"Joomla! Project","copyright":"Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.","authorEmail":"admin@joomla.org","authorUrl":"www.joomla.org","version":"3.6.4.1","description":"en-GB language pack","group":"","filename":"pkg_en-GB"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10001, 'Helix3 - Ajax', 'plugin', 'helix3', 'ajax', 0, 1, 1, 0, '{"name":"Helix3 - Ajax","type":"plugin","creationDate":"Jan 2015","author":"JoomShaper.com","copyright":"Copyright (C) 2010 - 2015 JoomShaper. All rights reserved.","authorEmail":"support@joomshaper.com","authorUrl":"www.joomshaper.com","version":"1.7","description":"Helix3 Framework - Joomla Template Framework by JoomShaper","group":"","filename":"helix3"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10002, 'System - Helix3 Framework', 'plugin', 'helix3', 'system', 0, 1, 1, 0, '{"name":"System - Helix3 Framework","type":"plugin","creationDate":"Jan 2015","author":"JoomShaper.com","copyright":"Copyright (C) 2010 - 2015 JoomShaper. All rights reserved.","authorEmail":"support@joomshaper.com","authorUrl":"www.joomshaper.com","version":"1.7","description":"Helix3 Framework - Joomla Template Framework by JoomShaper","group":"","filename":"helix3"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10003, 'shaper_helix3', 'template', 'shaper_helix3', '', 0, 1, 1, 0, '{"name":"shaper_helix3","type":"template","creationDate":"Jan 2016","author":"JoomShaper.com","copyright":"Copyright (C) 2010 - 2016 JoomShaper.com. All rights reserved.","authorEmail":"support@joomshaper.com","authorUrl":"http:\\/\\/www.joomshaper.com","version":"1.7","description":"Shaper Helix3 - Starter Template of Helix3 framework","group":"","filename":"templateDetails"}', '{"sticky_header":"1","boxed_layout":"0","logo_type":"image","logo_position":"logo","body_bg_repeat":"inherit","body_bg_size":"inherit","body_bg_attachment":"inherit","body_bg_position":"0 0","enabled_copyright":"1","copyright_position":"footer1","copyright":"\\u00a9 2015 Your Company. All Rights Reserved. Designed By JoomShaper","show_social_icons":"1","social_position":"top1","enable_contactinfo":"1","contact_position":"top2","contact_phone":"+228 872 4444","contact_email":"contact@email.com","comingsoon_mode":"0","comingsoon_title":"Coming Soon Title","comingsoon_date":"5-10-2018","comingsoon_content":"Coming soon content","preset":"preset1","preset1_bg":"#ffffff","preset1_text":"#000000","preset1_major":"#26aae1","preset2_bg":"#ffffff","preset2_text":"#000000","preset2_major":"#3d449a","preset3_bg":"#ffffff","preset3_text":"#000000","preset3_major":"#2bb673","preset4_bg":"#ffffff","preset4_text":"#000000","preset4_major":"#eb4947","menu":"mainmenu","menu_type":"mega_offcanvas","menu_animation":"menu-fade","enable_body_font":"1","body_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"300\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h1_font":"1","h1_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"800\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h2_font":"1","h2_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"600\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h3_font":"1","h3_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"regular\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h4_font":"1","h4_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"regular\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h5_font":"1","h5_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"600\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h6_font":"1","h6_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"600\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_navigation_font":"0","enable_custom_font":"0","compress_css":"0","compress_js":"0","lessoption":"0","show_post_format":"1","commenting_engine":"disabled","disqus_devmode":"0","intensedebate_acc":"","fb_width":"500","fb_cpp":"10","comments_count":"0","social_share":"1","image_small":"0","image_small_size":"100X100","image_thumbnail":"1","image_thumbnail_size":"200X200","image_medium":"0","image_medium_size":"300X300","image_large":"0","image_large_size":"600X600","blog_list_image":"default"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (10004, 'SP Page Builder', 'component', 'com_sppagebuilder', '', 1, 1, 0, 0, '{"name":"SP Page Builder","type":"component","creationDate":"Sep 2014","author":"JoomShaper","copyright":"Copyright @ 2010 - 2016 JoomShaper. All rights reserved.","authorEmail":"support@joomshaper.com","authorUrl":"http:\\/\\/www.joomshaper.com","version":"1.0.8","description":"Most powerful drag and drop page builder for Joomla 3.4 or later.","group":"","filename":"sppagebuilder"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (10005, 'mod_sppagebuilder_icons', 'module', 'mod_sppagebuilder_icons', '', 1, 1, 2, 0, '{"name":"mod_sppagebuilder_icons","type":"module","creationDate":"August 2014","author":"JoomShaper","copyright":"Copyright (C) 2010 - 2016 JoomShaper. All rights reserved.","authorEmail":"support@joomshaper.com","authorUrl":"www.joomshaper.com","version":"1.0.2","description":"MOD_SPPAGEBUILDER_ICONS_XML_DESCRIPTION","group":"","filename":"mod_sppagebuilder_icons"}', '[]', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (10006, 'mod_sppagebuilder_admin_menu', 'module', 'mod_sppagebuilder_admin_menu', '', 1, 1, 2, 0, '{"name":"mod_sppagebuilder_admin_menu","type":"module","creationDate":"August 2014","author":"JoomShaper","copyright":"Copyright (C) 2010 - 2016 JoomShaper. All rights reserved.","authorEmail":"support@joomshaper.com","authorUrl":"www.joomshaper.com","version":"1.0.2","description":"MOD_SPPAGEBUILDER_MENU_XML_DESCRIPTION","group":"","filename":"mod_sppagebuilder_admin_menu"}', '[]', '', '', 0, '0000-00-00 00:00:00', 0, 0),
@@ -687,14 +687,14 @@ INSERT INTO `h0qwo_extensions` (`extension_id`, `name`, `type`, `element`, `fold
 (10009, 'Content - JSitemap Pingomatic', 'plugin', 'pingomatic', 'content', 0, 1, 1, 0, '{"name":"Content - JSitemap Pingomatic","type":"plugin","creationDate":"July 2015","author":"Joomla! Extensions Store","copyright":"Copyright (C) 2015 - Joomla! Extensions Store. All Rights Reserved.","authorEmail":"info@storejextensions.org","authorUrl":"http:\\/\\/storejextensions.org","version":"3.5","description":"JSitemap Pingomatic plugin","group":"","filename":"pingomatic"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (10010, 'JSitemap module', 'module', 'mod_jmap', '', 0, 1, 0, 0, '{"name":"JSitemap module","type":"module","creationDate":"July 2015","author":"Joomla! Extensions Store","copyright":"Copyright (C) 2015 - Joomla! Extensions Store. All Rights Reserved.","authorEmail":"info@storejextensions.org","authorUrl":"http:\\/\\/storejextensions.org","version":"3.5","description":"JSitemap Module","group":"","filename":"mod_jmap"}', '{"scrolling":"auto","width":"100%","height":"200","height_auto":"1","sitemap_html_template":"","show_icons":"","show_expanded":"","expand_location":"","column_sitemap":"","column_maxnum":"","multilevel_categories":"","cache":"1","cache_time":"900","cachemode":"static"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (10011, 'JSitemap Quickicons', 'module', 'mod_jmapquickicon', '', 1, 1, 2, 0, '{"name":"JSitemap Quickicons","type":"module","creationDate":"July 2015","author":"Joomla! Extensions Store","copyright":"Copyright (C) 2015 - Joomla! Extensions Store. All Rights Reserved.","authorEmail":"info@storejextensions.org","authorUrl":"http:\\/\\/storejextensions.org","version":"3.5","description":"JSitemap Quickicons module","group":"","filename":"mod_jmapquickicon"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(10012, 'Russian', 'language', 'ru-RU', '', 0, 1, 0, 0, '{"name":"Russian","type":"language","creationDate":"2016-04-01","author":"Russian Translation Team","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved","authorEmail":"smart@joomlaportal.ru","authorUrl":"www.joomlaportal.ru","version":"3.5.0.6","description":"Russian language pack (site) for Joomla! 3.5.0","group":"","filename":"install"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(10013, '', 'language', 'ru-RU', '', 1, 1, 0, 0, '{"name":"\\u0420\\u0443\\u0441\\u0441\\u043a\\u0438\\u0439 (\\u0420\\u043e\\u0441\\u0441\\u0438\\u044f)","type":"language","creationDate":"2016-04-01","author":"Russian Translation Team","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"smart@joomlaportal.ru","authorUrl":"www.joomlaportal.ru","version":"3.5.0.6","description":"Russian language pack (administrator) for Joomla! 3.5.0","group":"","filename":"install"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(10014, 'Russian (ru-RU) Language Pack', 'package', 'pkg_ru-RU', '', 0, 1, 1, 0, '{"name":"Russian (ru-RU) Language Pack","type":"package","creationDate":"2016-04-01","author":"Russian Translation Team","copyright":"","authorEmail":"smart@joomlaportal.ru","authorUrl":"www.joomlaportal.ru","version":"3.5.0.6","description":"Russian (ru-RU) language pack for Joomla","group":"","filename":"pkg_ru-RU"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0);
+(10012, 'Russian', 'language', 'ru-RU', '', 0, 1, 0, 0, '{"name":"Russian","type":"language","creationDate":"2016-09-04","author":"Russian Translation Team","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved","authorEmail":"smart@joomlaportal.ru","authorUrl":"www.joomlaportal.ru","version":"3.6.2.2","description":"Russian language pack (site) for Joomla! 3.6.2","group":"","filename":"install"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10013, '', 'language', 'ru-RU', '', 1, 1, 0, 0, '{"name":"\\u0420\\u0443\\u0441\\u0441\\u043a\\u0438\\u0439 (\\u0420\\u043e\\u0441\\u0441\\u0438\\u044f)","type":"language","creationDate":"2016-09-04","author":"Russian Translation Team","copyright":"Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.","authorEmail":"smart@joomlaportal.ru","authorUrl":"www.joomlaportal.ru","version":"3.6.2.2","description":"Russian language pack (administrator) for Joomla! 3.6.2","group":"","filename":"install"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(10014, 'Russian (ru-RU) Language Pack', 'package', 'pkg_ru-RU', '', 0, 1, 1, 0, '{"name":"Russian (ru-RU) Language Pack","type":"package","creationDate":"2016-09-04","author":"Russian Translation Team","copyright":"Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.","authorEmail":"smart@joomlaportal.ru","authorUrl":"www.joomlaportal.ru","version":"3.6.2.2","description":"Joomla 3.6 Russian Language Package","group":"","filename":"pkg_ru-RU"}', '{}', '', '', 0, '0000-00-00 00:00:00', 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_filters`
+-- Table structure for table `h0qwo_finder_filters`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_filters` (
@@ -713,12 +713,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_filters` (
   `data` text NOT NULL,
   `params` mediumtext,
   PRIMARY KEY (`filter_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_links`
+-- Table structure for table `h0qwo_finder_links`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_links` (
@@ -743,17 +743,17 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_links` (
   `object` mediumblob NOT NULL,
   PRIMARY KEY (`link_id`),
   KEY `idx_type` (`type_id`),
-  KEY `idx_title` (`title`(100)),
   KEY `idx_md5` (`md5sum`),
   KEY `idx_url` (`url`(75)),
   KEY `idx_published_list` (`published`,`state`,`access`,`publish_start_date`,`publish_end_date`,`list_price`),
-  KEY `idx_published_sale` (`published`,`state`,`access`,`publish_start_date`,`publish_end_date`,`sale_price`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
+  KEY `idx_published_sale` (`published`,`state`,`access`,`publish_start_date`,`publish_end_date`,`sale_price`),
+  KEY `idx_title` (`title`(100))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_links_terms0`
+-- Table structure for table `h0qwo_finder_links_terms0`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms0` (
@@ -763,12 +763,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms0` (
   PRIMARY KEY (`link_id`,`term_id`),
   KEY `idx_term_weight` (`term_id`,`weight`),
   KEY `idx_link_term_weight` (`link_id`,`term_id`,`weight`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_links_terms1`
+-- Table structure for table `h0qwo_finder_links_terms1`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms1` (
@@ -778,12 +778,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms1` (
   PRIMARY KEY (`link_id`,`term_id`),
   KEY `idx_term_weight` (`term_id`,`weight`),
   KEY `idx_link_term_weight` (`link_id`,`term_id`,`weight`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_links_terms2`
+-- Table structure for table `h0qwo_finder_links_terms2`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms2` (
@@ -793,12 +793,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms2` (
   PRIMARY KEY (`link_id`,`term_id`),
   KEY `idx_term_weight` (`term_id`,`weight`),
   KEY `idx_link_term_weight` (`link_id`,`term_id`,`weight`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_links_terms3`
+-- Table structure for table `h0qwo_finder_links_terms3`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms3` (
@@ -808,12 +808,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms3` (
   PRIMARY KEY (`link_id`,`term_id`),
   KEY `idx_term_weight` (`term_id`,`weight`),
   KEY `idx_link_term_weight` (`link_id`,`term_id`,`weight`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_links_terms4`
+-- Table structure for table `h0qwo_finder_links_terms4`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms4` (
@@ -823,12 +823,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms4` (
   PRIMARY KEY (`link_id`,`term_id`),
   KEY `idx_term_weight` (`term_id`,`weight`),
   KEY `idx_link_term_weight` (`link_id`,`term_id`,`weight`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_links_terms5`
+-- Table structure for table `h0qwo_finder_links_terms5`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms5` (
@@ -838,12 +838,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms5` (
   PRIMARY KEY (`link_id`,`term_id`),
   KEY `idx_term_weight` (`term_id`,`weight`),
   KEY `idx_link_term_weight` (`link_id`,`term_id`,`weight`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_links_terms6`
+-- Table structure for table `h0qwo_finder_links_terms6`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms6` (
@@ -853,12 +853,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms6` (
   PRIMARY KEY (`link_id`,`term_id`),
   KEY `idx_term_weight` (`term_id`,`weight`),
   KEY `idx_link_term_weight` (`link_id`,`term_id`,`weight`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_links_terms7`
+-- Table structure for table `h0qwo_finder_links_terms7`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms7` (
@@ -868,12 +868,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms7` (
   PRIMARY KEY (`link_id`,`term_id`),
   KEY `idx_term_weight` (`term_id`,`weight`),
   KEY `idx_link_term_weight` (`link_id`,`term_id`,`weight`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_links_terms8`
+-- Table structure for table `h0qwo_finder_links_terms8`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms8` (
@@ -883,12 +883,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms8` (
   PRIMARY KEY (`link_id`,`term_id`),
   KEY `idx_term_weight` (`term_id`,`weight`),
   KEY `idx_link_term_weight` (`link_id`,`term_id`,`weight`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_links_terms9`
+-- Table structure for table `h0qwo_finder_links_terms9`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms9` (
@@ -898,12 +898,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_terms9` (
   PRIMARY KEY (`link_id`,`term_id`),
   KEY `idx_term_weight` (`term_id`,`weight`),
   KEY `idx_link_term_weight` (`link_id`,`term_id`,`weight`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_links_termsa`
+-- Table structure for table `h0qwo_finder_links_termsa`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_termsa` (
@@ -913,12 +913,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_termsa` (
   PRIMARY KEY (`link_id`,`term_id`),
   KEY `idx_term_weight` (`term_id`,`weight`),
   KEY `idx_link_term_weight` (`link_id`,`term_id`,`weight`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_links_termsb`
+-- Table structure for table `h0qwo_finder_links_termsb`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_termsb` (
@@ -928,12 +928,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_termsb` (
   PRIMARY KEY (`link_id`,`term_id`),
   KEY `idx_term_weight` (`term_id`,`weight`),
   KEY `idx_link_term_weight` (`link_id`,`term_id`,`weight`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_links_termsc`
+-- Table structure for table `h0qwo_finder_links_termsc`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_termsc` (
@@ -943,12 +943,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_termsc` (
   PRIMARY KEY (`link_id`,`term_id`),
   KEY `idx_term_weight` (`term_id`,`weight`),
   KEY `idx_link_term_weight` (`link_id`,`term_id`,`weight`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_links_termsd`
+-- Table structure for table `h0qwo_finder_links_termsd`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_termsd` (
@@ -958,12 +958,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_termsd` (
   PRIMARY KEY (`link_id`,`term_id`),
   KEY `idx_term_weight` (`term_id`,`weight`),
   KEY `idx_link_term_weight` (`link_id`,`term_id`,`weight`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_links_termse`
+-- Table structure for table `h0qwo_finder_links_termse`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_termse` (
@@ -973,12 +973,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_termse` (
   PRIMARY KEY (`link_id`,`term_id`),
   KEY `idx_term_weight` (`term_id`,`weight`),
   KEY `idx_link_term_weight` (`link_id`,`term_id`,`weight`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_links_termsf`
+-- Table structure for table `h0qwo_finder_links_termsf`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_termsf` (
@@ -988,12 +988,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_links_termsf` (
   PRIMARY KEY (`link_id`,`term_id`),
   KEY `idx_term_weight` (`term_id`,`weight`),
   KEY `idx_link_term_weight` (`link_id`,`term_id`,`weight`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_taxonomy`
+-- Table structure for table `h0qwo_finder_taxonomy`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_taxonomy` (
@@ -1009,10 +1009,10 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_taxonomy` (
   KEY `ordering` (`ordering`),
   KEY `access` (`access`),
   KEY `idx_parent_published` (`parent_id`,`state`,`access`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Дамп данных таблицы `h0qwo_finder_taxonomy`
+-- Dumping data for table `h0qwo_finder_taxonomy`
 --
 
 INSERT INTO `h0qwo_finder_taxonomy` (`id`, `parent_id`, `title`, `state`, `access`, `ordering`) VALUES
@@ -1021,7 +1021,7 @@ INSERT INTO `h0qwo_finder_taxonomy` (`id`, `parent_id`, `title`, `state`, `acces
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_taxonomy_map`
+-- Table structure for table `h0qwo_finder_taxonomy_map`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_taxonomy_map` (
@@ -1030,12 +1030,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_taxonomy_map` (
   PRIMARY KEY (`link_id`,`node_id`),
   KEY `link_id` (`link_id`),
   KEY `node_id` (`node_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_terms`
+-- Table structure for table `h0qwo_finder_terms`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_terms` (
@@ -1053,12 +1053,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_terms` (
   KEY `idx_term_phrase` (`term`,`phrase`),
   KEY `idx_stem_phrase` (`stem`,`phrase`),
   KEY `idx_soundex_phrase` (`soundex`,`phrase`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_terms_common`
+-- Table structure for table `h0qwo_finder_terms_common`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_terms_common` (
@@ -1066,10 +1066,10 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_terms_common` (
   `language` varchar(3) NOT NULL,
   KEY `idx_word_lang` (`term`,`language`),
   KEY `idx_lang` (`language`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `h0qwo_finder_terms_common`
+-- Dumping data for table `h0qwo_finder_terms_common`
 --
 
 INSERT INTO `h0qwo_finder_terms_common` (`term`, `language`) VALUES
@@ -1192,7 +1192,7 @@ INSERT INTO `h0qwo_finder_terms_common` (`term`, `language`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_tokens`
+-- Table structure for table `h0qwo_finder_tokens`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_tokens` (
@@ -1205,12 +1205,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_tokens` (
   `language` char(3) NOT NULL DEFAULT '',
   KEY `idx_word` (`term`),
   KEY `idx_context` (`context`)
-) ENGINE=MEMORY DEFAULT CHARSET=utf8mb4;
+) ENGINE=MEMORY DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_tokens_aggregate`
+-- Table structure for table `h0qwo_finder_tokens_aggregate`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_tokens_aggregate` (
@@ -1227,12 +1227,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_tokens_aggregate` (
   `language` char(3) NOT NULL DEFAULT '',
   KEY `token` (`term`),
   KEY `keyword_id` (`term_id`)
-) ENGINE=MEMORY DEFAULT CHARSET=utf8mb4;
+) ENGINE=MEMORY DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_finder_types`
+-- Table structure for table `h0qwo_finder_types`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_finder_types` (
@@ -1241,12 +1241,12 @@ CREATE TABLE IF NOT EXISTS `h0qwo_finder_types` (
   `mime` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `title` (`title`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_jmap`
+-- Table structure for table `h0qwo_jmap`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_jmap` (
@@ -1266,7 +1266,7 @@ CREATE TABLE IF NOT EXISTS `h0qwo_jmap` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Дамп данных таблицы `h0qwo_jmap`
+-- Dumping data for table `h0qwo_jmap`
 --
 
 INSERT INTO `h0qwo_jmap` (`id`, `type`, `name`, `description`, `checked_out`, `checked_out_time`, `published`, `ordering`, `sqlquery`, `sqlquery_managed`, `params`) VALUES
@@ -1278,7 +1278,7 @@ INSERT INTO `h0qwo_jmap` (`id`, `type`, `name`, `description`, `checked_out`, `c
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_jmap_cats_priorities`
+-- Table structure for table `h0qwo_jmap_cats_priorities`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_jmap_cats_priorities` (
@@ -1290,7 +1290,7 @@ CREATE TABLE IF NOT EXISTS `h0qwo_jmap_cats_priorities` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_jmap_datasets`
+-- Table structure for table `h0qwo_jmap_datasets`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_jmap_datasets` (
@@ -1308,7 +1308,7 @@ CREATE TABLE IF NOT EXISTS `h0qwo_jmap_datasets` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_jmap_dss_relations`
+-- Table structure for table `h0qwo_jmap_dss_relations`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_jmap_dss_relations` (
@@ -1320,7 +1320,7 @@ CREATE TABLE IF NOT EXISTS `h0qwo_jmap_dss_relations` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_jmap_google`
+-- Table structure for table `h0qwo_jmap_google`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_jmap_google` (
@@ -1331,7 +1331,7 @@ CREATE TABLE IF NOT EXISTS `h0qwo_jmap_google` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_jmap_menu_priorities`
+-- Table structure for table `h0qwo_jmap_menu_priorities`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_jmap_menu_priorities` (
@@ -1343,7 +1343,7 @@ CREATE TABLE IF NOT EXISTS `h0qwo_jmap_menu_priorities` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_jmap_metainfo`
+-- Table structure for table `h0qwo_jmap_metainfo`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_jmap_metainfo` (
@@ -1363,7 +1363,7 @@ CREATE TABLE IF NOT EXISTS `h0qwo_jmap_metainfo` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_jmap_pingomatic`
+-- Table structure for table `h0qwo_jmap_pingomatic`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_jmap_pingomatic` (
@@ -1381,21 +1381,21 @@ CREATE TABLE IF NOT EXISTS `h0qwo_jmap_pingomatic` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_languages`
+-- Table structure for table `h0qwo_languages`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_languages` (
   `lang_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `asset_id` int(11) NOT NULL,
-  `lang_code` char(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title_native` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sef` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(512) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `metakey` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `metadesc` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sitename` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `lang_code` char(7) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `title` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `title_native` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `sef` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(512) COLLATE utf8_unicode_ci NOT NULL,
+  `metakey` text COLLATE utf8_unicode_ci NOT NULL,
+  `metadesc` text COLLATE utf8_unicode_ci NOT NULL,
+  `sitename` varchar(1024) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `published` int(11) NOT NULL DEFAULT '0',
   `access` int(10) unsigned NOT NULL DEFAULT '0',
   `ordering` int(11) NOT NULL DEFAULT '0',
@@ -1405,10 +1405,10 @@ CREATE TABLE IF NOT EXISTS `h0qwo_languages` (
   UNIQUE KEY `idx_langcode` (`lang_code`),
   KEY `idx_access` (`access`),
   KEY `idx_ordering` (`ordering`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Дамп данных таблицы `h0qwo_languages`
+-- Dumping data for table `h0qwo_languages`
 --
 
 INSERT INTO `h0qwo_languages` (`lang_id`, `asset_id`, `lang_code`, `title`, `title_native`, `sef`, `image`, `description`, `metakey`, `metadesc`, `sitename`, `published`, `access`, `ordering`) VALUES
@@ -1417,18 +1417,18 @@ INSERT INTO `h0qwo_languages` (`lang_id`, `asset_id`, `lang_code`, `title`, `tit
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_menu`
+-- Table structure for table `h0qwo_menu`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `menutype` varchar(24) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'The type of menu this item belongs to. FK to #__menu_types.menutype',
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'The display title of the menu item.',
-  `alias` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL COMMENT 'The SEF alias of the menu item.',
-  `note` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `path` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'The computed path of the menu item based on the alias field.',
-  `link` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'The actually link the menu item refers to.',
-  `type` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'The type of link: Component, URL, Alias, Separator',
+  `menutype` varchar(24) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The type of menu this item belongs to. FK to #__menu_types.menutype',
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The display title of the menu item.',
+  `alias` varchar(400) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT 'The SEF alias of the menu item.',
+  `note` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `path` varchar(1024) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The computed path of the menu item based on the alias field.',
+  `link` varchar(1024) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The actually link the menu item refers to.',
+  `type` varchar(16) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The type of link: Component, URL, Alias, Separator',
   `published` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'The published state of the menu link.',
   `parent_id` int(10) unsigned NOT NULL DEFAULT '1' COMMENT 'The parent menu item in the menu tree.',
   `level` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'The relative level in the tree.',
@@ -1437,83 +1437,84 @@ CREATE TABLE IF NOT EXISTS `h0qwo_menu` (
   `checked_out_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'The time the menu item was checked out.',
   `browserNav` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'The click behaviour of the link.',
   `access` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'The access level required to view the menu item.',
-  `img` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'The image of the menu item.',
+  `img` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The image of the menu item.',
   `template_style_id` int(10) unsigned NOT NULL DEFAULT '0',
-  `params` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'JSON encoded data for the menu item.',
+  `params` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'JSON encoded data for the menu item.',
   `lft` int(11) NOT NULL DEFAULT '0' COMMENT 'Nested set lft.',
   `rgt` int(11) NOT NULL DEFAULT '0' COMMENT 'Nested set rgt.',
   `home` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT 'Indicates if this menu item is the home or default page.',
-  `language` char(7) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `language` char(7) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `client_id` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_client_id_parent_id_alias_language` (`client_id`,`parent_id`,`alias`(100),`language`),
   KEY `idx_componentid` (`component_id`,`menutype`,`published`,`access`),
   KEY `idx_menutype` (`menutype`),
   KEY `idx_left_right` (`lft`,`rgt`),
+  KEY `idx_language` (`language`),
   KEY `idx_alias` (`alias`(100)),
-  KEY `idx_path` (`path`(100)),
-  KEY `idx_language` (`language`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=120 ;
+  KEY `idx_path` (`path`(100))
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=122 ;
 
 --
--- Дамп данных таблицы `h0qwo_menu`
+-- Dumping data for table `h0qwo_menu`
 --
 
 INSERT INTO `h0qwo_menu` (`id`, `menutype`, `title`, `alias`, `note`, `path`, `link`, `type`, `published`, `parent_id`, `level`, `component_id`, `checked_out`, `checked_out_time`, `browserNav`, `access`, `img`, `template_style_id`, `params`, `lft`, `rgt`, `home`, `language`, `client_id`) VALUES
-(1, '', 'Menu_Item_Root', 'root', '', '', '', '', 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, 0, '', 0, '', 0, 69, 0, '*', 0),
+(1, '', 'Menu_Item_Root', 'root', '', '', '', '', 1, 0, 0, 0, 0, '0000-00-00 00:00:00', 0, 0, '', 0, '', 0, 71, 0, '*', 0),
 (2, 'menu', 'com_banners', 'Banners', '', 'Banners', 'index.php?option=com_banners', 'component', 0, 1, 1, 4, 0, '0000-00-00 00:00:00', 0, 0, 'class:banners', 0, '', 1, 10, 0, '*', 1),
 (3, 'menu', 'com_banners', 'Banners', '', 'Banners/Banners', 'index.php?option=com_banners', 'component', 0, 2, 2, 4, 0, '0000-00-00 00:00:00', 0, 0, 'class:banners', 0, '', 2, 3, 0, '*', 1),
 (4, 'menu', 'com_banners_categories', 'Categories', '', 'Banners/Categories', 'index.php?option=com_categories&extension=com_banners', 'component', 0, 2, 2, 6, 0, '0000-00-00 00:00:00', 0, 0, 'class:banners-cat', 0, '', 4, 5, 0, '*', 1),
 (5, 'menu', 'com_banners_clients', 'Clients', '', 'Banners/Clients', 'index.php?option=com_banners&view=clients', 'component', 0, 2, 2, 4, 0, '0000-00-00 00:00:00', 0, 0, 'class:banners-clients', 0, '', 6, 7, 0, '*', 1),
 (6, 'menu', 'com_banners_tracks', 'Tracks', '', 'Banners/Tracks', 'index.php?option=com_banners&view=tracks', 'component', 0, 2, 2, 4, 0, '0000-00-00 00:00:00', 0, 0, 'class:banners-tracks', 0, '', 8, 9, 0, '*', 1),
-(7, 'menu', 'com_contact', 'Contacts', '', 'Contacts', 'index.php?option=com_contact', 'component', 0, 1, 1, 8, 0, '0000-00-00 00:00:00', 0, 0, 'class:contact', 0, '', 35, 40, 0, '*', 1),
-(8, 'menu', 'com_contact', 'Contacts', '', 'Contacts/Contacts', 'index.php?option=com_contact', 'component', 0, 7, 2, 8, 0, '0000-00-00 00:00:00', 0, 0, 'class:contact', 0, '', 36, 37, 0, '*', 1),
-(9, 'menu', 'com_contact_categories', 'Categories', '', 'Contacts/Categories', 'index.php?option=com_categories&extension=com_contact', 'component', 0, 7, 2, 6, 0, '0000-00-00 00:00:00', 0, 0, 'class:contact-cat', 0, '', 38, 39, 0, '*', 1),
-(10, 'menu', 'com_messages', 'Messaging', '', 'Messaging', 'index.php?option=com_messages', 'component', 0, 1, 1, 15, 0, '0000-00-00 00:00:00', 0, 0, 'class:messages', 0, '', 41, 44, 0, '*', 1),
-(11, 'menu', 'com_messages_add', 'New Private Message', '', 'Messaging/New Private Message', 'index.php?option=com_messages&task=message.add', 'component', 0, 10, 2, 15, 0, '0000-00-00 00:00:00', 0, 0, 'class:messages-add', 0, '', 42, 43, 0, '*', 1),
-(13, 'menu', 'com_newsfeeds', 'News Feeds', '', 'News Feeds', 'index.php?option=com_newsfeeds', 'component', 0, 1, 1, 17, 0, '0000-00-00 00:00:00', 0, 0, 'class:newsfeeds', 0, '', 45, 50, 0, '*', 1),
-(14, 'menu', 'com_newsfeeds_feeds', 'Feeds', '', 'News Feeds/Feeds', 'index.php?option=com_newsfeeds', 'component', 0, 13, 2, 17, 0, '0000-00-00 00:00:00', 0, 0, 'class:newsfeeds', 0, '', 46, 47, 0, '*', 1),
-(15, 'menu', 'com_newsfeeds_categories', 'Categories', '', 'News Feeds/Categories', 'index.php?option=com_categories&extension=com_newsfeeds', 'component', 0, 13, 2, 6, 0, '0000-00-00 00:00:00', 0, 0, 'class:newsfeeds-cat', 0, '', 48, 49, 0, '*', 1),
+(7, 'menu', 'com_contact', 'Contacts', '', 'Contacts', 'index.php?option=com_contact', 'component', 0, 1, 1, 8, 0, '0000-00-00 00:00:00', 0, 0, 'class:contact', 0, '', 37, 42, 0, '*', 1),
+(8, 'menu', 'com_contact', 'Contacts', '', 'Contacts/Contacts', 'index.php?option=com_contact', 'component', 0, 7, 2, 8, 0, '0000-00-00 00:00:00', 0, 0, 'class:contact', 0, '', 38, 39, 0, '*', 1),
+(9, 'menu', 'com_contact_categories', 'Categories', '', 'Contacts/Categories', 'index.php?option=com_categories&extension=com_contact', 'component', 0, 7, 2, 6, 0, '0000-00-00 00:00:00', 0, 0, 'class:contact-cat', 0, '', 40, 41, 0, '*', 1),
+(10, 'menu', 'com_messages', 'Messaging', '', 'Messaging', 'index.php?option=com_messages', 'component', 0, 1, 1, 15, 0, '0000-00-00 00:00:00', 0, 0, 'class:messages', 0, '', 43, 46, 0, '*', 1),
+(11, 'menu', 'com_messages_add', 'New Private Message', '', 'Messaging/New Private Message', 'index.php?option=com_messages&task=message.add', 'component', 0, 10, 2, 15, 0, '0000-00-00 00:00:00', 0, 0, 'class:messages-add', 0, '', 44, 45, 0, '*', 1),
+(13, 'menu', 'com_newsfeeds', 'News Feeds', '', 'News Feeds', 'index.php?option=com_newsfeeds', 'component', 0, 1, 1, 17, 0, '0000-00-00 00:00:00', 0, 0, 'class:newsfeeds', 0, '', 47, 52, 0, '*', 1),
+(14, 'menu', 'com_newsfeeds_feeds', 'Feeds', '', 'News Feeds/Feeds', 'index.php?option=com_newsfeeds', 'component', 0, 13, 2, 17, 0, '0000-00-00 00:00:00', 0, 0, 'class:newsfeeds', 0, '', 48, 49, 0, '*', 1),
+(15, 'menu', 'com_newsfeeds_categories', 'Categories', '', 'News Feeds/Categories', 'index.php?option=com_categories&extension=com_newsfeeds', 'component', 0, 13, 2, 6, 0, '0000-00-00 00:00:00', 0, 0, 'class:newsfeeds-cat', 0, '', 50, 51, 0, '*', 1),
 (16, 'menu', 'com_redirect', 'Redirect', '', 'Redirect', 'index.php?option=com_redirect', 'component', 0, 1, 1, 24, 0, '0000-00-00 00:00:00', 0, 0, 'class:redirect', 0, '', 57, 58, 0, '*', 1),
-(17, 'menu', 'com_search', 'Basic Search', '', 'Basic Search', 'index.php?option=com_search', 'component', 0, 1, 1, 19, 0, '0000-00-00 00:00:00', 0, 0, 'class:search', 0, '', 53, 54, 0, '*', 1),
-(21, 'menu', 'com_finder', 'Smart Search', '', 'Smart Search', 'index.php?option=com_finder', 'component', 0, 1, 1, 27, 0, '0000-00-00 00:00:00', 0, 0, 'class:finder', 0, '', 51, 52, 0, '*', 1),
-(22, 'menu', 'com_joomlaupdate', 'Joomla! Update', '', 'Joomla! Update', 'index.php?option=com_joomlaupdate', 'component', 0, 1, 1, 28, 0, '0000-00-00 00:00:00', 0, 0, 'class:joomlaupdate', 0, '', 55, 56, 0, '*', 1),
-(101, 'mainmenu', 'Home', 'home', '', 'home', 'index.php?option=com_content&view=featured', 'component', 1, 1, 1, 22, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"featured_categories":[""],"layout_type":"blog","num_leading_articles":"1","num_intro_articles":"4","num_columns":"2","num_links":"4","multi_column_order":"0","orderby_pri":"none","orderby_sec":"rdate","order_date":"published","show_pagination":"2","show_pagination_results":"1","show_title":"","link_titles":"","show_intro":"","info_block_position":"","show_category":"0","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","link_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"0","show_item_navigation":"","show_vote":"","show_readmore":"","show_readmore_title":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_hits":"0","show_tags":"","show_noauth":"","show_feed_link":"1","feed_summary":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"menu_show":1,"page_title":"","show_page_heading":"0","page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0,"menulayout":"{\\"width\\":600,\\"menuItem\\":1,\\"menuAlign\\":\\"right\\",\\"layout\\":[{\\"type\\":\\"row\\",\\"attr\\":[{\\"type\\":\\"column\\",\\"colGrid\\":12,\\"menuParentId\\":\\"101\\",\\"moduleId\\":\\"\\"}]}]}","megamenu":"0","showmenutitle":"1","icon":"","class":"","enable_page_title":"0","page_title_alt":"","page_subtitle":"","page_title_bg_color":"","page_title_bg_image":""}', 11, 12, 1, '*', 0),
+(17, 'menu', 'com_search', 'Basic Search', '', 'Basic Search', 'index.php?option=com_search', 'component', 0, 1, 1, 19, 0, '0000-00-00 00:00:00', 0, 0, 'class:search', 0, '', 55, 56, 0, '*', 1),
+(21, 'menu', 'com_finder', 'Smart Search', '', 'Smart Search', 'index.php?option=com_finder', 'component', 0, 1, 1, 27, 0, '0000-00-00 00:00:00', 0, 0, 'class:finder', 0, '', 53, 54, 0, '*', 1),
+(101, 'mainmenu', 'Главная', 'home', '', 'home', 'index.php?option=com_content&view=featured', 'component', 1, 1, 1, 22, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"featured_categories":[""],"layout_type":"blog","num_leading_articles":"1","num_intro_articles":"4","num_columns":"2","num_links":"4","multi_column_order":"0","orderby_pri":"none","orderby_sec":"rdate","order_date":"published","show_pagination":"2","show_pagination_results":"1","show_title":"","link_titles":"","show_intro":"","info_block_position":"","info_block_show_title":"","show_category":"0","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","link_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"0","show_item_navigation":"","show_vote":"","show_readmore":"","show_readmore_title":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_hits":"0","show_tags":"","show_noauth":"","show_feed_link":"1","feed_summary":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"menu_show":1,"page_title":"","show_page_heading":"0","page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0,"menulayout":"{\\"width\\":600,\\"menuItem\\":1,\\"menuAlign\\":\\"right\\",\\"layout\\":[{\\"type\\":\\"row\\",\\"attr\\":[{\\"type\\":\\"column\\",\\"colGrid\\":12,\\"menuParentId\\":\\"101\\",\\"moduleId\\":\\"\\"}]}]}","megamenu":"0","showmenutitle":"1","icon":"","class":"","enable_page_title":"0","page_title_alt":"","page_subtitle":"","page_title_bg_color":"","page_title_bg_image":""}', 11, 12, 1, '*', 0),
 (102, 'bottommenu', 'Author Login', 'login', '', 'login', 'index.php?option=com_users&view=login', 'component', 1, 1, 1, 25, 0, '0000-00-00 00:00:00', 0, 1, '', 0, '{"login_redirect_url":"index.php?Itemid=101","logindescription_show":"1","login_description":"","login_image":"","logout_redirect_url":"","logoutdescription_show":"1","logout_description":"","logout_image":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 59, 60, 0, '*', 0),
-(103, 'authormenu', 'Change Password', 'change-password', '', 'change-password', 'index.php?option=com_users&view=profile&layout=edit', 'component', 1, 1, 1, 25, 0, '0000-00-00 00:00:00', 0, 2, '', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 31, 32, 0, '*', 0),
-(104, 'authormenu', 'Create a Post', 'create-a-post', '', 'create-a-post', 'index.php?option=com_content&view=form&layout=edit', 'component', 1, 1, 1, 22, 0, '0000-00-00 00:00:00', 0, 3, '', 0, '{"enable_category":"1","catid":"9","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 21, 22, 0, '*', 0),
-(106, 'authormenu', 'Site Administrator', '2012-01-04-15-46-42', '', '2012-01-04-15-46-42', 'administrator', 'url', 1, 1, 1, 0, 0, '0000-00-00 00:00:00', 1, 3, '', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1}', 29, 30, 0, '*', 0),
-(107, 'authormenu', 'Log out', 'log-out', '', 'log-out', 'index.php?option=com_users&view=login', 'component', 1, 1, 1, 25, 0, '0000-00-00 00:00:00', 0, 1, '', 0, '{"login_redirect_url":"","logindescription_show":"1","login_description":"","login_image":"","logout_redirect_url":"","logoutdescription_show":"1","logout_description":"","logout_image":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 33, 34, 0, '*', 0),
-(108, 'mainmenu', 'Mortage', 'about', '', 'about', 'index.php?option=com_content&view=category&layout=blog&id=11', 'component', 0, 1, 1, 22, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"layout_type":"blog","show_category_heading_title_text":"","show_category_title":"","show_description":"","show_description_image":"","maxLevel":"","show_empty_categories":"","show_no_articles":"","show_subcat_desc":"","show_cat_num_articles":"","show_cat_tags":"","page_subheading":"","num_leading_articles":"","num_intro_articles":"","num_columns":"","num_links":"","multi_column_order":"","show_subcategory_content":"","orderby_pri":"","orderby_sec":"","order_date":"","show_pagination":"","show_pagination_results":"","show_featured":"","show_title":"","link_titles":"","show_intro":"","info_block_position":"0","show_category":"0","link_category":"0","show_parent_category":"","link_parent_category":"","show_author":"0","link_author":"","show_create_date":"0","show_modify_date":"","show_publish_date":"0","show_item_navigation":"","show_vote":"","show_readmore":"","show_readmore_title":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_hits":"0","show_tags":"","show_noauth":"","show_feed_link":"","feed_summary":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"menu_show":1,"page_title":"","show_page_heading":"0","page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 15, 16, 0, '*', 0),
-(109, 'authormenu', 'Working on Your Site', 'working-on-your-site', '', 'working-on-your-site', 'index.php?option=com_content&view=article&id=2', 'component', 1, 1, 1, 22, 0, '0000-00-00 00:00:00', 0, 1, '', 0, '{"show_title":"","link_titles":"","show_intro":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","link_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_vote":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_hits":"","show_noauth":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 23, 28, 0, '*', 0),
+(103, 'authormenu', 'Change Password', 'change-password', '', 'change-password', 'index.php?option=com_users&view=profile&layout=edit', 'component', 1, 1, 1, 25, 0, '0000-00-00 00:00:00', 0, 2, '', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 33, 34, 0, '*', 0),
+(104, 'authormenu', 'Create a Post', 'create-a-post', '', 'create-a-post', 'index.php?option=com_content&view=form&layout=edit', 'component', 1, 1, 1, 22, 0, '0000-00-00 00:00:00', 0, 3, '', 0, '{"enable_category":"1","catid":"9","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 23, 24, 0, '*', 0),
+(106, 'authormenu', 'Site Administrator', '2012-01-04-15-46-42', '', '2012-01-04-15-46-42', 'administrator', 'url', 1, 1, 1, 0, 0, '0000-00-00 00:00:00', 1, 3, '', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1}', 31, 32, 0, '*', 0),
+(107, 'authormenu', 'Log out', 'log-out', '', 'log-out', 'index.php?option=com_users&view=login', 'component', 1, 1, 1, 25, 0, '0000-00-00 00:00:00', 0, 1, '', 0, '{"login_redirect_url":"","logindescription_show":"1","login_description":"","login_image":"","logout_redirect_url":"","logoutdescription_show":"1","logout_description":"","logout_image":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 35, 36, 0, '*', 0),
+(108, 'mainmenu', 'Закон', 'zakon', '', 'zakon', 'index.php?option=com_content&view=category&layout=blog&id=11', 'component', 1, 1, 1, 22, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"layout_type":"blog","show_category_heading_title_text":"","show_category_title":"","show_description":"","show_description_image":"","maxLevel":"","show_empty_categories":"","show_no_articles":"","show_subcat_desc":"","show_cat_num_articles":"","show_cat_tags":"","page_subheading":"","num_leading_articles":"","num_intro_articles":"","num_columns":"","num_links":"","multi_column_order":"","show_subcategory_content":"","orderby_pri":"","orderby_sec":"","order_date":"","show_pagination":"","show_pagination_results":"","show_featured":"","show_title":"","link_titles":"","show_intro":"","info_block_position":"0","info_block_show_title":"","show_category":"0","link_category":"0","show_parent_category":"","link_parent_category":"","show_author":"0","link_author":"","show_create_date":"0","show_modify_date":"","show_publish_date":"0","show_item_navigation":"","show_vote":"","show_readmore":"","show_readmore_title":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_hits":"0","show_tags":"","show_noauth":"","show_feed_link":"","feed_summary":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"menu_show":1,"page_title":"","show_page_heading":"0","page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0,"menulayout":"{\\"width\\":600,\\"menuItem\\":1,\\"menuAlign\\":\\"right\\",\\"layout\\":[{\\"type\\":\\"row\\",\\"attr\\":[{\\"type\\":\\"column\\",\\"colGrid\\":12,\\"menuParentId\\":\\"108\\",\\"moduleId\\":\\"\\"}]}]}","megamenu":"0","showmenutitle":"1","icon":"","class":"","enable_page_title":"0","page_title_alt":"","page_subtitle":"","page_title_bg_color":"","page_title_bg_image":""}', 15, 16, 0, '*', 0),
+(109, 'authormenu', 'Working on Your Site', 'working-on-your-site', '', 'working-on-your-site', 'index.php?option=com_content&view=article&id=2', 'component', 1, 1, 1, 22, 0, '0000-00-00 00:00:00', 0, 1, '', 0, '{"show_title":"","link_titles":"","show_intro":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","link_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_vote":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_hits":"","show_noauth":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 25, 30, 0, '*', 0),
 (111, 'menu', 'com_tags', 'com-tags', '', 'com-tags', 'index.php?option=com_tags', 'component', 0, 1, 1, 29, 0, '0000-00-00 00:00:00', 0, 1, 'class:tags', 0, '', 61, 62, 0, '', 1),
 (112, 'main', 'com_postinstall', 'Post-installation messages', '', 'Post-installation messages', 'index.php?option=com_postinstall', 'component', 0, 1, 1, 32, 0, '0000-00-00 00:00:00', 0, 1, 'class:postinstall', 0, '', 63, 64, 0, '*', 1),
-(113, 'authormenu', 'Site Settings', 'site-settings', '', 'working-on-your-site/site-settings', 'index.php?option=com_config&view=config&controller=config.display.config', 'component', 1, 109, 2, 23, 0, '0000-00-00 00:00:00', 0, 6, '', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 24, 25, 0, '*', 0),
-(114, 'authormenu', 'Template Settings', 'template-settings', '', 'working-on-your-site/template-settings', 'index.php?option=com_config&view=templates&controller=config.display.templates', 'component', 1, 109, 2, 23, 0, '0000-00-00 00:00:00', 0, 1, '', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 26, 27, 0, '*', 0),
-(115, 'mainmenu', 'Author Login', 'author-login', '', 'author-login', 'index.php?option=com_users&view=login', 'component', 0, 1, 1, 25, 0, '0000-00-00 00:00:00', 0, 1, '', 0, '{"login_redirect_url":"","logindescription_show":"1","login_description":"","login_image":"","logout_redirect_url":"","logoutdescription_show":"1","logout_description":"","logout_image":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 19, 20, 0, '*', 0),
+(113, 'authormenu', 'Site Settings', 'site-settings', '', 'working-on-your-site/site-settings', 'index.php?option=com_config&view=config&controller=config.display.config', 'component', 1, 109, 2, 23, 0, '0000-00-00 00:00:00', 0, 6, '', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 26, 27, 0, '*', 0),
+(114, 'authormenu', 'Template Settings', 'template-settings', '', 'working-on-your-site/template-settings', 'index.php?option=com_config&view=templates&controller=config.display.templates', 'component', 1, 109, 2, 23, 0, '0000-00-00 00:00:00', 0, 1, '', 0, '{"menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"page_title":"","show_page_heading":0,"page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0}', 28, 29, 0, '*', 0),
+(115, 'mainmenu', 'Проекты', 'proekty', '', 'proekty', 'index.php?option=com_content&view=category&layout=blog&id=14', 'component', 1, 1, 1, 22, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"layout_type":"blog","show_category_heading_title_text":"","show_category_title":"","show_description":"","show_description_image":"","maxLevel":"","show_empty_categories":"","show_no_articles":"","show_subcat_desc":"","show_cat_num_articles":"","show_cat_tags":"","page_subheading":"","num_leading_articles":"","num_intro_articles":"","num_columns":"","num_links":"","multi_column_order":"","show_subcategory_content":"","orderby_pri":"","orderby_sec":"","order_date":"","show_pagination":"","show_pagination_results":"","show_featured":"","show_title":"","link_titles":"","show_intro":"","info_block_position":"","info_block_show_title":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","link_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_vote":"","show_readmore":"","show_readmore_title":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_hits":"","show_tags":"","show_noauth":"","show_feed_link":"","feed_summary":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"menu_show":1,"page_title":"","show_page_heading":"0","page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0,"menulayout":"{\\"width\\":600,\\"menuItem\\":1,\\"menuAlign\\":\\"right\\",\\"layout\\":[{\\"type\\":\\"row\\",\\"attr\\":[{\\"type\\":\\"column\\",\\"colGrid\\":12,\\"menuParentId\\":\\"115\\",\\"moduleId\\":\\"\\"}]}]}","megamenu":"0","showmenutitle":"1","icon":"","class":"","enable_page_title":"0","page_title_alt":"","page_subtitle":"","page_title_bg_color":"","page_title_bg_image":""}', 19, 20, 0, '*', 0),
 (116, 'main', 'COM_SPPAGEBUILDER', 'com-sppagebuilder', '', 'com-sppagebuilder', 'index.php?option=com_sppagebuilder', 'component', 0, 1, 1, 10004, 0, '0000-00-00 00:00:00', 0, 1, 'class:component', 0, '{}', 65, 66, 0, '', 1),
 (117, 'main', 'JMAP', 'jmap', '', 'jmap', 'index.php?option=com_jmap', 'component', 0, 1, 1, 10007, 0, '0000-00-00 00:00:00', 0, 1, 'class:jmap-16x16', 0, '{}', 67, 68, 0, '', 1),
-(118, 'mainmenu', 'The property', 'the-property', '', 'the-property', 'index.php?option=com_content&view=category&layout=blog&id=12', 'component', 0, 1, 1, 22, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"layout_type":"blog","show_category_heading_title_text":"","show_category_title":"","show_description":"","show_description_image":"","maxLevel":"","show_empty_categories":"","show_no_articles":"","show_subcat_desc":"","show_cat_num_articles":"","show_cat_tags":"","page_subheading":"","num_leading_articles":"","num_intro_articles":"","num_columns":"","num_links":"","multi_column_order":"","show_subcategory_content":"","orderby_pri":"","orderby_sec":"","order_date":"","show_pagination":"","show_pagination_results":"","show_featured":"","show_title":"","link_titles":"","show_intro":"","info_block_position":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","link_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_vote":"","show_readmore":"","show_readmore_title":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_hits":"","show_tags":"","show_noauth":"","show_feed_link":"","feed_summary":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"menu_show":1,"page_title":"","show_page_heading":"","page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0,"dropdown_position":"right","showmenutitle":"1","icon":"","class":"","enable_page_title":"0","page_title_alt":"","page_subtitle":"","page_title_bg_color":"","page_title_bg_image":""}', 17, 18, 0, '*', 0),
-(119, 'mainmenu', 'Rental of property', 'rental-of-property', '', 'rental-of-property', 'index.php?option=com_content&view=category&layout=blog&id=10', 'component', 1, 1, 1, 22, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"layout_type":"blog","show_category_heading_title_text":"","show_category_title":"","show_description":"","show_description_image":"","maxLevel":"","show_empty_categories":"","show_no_articles":"","show_subcat_desc":"","show_cat_num_articles":"","show_cat_tags":"","page_subheading":"","num_leading_articles":"","num_intro_articles":"","num_columns":"","num_links":"","multi_column_order":"","show_subcategory_content":"","orderby_pri":"","orderby_sec":"","order_date":"","show_pagination":"","show_pagination_results":"","show_featured":"","show_title":"","link_titles":"","show_intro":"","info_block_position":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","link_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_vote":"","show_readmore":"","show_readmore_title":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_hits":"","show_tags":"","show_noauth":"","show_feed_link":"","feed_summary":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"menu_show":1,"page_title":"","show_page_heading":"","page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0,"dropdown_position":"right","showmenutitle":"1","icon":"","class":"","enable_page_title":"0","page_title_alt":"","page_subtitle":"","page_title_bg_color":"","page_title_bg_image":""}', 13, 14, 0, '*', 0);
+(118, 'mainmenu', 'Квартиры', 'kvartiry', '', 'kvartiry', 'index.php?option=com_content&view=category&layout=blog&id=12', 'component', 1, 1, 1, 22, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"layout_type":"blog","show_category_heading_title_text":"","show_category_title":"","show_description":"","show_description_image":"","maxLevel":"","show_empty_categories":"","show_no_articles":"","show_subcat_desc":"","show_cat_num_articles":"","show_cat_tags":"","page_subheading":"","num_leading_articles":"","num_intro_articles":"","num_columns":"","num_links":"","multi_column_order":"","show_subcategory_content":"","orderby_pri":"","orderby_sec":"","order_date":"","show_pagination":"","show_pagination_results":"","show_featured":"","show_title":"","link_titles":"","show_intro":"","info_block_position":"","info_block_show_title":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","link_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_vote":"","show_readmore":"","show_readmore_title":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_hits":"","show_tags":"","show_noauth":"","show_feed_link":"","feed_summary":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"menu_show":1,"page_title":"","show_page_heading":"","page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0,"menulayout":"{\\"width\\":600,\\"menuItem\\":1,\\"menuAlign\\":\\"right\\",\\"layout\\":[{\\"type\\":\\"row\\",\\"attr\\":[{\\"type\\":\\"column\\",\\"colGrid\\":12,\\"menuParentId\\":\\"118\\",\\"moduleId\\":\\"\\"}]}]}","megamenu":"0","showmenutitle":"1","icon":"","class":"","enable_page_title":"0","page_title_alt":"","page_subtitle":"","page_title_bg_color":"","page_title_bg_image":""}', 17, 18, 0, '*', 0),
+(119, 'mainmenu', 'Аренда', 'arenda', '', 'arenda', 'index.php?option=com_content&view=category&layout=blog&id=9', 'component', 1, 1, 1, 22, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"layout_type":"blog","show_category_heading_title_text":"","show_category_title":"","show_description":"","show_description_image":"","maxLevel":"","show_empty_categories":"","show_no_articles":"","show_subcat_desc":"","show_cat_num_articles":"","show_cat_tags":"","page_subheading":"","num_leading_articles":"","num_intro_articles":"","num_columns":"","num_links":"","multi_column_order":"","show_subcategory_content":"","orderby_pri":"","orderby_sec":"","order_date":"","show_pagination":"","show_pagination_results":"","show_featured":"","show_title":"","link_titles":"","show_intro":"","info_block_position":"","info_block_show_title":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","link_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_vote":"","show_readmore":"","show_readmore_title":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_hits":"","show_tags":"","show_noauth":"","show_feed_link":"","feed_summary":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"menu_show":1,"page_title":"","show_page_heading":"","page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0,"menulayout":"{\\"width\\":600,\\"menuItem\\":1,\\"menuAlign\\":\\"right\\",\\"layout\\":[{\\"type\\":\\"row\\",\\"attr\\":[{\\"type\\":\\"column\\",\\"colGrid\\":12,\\"menuParentId\\":\\"119\\",\\"moduleId\\":\\"\\"}]}]}","megamenu":"0","showmenutitle":"1","icon":"","class":"","enable_page_title":"0","page_title_alt":"","page_subtitle":"","page_title_bg_color":"","page_title_bg_image":""}', 13, 14, 0, '*', 0),
+(120, 'main', 'com_joomlaupdate', 'com-joomlaupdate', '', 'com-joomlaupdate', 'index.php?option=com_joomlaupdate', 'component', 0, 1, 1, 28, 0, '0000-00-00 00:00:00', 0, 1, 'class:joomlaupdate', 0, '{}', 69, 70, 0, '', 1),
+(121, 'mainmenu', 'Новостройки', 'novostrojki', '', 'novostrojki', 'index.php?option=com_content&view=category&layout=blog&id=13', 'component', 1, 1, 1, 22, 0, '0000-00-00 00:00:00', 0, 1, ' ', 0, '{"layout_type":"blog","show_category_heading_title_text":"","show_category_title":"","show_description":"","show_description_image":"","maxLevel":"","show_empty_categories":"","show_no_articles":"","show_subcat_desc":"","show_cat_num_articles":"","show_cat_tags":"","page_subheading":"","num_leading_articles":"","num_intro_articles":"","num_columns":"","num_links":"","multi_column_order":"","show_subcategory_content":"","orderby_pri":"","orderby_sec":"","order_date":"","show_pagination":"","show_pagination_results":"","show_featured":"","show_title":"","link_titles":"","show_intro":"","info_block_position":"","info_block_show_title":"","show_category":"","link_category":"","show_parent_category":"","link_parent_category":"","show_author":"","link_author":"","show_create_date":"","show_modify_date":"","show_publish_date":"","show_item_navigation":"","show_vote":"","show_readmore":"","show_readmore_title":"","show_icons":"","show_print_icon":"","show_email_icon":"","show_hits":"","show_tags":"","show_noauth":"","show_feed_link":"","feed_summary":"","menu-anchor_title":"","menu-anchor_css":"","menu_image":"","menu_text":1,"menu_show":1,"page_title":"","show_page_heading":"0","page_heading":"","pageclass_sfx":"","menu-meta_description":"","menu-meta_keywords":"","robots":"","secure":0,"menulayout":"{\\"width\\":600,\\"menuItem\\":1,\\"menuAlign\\":\\"right\\",\\"layout\\":[{\\"type\\":\\"row\\",\\"attr\\":[{\\"type\\":\\"column\\",\\"colGrid\\":12,\\"menuParentId\\":\\"115\\",\\"moduleId\\":\\"\\"}]}]}","megamenu":"0","showmenutitle":"1","icon":"","class":"","enable_page_title":"0","page_title_alt":"","page_subtitle":"","page_title_bg_color":"","page_title_bg_image":""}', 21, 22, 0, '*', 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_menu_types`
+-- Table structure for table `h0qwo_menu_types`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_menu_types` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `asset_id` int(11) NOT NULL,
-  `menutype` varchar(24) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title` varchar(48) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `menutype` varchar(24) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(48) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_menutype` (`menutype`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Дамп данных таблицы `h0qwo_menu_types`
+-- Dumping data for table `h0qwo_menu_types`
 --
 
 INSERT INTO `h0qwo_menu_types` (`id`, `asset_id`, `menutype`, `title`, `description`) VALUES
@@ -1524,7 +1525,7 @@ INSERT INTO `h0qwo_menu_types` (`id`, `asset_id`, `menutype`, `title`, `descript
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_messages`
+-- Table structure for table `h0qwo_messages`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_messages` (
@@ -1535,58 +1536,58 @@ CREATE TABLE IF NOT EXISTS `h0qwo_messages` (
   `date_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `state` tinyint(1) NOT NULL DEFAULT '0',
   `priority` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `subject` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `message` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`message_id`),
   KEY `useridto_state` (`user_id_to`,`state`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_messages_cfg`
+-- Table structure for table `h0qwo_messages_cfg`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_messages_cfg` (
   `user_id` int(10) unsigned NOT NULL DEFAULT '0',
-  `cfg_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `cfg_value` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `cfg_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `cfg_value` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   UNIQUE KEY `idx_user_var_name` (`user_id`,`cfg_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_modules`
+-- Table structure for table `h0qwo_modules`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_modules` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `asset_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'FK to the #__assets table.',
-  `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `note` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `note` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `content` text COLLATE utf8_unicode_ci NOT NULL,
   `ordering` int(11) NOT NULL DEFAULT '0',
-  `position` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `position` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `checked_out` int(10) unsigned NOT NULL DEFAULT '0',
   `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `publish_up` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `publish_down` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `published` tinyint(1) NOT NULL DEFAULT '0',
-  `module` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `module` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `access` int(10) unsigned NOT NULL DEFAULT '0',
   `showtitle` tinyint(3) unsigned NOT NULL DEFAULT '1',
-  `params` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `params` text COLLATE utf8_unicode_ci NOT NULL,
   `client_id` tinyint(4) NOT NULL DEFAULT '0',
-  `language` char(7) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `language` char(7) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `published` (`published`,`access`),
   KEY `newsfeeds` (`module`,`published`),
   KEY `idx_language` (`language`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=97 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=97 ;
 
 --
--- Дамп данных таблицы `h0qwo_modules`
+-- Dumping data for table `h0qwo_modules`
 --
 
 INSERT INTO `h0qwo_modules` (`id`, `asset_id`, `title`, `note`, `content`, `ordering`, `position`, `checked_out`, `checked_out_time`, `publish_up`, `publish_down`, `published`, `module`, `access`, `showtitle`, `params`, `client_id`, `language`) VALUES
@@ -1624,17 +1625,17 @@ INSERT INTO `h0qwo_modules` (`id`, `asset_id`, `title`, `note`, `content`, `orde
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_modules_menu`
+-- Table structure for table `h0qwo_modules_menu`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_modules_menu` (
   `moduleid` int(11) NOT NULL DEFAULT '0',
   `menuid` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`moduleid`,`menuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Дамп данных таблицы `h0qwo_modules_menu`
+-- Dumping data for table `h0qwo_modules_menu`
 --
 
 INSERT INTO `h0qwo_modules_menu` (`moduleid`, `menuid`) VALUES
@@ -1673,15 +1674,15 @@ INSERT INTO `h0qwo_modules_menu` (`moduleid`, `menuid`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_newsfeeds`
+-- Table structure for table `h0qwo_newsfeeds`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_newsfeeds` (
   `catid` int(11) NOT NULL DEFAULT '0',
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `alias` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '',
-  `link` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `alias` varchar(400) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `link` varchar(2048) COLLATE utf8_unicode_ci NOT NULL,
   `published` tinyint(1) NOT NULL DEFAULT '0',
   `numarticles` int(10) unsigned NOT NULL DEFAULT '1',
   `cache_time` int(10) unsigned NOT NULL DEFAULT '3600',
@@ -1690,23 +1691,23 @@ CREATE TABLE IF NOT EXISTS `h0qwo_newsfeeds` (
   `ordering` int(11) NOT NULL DEFAULT '0',
   `rtl` tinyint(4) NOT NULL DEFAULT '0',
   `access` int(10) unsigned NOT NULL DEFAULT '0',
-  `language` char(7) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `params` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `language` char(7) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `params` text COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `created_by` int(10) unsigned NOT NULL DEFAULT '0',
-  `created_by_alias` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `created_by_alias` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified_by` int(10) unsigned NOT NULL DEFAULT '0',
-  `metakey` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `metadesc` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `metadata` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `xreference` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'A reference to enable linkages to external data sets.',
+  `metakey` text COLLATE utf8_unicode_ci NOT NULL,
+  `metadesc` text COLLATE utf8_unicode_ci NOT NULL,
+  `metadata` text COLLATE utf8_unicode_ci NOT NULL,
+  `xreference` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT 'A reference to enable linkages to external data sets.',
   `publish_up` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `publish_down` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
   `version` int(10) unsigned NOT NULL DEFAULT '1',
   `hits` int(10) unsigned NOT NULL DEFAULT '0',
-  `images` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `images` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_access` (`access`),
   KEY `idx_checkout` (`checked_out`),
@@ -1715,127 +1716,129 @@ CREATE TABLE IF NOT EXISTS `h0qwo_newsfeeds` (
   KEY `idx_createdby` (`created_by`),
   KEY `idx_language` (`language`),
   KEY `idx_xreference` (`xreference`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_overrider`
+-- Table structure for table `h0qwo_overrider`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_overrider` (
   `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
-  `constant` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `string` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `constant` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `string` text COLLATE utf8_unicode_ci NOT NULL,
+  `file` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_postinstall_messages`
+-- Table structure for table `h0qwo_postinstall_messages`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_postinstall_messages` (
   `postinstall_message_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `extension_id` bigint(20) NOT NULL DEFAULT '700' COMMENT 'FK to #__extensions',
-  `title_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Lang key for the title',
-  `description_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Lang key for description',
-  `action_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `language_extension` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'com_postinstall' COMMENT 'Extension holding lang keys',
+  `title_key` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'Lang key for the title',
+  `description_key` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'Lang key for description',
+  `action_key` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `language_extension` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'com_postinstall' COMMENT 'Extension holding lang keys',
   `language_client_id` tinyint(3) NOT NULL DEFAULT '1',
-  `type` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'link' COMMENT 'Message type - message, link, action',
-  `action_file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT 'RAD URI to the PHP file containing action method',
-  `action` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT 'Action method name or URL',
-  `condition_file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'RAD URI to file holding display condition method',
-  `condition_method` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Display condition method, must return boolean',
-  `version_introduced` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '3.2.0' COMMENT 'Version when this message was introduced',
+  `type` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'link' COMMENT 'Message type - message, link, action',
+  `action_file` varchar(255) COLLATE utf8_unicode_ci DEFAULT '' COMMENT 'RAD URI to the PHP file containing action method',
+  `action` varchar(255) COLLATE utf8_unicode_ci DEFAULT '' COMMENT 'Action method name or URL',
+  `condition_file` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'RAD URI to file holding display condition method',
+  `condition_method` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Display condition method, must return boolean',
+  `version_introduced` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '3.2.0' COMMENT 'Version when this message was introduced',
   `enabled` tinyint(3) NOT NULL DEFAULT '1',
   PRIMARY KEY (`postinstall_message_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Дамп данных таблицы `h0qwo_postinstall_messages`
+-- Dumping data for table `h0qwo_postinstall_messages`
 --
 
 INSERT INTO `h0qwo_postinstall_messages` (`postinstall_message_id`, `extension_id`, `title_key`, `description_key`, `action_key`, `language_extension`, `language_client_id`, `type`, `action_file`, `action`, `condition_file`, `condition_method`, `version_introduced`, `enabled`) VALUES
 (1, 700, 'PLG_TWOFACTORAUTH_TOTP_POSTINSTALL_TITLE', 'PLG_TWOFACTORAUTH_TOTP_POSTINSTALL_BODY', 'PLG_TWOFACTORAUTH_TOTP_POSTINSTALL_ACTION', 'plg_twofactorauth_totp', 1, 'action', 'site://plugins/twofactorauth/totp/postinstall/actions.php', 'twofactorauth_postinstall_action', 'site://plugins/twofactorauth/totp/postinstall/actions.php', 'twofactorauth_postinstall_condition', '3.2.0', 1),
 (2, 700, 'COM_CPANEL_WELCOME_BEGINNERS_TITLE', 'COM_CPANEL_WELCOME_BEGINNERS_MESSAGE', '', 'com_cpanel', 1, 'message', '', '', '', '', '3.2.0', 1),
-(3, 700, 'COM_CPANEL_MSG_STATS_COLLECTION_TITLE', 'COM_CPANEL_MSG_STATS_COLLECTION_BODY', '', 'com_cpanel', 1, 'message', '', '', 'admin://components/com_admin/postinstall/statscollection.php', 'admin_postinstall_statscollection_condition', '3.5.0', 1);
+(3, 700, 'COM_CPANEL_MSG_STATS_COLLECTION_TITLE', 'COM_CPANEL_MSG_STATS_COLLECTION_BODY', '', 'com_cpanel', 1, 'message', '', '', 'admin://components/com_admin/postinstall/statscollection.php', 'admin_postinstall_statscollection_condition', '3.5.0', 1),
+(4, 700, 'PLG_SYSTEM_UPDATENOTIFICATION_POSTINSTALL_UPDATECACHETIME', 'PLG_SYSTEM_UPDATENOTIFICATION_POSTINSTALL_UPDATECACHETIME_BODY', 'PLG_SYSTEM_UPDATENOTIFICATION_POSTINSTALL_UPDATECACHETIME_ACTION', 'plg_system_updatenotification', 1, 'action', 'site://plugins/system/updatenotification/postinstall/updatecachetime.php', 'updatecachetime_postinstall_action', 'site://plugins/system/updatenotification/postinstall/updatecachetime.php', 'updatecachetime_postinstall_condition', '3.6.3', 1);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_redirect_links`
+-- Table structure for table `h0qwo_redirect_links`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_redirect_links` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `old_url` varchar(2048) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `new_url` varchar(2048) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `referer` varchar(2048) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `comment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `old_url` varchar(2048) COLLATE utf8_unicode_ci NOT NULL,
+  `new_url` varchar(2048) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `referer` varchar(2048) COLLATE utf8_unicode_ci NOT NULL,
+  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `hits` int(10) unsigned NOT NULL DEFAULT '0',
   `published` tinyint(4) NOT NULL,
   `created_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `modified_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `header` smallint(3) NOT NULL DEFAULT '301',
   PRIMARY KEY (`id`),
-  KEY `idx_old_url` (`old_url`(100)),
-  KEY `idx_link_modifed` (`modified_date`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+  KEY `idx_link_modifed` (`modified_date`),
+  KEY `idx_old_url` (`old_url`(100))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_schemas`
+-- Table structure for table `h0qwo_schemas`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_schemas` (
   `extension_id` int(11) NOT NULL,
-  `version_id` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `version_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`extension_id`,`version_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Дамп данных таблицы `h0qwo_schemas`
+-- Dumping data for table `h0qwo_schemas`
 --
 
 INSERT INTO `h0qwo_schemas` (`extension_id`, `version_id`) VALUES
-(700, '3.6.0-2016-06-05'),
+(700, '3.6.3-2016-08-16'),
 (10004, '1.0.8-2016-01-20');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_session`
+-- Table structure for table `h0qwo_session`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_session` (
-  `session_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `session_id` varchar(191) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `client_id` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `guest` tinyint(4) unsigned DEFAULT '1',
-  `time` varchar(14) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `data` mediumtext COLLATE utf8mb4_unicode_ci,
+  `time` varchar(14) COLLATE utf8_unicode_ci DEFAULT '',
+  `data` mediumtext COLLATE utf8_unicode_ci,
   `userid` int(11) DEFAULT '0',
-  `username` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT '',
+  `username` varchar(150) COLLATE utf8_unicode_ci DEFAULT '',
   PRIMARY KEY (`session_id`),
   KEY `userid` (`userid`),
   KEY `time` (`time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Дамп данных таблицы `h0qwo_session`
+-- Dumping data for table `h0qwo_session`
 --
 
 INSERT INTO `h0qwo_session` (`session_id`, `client_id`, `guest`, `time`, `data`, `userid`, `username`) VALUES
-('3c6719752255630cd73c40dd44132848', 0, 1, '1476643733', NULL, 0, '');
+('276ufd4nte69oniq5t36me7ec7', 0, 1, '1479147498', NULL, 0, ''),
+('t9h0pn83r0131hnh063j7h8e82', 1, 0, '1479138546', NULL, 528, 'mixas8383');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_spmedia`
+-- Table structure for table `h0qwo_spmedia`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_spmedia` (
@@ -1858,7 +1861,7 @@ CREATE TABLE IF NOT EXISTS `h0qwo_spmedia` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_sppagebuilder`
+-- Table structure for table `h0qwo_sppagebuilder`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_sppagebuilder` (
@@ -1886,7 +1889,7 @@ CREATE TABLE IF NOT EXISTS `h0qwo_sppagebuilder` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_tags`
+-- Table structure for table `h0qwo_tags`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_tags` (
@@ -1895,28 +1898,28 @@ CREATE TABLE IF NOT EXISTS `h0qwo_tags` (
   `lft` int(11) NOT NULL DEFAULT '0',
   `rgt` int(11) NOT NULL DEFAULT '0',
   `level` int(10) unsigned NOT NULL DEFAULT '0',
-  `path` varchar(400) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alias` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '',
-  `note` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `description` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path` varchar(400) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `alias` varchar(400) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `note` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `description` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `published` tinyint(1) NOT NULL DEFAULT '0',
   `checked_out` int(11) unsigned NOT NULL DEFAULT '0',
   `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `access` int(10) unsigned NOT NULL DEFAULT '0',
-  `params` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `metadesc` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'The meta description for the page.',
-  `metakey` varchar(1024) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'The meta keywords for the page.',
-  `metadata` varchar(2048) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'JSON encoded metadata properties.',
+  `params` text COLLATE utf8_unicode_ci NOT NULL,
+  `metadesc` varchar(1024) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The meta description for the page.',
+  `metakey` varchar(1024) COLLATE utf8_unicode_ci NOT NULL COMMENT 'The meta keywords for the page.',
+  `metadata` varchar(2048) COLLATE utf8_unicode_ci NOT NULL COMMENT 'JSON encoded metadata properties.',
   `created_user_id` int(10) unsigned NOT NULL DEFAULT '0',
   `created_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `created_by_alias` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `created_by_alias` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `modified_user_id` int(10) unsigned NOT NULL DEFAULT '0',
   `modified_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `images` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `urls` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `images` text COLLATE utf8_unicode_ci NOT NULL,
+  `urls` text COLLATE utf8_unicode_ci NOT NULL,
   `hits` int(10) unsigned NOT NULL DEFAULT '0',
-  `language` char(7) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `language` char(7) COLLATE utf8_unicode_ci NOT NULL,
   `version` int(10) unsigned NOT NULL DEFAULT '1',
   `publish_up` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `publish_down` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -1924,14 +1927,14 @@ CREATE TABLE IF NOT EXISTS `h0qwo_tags` (
   KEY `tag_idx` (`published`,`access`),
   KEY `idx_access` (`access`),
   KEY `idx_checkout` (`checked_out`),
-  KEY `idx_path` (`path`(100)),
   KEY `idx_left_right` (`lft`,`rgt`),
-  KEY `idx_alias` (`alias`(100)),
-  KEY `idx_language` (`language`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=2 ;
+  KEY `idx_language` (`language`),
+  KEY `idx_path` (`path`(100)),
+  KEY `idx_alias` (`alias`(100))
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Дамп данных таблицы `h0qwo_tags`
+-- Dumping data for table `h0qwo_tags`
 --
 
 INSERT INTO `h0qwo_tags` (`id`, `parent_id`, `lft`, `rgt`, `level`, `path`, `title`, `alias`, `note`, `description`, `published`, `checked_out`, `checked_out_time`, `access`, `params`, `metadesc`, `metakey`, `metadata`, `created_user_id`, `created_time`, `created_by_alias`, `modified_user_id`, `modified_time`, `images`, `urls`, `hits`, `language`, `version`, `publish_up`, `publish_down`) VALUES
@@ -1940,23 +1943,23 @@ INSERT INTO `h0qwo_tags` (`id`, `parent_id`, `lft`, `rgt`, `level`, `path`, `tit
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_template_styles`
+-- Table structure for table `h0qwo_template_styles`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_template_styles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `template` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `template` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `client_id` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `home` char(7) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `params` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `home` char(7) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `params` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_template` (`template`),
   KEY `idx_home` (`home`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
--- Дамп данных таблицы `h0qwo_template_styles`
+-- Dumping data for table `h0qwo_template_styles`
 --
 
 INSERT INTO `h0qwo_template_styles` (`id`, `template`, `client_id`, `home`, `title`, `params`) VALUES
@@ -1964,12 +1967,12 @@ INSERT INTO `h0qwo_template_styles` (`id`, `template`, `client_id`, `home`, `tit
 (5, 'hathor', 1, '0', 'Hathor - Default', '{"showSiteName":"0","colourChoice":"","boldText":"0"}'),
 (7, 'protostar', 0, '0', 'protostar - Default', '{"templateColor":"","logoFile":"","googleFont":"1","googleFontName":"Open+Sans","fluidContainer":"0"}'),
 (8, 'isis', 1, '1', 'isis - Default', '{"templateColor":"","logoFile":""}'),
-(9, 'shaper_helix3', 0, '1', 'shaper_helix3 - Default', '{"sticky_header":"0","favicon":"","boxed_layout":"0","logo_type":"image","logo_position":"logo","logo_image":"","logo_image_2x":"","mobile_logo":"","logo_text":"","logo_slogan":"","body_bg_image":"","body_bg_repeat":"inherit","body_bg_size":"inherit","body_bg_attachment":"inherit","body_bg_position":"0 0","enabled_copyright":"1","copyright_position":"footer1","copyright":"\\u00a9 2016 rlestate.ru All Rights Reserved. Designed By Mixas","show_social_icons":"1","social_position":"top1","facebook":"","twitter":"","googleplus":"","pinterest":"","linkedin":"","dribbble":"","behance":"","youtube":"","flickr":"","skype":"","vk":"","enable_contactinfo":"0","contact_position":"top2","contact_phone":"+228 872 4444","contact_email":"contact@email.com","comingsoon_mode":"0","comingsoon_title":"Coming Soon Title","comingsoon_date":"05-10-2018","comingsoon_content":"Coming soon content","preset":"preset3","preset1_bg":"#ffffff","preset1_text":"#000000","preset1_major":"#26aae1","preset2_bg":"#ffffff","preset2_text":"#000000","preset2_major":"#3d449a","preset3_bg":"#ffffff","preset3_text":"#000000","preset3_major":"#2bb673","preset4_bg":"#ffffff","preset4_text":"#000000","preset4_major":"#eb4947","layoutlist":"default.json","layout":"[{\\"type\\":\\"row\\",\\"layout\\":\\"66\\",\\"settings\\":{\\"bg_color\\":\\"#f02222\\",\\"bg_image\\":\\"images\\/powered_by.png\\",\\"text_color\\":\\"#ffffff\\",\\"xs_hidden\\":0,\\"ms_hidden\\":0,\\"md_hidden\\":0,\\"bg_repeat\\":\\"no-repeat\\",\\"bg_img_size\\":\\"cover\\",\\"bg_position\\":\\"contain\\",\\"custom_class\\":\\"\\",\\"fluidrow\\":0,\\"margin\\":\\"\\",\\"padding\\":\\"\\",\\"hidden_md\\":0,\\"hidden_sm\\":0,\\"hidden_xs\\":0,\\"link_hover_color\\":\\"\\",\\"link_color\\":\\"\\",\\"background_position\\":\\"0 0\\",\\"background_attachment\\":\\"fixed\\",\\"background_size\\":\\"cover\\",\\"background_repeat\\":\\"no-repeat\\",\\"background_image\\":\\"\\",\\"color\\":\\"#999999\\",\\"background_color\\":\\"#f5f5f5\\",\\"name\\":\\"Top Bar\\"},\\"attr\\":[{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-6\\",\\"settings\\":{\\"column_type\\":0,\\"name\\":\\"top1\\",\\"custom_class\\":\\"\\",\\"md_hidden\\":0,\\"ms_hidden\\":0,\\"xs_hidden\\":0,\\"sortableitem\\":\\"[object Object]\\"}},{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-6\\",\\"settings\\":{\\"custom_class\\":\\"\\",\\"md_hidden\\":0,\\"ms_hidden\\":0,\\"xs_hidden\\":0,\\"name\\":\\"top2\\",\\"sortableitem\\":\\"[object Object]\\",\\"column_type\\":0}}]},{\\"type\\":\\"row\\",\\"layout\\":\\"39\\",\\"settings\\":{\\"custom_class\\":\\"\\",\\"fluidrow\\":0,\\"margin\\":\\"\\",\\"padding\\":\\"\\",\\"hidden_md\\":0,\\"hidden_sm\\":0,\\"hidden_xs\\":0,\\"link_hover_color\\":\\"\\",\\"link_color\\":\\"\\",\\"background_image\\":\\"\\",\\"color\\":\\"\\",\\"background_color\\":\\"\\",\\"name\\":\\"Header\\"},\\"attr\\":[{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-3\\",\\"settings\\":{\\"sortableitem\\":\\"[object Object]\\",\\"md_hidden\\":0,\\"ms_hidden\\":0,\\"xs_hidden\\":0,\\"custom_class\\":\\"\\",\\"xs_col\\":\\"col-xs-8\\",\\"sm_col\\":\\"\\",\\"hidden_md\\":0,\\"hidden_sm\\":0,\\"hidden_xs\\":0,\\"name\\":\\"logo\\",\\"column_type\\":0}},{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-9\\",\\"settings\\":{\\"sortableitem\\":\\"[object Object]\\",\\"custom_class\\":\\"\\",\\"md_hidden\\":0,\\"ms_hidden\\":0,\\"xs_hidden\\":0,\\"name\\":\\"menu\\",\\"column_type\\":0,\\"hidden_xs\\":0,\\"hidden_sm\\":0,\\"hidden_md\\":0,\\"sm_col\\":\\"\\",\\"xs_col\\":\\"col-xs-4\\"}}]},{\\"type\\":\\"row\\",\\"layout\\":12,\\"settings\\":{\\"name\\":\\"Page Title\\",\\"background_color\\":\\"\\",\\"color\\":\\"\\",\\"background_image\\":\\"\\",\\"link_color\\":\\"\\",\\"link_hover_color\\":\\"\\",\\"hidden_xs\\":0,\\"hidden_sm\\":0,\\"hidden_md\\":0,\\"padding\\":\\"\\",\\"margin\\":\\"\\",\\"fluidrow\\":1,\\"custom_class\\":\\"\\"},\\"attr\\":[{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-12\\",\\"settings\\":{\\"column_type\\":0,\\"name\\":\\"title\\",\\"hidden_xs\\":0,\\"hidden_sm\\":0,\\"hidden_md\\":0,\\"sm_col\\":\\"\\",\\"xs_col\\":\\"\\",\\"custom_class\\":\\"\\"}}]},{\\"type\\":\\"row\\",\\"layout\\":\\"363\\",\\"settings\\":{\\"name\\":\\"Main Body\\",\\"bg_color\\":\\"\\",\\"bg_image\\":\\"\\",\\"text_color\\":\\"\\",\\"link_color\\":\\"\\",\\"link_hover_color\\":\\"\\",\\"xs_hidden\\":0,\\"ms_hidden\\":0,\\"md_hidden\\":0,\\"custom_class\\":\\"\\"},\\"attr\\":[{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-3\\",\\"settings\\":{\\"sortableitem\\":\\"[object Object]\\",\\"custom_class\\":\\"custom-class\\",\\"md_hidden\\":0,\\"ms_hidden\\":0,\\"xs_hidden\\":0,\\"name\\":\\"left\\",\\"column_type\\":0}},{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-6\\",\\"settings\\":{\\"sortableitem\\":\\"[object Object]\\",\\"xs_hidden\\":0,\\"ms_hidden\\":0,\\"md_hidden\\":0,\\"custom_class\\":\\"\\",\\"name\\":\\"\\",\\"column_type\\":1}},{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-3\\",\\"settings\\":{\\"sortableitem\\":\\"[object Object]\\",\\"column_type\\":0,\\"name\\":\\"right\\",\\"xs_hidden\\":0,\\"ms_hidden\\":0,\\"md_hidden\\":0,\\"custom_class\\":\\"class2\\"}}]},{\\"type\\":\\"row\\",\\"layout\\":\\"3333\\",\\"settings\\":{\\"custom_class\\":\\"\\",\\"fluidrow\\":0,\\"margin\\":\\"\\",\\"padding\\":\\"100px 0px\\",\\"hidden_md\\":0,\\"hidden_sm\\":0,\\"hidden_xs\\":0,\\"link_hover_color\\":\\"\\",\\"link_color\\":\\"\\",\\"background_image\\":\\"\\",\\"color\\":\\"\\",\\"background_color\\":\\"#f5f5f5\\",\\"name\\":\\"Bottom\\"},\\"attr\\":[{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-3 column-active\\",\\"settings\\":{\\"sortableitem\\":\\"[object Object]\\",\\"custom_class\\":\\"\\",\\"xs_col\\":\\"\\",\\"sm_col\\":\\"col-sm-6\\",\\"hidden_md\\":0,\\"hidden_sm\\":0,\\"hidden_xs\\":0,\\"name\\":\\"bottom1\\",\\"column_type\\":0}},{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-3\\",\\"settings\\":{\\"column_type\\":0,\\"name\\":\\"bottom2\\",\\"hidden_xs\\":0,\\"hidden_sm\\":0,\\"hidden_md\\":0,\\"sm_col\\":\\"col-sm-6\\",\\"xs_col\\":\\"\\",\\"custom_class\\":\\"\\"}},{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-3\\",\\"settings\\":{\\"column_type\\":0,\\"name\\":\\"bottom3\\",\\"hidden_xs\\":0,\\"hidden_sm\\":0,\\"hidden_md\\":0,\\"sm_col\\":\\"col-sm-6\\",\\"xs_col\\":\\"\\",\\"custom_class\\":\\"\\"}},{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-3\\",\\"settings\\":{\\"column_type\\":0,\\"name\\":\\"bottom4\\",\\"hidden_xs\\":0,\\"hidden_sm\\":0,\\"hidden_md\\":0,\\"sm_col\\":\\"col-sm-6\\",\\"xs_col\\":\\"\\",\\"custom_class\\":\\"\\"}}]},{\\"type\\":\\"row\\",\\"layout\\":12,\\"settings\\":{\\"name\\":\\"Footer\\",\\"bg_color\\":\\"\\",\\"bg_image\\":\\"\\",\\"text_color\\":\\"\\",\\"link_color\\":\\"\\",\\"link_hover_color\\":\\"\\",\\"xs_hidden\\":0,\\"ms_hidden\\":0,\\"md_hidden\\":0,\\"custom_class\\":\\"\\"},\\"attr\\":[{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-12\\",\\"settings\\":{\\"sortableitem\\":\\"[object Object]\\",\\"custom_class\\":\\"\\",\\"md_hidden\\":0,\\"ms_hidden\\":0,\\"xs_hidden\\":0,\\"name\\":\\"footer1\\",\\"column_type\\":0,\\"hidden_xs\\":0,\\"hidden_sm\\":0,\\"hidden_md\\":0,\\"sm_col\\":\\"\\",\\"xs_col\\":\\"\\"}}]}]","menu":"mainmenu","menu_type":"mega_offcanvas","dropdown_width":"","menu_animation":"menu-fade","enable_body_font":"1","body_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"300\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h1_font":"1","h1_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"800\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h2_font":"1","h2_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"600\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h3_font":"1","h3_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"regular\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h4_font":"1","h4_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"regular\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h5_font":"1","h5_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"600\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h6_font":"1","h6_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"600\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_navigation_font":"0","navigation_font":"{\\"fontFamily\\":\\"ABeeZee\\",\\"fontWeight\\":\\"regular\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_custom_font":"0","custom_font":"{\\"fontFamily\\":\\"ABeeZee\\",\\"fontWeight\\":\\"regular\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","custom_font_selectors":"","before_head":"","before_body":"","custom_css":"","custom_js":"","compress_css":"0","compress_js":"0","exclude_js":"","lessoption":"0","show_post_format":"1","commenting_engine":"disabled","disqus_subdomain":"","disqus_devmode":"0","intensedebate_acc":"","fb_appID":"","fb_width":"500","fb_cpp":"10","comments_count":"0","social_share":"1","image_small":"0","image_small_size":"100X100","image_thumbnail":"1","image_thumbnail_size":"200X200","image_medium":"0","image_medium_size":"300X300","image_large":"0","image_large_size":"600X600","blog_list_image":"default"}');
+(9, 'shaper_helix3', 0, '1', 'shaper_helix3 - Default', '{"preloader":"0","preloader_animation":"circle","preloader_bg":"#f5f5f5","preloader_tx":"#333333","goto_top":"0","sticky_header":"0","favicon":"","boxed_layout":"0","logo_type":"image","logo_position":"logo","logo_load_pos":"default","logo_image":"images\\/logo.png","logo_image_2x":"","mobile_logo":"","logo_text":"","logo_slogan":"","body_bg_image":"","body_bg_repeat":"inherit","body_bg_size":"inherit","body_bg_attachment":"inherit","body_bg_position":"0 0","enabled_copyright":"1","copyright_position":"footer1","copyright_load_pos":"default","copyright":"\\u00a9 2016 rlestate.ru All Rights Reserved. Designed By Mixas","show_social_icons":"1","social_position":"top1","social_load_pos":"default","facebook":"","twitter":"","googleplus":"","pinterest":"","linkedin":"","dribbble":"","behance":"","youtube":"","flickr":"","skype":"","vk":"","custom":"","enable_contactinfo":"0","contact_position":"top2","contact_phone":"+228 872 4444","contact_mobile":"","contact_email":"contact@email.com","contact_time":"","comingsoon_mode":"0","comingsoon_bg":"","comingsoon_logo":"","comingsoon_title":"Coming Soon Title","comingsoon_date":"05-10-2018","comingsoon_content":"Coming soon content","error_bg":"","error_logo":"","preset":"preset2","preset1_bg":"#ffffff","preset1_text":"#000000","preset1_major":"#26aae1","preset1_megabg":"#ffffff","preset1_megatx":"#333333","preset2_bg":"#ffffff","preset2_text":"#000000","preset2_major":"#3d449a","preset2_megabg":"#ffffff","preset2_megatx":"#333333","preset3_bg":"#ffffff","preset3_text":"#000000","preset3_major":"#2bb673","preset3_megabg":"#ffffff","preset3_megatx":"#333333","preset4_bg":"#ffffff","preset4_text":"#000000","preset4_major":"#eb4947","preset4_megabg":"#ffffff","preset4_megatx":"#333333","layoutlist":"default.json","layout":"[{\\"type\\":\\"row\\",\\"layout\\":\\"66\\",\\"settings\\":{\\"bg_color\\":\\"#f02222\\",\\"bg_image\\":\\"images\\/powered_by.png\\",\\"text_color\\":\\"#ffffff\\",\\"xs_hidden\\":0,\\"ms_hidden\\":0,\\"md_hidden\\":0,\\"bg_repeat\\":\\"no-repeat\\",\\"bg_img_size\\":\\"cover\\",\\"bg_position\\":\\"contain\\",\\"custom_class\\":\\"\\",\\"fluidrow\\":0,\\"margin\\":\\"\\",\\"padding\\":\\"\\",\\"hidden_md\\":0,\\"hidden_sm\\":0,\\"hidden_xs\\":0,\\"link_hover_color\\":\\"\\",\\"link_color\\":\\"\\",\\"background_position\\":\\"0 0\\",\\"background_attachment\\":\\"fixed\\",\\"background_size\\":\\"cover\\",\\"background_repeat\\":\\"no-repeat\\",\\"background_image\\":\\"\\",\\"color\\":\\"#999999\\",\\"background_color\\":\\"#f5f5f5\\",\\"name\\":\\"Top Bar\\"},\\"attr\\":[{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-6\\",\\"settings\\":{\\"column_type\\":0,\\"name\\":\\"top1\\",\\"custom_class\\":\\"\\",\\"md_hidden\\":0,\\"ms_hidden\\":0,\\"xs_hidden\\":0,\\"sortableitem\\":\\"[object Object]\\"}},{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-6\\",\\"settings\\":{\\"custom_class\\":\\"\\",\\"md_hidden\\":0,\\"ms_hidden\\":0,\\"xs_hidden\\":0,\\"name\\":\\"top2\\",\\"sortableitem\\":\\"[object Object]\\",\\"column_type\\":0}}]},{\\"type\\":\\"row\\",\\"layout\\":\\"39\\",\\"settings\\":{\\"custom_class\\":\\"\\",\\"fluidrow\\":0,\\"margin\\":\\"\\",\\"padding\\":\\"\\",\\"hidden_md\\":0,\\"hidden_sm\\":0,\\"hidden_xs\\":0,\\"link_hover_color\\":\\"\\",\\"link_color\\":\\"\\",\\"background_image\\":\\"\\",\\"color\\":\\"\\",\\"background_color\\":\\"\\",\\"name\\":\\"Header\\"},\\"attr\\":[{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-3\\",\\"settings\\":{\\"sortableitem\\":\\"[object Object]\\",\\"md_hidden\\":0,\\"ms_hidden\\":0,\\"xs_hidden\\":0,\\"custom_class\\":\\"\\",\\"xs_col\\":\\"col-xs-8\\",\\"sm_col\\":\\"\\",\\"hidden_md\\":0,\\"hidden_sm\\":0,\\"hidden_xs\\":0,\\"name\\":\\"logo\\",\\"column_type\\":0}},{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-9\\",\\"settings\\":{\\"sortableitem\\":\\"[object Object]\\",\\"custom_class\\":\\"\\",\\"md_hidden\\":0,\\"ms_hidden\\":0,\\"xs_hidden\\":0,\\"name\\":\\"menu\\",\\"column_type\\":0,\\"hidden_xs\\":0,\\"hidden_sm\\":0,\\"hidden_md\\":0,\\"sm_col\\":\\"\\",\\"xs_col\\":\\"col-xs-4\\"}}]},{\\"type\\":\\"row\\",\\"layout\\":12,\\"settings\\":{\\"name\\":\\"Page Title\\",\\"background_color\\":\\"\\",\\"color\\":\\"\\",\\"background_image\\":\\"\\",\\"link_color\\":\\"\\",\\"link_hover_color\\":\\"\\",\\"hidden_xs\\":0,\\"hidden_sm\\":0,\\"hidden_md\\":0,\\"padding\\":\\"\\",\\"margin\\":\\"\\",\\"fluidrow\\":1,\\"custom_class\\":\\"\\"},\\"attr\\":[{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-12\\",\\"settings\\":{\\"column_type\\":0,\\"name\\":\\"title\\",\\"hidden_xs\\":0,\\"hidden_sm\\":0,\\"hidden_md\\":0,\\"sm_col\\":\\"\\",\\"xs_col\\":\\"\\",\\"custom_class\\":\\"\\"}}]},{\\"type\\":\\"row\\",\\"layout\\":\\"363\\",\\"settings\\":{\\"name\\":\\"Main Body\\",\\"bg_color\\":\\"\\",\\"bg_image\\":\\"\\",\\"text_color\\":\\"\\",\\"link_color\\":\\"\\",\\"link_hover_color\\":\\"\\",\\"xs_hidden\\":0,\\"ms_hidden\\":0,\\"md_hidden\\":0,\\"custom_class\\":\\"\\"},\\"attr\\":[{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-3\\",\\"settings\\":{\\"sortableitem\\":\\"[object Object]\\",\\"custom_class\\":\\"custom-class\\",\\"md_hidden\\":0,\\"ms_hidden\\":0,\\"xs_hidden\\":0,\\"name\\":\\"left\\",\\"column_type\\":0}},{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-6\\",\\"settings\\":{\\"sortableitem\\":\\"[object Object]\\",\\"xs_hidden\\":0,\\"ms_hidden\\":0,\\"md_hidden\\":0,\\"custom_class\\":\\"\\",\\"name\\":\\"\\",\\"column_type\\":1}},{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-3\\",\\"settings\\":{\\"sortableitem\\":\\"[object Object]\\",\\"column_type\\":0,\\"name\\":\\"right\\",\\"xs_hidden\\":0,\\"ms_hidden\\":0,\\"md_hidden\\":0,\\"custom_class\\":\\"class2\\"}}]},{\\"type\\":\\"row\\",\\"layout\\":\\"3333\\",\\"settings\\":{\\"custom_class\\":\\"\\",\\"fluidrow\\":0,\\"margin\\":\\"\\",\\"padding\\":\\"100px 0px\\",\\"hidden_md\\":0,\\"hidden_sm\\":0,\\"hidden_xs\\":0,\\"link_hover_color\\":\\"\\",\\"link_color\\":\\"\\",\\"background_image\\":\\"\\",\\"color\\":\\"\\",\\"background_color\\":\\"#f5f5f5\\",\\"name\\":\\"Bottom\\"},\\"attr\\":[{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-3 column-active\\",\\"settings\\":{\\"sortableitem\\":\\"[object Object]\\",\\"custom_class\\":\\"\\",\\"xs_col\\":\\"\\",\\"sm_col\\":\\"col-sm-6\\",\\"hidden_md\\":0,\\"hidden_sm\\":0,\\"hidden_xs\\":0,\\"name\\":\\"bottom1\\",\\"column_type\\":0}},{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-3\\",\\"settings\\":{\\"column_type\\":0,\\"name\\":\\"bottom2\\",\\"hidden_xs\\":0,\\"hidden_sm\\":0,\\"hidden_md\\":0,\\"sm_col\\":\\"col-sm-6\\",\\"xs_col\\":\\"\\",\\"custom_class\\":\\"\\"}},{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-3\\",\\"settings\\":{\\"column_type\\":0,\\"name\\":\\"bottom3\\",\\"hidden_xs\\":0,\\"hidden_sm\\":0,\\"hidden_md\\":0,\\"sm_col\\":\\"col-sm-6\\",\\"xs_col\\":\\"\\",\\"custom_class\\":\\"\\"}},{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-3\\",\\"settings\\":{\\"column_type\\":0,\\"name\\":\\"bottom4\\",\\"hidden_xs\\":0,\\"hidden_sm\\":0,\\"hidden_md\\":0,\\"sm_col\\":\\"col-sm-6\\",\\"xs_col\\":\\"\\",\\"custom_class\\":\\"\\"}}]},{\\"type\\":\\"row\\",\\"layout\\":12,\\"settings\\":{\\"name\\":\\"Footer\\",\\"bg_color\\":\\"\\",\\"bg_image\\":\\"\\",\\"text_color\\":\\"\\",\\"link_color\\":\\"\\",\\"link_hover_color\\":\\"\\",\\"xs_hidden\\":0,\\"ms_hidden\\":0,\\"md_hidden\\":0,\\"custom_class\\":\\"\\"},\\"attr\\":[{\\"type\\":\\"sp_col\\",\\"className\\":\\"layout-column col-sm-12\\",\\"settings\\":{\\"sortableitem\\":\\"[object Object]\\",\\"custom_class\\":\\"\\",\\"md_hidden\\":0,\\"ms_hidden\\":0,\\"xs_hidden\\":0,\\"name\\":\\"footer1\\",\\"column_type\\":0,\\"hidden_xs\\":0,\\"hidden_sm\\":0,\\"hidden_md\\":0,\\"sm_col\\":\\"\\",\\"xs_col\\":\\"\\"}}]}]","menu":"mainmenu","menu_type":"mega_offcanvas","dropdown_width":"","menu_animation":"menu-fade","offcanvas_animation":"default","enable_body_font":"1","body_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"300\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h1_font":"1","h1_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"800\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h2_font":"1","h2_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"600\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h3_font":"1","h3_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"regular\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h4_font":"1","h4_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"regular\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h5_font":"1","h5_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"600\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_h6_font":"1","h6_font":"{\\"fontFamily\\":\\"Open Sans\\",\\"fontWeight\\":\\"600\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_navigation_font":"0","navigation_font":"{\\"fontFamily\\":\\"ABeeZee\\",\\"fontWeight\\":\\"regular\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","enable_custom_font":"0","custom_font":"{\\"fontFamily\\":\\"ABeeZee\\",\\"fontWeight\\":\\"regular\\",\\"fontSubset\\":\\"latin\\",\\"fontSize\\":\\"\\"}","custom_font_selectors":"","before_head":"","before_body":"","custom_css":"","custom_js":"","compress_css":"0","compress_js":"0","exclude_js":"","lessoption":"0","show_post_format":"1","commenting_engine":"disabled","disqus_subdomain":"","disqus_devmode":"0","intensedebate_acc":"","fb_appID":"","fb_width":"500","fb_cpp":"10","comments_count":"0","social_share":"1","image_small":"0","image_small_size":"100X100","image_thumbnail":"1","image_thumbnail_size":"200X200","image_medium":"0","image_medium_size":"300X300","image_large":"0","image_large_size":"600X600","blog_list_image":"default","joomshaper_email":"","joomshaper_license_key":""}');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_ucm_base`
+-- Table structure for table `h0qwo_ucm_base`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_ucm_base` (
@@ -1981,86 +1984,86 @@ CREATE TABLE IF NOT EXISTS `h0qwo_ucm_base` (
   KEY `idx_ucm_item_id` (`ucm_item_id`),
   KEY `idx_ucm_type_id` (`ucm_type_id`),
   KEY `idx_ucm_language_id` (`ucm_language_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_ucm_content`
+-- Table structure for table `h0qwo_ucm_content`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_ucm_content` (
   `core_content_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `core_type_alias` varchar(400) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'FK to the content types table',
-  `core_title` varchar(400) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `core_alias` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '',
-  `core_body` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `core_type_alias` varchar(400) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'FK to the content types table',
+  `core_title` varchar(400) COLLATE utf8_unicode_ci NOT NULL,
+  `core_alias` varchar(400) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
+  `core_body` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `core_state` tinyint(1) NOT NULL DEFAULT '0',
-  `core_checked_out_time` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `core_checked_out_time` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `core_checked_out_user_id` int(10) unsigned NOT NULL DEFAULT '0',
   `core_access` int(10) unsigned NOT NULL DEFAULT '0',
-  `core_params` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `core_params` text COLLATE utf8_unicode_ci NOT NULL,
   `core_featured` tinyint(4) unsigned NOT NULL DEFAULT '0',
-  `core_metadata` varchar(2048) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'JSON encoded metadata properties.',
+  `core_metadata` varchar(2048) COLLATE utf8_unicode_ci NOT NULL COMMENT 'JSON encoded metadata properties.',
   `core_created_user_id` int(10) unsigned NOT NULL DEFAULT '0',
-  `core_created_by_alias` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `core_created_by_alias` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `core_created_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `core_modified_user_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Most recent user that modified',
   `core_modified_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `core_language` char(7) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `core_language` char(7) COLLATE utf8_unicode_ci NOT NULL,
   `core_publish_up` datetime NOT NULL,
   `core_publish_down` datetime NOT NULL,
   `core_content_item_id` int(10) unsigned DEFAULT NULL COMMENT 'ID from the individual type table',
   `asset_id` int(10) unsigned DEFAULT NULL COMMENT 'FK to the #__assets table.',
-  `core_images` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `core_urls` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `core_images` text COLLATE utf8_unicode_ci NOT NULL,
+  `core_urls` text COLLATE utf8_unicode_ci NOT NULL,
   `core_hits` int(10) unsigned NOT NULL DEFAULT '0',
   `core_version` int(10) unsigned NOT NULL DEFAULT '1',
   `core_ordering` int(11) NOT NULL DEFAULT '0',
-  `core_metakey` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `core_metadesc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `core_metakey` text COLLATE utf8_unicode_ci NOT NULL,
+  `core_metadesc` text COLLATE utf8_unicode_ci NOT NULL,
   `core_catid` int(10) unsigned NOT NULL DEFAULT '0',
-  `core_xreference` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'A reference to enable linkages to external data sets.',
+  `core_xreference` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT 'A reference to enable linkages to external data sets.',
   `core_type_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`core_content_id`),
   KEY `tag_idx` (`core_state`,`core_access`),
   KEY `idx_access` (`core_access`),
-  KEY `idx_alias` (`core_alias`(100)),
   KEY `idx_language` (`core_language`),
-  KEY `idx_title` (`core_title`(100)),
   KEY `idx_modified_time` (`core_modified_time`),
   KEY `idx_created_time` (`core_created_time`),
-  KEY `idx_content_type` (`core_type_alias`(100)),
   KEY `idx_core_modified_user_id` (`core_modified_user_id`),
   KEY `idx_core_checked_out_user_id` (`core_checked_out_user_id`),
   KEY `idx_core_created_user_id` (`core_created_user_id`),
-  KEY `idx_core_type_id` (`core_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Contains core content data in name spaced fields' AUTO_INCREMENT=1 ;
+  KEY `idx_core_type_id` (`core_type_id`),
+  KEY `idx_alias` (`core_alias`(100)),
+  KEY `idx_title` (`core_title`(100)),
+  KEY `idx_content_type` (`core_type_alias`(100))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Contains core content data in name spaced fields' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_ucm_history`
+-- Table structure for table `h0qwo_ucm_history`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_ucm_history` (
   `version_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ucm_item_id` int(10) unsigned NOT NULL,
   `ucm_type_id` int(10) unsigned NOT NULL,
-  `version_note` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Optional version name',
+  `version_note` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'Optional version name',
   `save_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `editor_user_id` int(10) unsigned NOT NULL DEFAULT '0',
   `character_count` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Number of characters in this version.',
-  `sha1_hash` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'SHA1 hash of the version_data column.',
-  `version_data` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'json-encoded string of version data',
+  `sha1_hash` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'SHA1 hash of the version_data column.',
+  `version_data` mediumtext COLLATE utf8_unicode_ci NOT NULL COMMENT 'json-encoded string of version data',
   `keep_forever` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0=auto delete; 1=keep',
   PRIMARY KEY (`version_id`),
   KEY `idx_ucm_item_id` (`ucm_type_id`,`ucm_item_id`),
   KEY `idx_save_date` (`save_date`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=88 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=94 ;
 
 --
--- Дамп данных таблицы `h0qwo_ucm_history`
+-- Dumping data for table `h0qwo_ucm_history`
 --
 
 INSERT INTO `h0qwo_ucm_history` (`version_id`, `ucm_item_id`, `ucm_type_id`, `version_note`, `save_date`, `editor_user_id`, `character_count`, `sha1_hash`, `version_data`, `keep_forever`) VALUES
@@ -2082,410 +2085,104 @@ INSERT INTO `h0qwo_ucm_history` (`version_id`, `ucm_item_id`, `ucm_type_id`, `ve
 INSERT INTO `h0qwo_ucm_history` (`version_id`, `ucm_item_id`, `ucm_type_id`, `version_note`, `save_date`, `editor_user_id`, `character_count`, `sha1_hash`, `version_data`, `keep_forever`) VALUES
 (86, 27, 1, '', '2016-07-14 08:02:09', 528, 22992, 'bb5a0ae129c2063619c6b40d6a4b7c683807fb30', '{"id":27,"asset_id":"79","title":"\\u041a\\u043e\\u0433\\u0434\\u0430 \\u043d\\u043e\\u0432\\u043e\\u0441\\u0442\\u0440\\u043e\\u0439\\u043a\\u0430 \\u043f\\u043e\\u0447\\u0442\\u0438 \\u043f\\u043e\\u0441\\u0442\\u0440\\u043e\\u0435\\u043d\\u0430, \\u0435\\u0441\\u0442\\u044c \\u043b\\u0438 \\u0440\\u0438\\u0441\\u043a \\u043f\\u0440\\u0438 \\u043f\\u043e\\u043a\\u0443\\u043f\\u043a\\u0435?","alias":"kogda-novostrojka-pochti-postroena-est-li-risk-pri-pokupke","introtext":"<p style=\\"text-align: justify;\\"><strong>\\u0418\\u043d\\u0442\\u0435\\u0440\\u0432\\u044c\\u044e \\u043d\\u0430 \\u0442\\u0435\\u043c\\u0443 \\u00ab\\u0420\\u0438\\u0441\\u043a\\u0438 \\u043d\\u0430 \\u043f\\u043e\\u0441\\u043b\\u0435\\u0434\\u043d\\u0438\\u0445 \\u0441\\u0442\\u0430\\u0434\\u0438\\u044f\\u0445 \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0430 \\u043d\\u043e\\u0432\\u043e\\u0441\\u0442\\u0440\\u043e\\u0439\\u043a\\u0438\\u00bb<\\/strong>.<\\/p>\\r\\n","fulltext":"\\r\\n<p style=\\"text-align: justify;\\"><strong>\\u0412\\u043e\\u043f\\u0440\\u043e\\u0441: <i>\\u00ab<\\/i><\\/strong><i>\\u0421 \\u043f\\u0440\\u0438\\u0431\\u043b\\u0438\\u0436\\u0435\\u043d\\u0438\\u0435\\u043c \\u0441\\u0442\\u0440\\u043e\\u0439\\u043a\\u0438 \\u043a \\u0437\\u0430\\u0432\\u0435\\u0440\\u0448\\u0435\\u043d\\u0438\\u044e \\u0440\\u0438\\u0441\\u043a\\u0438 \\u0443\\u043c\\u0435\\u043d\\u044c\\u0448\\u0430\\u044e\\u0442\\u0441\\u044f, \\u043d\\u043e \\u0432\\u0441\\u0435-\\u0442\\u0430\\u043a\\u0438 \\u043d\\u0435 \\u0438\\u0441\\u0447\\u0435\\u0437\\u0430\\u044e\\u0442 \\u0441\\u043e\\u0432\\u0441\\u0435\\u043c. \\u0421 \\u043a\\u0430\\u043a\\u0438\\u043c\\u0438 \\u0440\\u0438\\u0441\\u043a\\u0430\\u043c\\u0438 \\u043c\\u043e\\u0436\\u0435\\u0442 \\u0441\\u0442\\u043e\\u043b\\u043a\\u043d\\u0443\\u0442\\u044c\\u0441\\u044f \\u0434\\u043e\\u043b\\u044c\\u0449\\u0438\\u043a, \\u043f\\u0440\\u0438\\u043e\\u0431\\u0440\\u0435\\u0442\\u0430\\u044f \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u0443 \\u043d\\u0430 \\u0444\\u0438\\u043d\\u0430\\u043b\\u044c\\u043d\\u044b\\u0445 \\u0441\\u0442\\u0430\\u0434\\u0438\\u044f\\u0445 \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0430 (\\u0432\\u043e\\u0437\\u0432\\u0435\\u0434\\u0435\\u043d\\u0438\\u0435 \\u043f\\u043e\\u0441\\u043b\\u0435\\u0434\\u043d\\u0438\\u0445 \\u044d\\u0442\\u0430\\u0436\\u0435\\u0439, \\u0432\\u043d\\u0443\\u0442\\u0440\\u0435\\u043d\\u043d\\u044f\\u044f \\u043e\\u0442\\u0434\\u0435\\u043b\\u043a\\u0430 \\u0438 \\u0442.\\u043f.)\\u00bb<span id=\\"more-407\\"><\\/span><\\/i><\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u041e\\u0442\\u0432\\u0435\\u0442:<\\/b> \\u041f\\u043e\\u043b\\u0430\\u0433\\u0430\\u0435\\u043c, \\u0447\\u0442\\u043e \\u0440\\u0438\\u0441\\u043a \\u043f\\u0440\\u0438\\u043e\\u0431\\u0440\\u0435\\u0442\\u0435\\u043d\\u0438\\u044f \\u0436\\u0438\\u043b\\u044c\\u044f \\u0441 \\u044e\\u0440\\u0438\\u0434\\u0438\\u0447\\u0435\\u0441\\u043a\\u0438\\u043c \\u0434\\u0435\\u0444\\u0435\\u043a\\u0442\\u043e\\u043c \\u043c\\u043e\\u0436\\u043d\\u043e \\u043d\\u0430\\u0437\\u0432\\u0430\\u0442\\u044c \\u0441\\u0430\\u043c\\u044b\\u043c \\u043e\\u043f\\u0430\\u0441\\u043d\\u044b\\u043c. \\u041d\\u0430\\u043f\\u0440\\u0438\\u043c\\u0435\\u0440, \\u043f\\u043e \\u0437\\u0430\\u0432\\u0435\\u0440\\u0448\\u0435\\u043d\\u0438\\u044e \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0430 \\u0436\\u0438\\u043b\\u043e\\u0433\\u043e \\u0434\\u043e\\u043c\\u0430 \\u043e\\u0440\\u0433\\u0430\\u043d\\u044b \\u0432\\u043b\\u0430\\u0441\\u0442\\u0438 \\u0432\\u044b\\u0434\\u0430\\u044e\\u0442 \\u0440\\u0430\\u0437\\u0440\\u0435\\u0448\\u0435\\u043d\\u0438\\u0435 \\u043d\\u0430 \\u0432\\u0432\\u043e\\u0434 \\u043e\\u0431\\u044a\\u0435\\u043a\\u0442\\u0430 \\u0432 \\u044d\\u043a\\u0441\\u043f\\u043b\\u0443\\u0430\\u0442\\u0430\\u0446\\u0438\\u044e. \\u041e\\u0442\\u0441\\u0443\\u0442\\u0441\\u0442\\u0432\\u0438\\u0435 \\u044d\\u0442\\u043e\\u0433\\u043e \\u0434\\u043e\\u043a\\u0443\\u043c\\u0435\\u043d\\u0442\\u0430 \\u044f\\u0432\\u043b\\u044f\\u0435\\u0442\\u0441\\u044f \\u043f\\u0440\\u0435\\u043f\\u044f\\u0442\\u0441\\u0442\\u0432\\u0438\\u0435\\u043c \\u0434\\u043b\\u044f \\u043f\\u0440\\u0438\\u0437\\u043d\\u0430\\u043d\\u0438\\u044f \\u0434\\u043e\\u043c\\u0430 \\u0438 \\u043f\\u043e\\u043c\\u0435\\u0449\\u0435\\u043d\\u0438\\u0439 \\u0432 \\u043d\\u0451\\u043c \\u043e\\u0431\\u044a\\u0435\\u043a\\u0442\\u0430\\u043c\\u0438 \\u043d\\u0435\\u0434\\u0432\\u0438\\u0436\\u0438\\u043c\\u043e\\u0441\\u0442\\u0438. \\u0414\\u0440\\u0443\\u0433\\u0438\\u043c\\u0438 \\u0441\\u043b\\u043e\\u0432\\u0430\\u043c\\u0438, \\u0434\\u043e\\u043b\\u044c\\u0449\\u0438\\u043a\\u0443 \\u043e\\u0444\\u043e\\u0440\\u043c\\u0438\\u0442\\u044c \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u0443 \\u0432 \\u0441\\u043e\\u0431\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u043e\\u0441\\u0442\\u044c \\u0431\\u0443\\u0434\\u0435\\u0442 \\u043f\\u0440\\u043e\\u0431\\u043b\\u0435\\u043c\\u0430\\u0442\\u0438\\u0447\\u043d\\u043e.<\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u00a0<\\/b><\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u0412.: <\\/b><i>\\u00ab\\u0421\\u043e\\u0445\\u0440\\u0430\\u043d\\u044f\\u044e\\u0442\\u0441\\u044f \\u043b\\u0438 \\u043d\\u0430 \\u0444\\u0438\\u043d\\u0430\\u043b\\u044c\\u043d\\u044b\\u0445 \\u0441\\u0442\\u0430\\u0434\\u0438\\u044f\\u0445 \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0430 \\u0440\\u0438\\u0441\\u043a\\u0438 \\u043d\\u0435\\u0434\\u043e\\u0441\\u0442\\u0440\\u043e\\u044f \\u0438 \\u0434\\u043e\\u043b\\u0433\\u043e\\u0441\\u0442\\u0440\\u043e\\u044f? \\u0418\\u043b\\u0438 \\u0441\\u0435\\u0433\\u043e\\u0434\\u043d\\u044f (\\u0432 \\u0441\\u0438\\u043b\\u0443 214 \\u0437\\u0430\\u043a\\u043e\\u043d\\u0430 \\u0438 \\u0434\\u0440. \\u0437\\u0430\\u043a\\u043e\\u043d\\u043e\\u0434\\u0430\\u0442\\u0435\\u043b\\u044c\\u043d\\u044b\\u0445 \\u0430\\u043a\\u0442\\u043e\\u0432) \\u0442\\u0430\\u043a\\u0438\\u0435 \\u0441\\u043b\\u0443\\u0447\\u0430\\u0438 \\u043f\\u0440\\u0430\\u043a\\u0442\\u0438\\u0447\\u0435\\u0441\\u043a\\u0438 \\u043d\\u0435\\u0432\\u043e\\u0437\\u043c\\u043e\\u0436\\u043d\\u044b?\\u00bb<\\/i><\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u041e.:<\\/b> \\u041d\\u0430 \\u043f\\u0440\\u0430\\u043a\\u0442\\u0438\\u043a\\u0435 \\u0440\\u0438\\u0441\\u043a \\u043d\\u0435\\u0434\\u043e\\u0441\\u0442\\u0440\\u043e\\u044f \\u0438\\u043b\\u0438 \\u0434\\u043e\\u043b\\u0433\\u043e\\u0441\\u0442\\u0440\\u043e\\u044f \\u0441\\u043e\\u0445\\u0440\\u0430\\u043d\\u044f\\u0435\\u0442\\u0441\\u044f \\u0432\\u0441\\u0435\\u0433\\u0434\\u0430. \\u0422\\u0430\\u043a\\u0438\\u0435 \\u043d\\u0435\\u0431\\u043b\\u0430\\u0433\\u043e\\u043f\\u0440\\u0438\\u044f\\u0442\\u043d\\u044b\\u0435 \\u043f\\u043e\\u0441\\u043b\\u0435\\u0434\\u0441\\u0442\\u0432\\u0438\\u044f \\u0437\\u0430\\u0432\\u0438\\u0441\\u044f\\u0442 \\u043e\\u0442 \\u0441\\u043e\\u0441\\u0442\\u043e\\u044f\\u043d\\u0438\\u044f \\u044d\\u043a\\u043e\\u043d\\u043e\\u043c\\u0438\\u043a\\u0438 \\u0432 \\u0446\\u0435\\u043b\\u043e\\u043c \\u0438\\u043b\\u0438 \\u043a\\u043e\\u043c\\u043f\\u0430\\u043d\\u0438\\u0438 \\u2013 \\u0437\\u0430\\u0441\\u0442\\u0440\\u043e\\u0439\\u0449\\u0438\\u043a\\u0430 \\u0432 \\u0447\\u0430\\u0441\\u0442\\u043d\\u043e\\u0441\\u0442\\u0438. \\u042d\\u043a\\u043e\\u043d\\u043e\\u043c\\u0438\\u043a\\u0443 \\u0442\\u0440\\u0443\\u0434\\u043d\\u043e \\u0437\\u0430\\u0433\\u043d\\u0430\\u0442\\u044c \\u0432 \\u0442\\u0438\\u0441\\u043a\\u0438 \\u0437\\u0430\\u043a\\u043e\\u043d\\u043e\\u0434\\u0430\\u0442\\u0435\\u043b\\u044c\\u043d\\u043e\\u0433\\u043e \\u0440\\u0435\\u0433\\u0443\\u043b\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u044f. \\u00a0\\u0424\\u0435\\u0434\\u0435\\u0440\\u0430\\u043b\\u044c\\u043d\\u044b\\u0439 \\u0437\\u0430\\u043a\\u043e\\u043d \\u043e\\u0442 30.12.2004 \\u2116214-\\u0424\\u0417 \\u00ab\\u041e\\u0431 \\u0443\\u0447\\u0430\\u0441\\u0442\\u0438\\u0438 \\u0432 \\u0434\\u043e\\u043b\\u0435\\u0432\\u043e\\u043c \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0435 \\u043c\\u043d\\u043e\\u0433\\u043e\\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u043d\\u044b\\u0445 \\u0434\\u043e\\u043c\\u043e\\u0432 \\u0438 \\u0438\\u043d\\u044b\\u0445 \\u043e\\u0431\\u044a\\u0435\\u043a\\u0442\\u043e\\u0432 \\u043d\\u0435\\u0434\\u0432\\u0438\\u0436\\u0438\\u043c\\u043e\\u0441\\u0442\\u0438\\u2026\\u00bb \\u0432\\u0432\\u0451\\u043b \\u043f\\u0440\\u0430\\u0432\\u0438\\u043b\\u0430, \\u043a\\u043e\\u0442\\u043e\\u0440\\u044b\\u0435 \\u0443\\u0441\\u0442\\u0430\\u043d\\u043e\\u0432\\u0438\\u043b\\u0438 \\u0437\\u0430\\u043a\\u043e\\u043d\\u043d\\u044b\\u0435 \\u0441\\u0445\\u0435\\u043c\\u044b \\u043f\\u0440\\u0438\\u0432\\u043b\\u0435\\u0447\\u0435\\u043d\\u0438\\u044f \\u0434\\u0435\\u043d\\u0435\\u0436\\u043d\\u044b\\u0445 \\u0441\\u0440\\u0435\\u0434\\u0441\\u0442\\u0432 \\u043d\\u0430 \\u0441\\u0442\\u0430\\u0434\\u0438\\u0438 \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0430, \\u043f\\u0440\\u043e\\u043f\\u0438\\u0441\\u0430\\u043b\\u0438 \\u043f\\u043e\\u0440\\u044f\\u0434\\u043e\\u043a \\u0434\\u0435\\u0439\\u0441\\u0442\\u0432\\u0438\\u0439 \\u0438 \\u043e\\u0442\\u0432\\u0435\\u0442\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u043e\\u0441\\u0442\\u044c \\u0434\\u043b\\u044f \\u0437\\u0430\\u0441\\u0442\\u0440\\u043e\\u0439\\u0449\\u0438\\u043a\\u0430, \\u0440\\u0430\\u0437\\u0440\\u0435\\u0448\\u0438\\u043b\\u0438 \\u0434\\u0440\\u0443\\u0433\\u0438\\u0435 \\u0432\\u043e\\u043f\\u0440\\u043e\\u0441\\u044b. \\u0422\\u0435\\u043c \\u043d\\u0435 \\u043c\\u0435\\u043d\\u0435\\u0435, \\u0437\\u0430\\u043a\\u043e\\u043d \\u043d\\u0435 \\u0441\\u043f\\u0430\\u0441\\u0430\\u0435\\u0442 \\u043e\\u0442 \\u044d\\u043a\\u043e\\u043d\\u043e\\u043c\\u0438\\u0447\\u0435\\u0441\\u043a\\u0438\\u0445 \\u0437\\u0430\\u0442\\u0440\\u0443\\u0434\\u043d\\u0435\\u043d\\u0438\\u0439 \\u0438 \\u0431\\u0430\\u043d\\u043a\\u0440\\u043e\\u0442\\u0441\\u0442\\u0432\\u0430.<\\/p>\\r\\n<p style=\\"text-align: justify;\\">\\u00a0<i>\\u00ab\\u041a\\u0430\\u043a\\u0438\\u0435 \\u0440\\u0438\\u0441\\u043a\\u0438 \\u0435\\u0441\\u0442\\u044c \\u043f\\u0440\\u0438 \\u043f\\u043e\\u043a\\u0443\\u043f\\u043a\\u0435 \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u044b \\u0432 \\u0443\\u0436\\u0435 \\u0434\\u043e\\u0441\\u0442\\u0440\\u043e\\u0435\\u043d\\u043d\\u043e\\u043c, \\u043d\\u043e \\u043d\\u0435 \\u0441\\u0434\\u0430\\u043d\\u043d\\u043e\\u043c \\u0434\\u043e\\u043c\\u0435? \\u0410 \\u043a\\u0430\\u043a\\u0438\\u0435 \\u0440\\u0438\\u0441\\u043a\\u0438 \\u0441\\u043e\\u0445\\u0440\\u0430\\u043d\\u044f\\u044e\\u0442\\u0441\\u044f \\u0432 \\u0442\\u043e\\u043c \\u0441\\u043b\\u0443\\u0447\\u0430\\u0435, \\u043a\\u043e\\u0433\\u0434\\u0430 \\u0434\\u043e\\u043c \\u0443\\u0436\\u0435 \\u0441\\u0434\\u0430\\u043d?\\u00bb<\\/i><\\/p>\\r\\n<p style=\\"text-align: justify;\\">\\u0412 \\u043e\\u0431\\u043e\\u0438\\u0445 \\u0441\\u043b\\u0443\\u0447\\u0430\\u044f\\u0445 \\u043e\\u0441\\u043d\\u043e\\u0432\\u043d\\u044b\\u0435 \\u0440\\u0438\\u0441\\u043a\\u0438 \\u0441\\u0432\\u044f\\u0437\\u0430\\u043d\\u044b \\u0441 \\u044e\\u0440\\u0438\\u0434\\u0438\\u0447\\u0435\\u0441\\u043a\\u0438\\u043c\\u0438 \\u0434\\u0435\\u0444\\u0435\\u043a\\u0442\\u0430\\u043c\\u0438. \\u0422\\u043e\\u043b\\u044c\\u043a\\u043e \\u0432 \\u0441\\u043b\\u0443\\u0447\\u0430\\u0435\\u00a0 \\u043f\\u043e\\u043a\\u0443\\u043f\\u043a\\u0438 \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u044b \\u0432 \\u0434\\u043e\\u0441\\u0442\\u0440\\u043e\\u0435\\u043d\\u043d\\u043e\\u043c, \\u043d\\u043e \\u043d\\u0435 \\u0441\\u0434\\u0430\\u043d\\u043d\\u043e\\u043c \\u0434\\u043e\\u043c\\u0435 \\u043f\\u0440\\u043e\\u0431\\u043b\\u0435\\u043c \\u043c\\u043e\\u0436\\u0435\\u0442 \\u0431\\u044b\\u0442\\u044c \\u0431\\u043e\\u043b\\u044c\\u0448\\u0435. \\u041d\\u0430\\u0447\\u0438\\u043d\\u0430\\u044f \\u043e\\u0442 \\u043f\\u0440\\u043e\\u043c\\u0435\\u0434\\u043b\\u0435\\u043d\\u0438\\u044f \\u0441 \\u043e\\u0444\\u043e\\u0440\\u043c\\u043b\\u0435\\u043d\\u0438\\u0435\\u043c \\u043f\\u0440\\u0430\\u0432\\u0430 \\u0441\\u043e\\u0431\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u043e\\u0441\\u0442\\u0438 \\u043f\\u043e\\u043a\\u0443\\u043f\\u0430\\u0442\\u0435\\u043b\\u0435\\u0439 \\u043d\\u0430 \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u0443, \\u0437\\u0430\\u043a\\u0430\\u043d\\u0447\\u0438\\u0432\\u0430\\u044f \\u0441\\u043d\\u043e\\u0441\\u043e\\u043c \\u0437\\u0434\\u0430\\u043d\\u0438\\u044f \\u043a\\u0430\\u043a \\u0441\\u0430\\u043c\\u043e\\u0432\\u043e\\u043b\\u044c\\u043d\\u043e\\u0439 \\u043f\\u043e\\u0441\\u0442\\u0440\\u043e\\u0439\\u043a\\u0438.<\\/p>\\r\\n<p style=\\"text-align: justify;\\">\\u00a0<\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u0412.:<\\/b> <i>\\u00ab\\u041a\\u0430\\u043a \\u0434\\u043e\\u043b\\u044c\\u0449\\u0438\\u043a \\u043c\\u043e\\u0436\\u0435\\u0442 \\u043d\\u0438\\u0432\\u0438\\u043b\\u0438\\u0440\\u043e\\u0432\\u0430\\u0442\\u044c \\u0443\\u043a\\u0430\\u0437\\u0430\\u043d\\u043d\\u044b\\u0435 \\u0440\\u0438\\u0441\\u043a\\u0438 \\u043d\\u0430 \\u0444\\u0438\\u043d\\u0430\\u043b\\u044c\\u043d\\u043e\\u043c \\u044d\\u0442\\u0430\\u043f\\u0435 \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0430, \\u043d\\u0430 \\u044d\\u0442\\u0430\\u043f\\u0435 \\u0441\\u0434\\u0430\\u0447\\u0438 \\u0434\\u043e\\u043c\\u0430 \\u0438 \\u043f\\u043e\\u0441\\u043b\\u0435 \\u0441\\u0434\\u0430\\u0447\\u0438? \\u041c\\u043e\\u0436\\u0435\\u0442 \\u043b\\u0438 \\u043f\\u043e\\u043c\\u043e\\u0447\\u044c \\u0441\\u0442\\u0440\\u0430\\u0445\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u0444\\u0438\\u043d\\u0430\\u043d\\u0441\\u043e\\u0432\\u044b\\u0445 \\u0440\\u0438\\u0441\\u043a\\u043e\\u0432 \\u0438\\u043b\\u0438 \\u043f\\u043e\\u043a\\u0430 \\u044d\\u0442\\u043e \\u043d\\u0435 \\u043e\\u0447\\u0435\\u043d\\u044c \\u0440\\u0430\\u0431\\u043e\\u0442\\u0430\\u044e\\u0449\\u0438\\u0439 \\u043c\\u0435\\u0445\\u0430\\u043d\\u0438\\u0437\\u043c?\\u00bb<\\/i><\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u041e.:<\\/b> \\u0423 \\u043a\\u043e\\u0433\\u043e \\u0432 \\u0436\\u0438\\u0437\\u043d\\u0438 \\u043d\\u0430\\u0441\\u0442\\u0443\\u043f\\u0430\\u043b \\u0441\\u0442\\u0440\\u0430\\u0445\\u043e\\u0432\\u043e\\u0439 \\u0441\\u043b\\u0443\\u0447\\u0430\\u0439, \\u0442\\u043e\\u0442 \\u0437\\u043d\\u0430\\u0435\\u0442, \\u043a\\u0430\\u043a \\u0432 \\u0420\\u043e\\u0441\\u0441\\u0438\\u0438 \\u043c\\u043e\\u0436\\u043d\\u043e \\u043f\\u043e\\u043b\\u0443\\u0447\\u0438\\u0442\\u044c \\u0434\\u0435\\u043d\\u044c\\u0433\\u0438 \\u043e\\u0442 \\u0441\\u0442\\u0440\\u0430\\u0445\\u043e\\u0432\\u044b\\u0445 \\u043a\\u043e\\u043c\\u043f\\u0430\\u043d\\u0438\\u0439! \\u041d\\u0430 \\u043d\\u0430\\u0448 \\u0432\\u0437\\u0433\\u043b\\u044f\\u0434 \\u043c\\u0435\\u0445\\u0430\\u043d\\u0438\\u0437\\u043c\\u044b \\u0434\\u043e\\u0431\\u0440\\u043e\\u0432\\u043e\\u043b\\u044c\\u043d\\u043e\\u0433\\u043e \\u0441\\u0442\\u0440\\u0430\\u0445\\u043e\\u0432\\u0430\\u043d\\u0438\\u044f \\u0440\\u0438\\u0441\\u043a\\u043e\\u0432, \\u0447\\u0442\\u043e \\u0434\\u0435\\u0439\\u0441\\u0442\\u0432\\u0443\\u044e\\u0442 \\u0441\\u0435\\u0433\\u043e\\u0434\\u043d\\u044f, \\u043d\\u0435 \\u0441\\u043d\\u0438\\u0437\\u0438\\u043b\\u0438 \\u0440\\u0438\\u0441\\u043a\\u0438 \\u043d\\u0435\\u0434\\u043e\\u0441\\u0442\\u0440\\u043e\\u044f \\u0438\\u043b\\u0438 \\u0434\\u043e\\u043b\\u0433\\u043e\\u0441\\u0442\\u0440\\u043e\\u044f. \\u0421 1 \\u044f\\u043d\\u0432\\u0430\\u0440\\u044f 2014 \\u0433\\u043e\\u0434\\u0430 \\u043f\\u043e\\u044f\\u0432\\u0438\\u0442\\u0441\\u044f \\u043c\\u0435\\u0445\\u0430\\u043d\\u0438\\u0437\\u043c \\u0432\\u0437\\u0430\\u0438\\u043c\\u043d\\u043e\\u0433\\u043e \\u0441\\u0442\\u0440\\u0430\\u0445\\u043e\\u0432\\u0430\\u043d\\u0438\\u044f \\u043e\\u0442\\u0432\\u0435\\u0442\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u043e\\u0441\\u0442\\u0438 \\u0437\\u0430\\u0441\\u0442\\u0440\\u043e\\u0439\\u0449\\u0438\\u043a\\u043e\\u0432 \\u2013 \\u0432\\u043e\\u0442 \\u044d\\u0442\\u043e \\u043c\\u043e\\u0436\\u0435\\u0442 \\u0431\\u044b\\u0442\\u044c \\u0438\\u043d\\u0442\\u0435\\u0440\\u0435\\u0441\\u043d\\u043e \\u0441 \\u0442\\u043e\\u0447\\u043a\\u0438 \\u0437\\u0440\\u0435\\u043d\\u0438\\u044f \\u043f\\u043e\\u0432\\u044b\\u0448\\u0435\\u043d\\u0438\\u044f \\u0437\\u0430\\u0449\\u0438\\u0449\\u0435\\u043d\\u043d\\u043e\\u0441\\u0442\\u0438 \\u0433\\u0440\\u0430\\u0436\\u0434\\u0430\\u043d.<\\/p>\\r\\n<p style=\\"text-align: justify;\\">\\u00a0<\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u0412.:<\\/b> <i>\\u00ab\\u041d\\u0430 \\u0447\\u0442\\u043e \\u0441\\u0442\\u043e\\u0438\\u0442 \\u043e\\u0431\\u0440\\u0430\\u0449\\u0430\\u0442\\u044c \\u0432\\u043d\\u0438\\u043c\\u0430\\u043d\\u0438\\u0435, \\u0447\\u0442\\u043e\\u0431\\u044b \\u0438\\u0437\\u0431\\u0435\\u0436\\u0430\\u0442\\u044c \\u043d\\u0435\\u043f\\u0440\\u0438\\u044f\\u0442\\u043d\\u044b\\u0445 \\u0441\\u044e\\u0440\\u043f\\u0440\\u0438\\u0437\\u043e\\u0432?\\u00bb<\\/i><\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u041e.:<\\/b> \\u041d\\u0430\\u0448 \\u0441\\u043e\\u0432\\u0435\\u0442\\u00a0 \\u2014 \\u043f\\u0440\\u0438\\u0433\\u043b\\u0430\\u0441\\u0438\\u0442\\u0435 \\u043d\\u0430 \\u043e\\u0437\\u043d\\u0430\\u043a\\u043e\\u043c\\u043b\\u0435\\u043d\\u0438\\u0435 \\u0441 \\u0434\\u043e\\u043a\\u0443\\u043c\\u0435\\u043d\\u0442\\u0430\\u043c\\u0438 \\u0438 \\u0441\\u0434\\u0435\\u043b\\u043a\\u0443 \\u043f\\u043e \\u043f\\u0440\\u0438\\u043e\\u0431\\u0440\\u0435\\u0442\\u0435\\u043d\\u0438\\u044f \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u044b \\u0432 \\u043d\\u043e\\u0432\\u043e\\u0441\\u0442\\u0440\\u043e\\u0439\\u043a\\u0435 \\u044e\\u0440\\u0438\\u0441\\u0442\\u0430, \\u043d\\u0443 \\u0438\\u043b\\u0438 \\u0440\\u0438\\u044d\\u043b\\u0442\\u043e\\u0440\\u0430. \\u041d\\u0430\\u0439\\u0442\\u0438 \\u044e\\u0440\\u0438\\u0441\\u0442\\u0430, \\u043a\\u043e\\u0442\\u043e\\u0440\\u044b\\u0439 \\u0434\\u0435\\u0439\\u0441\\u0442\\u0432\\u0438\\u0442\\u0435\\u043b\\u044c\\u043d\\u043e \\u0441\\u043f\\u0435\\u0446\\u0438\\u0430\\u043b\\u0438\\u0437\\u0438\\u0440\\u0443\\u0435\\u0442\\u0441\\u044f \\u043d\\u0430 \\u043d\\u0435\\u0434\\u0432\\u0438\\u0436\\u0438\\u043c\\u043e\\u0441\\u0442\\u0438 \\u0442\\u0440\\u0443\\u0434\\u043d\\u043e, \\u043d\\u043e \\u0432\\u043e\\u0437\\u043c\\u043e\\u0436\\u043d\\u043e.<\\/p>\\r\\n<p style=\\"text-align: justify;\\">\\u00a0<\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u0412.:<\\/b> <i>\\u00ab\\u0427\\u0442\\u043e \\u0434\\u0435\\u043b\\u0430\\u0442\\u044c \\u0434\\u043e\\u043b\\u044c\\u0449\\u0438\\u043a\\u0443, \\u0435\\u0441\\u043b\\u0438 \\u0441\\u043e\\u0431\\u044b\\u0442\\u0438\\u044f \\u0440\\u0430\\u0437\\u0432\\u0438\\u0432\\u0430\\u044e\\u0442\\u0441\\u044f \\u043f\\u043e \\u043d\\u0435\\u043f\\u0440\\u0438\\u044f\\u0442\\u043d\\u043e\\u043c\\u0443 \\u0441\\u0446\\u0435\\u043d\\u0430\\u0440\\u0438\\u044e \\u0438 \\u043e\\u043d \\u0432\\u0441\\u0435-\\u0442\\u0430\\u043a\\u0438 \\u0441\\u0442\\u043e\\u043b\\u043a\\u043d\\u0443\\u043b\\u0441\\u044f \\u0441 \\u0443\\u043a\\u0430\\u0437\\u0430\\u043d\\u043d\\u044b\\u043c\\u0438 \\u0440\\u0438\\u0441\\u043a\\u0430\\u043c\\u0438?\\u00bb<\\/i><\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u041e.: <\\/b>\\u041c\\u044b \\u0440\\u0435\\u043a\\u043e\\u043c\\u0435\\u043d\\u0434\\u0443\\u0435\\u043c \\u0434\\u043e\\u043b\\u044c\\u0449\\u0438\\u043a\\u0443 \\u0432 \\u0441\\u043b\\u0443\\u0447\\u0430\\u0435 \\u043d\\u0430\\u0441\\u0442\\u0443\\u043f\\u043b\\u0435\\u043d\\u0438\\u044f \\u043d\\u0435\\u0433\\u0430\\u0442\\u0438\\u0432\\u043d\\u043e\\u0439 \\u0441\\u0438\\u0442\\u0443\\u0430\\u0446\\u0438\\u0438 \\u043f\\u0440\\u0438 \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0435 \\u0436\\u0438\\u043b\\u044c\\u044f \\u043f\\u0440\\u043e\\u043a\\u043e\\u043d\\u0441\\u0443\\u043b\\u044c\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u0442\\u044c\\u0441\\u044f \\u0441 \\u044e\\u0440\\u0438\\u0441\\u0442\\u043e\\u043c, \\u043a\\u043e\\u0442\\u043e\\u0440\\u044b\\u0439 \\u0441\\u043f\\u0435\\u0446\\u0438\\u0430\\u043b\\u0438\\u0437\\u0438\\u0440\\u0443\\u0435\\u0442\\u0441\\u044f \\u043d\\u0430 \\u0440\\u044b\\u043d\\u043a\\u0435 \\u043d\\u0435\\u0434\\u0432\\u0438\\u0436\\u0438\\u043c\\u043e\\u0441\\u0442\\u0438.<\\/p>\\r\\n<p style=\\"text-align: justify;\\">\\u00a0<\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u0412.:<\\/b> <i>\\u00ab\\u0421\\u0442\\u043e\\u0438\\u0442 \\u043b\\u0438 \\u043e\\u0431\\u0440\\u0430\\u0449\\u0430\\u0442\\u044c\\u0441\\u044f \\u0432 \\u0441\\u0443\\u0434? \\u0418 \\u0440\\u0435\\u0430\\u043b\\u044c\\u043d\\u043e \\u043b\\u0438 \\u0440\\u0435\\u0448\\u0438\\u0442\\u044c \\u0434\\u0435\\u043b\\u043e \\u0432 \\u0441\\u0432\\u043e\\u044e \\u043f\\u043e\\u043b\\u044c\\u0437\\u0443 \\u0432 \\u0441\\u0443\\u0434\\u0435?\\u00bb<\\/i><\\/p>\\r\\n<p class=\\"MsoNormal\\">\\u00a0<\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u041e.: <\\/b>\\u0421\\u0443\\u0434 \\u043c\\u043e\\u0436\\u0435\\u0442 \\u0431\\u044b\\u0442\\u044c \\u044d\\u0444\\u0444\\u0435\\u043a\\u0442\\u0438\\u0432\\u043d\\u044b\\u043c, \\u0430 \\u0438\\u043d\\u043e\\u0433\\u0434\\u0430 \\u2014 \\u0435\\u0434\\u0438\\u043d\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u044b\\u043c \\u0441\\u043f\\u043e\\u0441\\u043e\\u0431\\u043e\\u043c \\u0437\\u0430\\u0449\\u0438\\u0442\\u044b \\u043d\\u0430\\u0440\\u0443\\u0448\\u0435\\u043d\\u043d\\u044b\\u0445 \\u043f\\u0440\\u0430\\u0432 \\u0438\\u043b\\u0438 \\u0437\\u0430\\u043a\\u043e\\u043d\\u043d\\u044b\\u0445 \\u0438\\u043d\\u0442\\u0435\\u0440\\u0435\\u0441\\u043e\\u0432 \\u0434\\u043e\\u043b\\u044c\\u0449\\u0438\\u043a\\u043e\\u0432. \\u041d\\u0435\\u0441\\u043c\\u043e\\u0442\\u0440\\u044f \\u043d\\u0430 \\u0442\\u043e, \\u0447\\u0442\\u043e \\u0433\\u0440\\u0430\\u0436\\u0434\\u0430\\u043d\\u0435 \\u0441\\u0435\\u0433\\u043e\\u0434\\u043d\\u044f \\u0441 \\u043d\\u0435\\u0434\\u043e\\u0432\\u0435\\u0440\\u0438\\u0435\\u043c \\u043e\\u0442\\u043d\\u043e\\u0441\\u044f\\u0442\\u0441\\u044f \\u043a \\u0432\\u043b\\u0430\\u0441\\u0442\\u043d\\u044b\\u043c \\u0438\\u043d\\u0441\\u0442\\u0438\\u0442\\u0443\\u0442\\u0430\\u043c, \\u043c\\u044b \\u0438\\u0437 \\u043f\\u0440\\u0430\\u043a\\u0442\\u0438\\u043a\\u0438 \\u0437\\u043d\\u0430\\u0435\\u043c, \\u0447\\u0442\\u043e \\u0441\\u0443\\u0434\\u044b \\u0440\\u0435\\u0430\\u043b\\u044c\\u043d\\u043e \\u043c\\u043e\\u0433\\u0443\\u0442 \\u043f\\u043e\\u043c\\u043e\\u0447\\u044c. \\u0422\\u0430\\u043a, \\u043d\\u0430\\u043f\\u0440\\u0438\\u043c\\u0435\\u0440, \\u0441\\u0443\\u0434\\u044b \\u043f\\u0440\\u0438\\u0437\\u043d\\u0430\\u0432\\u0430\\u043b\\u0438 \\u043f\\u0440\\u0430\\u0432\\u043e \\u0441\\u043e\\u0431\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u043e\\u0441\\u0442\\u0438 \\u043d\\u0430 \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u0443, \\u043a\\u043e\\u0433\\u0434\\u0430 \\u0443 \\u0433\\u0440\\u0430\\u0436\\u0434\\u0430\\u043d \\u043d\\u0430 \\u0440\\u0443\\u043a\\u0430\\u0445 \\u0438\\u043c\\u0435\\u043b\\u0438\\u0441\\u044c \\u043f\\u0440\\u0435\\u0434\\u0432\\u0430\\u0440\\u0438\\u0442\\u0435\\u043b\\u044c\\u043d\\u044b\\u0435 \\u0434\\u043e\\u0433\\u043e\\u0432\\u043e\\u0440\\u0430 \\u043a\\u0443\\u043f\\u043b\\u0438-\\u043f\\u0440\\u043e\\u0434\\u0430\\u0436\\u0438.\\u00a0 \\u0421 \\u044e\\u0440\\u0438\\u0434\\u0438\\u0447\\u0435\\u0441\\u043a\\u043e\\u0439 \\u0442\\u043e\\u0447\\u043a\\u0438 \\u0437\\u0440\\u0435\\u043d\\u0438\\u044f \\u044d\\u0442\\u043e \\u0431\\u044b\\u043b\\u0438 \\u043d\\u0435\\u043e\\u0434\\u043d\\u043e\\u0437\\u043d\\u0430\\u0447\\u043d\\u044b\\u0435 \\u0440\\u0435\\u0448\\u0435\\u043d\\u0438\\u044f, \\u043d\\u043e \\u043b\\u044e\\u0434\\u044f\\u043c \\u043e\\u043d\\u0438 \\u043f\\u043e\\u043c\\u043e\\u0433\\u0430\\u043b\\u0438 \\u0432\\u0447\\u0435\\u0440\\u0430. \\u041f\\u043e\\u043c\\u043e\\u0433\\u0430\\u044e\\u0442 \\u0438 \\u0441\\u0435\\u0433\\u043e\\u0434\\u043d\\u044f.<\\/p>","state":1,"catid":"9","created":"2016-07-06 13:43:44","created_by":"528","created_by_alias":"","modified":"2016-07-14 08:02:09","modified_by":"528","checked_out":"528","checked_out_time":"2016-07-14 07:52:58","publish_up":"2016-07-06 13:43:44","publish_down":"0000-00-00 00:00:00","images":"{\\"image_intro\\":\\"images\\\\\\/06-07-2016\\\\\\/article2\\\\\\/novostroika.png\\",\\"float_intro\\":\\"\\",\\"image_intro_alt\\":\\"\\",\\"image_intro_caption\\":\\"\\",\\"image_fulltext\\":\\"images\\\\\\/06-07-2016\\\\\\/article2\\\\\\/novostroika.png\\",\\"float_fulltext\\":\\"\\",\\"image_fulltext_alt\\":\\"\\",\\"image_fulltext_caption\\":\\"\\"}","urls":"{\\"urla\\":false,\\"urlatext\\":\\"\\",\\"targeta\\":\\"\\",\\"urlb\\":false,\\"urlbtext\\":\\"\\",\\"targetb\\":\\"\\",\\"urlc\\":false,\\"urlctext\\":\\"\\",\\"targetc\\":\\"\\"}","attribs":"{\\"show_title\\":\\"\\",\\"link_titles\\":\\"\\",\\"show_tags\\":\\"\\",\\"show_intro\\":\\"\\",\\"info_block_position\\":\\"\\",\\"info_block_show_title\\":\\"\\",\\"show_category\\":\\"\\",\\"link_category\\":\\"\\",\\"show_parent_category\\":\\"\\",\\"link_parent_category\\":\\"\\",\\"show_author\\":\\"\\",\\"link_author\\":\\"\\",\\"show_create_date\\":\\"\\",\\"show_modify_date\\":\\"\\",\\"show_publish_date\\":\\"\\",\\"show_item_navigation\\":\\"\\",\\"show_icons\\":\\"\\",\\"show_print_icon\\":\\"\\",\\"show_email_icon\\":\\"\\",\\"show_vote\\":\\"\\",\\"show_hits\\":\\"\\",\\"show_noauth\\":\\"\\",\\"urls_position\\":\\"\\",\\"alternative_readmore\\":\\"\\",\\"article_layout\\":\\"\\",\\"show_publishing_options\\":\\"\\",\\"show_article_options\\":\\"\\",\\"show_urls_images_backend\\":\\"\\",\\"show_urls_images_frontend\\":\\"\\",\\"spfeatured_image\\":\\"\\",\\"post_format\\":\\"standard\\",\\"gallery\\":\\"\\",\\"audio\\":\\"\\",\\"video\\":\\"\\",\\"link_title\\":\\"\\",\\"link_url\\":\\"\\",\\"quote_text\\":\\"\\",\\"quote_author\\":\\"\\",\\"post_status\\":\\"\\"}","version":8,"ordering":"0","metakey":"","metadesc":"","access":"1","hits":"16","metadata":"{\\"robots\\":\\"\\",\\"author\\":\\"\\",\\"rights\\":\\"\\",\\"xreference\\":\\"\\"}","featured":"1","language":"*","xreference":""}', 0);
 INSERT INTO `h0qwo_ucm_history` (`version_id`, `ucm_item_id`, `ucm_type_id`, `version_note`, `save_date`, `editor_user_id`, `character_count`, `sha1_hash`, `version_data`, `keep_forever`) VALUES
-(87, 27, 1, '', '2016-07-14 08:03:48', 528, 22980, 'defb52cd2068a5e1db035e728b2bcb22732443a7', '{"id":27,"asset_id":"79","title":"\\u041a\\u043e\\u0433\\u0434\\u0430 \\u043d\\u043e\\u0432\\u043e\\u0441\\u0442\\u0440\\u043e\\u0439\\u043a\\u0430 \\u043f\\u043e\\u0447\\u0442\\u0438 \\u043f\\u043e\\u0441\\u0442\\u0440\\u043e\\u0435\\u043d\\u0430, \\u0435\\u0441\\u0442\\u044c \\u043b\\u0438 \\u0440\\u0438\\u0441\\u043a \\u043f\\u0440\\u0438 \\u043f\\u043e\\u043a\\u0443\\u043f\\u043a\\u0435?","alias":"kogda-novostrojka-pochti-postroena-est-li-risk-pri-pokupke","introtext":"<p style=\\"text-align: justify;\\"><strong>\\u0418\\u043d\\u0442\\u0435\\u0440\\u0432\\u044c\\u044e \\u043d\\u0430 \\u0442\\u0435\\u043c\\u0443 \\u00ab\\u0420\\u0438\\u0441\\u043a\\u0438 \\u043d\\u0430 \\u043f\\u043e\\u0441\\u043b\\u0435\\u0434\\u043d\\u0438\\u0445 \\u0441\\u0442\\u0430\\u0434\\u0438\\u044f\\u0445 \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0430 \\u043d\\u043e\\u0432\\u043e\\u0441\\u0442\\u0440\\u043e\\u0439\\u043a\\u0438\\u00bb<\\/strong>.<\\/p>\\r\\n","fulltext":"\\r\\n<p style=\\"text-align: justify;\\"><strong>\\u0412\\u043e\\u043f\\u0440\\u043e\\u0441: <i>\\u00ab<\\/i><\\/strong><i>\\u0421 \\u043f\\u0440\\u0438\\u0431\\u043b\\u0438\\u0436\\u0435\\u043d\\u0438\\u0435\\u043c \\u0441\\u0442\\u0440\\u043e\\u0439\\u043a\\u0438 \\u043a \\u0437\\u0430\\u0432\\u0435\\u0440\\u0448\\u0435\\u043d\\u0438\\u044e \\u0440\\u0438\\u0441\\u043a\\u0438 \\u0443\\u043c\\u0435\\u043d\\u044c\\u0448\\u0430\\u044e\\u0442\\u0441\\u044f, \\u043d\\u043e \\u0432\\u0441\\u0435-\\u0442\\u0430\\u043a\\u0438 \\u043d\\u0435 \\u0438\\u0441\\u0447\\u0435\\u0437\\u0430\\u044e\\u0442 \\u0441\\u043e\\u0432\\u0441\\u0435\\u043c. \\u0421 \\u043a\\u0430\\u043a\\u0438\\u043c\\u0438 \\u0440\\u0438\\u0441\\u043a\\u0430\\u043c\\u0438 \\u043c\\u043e\\u0436\\u0435\\u0442 \\u0441\\u0442\\u043e\\u043b\\u043a\\u043d\\u0443\\u0442\\u044c\\u0441\\u044f \\u0434\\u043e\\u043b\\u044c\\u0449\\u0438\\u043a, \\u043f\\u0440\\u0438\\u043e\\u0431\\u0440\\u0435\\u0442\\u0430\\u044f \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u0443 \\u043d\\u0430 \\u0444\\u0438\\u043d\\u0430\\u043b\\u044c\\u043d\\u044b\\u0445 \\u0441\\u0442\\u0430\\u0434\\u0438\\u044f\\u0445 \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0430 (\\u0432\\u043e\\u0437\\u0432\\u0435\\u0434\\u0435\\u043d\\u0438\\u0435 \\u043f\\u043e\\u0441\\u043b\\u0435\\u0434\\u043d\\u0438\\u0445 \\u044d\\u0442\\u0430\\u0436\\u0435\\u0439, \\u0432\\u043d\\u0443\\u0442\\u0440\\u0435\\u043d\\u043d\\u044f\\u044f \\u043e\\u0442\\u0434\\u0435\\u043b\\u043a\\u0430 \\u0438 \\u0442.\\u043f.)\\u00bb<span id=\\"more-407\\"><\\/span><\\/i><\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u041e\\u0442\\u0432\\u0435\\u0442:<\\/b> \\u041f\\u043e\\u043b\\u0430\\u0433\\u0430\\u0435\\u043c, \\u0447\\u0442\\u043e \\u0440\\u0438\\u0441\\u043a \\u043f\\u0440\\u0438\\u043e\\u0431\\u0440\\u0435\\u0442\\u0435\\u043d\\u0438\\u044f \\u0436\\u0438\\u043b\\u044c\\u044f \\u0441 \\u044e\\u0440\\u0438\\u0434\\u0438\\u0447\\u0435\\u0441\\u043a\\u0438\\u043c \\u0434\\u0435\\u0444\\u0435\\u043a\\u0442\\u043e\\u043c \\u043c\\u043e\\u0436\\u043d\\u043e \\u043d\\u0430\\u0437\\u0432\\u0430\\u0442\\u044c \\u0441\\u0430\\u043c\\u044b\\u043c \\u043e\\u043f\\u0430\\u0441\\u043d\\u044b\\u043c. \\u041d\\u0430\\u043f\\u0440\\u0438\\u043c\\u0435\\u0440, \\u043f\\u043e \\u0437\\u0430\\u0432\\u0435\\u0440\\u0448\\u0435\\u043d\\u0438\\u044e \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0430 \\u0436\\u0438\\u043b\\u043e\\u0433\\u043e \\u0434\\u043e\\u043c\\u0430 \\u043e\\u0440\\u0433\\u0430\\u043d\\u044b \\u0432\\u043b\\u0430\\u0441\\u0442\\u0438 \\u0432\\u044b\\u0434\\u0430\\u044e\\u0442 \\u0440\\u0430\\u0437\\u0440\\u0435\\u0448\\u0435\\u043d\\u0438\\u0435 \\u043d\\u0430 \\u0432\\u0432\\u043e\\u0434 \\u043e\\u0431\\u044a\\u0435\\u043a\\u0442\\u0430 \\u0432 \\u044d\\u043a\\u0441\\u043f\\u043b\\u0443\\u0430\\u0442\\u0430\\u0446\\u0438\\u044e. \\u041e\\u0442\\u0441\\u0443\\u0442\\u0441\\u0442\\u0432\\u0438\\u0435 \\u044d\\u0442\\u043e\\u0433\\u043e \\u0434\\u043e\\u043a\\u0443\\u043c\\u0435\\u043d\\u0442\\u0430 \\u044f\\u0432\\u043b\\u044f\\u0435\\u0442\\u0441\\u044f \\u043f\\u0440\\u0435\\u043f\\u044f\\u0442\\u0441\\u0442\\u0432\\u0438\\u0435\\u043c \\u0434\\u043b\\u044f \\u043f\\u0440\\u0438\\u0437\\u043d\\u0430\\u043d\\u0438\\u044f \\u0434\\u043e\\u043c\\u0430 \\u0438 \\u043f\\u043e\\u043c\\u0435\\u0449\\u0435\\u043d\\u0438\\u0439 \\u0432 \\u043d\\u0451\\u043c \\u043e\\u0431\\u044a\\u0435\\u043a\\u0442\\u0430\\u043c\\u0438 \\u043d\\u0435\\u0434\\u0432\\u0438\\u0436\\u0438\\u043c\\u043e\\u0441\\u0442\\u0438. \\u0414\\u0440\\u0443\\u0433\\u0438\\u043c\\u0438 \\u0441\\u043b\\u043e\\u0432\\u0430\\u043c\\u0438, \\u0434\\u043e\\u043b\\u044c\\u0449\\u0438\\u043a\\u0443 \\u043e\\u0444\\u043e\\u0440\\u043c\\u0438\\u0442\\u044c \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u0443 \\u0432 \\u0441\\u043e\\u0431\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u043e\\u0441\\u0442\\u044c \\u0431\\u0443\\u0434\\u0435\\u0442 \\u043f\\u0440\\u043e\\u0431\\u043b\\u0435\\u043c\\u0430\\u0442\\u0438\\u0447\\u043d\\u043e.<\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u00a0<\\/b><\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u0412.: <\\/b><i>\\u00ab\\u0421\\u043e\\u0445\\u0440\\u0430\\u043d\\u044f\\u044e\\u0442\\u0441\\u044f \\u043b\\u0438 \\u043d\\u0430 \\u0444\\u0438\\u043d\\u0430\\u043b\\u044c\\u043d\\u044b\\u0445 \\u0441\\u0442\\u0430\\u0434\\u0438\\u044f\\u0445 \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0430 \\u0440\\u0438\\u0441\\u043a\\u0438 \\u043d\\u0435\\u0434\\u043e\\u0441\\u0442\\u0440\\u043e\\u044f \\u0438 \\u0434\\u043e\\u043b\\u0433\\u043e\\u0441\\u0442\\u0440\\u043e\\u044f? \\u0418\\u043b\\u0438 \\u0441\\u0435\\u0433\\u043e\\u0434\\u043d\\u044f (\\u0432 \\u0441\\u0438\\u043b\\u0443 214 \\u0437\\u0430\\u043a\\u043e\\u043d\\u0430 \\u0438 \\u0434\\u0440. \\u0437\\u0430\\u043a\\u043e\\u043d\\u043e\\u0434\\u0430\\u0442\\u0435\\u043b\\u044c\\u043d\\u044b\\u0445 \\u0430\\u043a\\u0442\\u043e\\u0432) \\u0442\\u0430\\u043a\\u0438\\u0435 \\u0441\\u043b\\u0443\\u0447\\u0430\\u0438 \\u043f\\u0440\\u0430\\u043a\\u0442\\u0438\\u0447\\u0435\\u0441\\u043a\\u0438 \\u043d\\u0435\\u0432\\u043e\\u0437\\u043c\\u043e\\u0436\\u043d\\u044b?\\u00bb<\\/i><\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u041e.:<\\/b> \\u041d\\u0430 \\u043f\\u0440\\u0430\\u043a\\u0442\\u0438\\u043a\\u0435 \\u0440\\u0438\\u0441\\u043a \\u043d\\u0435\\u0434\\u043e\\u0441\\u0442\\u0440\\u043e\\u044f \\u0438\\u043b\\u0438 \\u0434\\u043e\\u043b\\u0433\\u043e\\u0441\\u0442\\u0440\\u043e\\u044f \\u0441\\u043e\\u0445\\u0440\\u0430\\u043d\\u044f\\u0435\\u0442\\u0441\\u044f \\u0432\\u0441\\u0435\\u0433\\u0434\\u0430. \\u0422\\u0430\\u043a\\u0438\\u0435 \\u043d\\u0435\\u0431\\u043b\\u0430\\u0433\\u043e\\u043f\\u0440\\u0438\\u044f\\u0442\\u043d\\u044b\\u0435 \\u043f\\u043e\\u0441\\u043b\\u0435\\u0434\\u0441\\u0442\\u0432\\u0438\\u044f \\u0437\\u0430\\u0432\\u0438\\u0441\\u044f\\u0442 \\u043e\\u0442 \\u0441\\u043e\\u0441\\u0442\\u043e\\u044f\\u043d\\u0438\\u044f \\u044d\\u043a\\u043e\\u043d\\u043e\\u043c\\u0438\\u043a\\u0438 \\u0432 \\u0446\\u0435\\u043b\\u043e\\u043c \\u0438\\u043b\\u0438 \\u043a\\u043e\\u043c\\u043f\\u0430\\u043d\\u0438\\u0438 \\u2013 \\u0437\\u0430\\u0441\\u0442\\u0440\\u043e\\u0439\\u0449\\u0438\\u043a\\u0430 \\u0432 \\u0447\\u0430\\u0441\\u0442\\u043d\\u043e\\u0441\\u0442\\u0438. \\u042d\\u043a\\u043e\\u043d\\u043e\\u043c\\u0438\\u043a\\u0443 \\u0442\\u0440\\u0443\\u0434\\u043d\\u043e \\u0437\\u0430\\u0433\\u043d\\u0430\\u0442\\u044c \\u0432 \\u0442\\u0438\\u0441\\u043a\\u0438 \\u0437\\u0430\\u043a\\u043e\\u043d\\u043e\\u0434\\u0430\\u0442\\u0435\\u043b\\u044c\\u043d\\u043e\\u0433\\u043e \\u0440\\u0435\\u0433\\u0443\\u043b\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u044f. \\u00a0\\u0424\\u0435\\u0434\\u0435\\u0440\\u0430\\u043b\\u044c\\u043d\\u044b\\u0439 \\u0437\\u0430\\u043a\\u043e\\u043d \\u043e\\u0442 30.12.2004 \\u2116214-\\u0424\\u0417 \\u00ab\\u041e\\u0431 \\u0443\\u0447\\u0430\\u0441\\u0442\\u0438\\u0438 \\u0432 \\u0434\\u043e\\u043b\\u0435\\u0432\\u043e\\u043c \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0435 \\u043c\\u043d\\u043e\\u0433\\u043e\\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u043d\\u044b\\u0445 \\u0434\\u043e\\u043c\\u043e\\u0432 \\u0438 \\u0438\\u043d\\u044b\\u0445 \\u043e\\u0431\\u044a\\u0435\\u043a\\u0442\\u043e\\u0432 \\u043d\\u0435\\u0434\\u0432\\u0438\\u0436\\u0438\\u043c\\u043e\\u0441\\u0442\\u0438\\u2026\\u00bb \\u0432\\u0432\\u0451\\u043b \\u043f\\u0440\\u0430\\u0432\\u0438\\u043b\\u0430, \\u043a\\u043e\\u0442\\u043e\\u0440\\u044b\\u0435 \\u0443\\u0441\\u0442\\u0430\\u043d\\u043e\\u0432\\u0438\\u043b\\u0438 \\u0437\\u0430\\u043a\\u043e\\u043d\\u043d\\u044b\\u0435 \\u0441\\u0445\\u0435\\u043c\\u044b \\u043f\\u0440\\u0438\\u0432\\u043b\\u0435\\u0447\\u0435\\u043d\\u0438\\u044f \\u0434\\u0435\\u043d\\u0435\\u0436\\u043d\\u044b\\u0445 \\u0441\\u0440\\u0435\\u0434\\u0441\\u0442\\u0432 \\u043d\\u0430 \\u0441\\u0442\\u0430\\u0434\\u0438\\u0438 \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0430, \\u043f\\u0440\\u043e\\u043f\\u0438\\u0441\\u0430\\u043b\\u0438 \\u043f\\u043e\\u0440\\u044f\\u0434\\u043e\\u043a \\u0434\\u0435\\u0439\\u0441\\u0442\\u0432\\u0438\\u0439 \\u0438 \\u043e\\u0442\\u0432\\u0435\\u0442\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u043e\\u0441\\u0442\\u044c \\u0434\\u043b\\u044f \\u0437\\u0430\\u0441\\u0442\\u0440\\u043e\\u0439\\u0449\\u0438\\u043a\\u0430, \\u0440\\u0430\\u0437\\u0440\\u0435\\u0448\\u0438\\u043b\\u0438 \\u0434\\u0440\\u0443\\u0433\\u0438\\u0435 \\u0432\\u043e\\u043f\\u0440\\u043e\\u0441\\u044b. \\u0422\\u0435\\u043c \\u043d\\u0435 \\u043c\\u0435\\u043d\\u0435\\u0435, \\u0437\\u0430\\u043a\\u043e\\u043d \\u043d\\u0435 \\u0441\\u043f\\u0430\\u0441\\u0430\\u0435\\u0442 \\u043e\\u0442 \\u044d\\u043a\\u043e\\u043d\\u043e\\u043c\\u0438\\u0447\\u0435\\u0441\\u043a\\u0438\\u0445 \\u0437\\u0430\\u0442\\u0440\\u0443\\u0434\\u043d\\u0435\\u043d\\u0438\\u0439 \\u0438 \\u0431\\u0430\\u043d\\u043a\\u0440\\u043e\\u0442\\u0441\\u0442\\u0432\\u0430.<\\/p>\\r\\n<p style=\\"text-align: justify;\\">\\u00a0<i>\\u00ab\\u041a\\u0430\\u043a\\u0438\\u0435 \\u0440\\u0438\\u0441\\u043a\\u0438 \\u0435\\u0441\\u0442\\u044c \\u043f\\u0440\\u0438 \\u043f\\u043e\\u043a\\u0443\\u043f\\u043a\\u0435 \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u044b \\u0432 \\u0443\\u0436\\u0435 \\u0434\\u043e\\u0441\\u0442\\u0440\\u043e\\u0435\\u043d\\u043d\\u043e\\u043c, \\u043d\\u043e \\u043d\\u0435 \\u0441\\u0434\\u0430\\u043d\\u043d\\u043e\\u043c \\u0434\\u043e\\u043c\\u0435? \\u0410 \\u043a\\u0430\\u043a\\u0438\\u0435 \\u0440\\u0438\\u0441\\u043a\\u0438 \\u0441\\u043e\\u0445\\u0440\\u0430\\u043d\\u044f\\u044e\\u0442\\u0441\\u044f \\u0432 \\u0442\\u043e\\u043c \\u0441\\u043b\\u0443\\u0447\\u0430\\u0435, \\u043a\\u043e\\u0433\\u0434\\u0430 \\u0434\\u043e\\u043c \\u0443\\u0436\\u0435 \\u0441\\u0434\\u0430\\u043d?\\u00bb<\\/i><\\/p>\\r\\n<p style=\\"text-align: justify;\\">\\u0412 \\u043e\\u0431\\u043e\\u0438\\u0445 \\u0441\\u043b\\u0443\\u0447\\u0430\\u044f\\u0445 \\u043e\\u0441\\u043d\\u043e\\u0432\\u043d\\u044b\\u0435 \\u0440\\u0438\\u0441\\u043a\\u0438 \\u0441\\u0432\\u044f\\u0437\\u0430\\u043d\\u044b \\u0441 \\u044e\\u0440\\u0438\\u0434\\u0438\\u0447\\u0435\\u0441\\u043a\\u0438\\u043c\\u0438 \\u0434\\u0435\\u0444\\u0435\\u043a\\u0442\\u0430\\u043c\\u0438. \\u0422\\u043e\\u043b\\u044c\\u043a\\u043e \\u0432 \\u0441\\u043b\\u0443\\u0447\\u0430\\u0435\\u00a0 \\u043f\\u043e\\u043a\\u0443\\u043f\\u043a\\u0438 \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u044b \\u0432 \\u0434\\u043e\\u0441\\u0442\\u0440\\u043e\\u0435\\u043d\\u043d\\u043e\\u043c, \\u043d\\u043e \\u043d\\u0435 \\u0441\\u0434\\u0430\\u043d\\u043d\\u043e\\u043c \\u0434\\u043e\\u043c\\u0435 \\u043f\\u0440\\u043e\\u0431\\u043b\\u0435\\u043c \\u043c\\u043e\\u0436\\u0435\\u0442 \\u0431\\u044b\\u0442\\u044c \\u0431\\u043e\\u043b\\u044c\\u0448\\u0435. \\u041d\\u0430\\u0447\\u0438\\u043d\\u0430\\u044f \\u043e\\u0442 \\u043f\\u0440\\u043e\\u043c\\u0435\\u0434\\u043b\\u0435\\u043d\\u0438\\u044f \\u0441 \\u043e\\u0444\\u043e\\u0440\\u043c\\u043b\\u0435\\u043d\\u0438\\u0435\\u043c \\u043f\\u0440\\u0430\\u0432\\u0430 \\u0441\\u043e\\u0431\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u043e\\u0441\\u0442\\u0438 \\u043f\\u043e\\u043a\\u0443\\u043f\\u0430\\u0442\\u0435\\u043b\\u0435\\u0439 \\u043d\\u0430 \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u0443, \\u0437\\u0430\\u043a\\u0430\\u043d\\u0447\\u0438\\u0432\\u0430\\u044f \\u0441\\u043d\\u043e\\u0441\\u043e\\u043c \\u0437\\u0434\\u0430\\u043d\\u0438\\u044f \\u043a\\u0430\\u043a \\u0441\\u0430\\u043c\\u043e\\u0432\\u043e\\u043b\\u044c\\u043d\\u043e\\u0439 \\u043f\\u043e\\u0441\\u0442\\u0440\\u043e\\u0439\\u043a\\u0438.<\\/p>\\r\\n<p style=\\"text-align: justify;\\">\\u00a0<\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u0412.:<\\/b> <i>\\u00ab\\u041a\\u0430\\u043a \\u0434\\u043e\\u043b\\u044c\\u0449\\u0438\\u043a \\u043c\\u043e\\u0436\\u0435\\u0442 \\u043d\\u0438\\u0432\\u0438\\u043b\\u0438\\u0440\\u043e\\u0432\\u0430\\u0442\\u044c \\u0443\\u043a\\u0430\\u0437\\u0430\\u043d\\u043d\\u044b\\u0435 \\u0440\\u0438\\u0441\\u043a\\u0438 \\u043d\\u0430 \\u0444\\u0438\\u043d\\u0430\\u043b\\u044c\\u043d\\u043e\\u043c \\u044d\\u0442\\u0430\\u043f\\u0435 \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0430, \\u043d\\u0430 \\u044d\\u0442\\u0430\\u043f\\u0435 \\u0441\\u0434\\u0430\\u0447\\u0438 \\u0434\\u043e\\u043c\\u0430 \\u0438 \\u043f\\u043e\\u0441\\u043b\\u0435 \\u0441\\u0434\\u0430\\u0447\\u0438? \\u041c\\u043e\\u0436\\u0435\\u0442 \\u043b\\u0438 \\u043f\\u043e\\u043c\\u043e\\u0447\\u044c \\u0441\\u0442\\u0440\\u0430\\u0445\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u0444\\u0438\\u043d\\u0430\\u043d\\u0441\\u043e\\u0432\\u044b\\u0445 \\u0440\\u0438\\u0441\\u043a\\u043e\\u0432 \\u0438\\u043b\\u0438 \\u043f\\u043e\\u043a\\u0430 \\u044d\\u0442\\u043e \\u043d\\u0435 \\u043e\\u0447\\u0435\\u043d\\u044c \\u0440\\u0430\\u0431\\u043e\\u0442\\u0430\\u044e\\u0449\\u0438\\u0439 \\u043c\\u0435\\u0445\\u0430\\u043d\\u0438\\u0437\\u043c?\\u00bb<\\/i><\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u041e.:<\\/b> \\u0423 \\u043a\\u043e\\u0433\\u043e \\u0432 \\u0436\\u0438\\u0437\\u043d\\u0438 \\u043d\\u0430\\u0441\\u0442\\u0443\\u043f\\u0430\\u043b \\u0441\\u0442\\u0440\\u0430\\u0445\\u043e\\u0432\\u043e\\u0439 \\u0441\\u043b\\u0443\\u0447\\u0430\\u0439, \\u0442\\u043e\\u0442 \\u0437\\u043d\\u0430\\u0435\\u0442, \\u043a\\u0430\\u043a \\u0432 \\u0420\\u043e\\u0441\\u0441\\u0438\\u0438 \\u043c\\u043e\\u0436\\u043d\\u043e \\u043f\\u043e\\u043b\\u0443\\u0447\\u0438\\u0442\\u044c \\u0434\\u0435\\u043d\\u044c\\u0433\\u0438 \\u043e\\u0442 \\u0441\\u0442\\u0440\\u0430\\u0445\\u043e\\u0432\\u044b\\u0445 \\u043a\\u043e\\u043c\\u043f\\u0430\\u043d\\u0438\\u0439! \\u041d\\u0430 \\u043d\\u0430\\u0448 \\u0432\\u0437\\u0433\\u043b\\u044f\\u0434 \\u043c\\u0435\\u0445\\u0430\\u043d\\u0438\\u0437\\u043c\\u044b \\u0434\\u043e\\u0431\\u0440\\u043e\\u0432\\u043e\\u043b\\u044c\\u043d\\u043e\\u0433\\u043e \\u0441\\u0442\\u0440\\u0430\\u0445\\u043e\\u0432\\u0430\\u043d\\u0438\\u044f \\u0440\\u0438\\u0441\\u043a\\u043e\\u0432, \\u0447\\u0442\\u043e \\u0434\\u0435\\u0439\\u0441\\u0442\\u0432\\u0443\\u044e\\u0442 \\u0441\\u0435\\u0433\\u043e\\u0434\\u043d\\u044f, \\u043d\\u0435 \\u0441\\u043d\\u0438\\u0437\\u0438\\u043b\\u0438 \\u0440\\u0438\\u0441\\u043a\\u0438 \\u043d\\u0435\\u0434\\u043e\\u0441\\u0442\\u0440\\u043e\\u044f \\u0438\\u043b\\u0438 \\u0434\\u043e\\u043b\\u0433\\u043e\\u0441\\u0442\\u0440\\u043e\\u044f. \\u0421 1 \\u044f\\u043d\\u0432\\u0430\\u0440\\u044f 2014 \\u0433\\u043e\\u0434\\u0430 \\u043f\\u043e\\u044f\\u0432\\u0438\\u0442\\u0441\\u044f \\u043c\\u0435\\u0445\\u0430\\u043d\\u0438\\u0437\\u043c \\u0432\\u0437\\u0430\\u0438\\u043c\\u043d\\u043e\\u0433\\u043e \\u0441\\u0442\\u0440\\u0430\\u0445\\u043e\\u0432\\u0430\\u043d\\u0438\\u044f \\u043e\\u0442\\u0432\\u0435\\u0442\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u043e\\u0441\\u0442\\u0438 \\u0437\\u0430\\u0441\\u0442\\u0440\\u043e\\u0439\\u0449\\u0438\\u043a\\u043e\\u0432 \\u2013 \\u0432\\u043e\\u0442 \\u044d\\u0442\\u043e \\u043c\\u043e\\u0436\\u0435\\u0442 \\u0431\\u044b\\u0442\\u044c \\u0438\\u043d\\u0442\\u0435\\u0440\\u0435\\u0441\\u043d\\u043e \\u0441 \\u0442\\u043e\\u0447\\u043a\\u0438 \\u0437\\u0440\\u0435\\u043d\\u0438\\u044f \\u043f\\u043e\\u0432\\u044b\\u0448\\u0435\\u043d\\u0438\\u044f \\u0437\\u0430\\u0449\\u0438\\u0449\\u0435\\u043d\\u043d\\u043e\\u0441\\u0442\\u0438 \\u0433\\u0440\\u0430\\u0436\\u0434\\u0430\\u043d.<\\/p>\\r\\n<p style=\\"text-align: justify;\\">\\u00a0<\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u0412.:<\\/b> <i>\\u00ab\\u041d\\u0430 \\u0447\\u0442\\u043e \\u0441\\u0442\\u043e\\u0438\\u0442 \\u043e\\u0431\\u0440\\u0430\\u0449\\u0430\\u0442\\u044c \\u0432\\u043d\\u0438\\u043c\\u0430\\u043d\\u0438\\u0435, \\u0447\\u0442\\u043e\\u0431\\u044b \\u0438\\u0437\\u0431\\u0435\\u0436\\u0430\\u0442\\u044c \\u043d\\u0435\\u043f\\u0440\\u0438\\u044f\\u0442\\u043d\\u044b\\u0445 \\u0441\\u044e\\u0440\\u043f\\u0440\\u0438\\u0437\\u043e\\u0432?\\u00bb<\\/i><\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u041e.:<\\/b> \\u041d\\u0430\\u0448 \\u0441\\u043e\\u0432\\u0435\\u0442\\u00a0 \\u2014 \\u043f\\u0440\\u0438\\u0433\\u043b\\u0430\\u0441\\u0438\\u0442\\u0435 \\u043d\\u0430 \\u043e\\u0437\\u043d\\u0430\\u043a\\u043e\\u043c\\u043b\\u0435\\u043d\\u0438\\u0435 \\u0441 \\u0434\\u043e\\u043a\\u0443\\u043c\\u0435\\u043d\\u0442\\u0430\\u043c\\u0438 \\u0438 \\u0441\\u0434\\u0435\\u043b\\u043a\\u0443 \\u043f\\u043e \\u043f\\u0440\\u0438\\u043e\\u0431\\u0440\\u0435\\u0442\\u0435\\u043d\\u0438\\u044f \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u044b \\u0432 \\u043d\\u043e\\u0432\\u043e\\u0441\\u0442\\u0440\\u043e\\u0439\\u043a\\u0435 \\u044e\\u0440\\u0438\\u0441\\u0442\\u0430, \\u043d\\u0443 \\u0438\\u043b\\u0438 \\u0440\\u0438\\u044d\\u043b\\u0442\\u043e\\u0440\\u0430. \\u041d\\u0430\\u0439\\u0442\\u0438 \\u044e\\u0440\\u0438\\u0441\\u0442\\u0430, \\u043a\\u043e\\u0442\\u043e\\u0440\\u044b\\u0439 \\u0434\\u0435\\u0439\\u0441\\u0442\\u0432\\u0438\\u0442\\u0435\\u043b\\u044c\\u043d\\u043e \\u0441\\u043f\\u0435\\u0446\\u0438\\u0430\\u043b\\u0438\\u0437\\u0438\\u0440\\u0443\\u0435\\u0442\\u0441\\u044f \\u043d\\u0430 \\u043d\\u0435\\u0434\\u0432\\u0438\\u0436\\u0438\\u043c\\u043e\\u0441\\u0442\\u0438 \\u0442\\u0440\\u0443\\u0434\\u043d\\u043e, \\u043d\\u043e \\u0432\\u043e\\u0437\\u043c\\u043e\\u0436\\u043d\\u043e.<\\/p>\\r\\n<p style=\\"text-align: justify;\\">\\u00a0<\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u0412.:<\\/b> <i>\\u00ab\\u0427\\u0442\\u043e \\u0434\\u0435\\u043b\\u0430\\u0442\\u044c \\u0434\\u043e\\u043b\\u044c\\u0449\\u0438\\u043a\\u0443, \\u0435\\u0441\\u043b\\u0438 \\u0441\\u043e\\u0431\\u044b\\u0442\\u0438\\u044f \\u0440\\u0430\\u0437\\u0432\\u0438\\u0432\\u0430\\u044e\\u0442\\u0441\\u044f \\u043f\\u043e \\u043d\\u0435\\u043f\\u0440\\u0438\\u044f\\u0442\\u043d\\u043e\\u043c\\u0443 \\u0441\\u0446\\u0435\\u043d\\u0430\\u0440\\u0438\\u044e \\u0438 \\u043e\\u043d \\u0432\\u0441\\u0435-\\u0442\\u0430\\u043a\\u0438 \\u0441\\u0442\\u043e\\u043b\\u043a\\u043d\\u0443\\u043b\\u0441\\u044f \\u0441 \\u0443\\u043a\\u0430\\u0437\\u0430\\u043d\\u043d\\u044b\\u043c\\u0438 \\u0440\\u0438\\u0441\\u043a\\u0430\\u043c\\u0438?\\u00bb<\\/i><\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u041e.: <\\/b>\\u041c\\u044b \\u0440\\u0435\\u043a\\u043e\\u043c\\u0435\\u043d\\u0434\\u0443\\u0435\\u043c \\u0434\\u043e\\u043b\\u044c\\u0449\\u0438\\u043a\\u0443 \\u0432 \\u0441\\u043b\\u0443\\u0447\\u0430\\u0435 \\u043d\\u0430\\u0441\\u0442\\u0443\\u043f\\u043b\\u0435\\u043d\\u0438\\u044f \\u043d\\u0435\\u0433\\u0430\\u0442\\u0438\\u0432\\u043d\\u043e\\u0439 \\u0441\\u0438\\u0442\\u0443\\u0430\\u0446\\u0438\\u0438 \\u043f\\u0440\\u0438 \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0435 \\u0436\\u0438\\u043b\\u044c\\u044f \\u043f\\u0440\\u043e\\u043a\\u043e\\u043d\\u0441\\u0443\\u043b\\u044c\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u0442\\u044c\\u0441\\u044f \\u0441 \\u044e\\u0440\\u0438\\u0441\\u0442\\u043e\\u043c, \\u043a\\u043e\\u0442\\u043e\\u0440\\u044b\\u0439 \\u0441\\u043f\\u0435\\u0446\\u0438\\u0430\\u043b\\u0438\\u0437\\u0438\\u0440\\u0443\\u0435\\u0442\\u0441\\u044f \\u043d\\u0430 \\u0440\\u044b\\u043d\\u043a\\u0435 \\u043d\\u0435\\u0434\\u0432\\u0438\\u0436\\u0438\\u043c\\u043e\\u0441\\u0442\\u0438.<\\/p>\\r\\n<p style=\\"text-align: justify;\\">\\u00a0<\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u0412.:<\\/b> <i>\\u00ab\\u0421\\u0442\\u043e\\u0438\\u0442 \\u043b\\u0438 \\u043e\\u0431\\u0440\\u0430\\u0449\\u0430\\u0442\\u044c\\u0441\\u044f \\u0432 \\u0441\\u0443\\u0434? \\u0418 \\u0440\\u0435\\u0430\\u043b\\u044c\\u043d\\u043e \\u043b\\u0438 \\u0440\\u0435\\u0448\\u0438\\u0442\\u044c \\u0434\\u0435\\u043b\\u043e \\u0432 \\u0441\\u0432\\u043e\\u044e \\u043f\\u043e\\u043b\\u044c\\u0437\\u0443 \\u0432 \\u0441\\u0443\\u0434\\u0435?\\u00bb<\\/i><\\/p>\\r\\n<p class=\\"MsoNormal\\">\\u00a0<\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u041e.: <\\/b>\\u0421\\u0443\\u0434 \\u043c\\u043e\\u0436\\u0435\\u0442 \\u0431\\u044b\\u0442\\u044c \\u044d\\u0444\\u0444\\u0435\\u043a\\u0442\\u0438\\u0432\\u043d\\u044b\\u043c, \\u0430 \\u0438\\u043d\\u043e\\u0433\\u0434\\u0430 \\u2014 \\u0435\\u0434\\u0438\\u043d\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u044b\\u043c \\u0441\\u043f\\u043e\\u0441\\u043e\\u0431\\u043e\\u043c \\u0437\\u0430\\u0449\\u0438\\u0442\\u044b \\u043d\\u0430\\u0440\\u0443\\u0448\\u0435\\u043d\\u043d\\u044b\\u0445 \\u043f\\u0440\\u0430\\u0432 \\u0438\\u043b\\u0438 \\u0437\\u0430\\u043a\\u043e\\u043d\\u043d\\u044b\\u0445 \\u0438\\u043d\\u0442\\u0435\\u0440\\u0435\\u0441\\u043e\\u0432 \\u0434\\u043e\\u043b\\u044c\\u0449\\u0438\\u043a\\u043e\\u0432. \\u041d\\u0435\\u0441\\u043c\\u043e\\u0442\\u0440\\u044f \\u043d\\u0430 \\u0442\\u043e, \\u0447\\u0442\\u043e \\u0433\\u0440\\u0430\\u0436\\u0434\\u0430\\u043d\\u0435 \\u0441\\u0435\\u0433\\u043e\\u0434\\u043d\\u044f \\u0441 \\u043d\\u0435\\u0434\\u043e\\u0432\\u0435\\u0440\\u0438\\u0435\\u043c \\u043e\\u0442\\u043d\\u043e\\u0441\\u044f\\u0442\\u0441\\u044f \\u043a \\u0432\\u043b\\u0430\\u0441\\u0442\\u043d\\u044b\\u043c \\u0438\\u043d\\u0441\\u0442\\u0438\\u0442\\u0443\\u0442\\u0430\\u043c, \\u043c\\u044b \\u0438\\u0437 \\u043f\\u0440\\u0430\\u043a\\u0442\\u0438\\u043a\\u0438 \\u0437\\u043d\\u0430\\u0435\\u043c, \\u0447\\u0442\\u043e \\u0441\\u0443\\u0434\\u044b \\u0440\\u0435\\u0430\\u043b\\u044c\\u043d\\u043e \\u043c\\u043e\\u0433\\u0443\\u0442 \\u043f\\u043e\\u043c\\u043e\\u0447\\u044c. \\u0422\\u0430\\u043a, \\u043d\\u0430\\u043f\\u0440\\u0438\\u043c\\u0435\\u0440, \\u0441\\u0443\\u0434\\u044b \\u043f\\u0440\\u0438\\u0437\\u043d\\u0430\\u0432\\u0430\\u043b\\u0438 \\u043f\\u0440\\u0430\\u0432\\u043e \\u0441\\u043e\\u0431\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u043e\\u0441\\u0442\\u0438 \\u043d\\u0430 \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u0443, \\u043a\\u043e\\u0433\\u0434\\u0430 \\u0443 \\u0433\\u0440\\u0430\\u0436\\u0434\\u0430\\u043d \\u043d\\u0430 \\u0440\\u0443\\u043a\\u0430\\u0445 \\u0438\\u043c\\u0435\\u043b\\u0438\\u0441\\u044c \\u043f\\u0440\\u0435\\u0434\\u0432\\u0430\\u0440\\u0438\\u0442\\u0435\\u043b\\u044c\\u043d\\u044b\\u0435 \\u0434\\u043e\\u0433\\u043e\\u0432\\u043e\\u0440\\u0430 \\u043a\\u0443\\u043f\\u043b\\u0438-\\u043f\\u0440\\u043e\\u0434\\u0430\\u0436\\u0438.\\u00a0 \\u0421 \\u044e\\u0440\\u0438\\u0434\\u0438\\u0447\\u0435\\u0441\\u043a\\u043e\\u0439 \\u0442\\u043e\\u0447\\u043a\\u0438 \\u0437\\u0440\\u0435\\u043d\\u0438\\u044f \\u044d\\u0442\\u043e \\u0431\\u044b\\u043b\\u0438 \\u043d\\u0435\\u043e\\u0434\\u043d\\u043e\\u0437\\u043d\\u0430\\u0447\\u043d\\u044b\\u0435 \\u0440\\u0435\\u0448\\u0435\\u043d\\u0438\\u044f, \\u043d\\u043e \\u043b\\u044e\\u0434\\u044f\\u043c \\u043e\\u043d\\u0438 \\u043f\\u043e\\u043c\\u043e\\u0433\\u0430\\u043b\\u0438 \\u0432\\u0447\\u0435\\u0440\\u0430. \\u041f\\u043e\\u043c\\u043e\\u0433\\u0430\\u044e\\u0442 \\u0438 \\u0441\\u0435\\u0433\\u043e\\u0434\\u043d\\u044f.<\\/p>","state":1,"catid":"9","created":"2016-07-06 13:43:44","created_by":"528","created_by_alias":"","modified":"2016-07-14 08:03:48","modified_by":"528","checked_out":"528","checked_out_time":"2016-07-14 08:02:09","publish_up":"2016-07-06 13:43:44","publish_down":"0000-00-00 00:00:00","images":"{\\"image_intro\\":\\"images\\\\\\/06-07-2016\\\\\\/article2\\\\\\/novos.jpg\\",\\"float_intro\\":\\"\\",\\"image_intro_alt\\":\\"\\",\\"image_intro_caption\\":\\"\\",\\"image_fulltext\\":\\"images\\\\\\/06-07-2016\\\\\\/article2\\\\\\/novos.jpg\\",\\"float_fulltext\\":\\"\\",\\"image_fulltext_alt\\":\\"\\",\\"image_fulltext_caption\\":\\"\\"}","urls":"{\\"urla\\":false,\\"urlatext\\":\\"\\",\\"targeta\\":\\"\\",\\"urlb\\":false,\\"urlbtext\\":\\"\\",\\"targetb\\":\\"\\",\\"urlc\\":false,\\"urlctext\\":\\"\\",\\"targetc\\":\\"\\"}","attribs":"{\\"show_title\\":\\"\\",\\"link_titles\\":\\"\\",\\"show_tags\\":\\"\\",\\"show_intro\\":\\"\\",\\"info_block_position\\":\\"\\",\\"info_block_show_title\\":\\"\\",\\"show_category\\":\\"\\",\\"link_category\\":\\"\\",\\"show_parent_category\\":\\"\\",\\"link_parent_category\\":\\"\\",\\"show_author\\":\\"\\",\\"link_author\\":\\"\\",\\"show_create_date\\":\\"\\",\\"show_modify_date\\":\\"\\",\\"show_publish_date\\":\\"\\",\\"show_item_navigation\\":\\"\\",\\"show_icons\\":\\"\\",\\"show_print_icon\\":\\"\\",\\"show_email_icon\\":\\"\\",\\"show_vote\\":\\"\\",\\"show_hits\\":\\"\\",\\"show_noauth\\":\\"\\",\\"urls_position\\":\\"\\",\\"alternative_readmore\\":\\"\\",\\"article_layout\\":\\"\\",\\"show_publishing_options\\":\\"\\",\\"show_article_options\\":\\"\\",\\"show_urls_images_backend\\":\\"\\",\\"show_urls_images_frontend\\":\\"\\",\\"spfeatured_image\\":\\"\\",\\"post_format\\":\\"standard\\",\\"gallery\\":\\"\\",\\"audio\\":\\"\\",\\"video\\":\\"\\",\\"link_title\\":\\"\\",\\"link_url\\":\\"\\",\\"quote_text\\":\\"\\",\\"quote_author\\":\\"\\",\\"post_status\\":\\"\\"}","version":9,"ordering":"0","metakey":"","metadesc":"","access":"1","hits":"16","metadata":"{\\"robots\\":\\"\\",\\"author\\":\\"\\",\\"rights\\":\\"\\",\\"xreference\\":\\"\\"}","featured":"1","language":"*","xreference":""}', 0);
+(87, 27, 1, '', '2016-07-14 08:03:48', 528, 22980, 'defb52cd2068a5e1db035e728b2bcb22732443a7', '{"id":27,"asset_id":"79","title":"\\u041a\\u043e\\u0433\\u0434\\u0430 \\u043d\\u043e\\u0432\\u043e\\u0441\\u0442\\u0440\\u043e\\u0439\\u043a\\u0430 \\u043f\\u043e\\u0447\\u0442\\u0438 \\u043f\\u043e\\u0441\\u0442\\u0440\\u043e\\u0435\\u043d\\u0430, \\u0435\\u0441\\u0442\\u044c \\u043b\\u0438 \\u0440\\u0438\\u0441\\u043a \\u043f\\u0440\\u0438 \\u043f\\u043e\\u043a\\u0443\\u043f\\u043a\\u0435?","alias":"kogda-novostrojka-pochti-postroena-est-li-risk-pri-pokupke","introtext":"<p style=\\"text-align: justify;\\"><strong>\\u0418\\u043d\\u0442\\u0435\\u0440\\u0432\\u044c\\u044e \\u043d\\u0430 \\u0442\\u0435\\u043c\\u0443 \\u00ab\\u0420\\u0438\\u0441\\u043a\\u0438 \\u043d\\u0430 \\u043f\\u043e\\u0441\\u043b\\u0435\\u0434\\u043d\\u0438\\u0445 \\u0441\\u0442\\u0430\\u0434\\u0438\\u044f\\u0445 \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0430 \\u043d\\u043e\\u0432\\u043e\\u0441\\u0442\\u0440\\u043e\\u0439\\u043a\\u0438\\u00bb<\\/strong>.<\\/p>\\r\\n","fulltext":"\\r\\n<p style=\\"text-align: justify;\\"><strong>\\u0412\\u043e\\u043f\\u0440\\u043e\\u0441: <i>\\u00ab<\\/i><\\/strong><i>\\u0421 \\u043f\\u0440\\u0438\\u0431\\u043b\\u0438\\u0436\\u0435\\u043d\\u0438\\u0435\\u043c \\u0441\\u0442\\u0440\\u043e\\u0439\\u043a\\u0438 \\u043a \\u0437\\u0430\\u0432\\u0435\\u0440\\u0448\\u0435\\u043d\\u0438\\u044e \\u0440\\u0438\\u0441\\u043a\\u0438 \\u0443\\u043c\\u0435\\u043d\\u044c\\u0448\\u0430\\u044e\\u0442\\u0441\\u044f, \\u043d\\u043e \\u0432\\u0441\\u0435-\\u0442\\u0430\\u043a\\u0438 \\u043d\\u0435 \\u0438\\u0441\\u0447\\u0435\\u0437\\u0430\\u044e\\u0442 \\u0441\\u043e\\u0432\\u0441\\u0435\\u043c. \\u0421 \\u043a\\u0430\\u043a\\u0438\\u043c\\u0438 \\u0440\\u0438\\u0441\\u043a\\u0430\\u043c\\u0438 \\u043c\\u043e\\u0436\\u0435\\u0442 \\u0441\\u0442\\u043e\\u043b\\u043a\\u043d\\u0443\\u0442\\u044c\\u0441\\u044f \\u0434\\u043e\\u043b\\u044c\\u0449\\u0438\\u043a, \\u043f\\u0440\\u0438\\u043e\\u0431\\u0440\\u0435\\u0442\\u0430\\u044f \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u0443 \\u043d\\u0430 \\u0444\\u0438\\u043d\\u0430\\u043b\\u044c\\u043d\\u044b\\u0445 \\u0441\\u0442\\u0430\\u0434\\u0438\\u044f\\u0445 \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0430 (\\u0432\\u043e\\u0437\\u0432\\u0435\\u0434\\u0435\\u043d\\u0438\\u0435 \\u043f\\u043e\\u0441\\u043b\\u0435\\u0434\\u043d\\u0438\\u0445 \\u044d\\u0442\\u0430\\u0436\\u0435\\u0439, \\u0432\\u043d\\u0443\\u0442\\u0440\\u0435\\u043d\\u043d\\u044f\\u044f \\u043e\\u0442\\u0434\\u0435\\u043b\\u043a\\u0430 \\u0438 \\u0442.\\u043f.)\\u00bb<span id=\\"more-407\\"><\\/span><\\/i><\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u041e\\u0442\\u0432\\u0435\\u0442:<\\/b> \\u041f\\u043e\\u043b\\u0430\\u0433\\u0430\\u0435\\u043c, \\u0447\\u0442\\u043e \\u0440\\u0438\\u0441\\u043a \\u043f\\u0440\\u0438\\u043e\\u0431\\u0440\\u0435\\u0442\\u0435\\u043d\\u0438\\u044f \\u0436\\u0438\\u043b\\u044c\\u044f \\u0441 \\u044e\\u0440\\u0438\\u0434\\u0438\\u0447\\u0435\\u0441\\u043a\\u0438\\u043c \\u0434\\u0435\\u0444\\u0435\\u043a\\u0442\\u043e\\u043c \\u043c\\u043e\\u0436\\u043d\\u043e \\u043d\\u0430\\u0437\\u0432\\u0430\\u0442\\u044c \\u0441\\u0430\\u043c\\u044b\\u043c \\u043e\\u043f\\u0430\\u0441\\u043d\\u044b\\u043c. \\u041d\\u0430\\u043f\\u0440\\u0438\\u043c\\u0435\\u0440, \\u043f\\u043e \\u0437\\u0430\\u0432\\u0435\\u0440\\u0448\\u0435\\u043d\\u0438\\u044e \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0430 \\u0436\\u0438\\u043b\\u043e\\u0433\\u043e \\u0434\\u043e\\u043c\\u0430 \\u043e\\u0440\\u0433\\u0430\\u043d\\u044b \\u0432\\u043b\\u0430\\u0441\\u0442\\u0438 \\u0432\\u044b\\u0434\\u0430\\u044e\\u0442 \\u0440\\u0430\\u0437\\u0440\\u0435\\u0448\\u0435\\u043d\\u0438\\u0435 \\u043d\\u0430 \\u0432\\u0432\\u043e\\u0434 \\u043e\\u0431\\u044a\\u0435\\u043a\\u0442\\u0430 \\u0432 \\u044d\\u043a\\u0441\\u043f\\u043b\\u0443\\u0430\\u0442\\u0430\\u0446\\u0438\\u044e. \\u041e\\u0442\\u0441\\u0443\\u0442\\u0441\\u0442\\u0432\\u0438\\u0435 \\u044d\\u0442\\u043e\\u0433\\u043e \\u0434\\u043e\\u043a\\u0443\\u043c\\u0435\\u043d\\u0442\\u0430 \\u044f\\u0432\\u043b\\u044f\\u0435\\u0442\\u0441\\u044f \\u043f\\u0440\\u0435\\u043f\\u044f\\u0442\\u0441\\u0442\\u0432\\u0438\\u0435\\u043c \\u0434\\u043b\\u044f \\u043f\\u0440\\u0438\\u0437\\u043d\\u0430\\u043d\\u0438\\u044f \\u0434\\u043e\\u043c\\u0430 \\u0438 \\u043f\\u043e\\u043c\\u0435\\u0449\\u0435\\u043d\\u0438\\u0439 \\u0432 \\u043d\\u0451\\u043c \\u043e\\u0431\\u044a\\u0435\\u043a\\u0442\\u0430\\u043c\\u0438 \\u043d\\u0435\\u0434\\u0432\\u0438\\u0436\\u0438\\u043c\\u043e\\u0441\\u0442\\u0438. \\u0414\\u0440\\u0443\\u0433\\u0438\\u043c\\u0438 \\u0441\\u043b\\u043e\\u0432\\u0430\\u043c\\u0438, \\u0434\\u043e\\u043b\\u044c\\u0449\\u0438\\u043a\\u0443 \\u043e\\u0444\\u043e\\u0440\\u043c\\u0438\\u0442\\u044c \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u0443 \\u0432 \\u0441\\u043e\\u0431\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u043e\\u0441\\u0442\\u044c \\u0431\\u0443\\u0434\\u0435\\u0442 \\u043f\\u0440\\u043e\\u0431\\u043b\\u0435\\u043c\\u0430\\u0442\\u0438\\u0447\\u043d\\u043e.<\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u00a0<\\/b><\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u0412.: <\\/b><i>\\u00ab\\u0421\\u043e\\u0445\\u0440\\u0430\\u043d\\u044f\\u044e\\u0442\\u0441\\u044f \\u043b\\u0438 \\u043d\\u0430 \\u0444\\u0438\\u043d\\u0430\\u043b\\u044c\\u043d\\u044b\\u0445 \\u0441\\u0442\\u0430\\u0434\\u0438\\u044f\\u0445 \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0430 \\u0440\\u0438\\u0441\\u043a\\u0438 \\u043d\\u0435\\u0434\\u043e\\u0441\\u0442\\u0440\\u043e\\u044f \\u0438 \\u0434\\u043e\\u043b\\u0433\\u043e\\u0441\\u0442\\u0440\\u043e\\u044f? \\u0418\\u043b\\u0438 \\u0441\\u0435\\u0433\\u043e\\u0434\\u043d\\u044f (\\u0432 \\u0441\\u0438\\u043b\\u0443 214 \\u0437\\u0430\\u043a\\u043e\\u043d\\u0430 \\u0438 \\u0434\\u0440. \\u0437\\u0430\\u043a\\u043e\\u043d\\u043e\\u0434\\u0430\\u0442\\u0435\\u043b\\u044c\\u043d\\u044b\\u0445 \\u0430\\u043a\\u0442\\u043e\\u0432) \\u0442\\u0430\\u043a\\u0438\\u0435 \\u0441\\u043b\\u0443\\u0447\\u0430\\u0438 \\u043f\\u0440\\u0430\\u043a\\u0442\\u0438\\u0447\\u0435\\u0441\\u043a\\u0438 \\u043d\\u0435\\u0432\\u043e\\u0437\\u043c\\u043e\\u0436\\u043d\\u044b?\\u00bb<\\/i><\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u041e.:<\\/b> \\u041d\\u0430 \\u043f\\u0440\\u0430\\u043a\\u0442\\u0438\\u043a\\u0435 \\u0440\\u0438\\u0441\\u043a \\u043d\\u0435\\u0434\\u043e\\u0441\\u0442\\u0440\\u043e\\u044f \\u0438\\u043b\\u0438 \\u0434\\u043e\\u043b\\u0433\\u043e\\u0441\\u0442\\u0440\\u043e\\u044f \\u0441\\u043e\\u0445\\u0440\\u0430\\u043d\\u044f\\u0435\\u0442\\u0441\\u044f \\u0432\\u0441\\u0435\\u0433\\u0434\\u0430. \\u0422\\u0430\\u043a\\u0438\\u0435 \\u043d\\u0435\\u0431\\u043b\\u0430\\u0433\\u043e\\u043f\\u0440\\u0438\\u044f\\u0442\\u043d\\u044b\\u0435 \\u043f\\u043e\\u0441\\u043b\\u0435\\u0434\\u0441\\u0442\\u0432\\u0438\\u044f \\u0437\\u0430\\u0432\\u0438\\u0441\\u044f\\u0442 \\u043e\\u0442 \\u0441\\u043e\\u0441\\u0442\\u043e\\u044f\\u043d\\u0438\\u044f \\u044d\\u043a\\u043e\\u043d\\u043e\\u043c\\u0438\\u043a\\u0438 \\u0432 \\u0446\\u0435\\u043b\\u043e\\u043c \\u0438\\u043b\\u0438 \\u043a\\u043e\\u043c\\u043f\\u0430\\u043d\\u0438\\u0438 \\u2013 \\u0437\\u0430\\u0441\\u0442\\u0440\\u043e\\u0439\\u0449\\u0438\\u043a\\u0430 \\u0432 \\u0447\\u0430\\u0441\\u0442\\u043d\\u043e\\u0441\\u0442\\u0438. \\u042d\\u043a\\u043e\\u043d\\u043e\\u043c\\u0438\\u043a\\u0443 \\u0442\\u0440\\u0443\\u0434\\u043d\\u043e \\u0437\\u0430\\u0433\\u043d\\u0430\\u0442\\u044c \\u0432 \\u0442\\u0438\\u0441\\u043a\\u0438 \\u0437\\u0430\\u043a\\u043e\\u043d\\u043e\\u0434\\u0430\\u0442\\u0435\\u043b\\u044c\\u043d\\u043e\\u0433\\u043e \\u0440\\u0435\\u0433\\u0443\\u043b\\u0438\\u0440\\u043e\\u0432\\u0430\\u043d\\u0438\\u044f. \\u00a0\\u0424\\u0435\\u0434\\u0435\\u0440\\u0430\\u043b\\u044c\\u043d\\u044b\\u0439 \\u0437\\u0430\\u043a\\u043e\\u043d \\u043e\\u0442 30.12.2004 \\u2116214-\\u0424\\u0417 \\u00ab\\u041e\\u0431 \\u0443\\u0447\\u0430\\u0441\\u0442\\u0438\\u0438 \\u0432 \\u0434\\u043e\\u043b\\u0435\\u0432\\u043e\\u043c \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0435 \\u043c\\u043d\\u043e\\u0433\\u043e\\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u043d\\u044b\\u0445 \\u0434\\u043e\\u043c\\u043e\\u0432 \\u0438 \\u0438\\u043d\\u044b\\u0445 \\u043e\\u0431\\u044a\\u0435\\u043a\\u0442\\u043e\\u0432 \\u043d\\u0435\\u0434\\u0432\\u0438\\u0436\\u0438\\u043c\\u043e\\u0441\\u0442\\u0438\\u2026\\u00bb \\u0432\\u0432\\u0451\\u043b \\u043f\\u0440\\u0430\\u0432\\u0438\\u043b\\u0430, \\u043a\\u043e\\u0442\\u043e\\u0440\\u044b\\u0435 \\u0443\\u0441\\u0442\\u0430\\u043d\\u043e\\u0432\\u0438\\u043b\\u0438 \\u0437\\u0430\\u043a\\u043e\\u043d\\u043d\\u044b\\u0435 \\u0441\\u0445\\u0435\\u043c\\u044b \\u043f\\u0440\\u0438\\u0432\\u043b\\u0435\\u0447\\u0435\\u043d\\u0438\\u044f \\u0434\\u0435\\u043d\\u0435\\u0436\\u043d\\u044b\\u0445 \\u0441\\u0440\\u0435\\u0434\\u0441\\u0442\\u0432 \\u043d\\u0430 \\u0441\\u0442\\u0430\\u0434\\u0438\\u0438 \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0430, \\u043f\\u0440\\u043e\\u043f\\u0438\\u0441\\u0430\\u043b\\u0438 \\u043f\\u043e\\u0440\\u044f\\u0434\\u043e\\u043a \\u0434\\u0435\\u0439\\u0441\\u0442\\u0432\\u0438\\u0439 \\u0438 \\u043e\\u0442\\u0432\\u0435\\u0442\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u043e\\u0441\\u0442\\u044c \\u0434\\u043b\\u044f \\u0437\\u0430\\u0441\\u0442\\u0440\\u043e\\u0439\\u0449\\u0438\\u043a\\u0430, \\u0440\\u0430\\u0437\\u0440\\u0435\\u0448\\u0438\\u043b\\u0438 \\u0434\\u0440\\u0443\\u0433\\u0438\\u0435 \\u0432\\u043e\\u043f\\u0440\\u043e\\u0441\\u044b. \\u0422\\u0435\\u043c \\u043d\\u0435 \\u043c\\u0435\\u043d\\u0435\\u0435, \\u0437\\u0430\\u043a\\u043e\\u043d \\u043d\\u0435 \\u0441\\u043f\\u0430\\u0441\\u0430\\u0435\\u0442 \\u043e\\u0442 \\u044d\\u043a\\u043e\\u043d\\u043e\\u043c\\u0438\\u0447\\u0435\\u0441\\u043a\\u0438\\u0445 \\u0437\\u0430\\u0442\\u0440\\u0443\\u0434\\u043d\\u0435\\u043d\\u0438\\u0439 \\u0438 \\u0431\\u0430\\u043d\\u043a\\u0440\\u043e\\u0442\\u0441\\u0442\\u0432\\u0430.<\\/p>\\r\\n<p style=\\"text-align: justify;\\">\\u00a0<i>\\u00ab\\u041a\\u0430\\u043a\\u0438\\u0435 \\u0440\\u0438\\u0441\\u043a\\u0438 \\u0435\\u0441\\u0442\\u044c \\u043f\\u0440\\u0438 \\u043f\\u043e\\u043a\\u0443\\u043f\\u043a\\u0435 \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u044b \\u0432 \\u0443\\u0436\\u0435 \\u0434\\u043e\\u0441\\u0442\\u0440\\u043e\\u0435\\u043d\\u043d\\u043e\\u043c, \\u043d\\u043e \\u043d\\u0435 \\u0441\\u0434\\u0430\\u043d\\u043d\\u043e\\u043c \\u0434\\u043e\\u043c\\u0435? \\u0410 \\u043a\\u0430\\u043a\\u0438\\u0435 \\u0440\\u0438\\u0441\\u043a\\u0438 \\u0441\\u043e\\u0445\\u0440\\u0430\\u043d\\u044f\\u044e\\u0442\\u0441\\u044f \\u0432 \\u0442\\u043e\\u043c \\u0441\\u043b\\u0443\\u0447\\u0430\\u0435, \\u043a\\u043e\\u0433\\u0434\\u0430 \\u0434\\u043e\\u043c \\u0443\\u0436\\u0435 \\u0441\\u0434\\u0430\\u043d?\\u00bb<\\/i><\\/p>\\r\\n<p style=\\"text-align: justify;\\">\\u0412 \\u043e\\u0431\\u043e\\u0438\\u0445 \\u0441\\u043b\\u0443\\u0447\\u0430\\u044f\\u0445 \\u043e\\u0441\\u043d\\u043e\\u0432\\u043d\\u044b\\u0435 \\u0440\\u0438\\u0441\\u043a\\u0438 \\u0441\\u0432\\u044f\\u0437\\u0430\\u043d\\u044b \\u0441 \\u044e\\u0440\\u0438\\u0434\\u0438\\u0447\\u0435\\u0441\\u043a\\u0438\\u043c\\u0438 \\u0434\\u0435\\u0444\\u0435\\u043a\\u0442\\u0430\\u043c\\u0438. \\u0422\\u043e\\u043b\\u044c\\u043a\\u043e \\u0432 \\u0441\\u043b\\u0443\\u0447\\u0430\\u0435\\u00a0 \\u043f\\u043e\\u043a\\u0443\\u043f\\u043a\\u0438 \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u044b \\u0432 \\u0434\\u043e\\u0441\\u0442\\u0440\\u043e\\u0435\\u043d\\u043d\\u043e\\u043c, \\u043d\\u043e \\u043d\\u0435 \\u0441\\u0434\\u0430\\u043d\\u043d\\u043e\\u043c \\u0434\\u043e\\u043c\\u0435 \\u043f\\u0440\\u043e\\u0431\\u043b\\u0435\\u043c \\u043c\\u043e\\u0436\\u0435\\u0442 \\u0431\\u044b\\u0442\\u044c \\u0431\\u043e\\u043b\\u044c\\u0448\\u0435. \\u041d\\u0430\\u0447\\u0438\\u043d\\u0430\\u044f \\u043e\\u0442 \\u043f\\u0440\\u043e\\u043c\\u0435\\u0434\\u043b\\u0435\\u043d\\u0438\\u044f \\u0441 \\u043e\\u0444\\u043e\\u0440\\u043c\\u043b\\u0435\\u043d\\u0438\\u0435\\u043c \\u043f\\u0440\\u0430\\u0432\\u0430 \\u0441\\u043e\\u0431\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u043e\\u0441\\u0442\\u0438 \\u043f\\u043e\\u043a\\u0443\\u043f\\u0430\\u0442\\u0435\\u043b\\u0435\\u0439 \\u043d\\u0430 \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u0443, \\u0437\\u0430\\u043a\\u0430\\u043d\\u0447\\u0438\\u0432\\u0430\\u044f \\u0441\\u043d\\u043e\\u0441\\u043e\\u043c \\u0437\\u0434\\u0430\\u043d\\u0438\\u044f \\u043a\\u0430\\u043a \\u0441\\u0430\\u043c\\u043e\\u0432\\u043e\\u043b\\u044c\\u043d\\u043e\\u0439 \\u043f\\u043e\\u0441\\u0442\\u0440\\u043e\\u0439\\u043a\\u0438.<\\/p>\\r\\n<p style=\\"text-align: justify;\\">\\u00a0<\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u0412.:<\\/b> <i>\\u00ab\\u041a\\u0430\\u043a \\u0434\\u043e\\u043b\\u044c\\u0449\\u0438\\u043a \\u043c\\u043e\\u0436\\u0435\\u0442 \\u043d\\u0438\\u0432\\u0438\\u043b\\u0438\\u0440\\u043e\\u0432\\u0430\\u0442\\u044c \\u0443\\u043a\\u0430\\u0437\\u0430\\u043d\\u043d\\u044b\\u0435 \\u0440\\u0438\\u0441\\u043a\\u0438 \\u043d\\u0430 \\u0444\\u0438\\u043d\\u0430\\u043b\\u044c\\u043d\\u043e\\u043c \\u044d\\u0442\\u0430\\u043f\\u0435 \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0430, \\u043d\\u0430 \\u044d\\u0442\\u0430\\u043f\\u0435 \\u0441\\u0434\\u0430\\u0447\\u0438 \\u0434\\u043e\\u043c\\u0430 \\u0438 \\u043f\\u043e\\u0441\\u043b\\u0435 \\u0441\\u0434\\u0430\\u0447\\u0438? \\u041c\\u043e\\u0436\\u0435\\u0442 \\u043b\\u0438 \\u043f\\u043e\\u043c\\u043e\\u0447\\u044c \\u0441\\u0442\\u0440\\u0430\\u0445\\u043e\\u0432\\u0430\\u043d\\u0438\\u0435 \\u0444\\u0438\\u043d\\u0430\\u043d\\u0441\\u043e\\u0432\\u044b\\u0445 \\u0440\\u0438\\u0441\\u043a\\u043e\\u0432 \\u0438\\u043b\\u0438 \\u043f\\u043e\\u043a\\u0430 \\u044d\\u0442\\u043e \\u043d\\u0435 \\u043e\\u0447\\u0435\\u043d\\u044c \\u0440\\u0430\\u0431\\u043e\\u0442\\u0430\\u044e\\u0449\\u0438\\u0439 \\u043c\\u0435\\u0445\\u0430\\u043d\\u0438\\u0437\\u043c?\\u00bb<\\/i><\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u041e.:<\\/b> \\u0423 \\u043a\\u043e\\u0433\\u043e \\u0432 \\u0436\\u0438\\u0437\\u043d\\u0438 \\u043d\\u0430\\u0441\\u0442\\u0443\\u043f\\u0430\\u043b \\u0441\\u0442\\u0440\\u0430\\u0445\\u043e\\u0432\\u043e\\u0439 \\u0441\\u043b\\u0443\\u0447\\u0430\\u0439, \\u0442\\u043e\\u0442 \\u0437\\u043d\\u0430\\u0435\\u0442, \\u043a\\u0430\\u043a \\u0432 \\u0420\\u043e\\u0441\\u0441\\u0438\\u0438 \\u043c\\u043e\\u0436\\u043d\\u043e \\u043f\\u043e\\u043b\\u0443\\u0447\\u0438\\u0442\\u044c \\u0434\\u0435\\u043d\\u044c\\u0433\\u0438 \\u043e\\u0442 \\u0441\\u0442\\u0440\\u0430\\u0445\\u043e\\u0432\\u044b\\u0445 \\u043a\\u043e\\u043c\\u043f\\u0430\\u043d\\u0438\\u0439! \\u041d\\u0430 \\u043d\\u0430\\u0448 \\u0432\\u0437\\u0433\\u043b\\u044f\\u0434 \\u043c\\u0435\\u0445\\u0430\\u043d\\u0438\\u0437\\u043c\\u044b \\u0434\\u043e\\u0431\\u0440\\u043e\\u0432\\u043e\\u043b\\u044c\\u043d\\u043e\\u0433\\u043e \\u0441\\u0442\\u0440\\u0430\\u0445\\u043e\\u0432\\u0430\\u043d\\u0438\\u044f \\u0440\\u0438\\u0441\\u043a\\u043e\\u0432, \\u0447\\u0442\\u043e \\u0434\\u0435\\u0439\\u0441\\u0442\\u0432\\u0443\\u044e\\u0442 \\u0441\\u0435\\u0433\\u043e\\u0434\\u043d\\u044f, \\u043d\\u0435 \\u0441\\u043d\\u0438\\u0437\\u0438\\u043b\\u0438 \\u0440\\u0438\\u0441\\u043a\\u0438 \\u043d\\u0435\\u0434\\u043e\\u0441\\u0442\\u0440\\u043e\\u044f \\u0438\\u043b\\u0438 \\u0434\\u043e\\u043b\\u0433\\u043e\\u0441\\u0442\\u0440\\u043e\\u044f. \\u0421 1 \\u044f\\u043d\\u0432\\u0430\\u0440\\u044f 2014 \\u0433\\u043e\\u0434\\u0430 \\u043f\\u043e\\u044f\\u0432\\u0438\\u0442\\u0441\\u044f \\u043c\\u0435\\u0445\\u0430\\u043d\\u0438\\u0437\\u043c \\u0432\\u0437\\u0430\\u0438\\u043c\\u043d\\u043e\\u0433\\u043e \\u0441\\u0442\\u0440\\u0430\\u0445\\u043e\\u0432\\u0430\\u043d\\u0438\\u044f \\u043e\\u0442\\u0432\\u0435\\u0442\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u043e\\u0441\\u0442\\u0438 \\u0437\\u0430\\u0441\\u0442\\u0440\\u043e\\u0439\\u0449\\u0438\\u043a\\u043e\\u0432 \\u2013 \\u0432\\u043e\\u0442 \\u044d\\u0442\\u043e \\u043c\\u043e\\u0436\\u0435\\u0442 \\u0431\\u044b\\u0442\\u044c \\u0438\\u043d\\u0442\\u0435\\u0440\\u0435\\u0441\\u043d\\u043e \\u0441 \\u0442\\u043e\\u0447\\u043a\\u0438 \\u0437\\u0440\\u0435\\u043d\\u0438\\u044f \\u043f\\u043e\\u0432\\u044b\\u0448\\u0435\\u043d\\u0438\\u044f \\u0437\\u0430\\u0449\\u0438\\u0449\\u0435\\u043d\\u043d\\u043e\\u0441\\u0442\\u0438 \\u0433\\u0440\\u0430\\u0436\\u0434\\u0430\\u043d.<\\/p>\\r\\n<p style=\\"text-align: justify;\\">\\u00a0<\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u0412.:<\\/b> <i>\\u00ab\\u041d\\u0430 \\u0447\\u0442\\u043e \\u0441\\u0442\\u043e\\u0438\\u0442 \\u043e\\u0431\\u0440\\u0430\\u0449\\u0430\\u0442\\u044c \\u0432\\u043d\\u0438\\u043c\\u0430\\u043d\\u0438\\u0435, \\u0447\\u0442\\u043e\\u0431\\u044b \\u0438\\u0437\\u0431\\u0435\\u0436\\u0430\\u0442\\u044c \\u043d\\u0435\\u043f\\u0440\\u0438\\u044f\\u0442\\u043d\\u044b\\u0445 \\u0441\\u044e\\u0440\\u043f\\u0440\\u0438\\u0437\\u043e\\u0432?\\u00bb<\\/i><\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u041e.:<\\/b> \\u041d\\u0430\\u0448 \\u0441\\u043e\\u0432\\u0435\\u0442\\u00a0 \\u2014 \\u043f\\u0440\\u0438\\u0433\\u043b\\u0430\\u0441\\u0438\\u0442\\u0435 \\u043d\\u0430 \\u043e\\u0437\\u043d\\u0430\\u043a\\u043e\\u043c\\u043b\\u0435\\u043d\\u0438\\u0435 \\u0441 \\u0434\\u043e\\u043a\\u0443\\u043c\\u0435\\u043d\\u0442\\u0430\\u043c\\u0438 \\u0438 \\u0441\\u0434\\u0435\\u043b\\u043a\\u0443 \\u043f\\u043e \\u043f\\u0440\\u0438\\u043e\\u0431\\u0440\\u0435\\u0442\\u0435\\u043d\\u0438\\u044f \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u044b \\u0432 \\u043d\\u043e\\u0432\\u043e\\u0441\\u0442\\u0440\\u043e\\u0439\\u043a\\u0435 \\u044e\\u0440\\u0438\\u0441\\u0442\\u0430, \\u043d\\u0443 \\u0438\\u043b\\u0438 \\u0440\\u0438\\u044d\\u043b\\u0442\\u043e\\u0440\\u0430. \\u041d\\u0430\\u0439\\u0442\\u0438 \\u044e\\u0440\\u0438\\u0441\\u0442\\u0430, \\u043a\\u043e\\u0442\\u043e\\u0440\\u044b\\u0439 \\u0434\\u0435\\u0439\\u0441\\u0442\\u0432\\u0438\\u0442\\u0435\\u043b\\u044c\\u043d\\u043e \\u0441\\u043f\\u0435\\u0446\\u0438\\u0430\\u043b\\u0438\\u0437\\u0438\\u0440\\u0443\\u0435\\u0442\\u0441\\u044f \\u043d\\u0430 \\u043d\\u0435\\u0434\\u0432\\u0438\\u0436\\u0438\\u043c\\u043e\\u0441\\u0442\\u0438 \\u0442\\u0440\\u0443\\u0434\\u043d\\u043e, \\u043d\\u043e \\u0432\\u043e\\u0437\\u043c\\u043e\\u0436\\u043d\\u043e.<\\/p>\\r\\n<p style=\\"text-align: justify;\\">\\u00a0<\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u0412.:<\\/b> <i>\\u00ab\\u0427\\u0442\\u043e \\u0434\\u0435\\u043b\\u0430\\u0442\\u044c \\u0434\\u043e\\u043b\\u044c\\u0449\\u0438\\u043a\\u0443, \\u0435\\u0441\\u043b\\u0438 \\u0441\\u043e\\u0431\\u044b\\u0442\\u0438\\u044f \\u0440\\u0430\\u0437\\u0432\\u0438\\u0432\\u0430\\u044e\\u0442\\u0441\\u044f \\u043f\\u043e \\u043d\\u0435\\u043f\\u0440\\u0438\\u044f\\u0442\\u043d\\u043e\\u043c\\u0443 \\u0441\\u0446\\u0435\\u043d\\u0430\\u0440\\u0438\\u044e \\u0438 \\u043e\\u043d \\u0432\\u0441\\u0435-\\u0442\\u0430\\u043a\\u0438 \\u0441\\u0442\\u043e\\u043b\\u043a\\u043d\\u0443\\u043b\\u0441\\u044f \\u0441 \\u0443\\u043a\\u0430\\u0437\\u0430\\u043d\\u043d\\u044b\\u043c\\u0438 \\u0440\\u0438\\u0441\\u043a\\u0430\\u043c\\u0438?\\u00bb<\\/i><\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u041e.: <\\/b>\\u041c\\u044b \\u0440\\u0435\\u043a\\u043e\\u043c\\u0435\\u043d\\u0434\\u0443\\u0435\\u043c \\u0434\\u043e\\u043b\\u044c\\u0449\\u0438\\u043a\\u0443 \\u0432 \\u0441\\u043b\\u0443\\u0447\\u0430\\u0435 \\u043d\\u0430\\u0441\\u0442\\u0443\\u043f\\u043b\\u0435\\u043d\\u0438\\u044f \\u043d\\u0435\\u0433\\u0430\\u0442\\u0438\\u0432\\u043d\\u043e\\u0439 \\u0441\\u0438\\u0442\\u0443\\u0430\\u0446\\u0438\\u0438 \\u043f\\u0440\\u0438 \\u0441\\u0442\\u0440\\u043e\\u0438\\u0442\\u0435\\u043b\\u044c\\u0441\\u0442\\u0432\\u0435 \\u0436\\u0438\\u043b\\u044c\\u044f \\u043f\\u0440\\u043e\\u043a\\u043e\\u043d\\u0441\\u0443\\u043b\\u044c\\u0442\\u0438\\u0440\\u043e\\u0432\\u0430\\u0442\\u044c\\u0441\\u044f \\u0441 \\u044e\\u0440\\u0438\\u0441\\u0442\\u043e\\u043c, \\u043a\\u043e\\u0442\\u043e\\u0440\\u044b\\u0439 \\u0441\\u043f\\u0435\\u0446\\u0438\\u0430\\u043b\\u0438\\u0437\\u0438\\u0440\\u0443\\u0435\\u0442\\u0441\\u044f \\u043d\\u0430 \\u0440\\u044b\\u043d\\u043a\\u0435 \\u043d\\u0435\\u0434\\u0432\\u0438\\u0436\\u0438\\u043c\\u043e\\u0441\\u0442\\u0438.<\\/p>\\r\\n<p style=\\"text-align: justify;\\">\\u00a0<\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u0412.:<\\/b> <i>\\u00ab\\u0421\\u0442\\u043e\\u0438\\u0442 \\u043b\\u0438 \\u043e\\u0431\\u0440\\u0430\\u0449\\u0430\\u0442\\u044c\\u0441\\u044f \\u0432 \\u0441\\u0443\\u0434? \\u0418 \\u0440\\u0435\\u0430\\u043b\\u044c\\u043d\\u043e \\u043b\\u0438 \\u0440\\u0435\\u0448\\u0438\\u0442\\u044c \\u0434\\u0435\\u043b\\u043e \\u0432 \\u0441\\u0432\\u043e\\u044e \\u043f\\u043e\\u043b\\u044c\\u0437\\u0443 \\u0432 \\u0441\\u0443\\u0434\\u0435?\\u00bb<\\/i><\\/p>\\r\\n<p class=\\"MsoNormal\\">\\u00a0<\\/p>\\r\\n<p style=\\"text-align: justify;\\"><b>\\u041e.: <\\/b>\\u0421\\u0443\\u0434 \\u043c\\u043e\\u0436\\u0435\\u0442 \\u0431\\u044b\\u0442\\u044c \\u044d\\u0444\\u0444\\u0435\\u043a\\u0442\\u0438\\u0432\\u043d\\u044b\\u043c, \\u0430 \\u0438\\u043d\\u043e\\u0433\\u0434\\u0430 \\u2014 \\u0435\\u0434\\u0438\\u043d\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u044b\\u043c \\u0441\\u043f\\u043e\\u0441\\u043e\\u0431\\u043e\\u043c \\u0437\\u0430\\u0449\\u0438\\u0442\\u044b \\u043d\\u0430\\u0440\\u0443\\u0448\\u0435\\u043d\\u043d\\u044b\\u0445 \\u043f\\u0440\\u0430\\u0432 \\u0438\\u043b\\u0438 \\u0437\\u0430\\u043a\\u043e\\u043d\\u043d\\u044b\\u0445 \\u0438\\u043d\\u0442\\u0435\\u0440\\u0435\\u0441\\u043e\\u0432 \\u0434\\u043e\\u043b\\u044c\\u0449\\u0438\\u043a\\u043e\\u0432. \\u041d\\u0435\\u0441\\u043c\\u043e\\u0442\\u0440\\u044f \\u043d\\u0430 \\u0442\\u043e, \\u0447\\u0442\\u043e \\u0433\\u0440\\u0430\\u0436\\u0434\\u0430\\u043d\\u0435 \\u0441\\u0435\\u0433\\u043e\\u0434\\u043d\\u044f \\u0441 \\u043d\\u0435\\u0434\\u043e\\u0432\\u0435\\u0440\\u0438\\u0435\\u043c \\u043e\\u0442\\u043d\\u043e\\u0441\\u044f\\u0442\\u0441\\u044f \\u043a \\u0432\\u043b\\u0430\\u0441\\u0442\\u043d\\u044b\\u043c \\u0438\\u043d\\u0441\\u0442\\u0438\\u0442\\u0443\\u0442\\u0430\\u043c, \\u043c\\u044b \\u0438\\u0437 \\u043f\\u0440\\u0430\\u043a\\u0442\\u0438\\u043a\\u0438 \\u0437\\u043d\\u0430\\u0435\\u043c, \\u0447\\u0442\\u043e \\u0441\\u0443\\u0434\\u044b \\u0440\\u0435\\u0430\\u043b\\u044c\\u043d\\u043e \\u043c\\u043e\\u0433\\u0443\\u0442 \\u043f\\u043e\\u043c\\u043e\\u0447\\u044c. \\u0422\\u0430\\u043a, \\u043d\\u0430\\u043f\\u0440\\u0438\\u043c\\u0435\\u0440, \\u0441\\u0443\\u0434\\u044b \\u043f\\u0440\\u0438\\u0437\\u043d\\u0430\\u0432\\u0430\\u043b\\u0438 \\u043f\\u0440\\u0430\\u0432\\u043e \\u0441\\u043e\\u0431\\u0441\\u0442\\u0432\\u0435\\u043d\\u043d\\u043e\\u0441\\u0442\\u0438 \\u043d\\u0430 \\u043a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u0443, \\u043a\\u043e\\u0433\\u0434\\u0430 \\u0443 \\u0433\\u0440\\u0430\\u0436\\u0434\\u0430\\u043d \\u043d\\u0430 \\u0440\\u0443\\u043a\\u0430\\u0445 \\u0438\\u043c\\u0435\\u043b\\u0438\\u0441\\u044c \\u043f\\u0440\\u0435\\u0434\\u0432\\u0430\\u0440\\u0438\\u0442\\u0435\\u043b\\u044c\\u043d\\u044b\\u0435 \\u0434\\u043e\\u0433\\u043e\\u0432\\u043e\\u0440\\u0430 \\u043a\\u0443\\u043f\\u043b\\u0438-\\u043f\\u0440\\u043e\\u0434\\u0430\\u0436\\u0438.\\u00a0 \\u0421 \\u044e\\u0440\\u0438\\u0434\\u0438\\u0447\\u0435\\u0441\\u043a\\u043e\\u0439 \\u0442\\u043e\\u0447\\u043a\\u0438 \\u0437\\u0440\\u0435\\u043d\\u0438\\u044f \\u044d\\u0442\\u043e \\u0431\\u044b\\u043b\\u0438 \\u043d\\u0435\\u043e\\u0434\\u043d\\u043e\\u0437\\u043d\\u0430\\u0447\\u043d\\u044b\\u0435 \\u0440\\u0435\\u0448\\u0435\\u043d\\u0438\\u044f, \\u043d\\u043e \\u043b\\u044e\\u0434\\u044f\\u043c \\u043e\\u043d\\u0438 \\u043f\\u043e\\u043c\\u043e\\u0433\\u0430\\u043b\\u0438 \\u0432\\u0447\\u0435\\u0440\\u0430. \\u041f\\u043e\\u043c\\u043e\\u0433\\u0430\\u044e\\u0442 \\u0438 \\u0441\\u0435\\u0433\\u043e\\u0434\\u043d\\u044f.<\\/p>","state":1,"catid":"9","created":"2016-07-06 13:43:44","created_by":"528","created_by_alias":"","modified":"2016-07-14 08:03:48","modified_by":"528","checked_out":"528","checked_out_time":"2016-07-14 08:02:09","publish_up":"2016-07-06 13:43:44","publish_down":"0000-00-00 00:00:00","images":"{\\"image_intro\\":\\"images\\\\\\/06-07-2016\\\\\\/article2\\\\\\/novos.jpg\\",\\"float_intro\\":\\"\\",\\"image_intro_alt\\":\\"\\",\\"image_intro_caption\\":\\"\\",\\"image_fulltext\\":\\"images\\\\\\/06-07-2016\\\\\\/article2\\\\\\/novos.jpg\\",\\"float_fulltext\\":\\"\\",\\"image_fulltext_alt\\":\\"\\",\\"image_fulltext_caption\\":\\"\\"}","urls":"{\\"urla\\":false,\\"urlatext\\":\\"\\",\\"targeta\\":\\"\\",\\"urlb\\":false,\\"urlbtext\\":\\"\\",\\"targetb\\":\\"\\",\\"urlc\\":false,\\"urlctext\\":\\"\\",\\"targetc\\":\\"\\"}","attribs":"{\\"show_title\\":\\"\\",\\"link_titles\\":\\"\\",\\"show_tags\\":\\"\\",\\"show_intro\\":\\"\\",\\"info_block_position\\":\\"\\",\\"info_block_show_title\\":\\"\\",\\"show_category\\":\\"\\",\\"link_category\\":\\"\\",\\"show_parent_category\\":\\"\\",\\"link_parent_category\\":\\"\\",\\"show_author\\":\\"\\",\\"link_author\\":\\"\\",\\"show_create_date\\":\\"\\",\\"show_modify_date\\":\\"\\",\\"show_publish_date\\":\\"\\",\\"show_item_navigation\\":\\"\\",\\"show_icons\\":\\"\\",\\"show_print_icon\\":\\"\\",\\"show_email_icon\\":\\"\\",\\"show_vote\\":\\"\\",\\"show_hits\\":\\"\\",\\"show_noauth\\":\\"\\",\\"urls_position\\":\\"\\",\\"alternative_readmore\\":\\"\\",\\"article_layout\\":\\"\\",\\"show_publishing_options\\":\\"\\",\\"show_article_options\\":\\"\\",\\"show_urls_images_backend\\":\\"\\",\\"show_urls_images_frontend\\":\\"\\",\\"spfeatured_image\\":\\"\\",\\"post_format\\":\\"standard\\",\\"gallery\\":\\"\\",\\"audio\\":\\"\\",\\"video\\":\\"\\",\\"link_title\\":\\"\\",\\"link_url\\":\\"\\",\\"quote_text\\":\\"\\",\\"quote_author\\":\\"\\",\\"post_status\\":\\"\\"}","version":9,"ordering":"0","metakey":"","metadesc":"","access":"1","hits":"16","metadata":"{\\"robots\\":\\"\\",\\"author\\":\\"\\",\\"rights\\":\\"\\",\\"xreference\\":\\"\\"}","featured":"1","language":"*","xreference":""}', 0),
+(88, 9, 5, '', '2016-11-14 18:23:45', 528, 607, '94770da4f313f8b8d8022a185eef6f94fd827704', '{"id":"9","asset_id":"35","parent_id":"1","lft":"11","rgt":"12","level":"1","path":"blog","extension":"com_content","title":"\\u0410\\u0440\\u0435\\u043d\\u0434\\u0430","alias":"arenda","note":"","description":"","published":"1","checked_out":"528","checked_out_time":"2016-11-14 18:23:27","access":"1","params":"{\\"category_layout\\":\\"\\",\\"image\\":\\"\\",\\"image_alt\\":\\"\\"}","metadesc":"","metakey":"","metadata":"{\\"author\\":\\"\\",\\"robots\\":\\"\\"}","created_user_id":"528","created_time":"2011-01-01 00:00:01","modified_user_id":"528","modified_time":"2016-11-14 18:23:45","hits":"0","language":"*","version":"1"}', 0),
+(89, 10, 5, '', '2016-11-14 18:24:49', 528, 685, 'cd22d2f4578e79cdd95a5527b72a2d0bd4106ff6', '{"id":"10","asset_id":"48","parent_id":"1","lft":"13","rgt":"14","level":"1","path":"rental-of-property","extension":"com_content","title":"\\u0411\\u043b\\u0430\\u0433\\u043e\\u0443\\u0441\\u0442\\u0440\\u043e\\u0439\\u0441\\u0442\\u0432\\u043e","alias":"blagoustrojstvo","note":"","description":"","published":"1","checked_out":"528","checked_out_time":"2016-11-14 18:24:17","access":"1","params":"{\\"category_layout\\":\\"\\",\\"image\\":\\"\\",\\"image_alt\\":\\"\\"}","metadesc":"","metakey":"","metadata":"{\\"author\\":\\"\\",\\"robots\\":\\"\\"}","created_user_id":"528","created_time":"2016-04-10 07:26:14","modified_user_id":"528","modified_time":"2016-11-14 18:24:49","hits":"0","language":"*","version":"1"}', 0),
+(90, 11, 5, '', '2016-11-14 18:25:36', 528, 605, '8eeef9266a87dd66e6765b61238ba8645ed6897c', '{"id":"11","asset_id":"50","parent_id":"1","lft":"15","rgt":"16","level":"1","path":"mortgage","extension":"com_content","title":"\\u0417\\u0430\\u043a\\u043e\\u043d","alias":"zakon","note":"","description":"","published":"1","checked_out":"528","checked_out_time":"2016-11-14 18:25:10","access":"1","params":"{\\"category_layout\\":\\"\\",\\"image\\":\\"\\",\\"image_alt\\":\\"\\"}","metadesc":"","metakey":"","metadata":"{\\"author\\":\\"\\",\\"robots\\":\\"\\"}","created_user_id":"528","created_time":"2016-04-10 07:45:17","modified_user_id":"528","modified_time":"2016-11-14 18:25:36","hits":"0","language":"*","version":"1"}', 0),
+(91, 12, 5, '', '2016-11-14 18:26:19', 528, 630, '77850204a6109a621b8063f80db01bd2cfedcc28', '{"id":"12","asset_id":"52","parent_id":"1","lft":"17","rgt":"20","level":"1","path":"the-property","extension":"com_content","title":"\\u041a\\u0432\\u0430\\u0440\\u0442\\u0438\\u0440\\u044b","alias":"kvartiry","note":"","description":"","published":"1","checked_out":"528","checked_out_time":"2016-11-14 18:25:54","access":"1","params":"{\\"category_layout\\":\\"\\",\\"image\\":\\"\\",\\"image_alt\\":\\"\\"}","metadesc":"","metakey":"","metadata":"{\\"author\\":\\"\\",\\"robots\\":\\"\\"}","created_user_id":"528","created_time":"2016-04-10 12:05:38","modified_user_id":"528","modified_time":"2016-11-14 18:26:19","hits":"0","language":"*","version":"1"}', 0),
+(92, 13, 5, '', '2016-11-14 18:27:14', 528, 659, 'e28ada23d134d520c4e7a0025f807f05c6c14890', '{"id":"13","asset_id":"53","parent_id":"1","lft":"21","rgt":22,"level":1,"path":"kvartiry\\/country-estate","extension":"com_content","title":"\\u041d\\u043e\\u0432\\u043e\\u0441\\u0442\\u0440\\u043e\\u0439\\u043a\\u0438","alias":"novostrojki","note":"","description":"","published":"1","checked_out":"528","checked_out_time":"2016-11-14 18:26:44","access":"1","params":"{\\"category_layout\\":\\"\\",\\"image\\":\\"\\",\\"image_alt\\":\\"\\"}","metadesc":"","metakey":"","metadata":"{\\"author\\":\\"\\",\\"robots\\":\\"\\"}","created_user_id":"528","created_time":"2016-04-10 12:06:39","modified_user_id":"528","modified_time":"2016-11-14 18:27:14","hits":"0","language":"*","version":"1"}', 0),
+(93, 14, 5, '', '2016-11-14 18:28:03', 528, 620, 'd2502892e5e0bfabccf07dd6f615e78a2140cdf7', '{"id":"14","asset_id":"71","parent_id":"1","lft":"19","rgt":"20","level":"1","path":"resellers","extension":"com_content","title":"\\u041f\\u0440\\u043e\\u0435\\u043a\\u0442\\u044b","alias":"proekty","note":"","description":"","published":"1","checked_out":"528","checked_out_time":"2016-11-14 18:27:41","access":"1","params":"{\\"category_layout\\":\\"\\",\\"image\\":\\"\\",\\"image_alt\\":\\"\\"}","metadesc":"","metakey":"","metadata":"{\\"author\\":\\"\\",\\"robots\\":\\"\\"}","created_user_id":"528","created_time":"2016-04-15 07:55:18","modified_user_id":"528","modified_time":"2016-11-14 18:28:03","hits":"0","language":"*","version":"1"}', 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_updates`
+-- Table structure for table `h0qwo_updates`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_updates` (
   `update_id` int(11) NOT NULL AUTO_INCREMENT,
   `update_site_id` int(11) DEFAULT '0',
   `extension_id` int(11) DEFAULT '0',
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `element` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `type` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `folder` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT '',
+  `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT '',
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `element` varchar(100) COLLATE utf8_unicode_ci DEFAULT '',
+  `type` varchar(20) COLLATE utf8_unicode_ci DEFAULT '',
+  `folder` varchar(20) COLLATE utf8_unicode_ci DEFAULT '',
   `client_id` tinyint(3) DEFAULT '0',
-  `version` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `data` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `detailsurl` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `infourl` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `extra_query` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT '',
+  `version` varchar(32) COLLATE utf8_unicode_ci DEFAULT '',
+  `data` text COLLATE utf8_unicode_ci NOT NULL,
+  `detailsurl` text COLLATE utf8_unicode_ci NOT NULL,
+  `infourl` text COLLATE utf8_unicode_ci NOT NULL,
+  `extra_query` varchar(1000) COLLATE utf8_unicode_ci DEFAULT '',
   PRIMARY KEY (`update_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Available Updates' AUTO_INCREMENT=312 ;
-
---
--- Дамп данных таблицы `h0qwo_updates`
---
-
-INSERT INTO `h0qwo_updates` (`update_id`, `update_site_id`, `extension_id`, `name`, `description`, `element`, `type`, `folder`, `client_id`, `version`, `data`, `detailsurl`, `infourl`, `extra_query`) VALUES
-(2, 1, 700, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.0', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(3, 3, 0, 'Armenian', '', 'pkg_hy-AM', 'package', '', 0, '3.4.4.1', '', 'https://update.joomla.org/language/details3/hy-AM_details.xml', '', ''),
-(4, 3, 0, 'Malay', '', 'pkg_ms-MY', 'package', '', 0, '3.4.1.2', '', 'https://update.joomla.org/language/details3/ms-MY_details.xml', '', ''),
-(5, 3, 0, 'Romanian', '', 'pkg_ro-RO', 'package', '', 0, '3.5.0.1', '', 'https://update.joomla.org/language/details3/ro-RO_details.xml', '', ''),
-(6, 3, 0, 'Flemish', '', 'pkg_nl-BE', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/nl-BE_details.xml', '', ''),
-(7, 3, 0, 'Chinese Traditional', '', 'pkg_zh-TW', 'package', '', 0, '3.5.0.1', '', 'https://update.joomla.org/language/details3/zh-TW_details.xml', '', ''),
-(8, 3, 0, 'French', '', 'pkg_fr-FR', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/fr-FR_details.xml', '', ''),
-(9, 3, 0, 'Galician', '', 'pkg_gl-ES', 'package', '', 0, '3.3.1.2', '', 'https://update.joomla.org/language/details3/gl-ES_details.xml', '', ''),
-(10, 3, 0, 'Greek', '', 'pkg_el-GR', 'package', '', 0, '3.4.2.1', '', 'https://update.joomla.org/language/details3/el-GR_details.xml', '', ''),
-(11, 3, 0, 'Japanese', '', 'pkg_ja-JP', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/ja-JP_details.xml', '', ''),
-(12, 3, 0, 'Hebrew', '', 'pkg_he-IL', 'package', '', 0, '3.1.1.1', '', 'https://update.joomla.org/language/details3/he-IL_details.xml', '', ''),
-(13, 3, 0, 'Hungarian', '', 'pkg_hu-HU', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/hu-HU_details.xml', '', ''),
-(14, 3, 0, 'Afrikaans', '', 'pkg_af-ZA', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/af-ZA_details.xml', '', ''),
-(15, 3, 0, 'Arabic Unitag', '', 'pkg_ar-AA', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/ar-AA_details.xml', '', ''),
-(16, 3, 0, 'Belarusian', '', 'pkg_be-BY', 'package', '', 0, '3.2.1.1', '', 'https://update.joomla.org/language/details3/be-BY_details.xml', '', ''),
-(17, 3, 0, 'Bulgarian', '', 'pkg_bg-BG', 'package', '', 0, '3.4.4.2', '', 'https://update.joomla.org/language/details3/bg-BG_details.xml', '', ''),
-(18, 3, 0, 'Catalan', '', 'pkg_ca-ES', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/ca-ES_details.xml', '', ''),
-(19, 3, 0, 'Chinese Simplified', '', 'pkg_zh-CN', 'package', '', 0, '3.4.1.1', '', 'https://update.joomla.org/language/details3/zh-CN_details.xml', '', ''),
-(20, 3, 0, 'Croatian', '', 'pkg_hr-HR', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/hr-HR_details.xml', '', ''),
-(21, 3, 0, 'Czech', '', 'pkg_cs-CZ', 'package', '', 0, '3.5.1.1', '', 'https://update.joomla.org/language/details3/cs-CZ_details.xml', '', ''),
-(22, 3, 0, 'Danish', '', 'pkg_da-DK', 'package', '', 0, '3.5.1.1', '', 'https://update.joomla.org/language/details3/da-DK_details.xml', '', ''),
-(23, 3, 0, 'Dutch', '', 'pkg_nl-NL', 'package', '', 0, '3.5.1.2', '', 'https://update.joomla.org/language/details3/nl-NL_details.xml', '', ''),
-(24, 3, 0, 'Estonian', '', 'pkg_et-EE', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/et-EE_details.xml', '', ''),
-(25, 3, 0, 'Italian', '', 'pkg_it-IT', 'package', '', 0, '3.6.0.2', '', 'https://update.joomla.org/language/details3/it-IT_details.xml', '', ''),
-(26, 3, 0, 'Khmer', '', 'pkg_km-KH', 'package', '', 0, '3.4.5.1', '', 'https://update.joomla.org/language/details3/km-KH_details.xml', '', ''),
-(27, 3, 0, 'Korean', '', 'pkg_ko-KR', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/ko-KR_details.xml', '', ''),
-(28, 3, 0, 'Latvian', '', 'pkg_lv-LV', 'package', '', 0, '3.4.3.1', '', 'https://update.joomla.org/language/details3/lv-LV_details.xml', '', ''),
-(29, 3, 0, 'Macedonian', '', 'pkg_mk-MK', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/mk-MK_details.xml', '', ''),
-(30, 3, 0, 'Norwegian Bokmal', '', 'pkg_nb-NO', 'package', '', 0, '3.5.1.1', '', 'https://update.joomla.org/language/details3/nb-NO_details.xml', '', ''),
-(31, 3, 0, 'Norwegian Nynorsk', '', 'pkg_nn-NO', 'package', '', 0, '3.4.2.1', '', 'https://update.joomla.org/language/details3/nn-NO_details.xml', '', ''),
-(32, 3, 0, 'Persian', '', 'pkg_fa-IR', 'package', '', 0, '3.5.1.1', '', 'https://update.joomla.org/language/details3/fa-IR_details.xml', '', ''),
-(33, 3, 0, 'Polish', '', 'pkg_pl-PL', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/pl-PL_details.xml', '', ''),
-(34, 3, 0, 'Portuguese', '', 'pkg_pt-PT', 'package', '', 0, '3.5.1.4', '', 'https://update.joomla.org/language/details3/pt-PT_details.xml', '', ''),
-(36, 3, 0, 'English AU', '', 'pkg_en-AU', 'package', '', 0, '3.5.1.2', '', 'https://update.joomla.org/language/details3/en-AU_details.xml', '', ''),
-(37, 3, 0, 'Slovak', '', 'pkg_sk-SK', 'package', '', 0, '3.5.1.2', '', 'https://update.joomla.org/language/details3/sk-SK_details.xml', '', ''),
-(38, 3, 0, 'English US', '', 'pkg_en-US', 'package', '', 0, '3.5.1.1', '', 'https://update.joomla.org/language/details3/en-US_details.xml', '', ''),
-(39, 3, 0, 'Swedish', '', 'pkg_sv-SE', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/sv-SE_details.xml', '', ''),
-(40, 3, 0, 'Syriac', '', 'pkg_sy-IQ', 'package', '', 0, '3.4.5.1', '', 'https://update.joomla.org/language/details3/sy-IQ_details.xml', '', ''),
-(41, 3, 0, 'Tamil', '', 'pkg_ta-IN', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/ta-IN_details.xml', '', ''),
-(42, 3, 0, 'Thai', '', 'pkg_th-TH', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/th-TH_details.xml', '', ''),
-(43, 3, 0, 'Turkish', '', 'pkg_tr-TR', 'package', '', 0, '3.5.1.1', '', 'https://update.joomla.org/language/details3/tr-TR_details.xml', '', ''),
-(44, 3, 0, 'Ukrainian', '', 'pkg_uk-UA', 'package', '', 0, '3.5.1.1', '', 'https://update.joomla.org/language/details3/uk-UA_details.xml', '', ''),
-(45, 3, 0, 'Uyghur', '', 'pkg_ug-CN', 'package', '', 0, '3.3.0.1', '', 'https://update.joomla.org/language/details3/ug-CN_details.xml', '', ''),
-(46, 3, 0, 'Albanian', '', 'pkg_sq-AL', 'package', '', 0, '3.1.1.1', '', 'https://update.joomla.org/language/details3/sq-AL_details.xml', '', ''),
-(47, 3, 0, 'Basque', '', 'pkg_eu-ES', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/eu-ES_details.xml', '', ''),
-(48, 3, 0, 'Hindi', '', 'pkg_hi-IN', 'package', '', 0, '3.3.6.1', '', 'https://update.joomla.org/language/details3/hi-IN_details.xml', '', ''),
-(49, 3, 0, 'German DE', '', 'pkg_de-DE', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/de-DE_details.xml', '', ''),
-(50, 3, 0, 'Portuguese Brazil', '', 'pkg_pt-BR', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/pt-BR_details.xml', '', ''),
-(51, 3, 0, 'Serbian Latin', '', 'pkg_sr-YU', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/sr-YU_details.xml', '', ''),
-(52, 3, 0, 'Spanish', '', 'pkg_es-ES', 'package', '', 0, '3.5.1.1', '', 'https://update.joomla.org/language/details3/es-ES_details.xml', '', ''),
-(53, 3, 0, 'Bosnian', '', 'pkg_bs-BA', 'package', '', 0, '3.4.8.1', '', 'https://update.joomla.org/language/details3/bs-BA_details.xml', '', ''),
-(54, 3, 0, 'Serbian Cyrillic', '', 'pkg_sr-RS', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/sr-RS_details.xml', '', ''),
-(55, 3, 0, 'Vietnamese', '', 'pkg_vi-VN', 'package', '', 0, '3.2.1.1', '', 'https://update.joomla.org/language/details3/vi-VN_details.xml', '', ''),
-(56, 3, 0, 'Bahasa Indonesia', '', 'pkg_id-ID', 'package', '', 0, '3.3.0.2', '', 'https://update.joomla.org/language/details3/id-ID_details.xml', '', ''),
-(57, 3, 0, 'Finnish', '', 'pkg_fi-FI', 'package', '', 0, '3.5.1.1', '', 'https://update.joomla.org/language/details3/fi-FI_details.xml', '', ''),
-(58, 3, 0, 'Swahili', '', 'pkg_sw-KE', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/sw-KE_details.xml', '', ''),
-(59, 3, 0, 'Montenegrin', '', 'pkg_srp-ME', 'package', '', 0, '3.3.1.1', '', 'https://update.joomla.org/language/details3/srp-ME_details.xml', '', ''),
-(60, 3, 0, 'English CA', '', 'pkg_en-CA', 'package', '', 0, '3.5.1.2', '', 'https://update.joomla.org/language/details3/en-CA_details.xml', '', ''),
-(61, 3, 0, 'French CA', '', 'pkg_fr-CA', 'package', '', 0, '3.5.1.2', '', 'https://update.joomla.org/language/details3/fr-CA_details.xml', '', ''),
-(62, 3, 0, 'Welsh', '', 'pkg_cy-GB', 'package', '', 0, '3.3.0.2', '', 'https://update.joomla.org/language/details3/cy-GB_details.xml', '', ''),
-(63, 3, 0, 'Sinhala', '', 'pkg_si-LK', 'package', '', 0, '3.3.1.1', '', 'https://update.joomla.org/language/details3/si-LK_details.xml', '', ''),
-(64, 3, 0, 'Dari Persian', '', 'pkg_prs-AF', 'package', '', 0, '3.4.4.1', '', 'https://update.joomla.org/language/details3/prs-AF_details.xml', '', ''),
-(65, 3, 0, 'Turkmen', '', 'pkg_tk-TM', 'package', '', 0, '3.5.0.1', '', 'https://update.joomla.org/language/details3/tk-TM_details.xml', '', ''),
-(66, 3, 0, 'Irish', '', 'pkg_ga-IE', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/ga-IE_details.xml', '', ''),
-(67, 3, 0, 'Dzongkha', '', 'pkg_dz-BT', 'package', '', 0, '3.4.5.1', '', 'https://update.joomla.org/language/details3/dz-BT_details.xml', '', ''),
-(68, 3, 0, 'Slovenian', '', 'pkg_sl-SI', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/sl-SI_details.xml', '', ''),
-(69, 3, 0, 'Spanish CO', '', 'pkg_es-CO', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/es-CO_details.xml', '', ''),
-(70, 3, 0, 'German CH', '', 'pkg_de-CH', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/de-CH_details.xml', '', ''),
-(71, 3, 0, 'German AT', '', 'pkg_de-AT', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/de-AT_details.xml', '', ''),
-(72, 3, 0, 'German LI', '', 'pkg_de-LI', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/de-LI_details.xml', '', ''),
-(73, 3, 0, 'German LU', '', 'pkg_de-LU', 'package', '', 0, '3.6.0.1', '', 'https://update.joomla.org/language/details3/de-LU_details.xml', '', ''),
-(74, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.1', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(75, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.1', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(76, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.1', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(77, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.1', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(78, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(79, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(80, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(81, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(82, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(83, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(84, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(85, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(86, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(87, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(88, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(89, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(90, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(91, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(92, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(93, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(94, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(95, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(96, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(97, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(98, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(99, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(100, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(101, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(102, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(103, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(104, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(105, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(106, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(107, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(108, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(109, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(110, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(111, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(112, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(113, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(114, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(115, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(116, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(117, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(118, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(119, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(120, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(121, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(122, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(123, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(124, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(125, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(126, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(127, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(128, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(129, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(130, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(131, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(132, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(133, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(134, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(135, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(136, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(137, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(138, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(139, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(140, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(141, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(142, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(143, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(144, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(145, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(146, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(147, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(148, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(149, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(150, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(151, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(152, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(153, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(154, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(155, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(156, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(157, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(158, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(159, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(160, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(161, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(162, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(163, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(164, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(165, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(166, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(167, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(168, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(169, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(170, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(171, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(172, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(173, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(174, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(175, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(176, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(177, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(178, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(179, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(180, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(181, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(182, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(183, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(184, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(185, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(186, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(187, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(188, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(189, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(190, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(191, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(192, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(193, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(194, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(195, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(196, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(197, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(198, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(199, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(200, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(201, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(202, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(203, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(204, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(205, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(206, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(207, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(208, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(209, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(210, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(211, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(212, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(213, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(214, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(215, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(216, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(217, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(218, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(219, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(220, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(221, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(222, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(223, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(224, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(225, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(226, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(227, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(228, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(229, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(230, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(231, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(232, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(233, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(234, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(235, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(236, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(237, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(238, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(239, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(240, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(241, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(242, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(243, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(244, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(245, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(246, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(247, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(248, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(249, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(250, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(251, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(252, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(253, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(254, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(255, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(256, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(257, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(258, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(259, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(260, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(261, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(262, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(263, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(264, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(265, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(266, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(267, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(268, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(269, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(270, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(271, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(272, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(273, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(274, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(275, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(276, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(277, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(278, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(279, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(280, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(281, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(282, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(283, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(284, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(285, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(286, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(287, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(288, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(289, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(290, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(291, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(292, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(293, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(294, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(295, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(296, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(297, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(298, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(299, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(300, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(301, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(302, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(303, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(304, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(305, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(306, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(307, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(308, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(309, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(310, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', ''),
-(311, 1, 0, 'Joomla', '', 'joomla', 'file', '', 0, '3.6.2', '', 'https://update.joomla.org/core/sts/extension_sts.xml', '', '');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Available Updates' AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_update_sites`
+-- Table structure for table `h0qwo_update_sites`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_update_sites` (
   `update_site_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `type` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `location` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT '',
+  `type` varchar(20) COLLATE utf8_unicode_ci DEFAULT '',
+  `location` text COLLATE utf8_unicode_ci NOT NULL,
   `enabled` int(11) DEFAULT '0',
   `last_check_timestamp` bigint(20) DEFAULT '0',
-  `extra_query` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT '',
+  `extra_query` varchar(1000) COLLATE utf8_unicode_ci DEFAULT '',
   PRIMARY KEY (`update_site_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Update Sites' AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Update Sites' AUTO_INCREMENT=11 ;
 
 --
--- Дамп данных таблицы `h0qwo_update_sites`
+-- Dumping data for table `h0qwo_update_sites`
 --
 
 INSERT INTO `h0qwo_update_sites` (`update_site_id`, `name`, `type`, `location`, `enabled`, `last_check_timestamp`, `extra_query`) VALUES
-(1, 'Joomla! Core', 'collection', 'https://update.joomla.org/core/list.xml', 1, 1476627102, ''),
-(2, 'Joomla! Extension Directory', 'collection', 'https://update.joomla.org/jed/list.xml', 1, 1476627102, ''),
-(3, 'Accredited Joomla! Translations', 'collection', 'https://update.joomla.org/language/translationlist_3.xml', 1, 1468480164, ''),
+(1, 'Joomla! Core', 'collection', 'https://update.joomla.org/core/list.xml', 1, 1479148170, ''),
+(2, 'Joomla! Extension Directory', 'collection', 'https://update.joomla.org/jed/list.xml', 1, 1479148171, ''),
+(3, 'Accredited Joomla! Translations', 'collection', 'https://update.joomla.org/language/translationlist_3.xml', 1, 0, ''),
 (4, 'Joomla! Update Component Update Site', 'extension', 'https://update.joomla.org/core/extensions/com_joomlaupdate.xml', 1, 0, ''),
 (5, 'Helix3 - Ajax', 'extension', 'http://www.joomshaper.com/updates/plg-ajax-helix3.xml', 1, 0, ''),
 (6, 'System - Helix3 Framework', 'extension', 'http://www.joomshaper.com/updates/plg-system-helix3.xml', 1, 0, ''),
 (7, 'shaper_helix3', 'extension', 'http://www.joomshaper.com/updates/shaper-helix3.xml', 1, 0, ''),
 (8, 'SP Page Builder', 'extension', 'http://www.joomshaper.com/updates/com-sp-page-builder-free.xml', 1, 0, ''),
-(9, 'Accredited Joomla! Translations', 'collection', 'http://update.joomla.org/language/translationlist_3.xml', 1, 0, '');
+(9, 'Accredited Joomla! Translations', 'collection', 'http://update.joomla.org/language/translationlist_3.xml', 1, 0, ''),
+(10, 'shaper_helix3', 'extension', 'https://www.joomshaper.com/updates/shaper-helix3.xml', 1, 0, '');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_update_sites_extensions`
+-- Table structure for table `h0qwo_update_sites_extensions`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_update_sites_extensions` (
   `update_site_id` int(11) NOT NULL DEFAULT '0',
   `extension_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`update_site_id`,`extension_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Links extensions to update sites';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Links extensions to update sites';
 
 --
--- Дамп данных таблицы `h0qwo_update_sites_extensions`
+-- Dumping data for table `h0qwo_update_sites_extensions`
 --
 
 INSERT INTO `h0qwo_update_sites_extensions` (`update_site_id`, `extension_id`) VALUES
 (1, 700),
 (2, 700),
 (3, 802),
+(3, 10014),
 (4, 28),
 (5, 10001),
 (6, 10002),
 (7, 10003),
 (8, 10004),
-(9, 10014);
+(9, 10014),
+(10, 10003);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_usergroups`
+-- Table structure for table `h0qwo_usergroups`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_usergroups` (
@@ -2493,16 +2190,16 @@ CREATE TABLE IF NOT EXISTS `h0qwo_usergroups` (
   `parent_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Adjacency List Reference Id',
   `lft` int(11) NOT NULL DEFAULT '0' COMMENT 'Nested set lft.',
   `rgt` int(11) NOT NULL DEFAULT '0' COMMENT 'Nested set rgt.',
-  `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_usergroup_parent_title_lookup` (`parent_id`,`title`),
   KEY `idx_usergroup_title_lookup` (`title`),
   KEY `idx_usergroup_adjacency_lookup` (`parent_id`),
   KEY `idx_usergroup_nested_set_lookup` (`lft`,`rgt`) USING BTREE
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
--- Дамп данных таблицы `h0qwo_usergroups`
+-- Dumping data for table `h0qwo_usergroups`
 --
 
 INSERT INTO `h0qwo_usergroups` (`id`, `parent_id`, `lft`, `rgt`, `title`) VALUES
@@ -2519,73 +2216,73 @@ INSERT INTO `h0qwo_usergroups` (`id`, `parent_id`, `lft`, `rgt`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_users`
+-- Table structure for table `h0qwo_users`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(400) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `username` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(400) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `username` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `block` tinyint(4) NOT NULL DEFAULT '0',
   `sendEmail` tinyint(4) DEFAULT '0',
   `registerDate` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `lastvisitDate` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `activation` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `params` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `activation` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `params` text COLLATE utf8_unicode_ci NOT NULL,
   `lastResetTime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Date of last password reset',
   `resetCount` int(11) NOT NULL DEFAULT '0' COMMENT 'Count of password resets since lastResetTime',
-  `otpKey` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Two factor authentication encrypted keys',
-  `otep` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'One time emergency passwords',
+  `otpKey` varchar(1000) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'Two factor authentication encrypted keys',
+  `otep` varchar(1000) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT 'One time emergency passwords',
   `requireReset` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'Require user to reset password on next login',
   PRIMARY KEY (`id`),
-  KEY `idx_name` (`name`(100)),
   KEY `idx_block` (`block`),
   KEY `username` (`username`),
-  KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=529 ;
+  KEY `email` (`email`),
+  KEY `idx_name` (`name`(100))
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=529 ;
 
 --
--- Дамп данных таблицы `h0qwo_users`
+-- Dumping data for table `h0qwo_users`
 --
 
 INSERT INTO `h0qwo_users` (`id`, `name`, `username`, `email`, `password`, `block`, `sendEmail`, `registerDate`, `lastvisitDate`, `activation`, `params`, `lastResetTime`, `resetCount`, `otpKey`, `otep`, `requireReset`) VALUES
-(528, 'Super User', 'mixas8383', 'mixas.8383@gmail.com', '$2y$10$E/FoTrDipxB0uAHRGLJ0TOptmrkfUc.OQ/kEmhYGr4ZxSL6oBtS9m', 0, 1, '2016-04-08 13:12:48', '2016-07-14 07:51:06', '0', '', '0000-00-00 00:00:00', 0, '', '', 0);
+(528, 'Super User', 'mixas8383', 'mixas.8383@gmail.com', '$2y$10$E/FoTrDipxB0uAHRGLJ0TOptmrkfUc.OQ/kEmhYGr4ZxSL6oBtS9m', 0, 1, '2016-04-08 13:12:48', '2016-11-14 15:52:55', '0', '', '0000-00-00 00:00:00', 0, '', '', 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_user_keys`
+-- Table structure for table `h0qwo_user_keys`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_user_keys` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `series` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `series` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `invalid` tinyint(4) NOT NULL,
-  `time` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `uastring` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `time` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `uastring` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `series` (`series`),
   UNIQUE KEY `series_2` (`series`),
   UNIQUE KEY `series_3` (`series`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_user_notes`
+-- Table structure for table `h0qwo_user_notes`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_user_notes` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL DEFAULT '0',
   `catid` int(10) unsigned NOT NULL DEFAULT '0',
-  `subject` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `body` text COLLATE utf8_unicode_ci NOT NULL,
   `state` tinyint(3) NOT NULL DEFAULT '0',
   `checked_out` int(10) unsigned NOT NULL DEFAULT '0',
   `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -2599,36 +2296,36 @@ CREATE TABLE IF NOT EXISTS `h0qwo_user_notes` (
   PRIMARY KEY (`id`),
   KEY `idx_user_id` (`user_id`),
   KEY `idx_category_id` (`catid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_user_profiles`
+-- Table structure for table `h0qwo_user_profiles`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_user_profiles` (
   `user_id` int(11) NOT NULL,
-  `profile_key` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `profile_value` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `profile_key` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `profile_value` text COLLATE utf8_unicode_ci NOT NULL,
   `ordering` int(11) NOT NULL DEFAULT '0',
   UNIQUE KEY `idx_user_id_profile_key` (`user_id`,`profile_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Simple user profile storage table';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Simple user profile storage table';
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_user_usergroup_map`
+-- Table structure for table `h0qwo_user_usergroup_map`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_user_usergroup_map` (
   `user_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Foreign Key to #__users.id',
   `group_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Foreign Key to #__usergroups.id',
   PRIMARY KEY (`user_id`,`group_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Дамп данных таблицы `h0qwo_user_usergroup_map`
+-- Dumping data for table `h0qwo_user_usergroup_map`
 --
 
 INSERT INTO `h0qwo_user_usergroup_map` (`user_id`, `group_id`) VALUES
@@ -2637,37 +2334,37 @@ INSERT INTO `h0qwo_user_usergroup_map` (`user_id`, `group_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_utf8_conversion`
+-- Table structure for table `h0qwo_utf8_conversion`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_utf8_conversion` (
   `converted` tinyint(4) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Дамп данных таблицы `h0qwo_utf8_conversion`
+-- Dumping data for table `h0qwo_utf8_conversion`
 --
 
 INSERT INTO `h0qwo_utf8_conversion` (`converted`) VALUES
-(2);
+(1);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `h0qwo_viewlevels`
+-- Table structure for table `h0qwo_viewlevels`
 --
 
 CREATE TABLE IF NOT EXISTS `h0qwo_viewlevels` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
-  `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `ordering` int(11) NOT NULL DEFAULT '0',
-  `rules` varchar(5120) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'JSON encoded access control.',
+  `rules` varchar(5120) COLLATE utf8_unicode_ci NOT NULL COMMENT 'JSON encoded access control.',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_assetgroup_title_lookup` (`title`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
--- Дамп данных таблицы `h0qwo_viewlevels`
+-- Dumping data for table `h0qwo_viewlevels`
 --
 
 INSERT INTO `h0qwo_viewlevels` (`id`, `title`, `ordering`, `rules`) VALUES
