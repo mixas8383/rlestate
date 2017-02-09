@@ -12,6 +12,7 @@
 	<description>Russian language pack (site) for Joomla! 3.6.2</description>
 	<files>
 		<filename>index.html</filename>
+		<filename>ru-RU.com_adsmanager.ini</filename>
 		<filename>ru-RU.com_ajax.ini</filename>
 		<filename>ru-RU.com_config.ini</filename>
 		<filename>ru-RU.com_contact.ini</filename>

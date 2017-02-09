@@ -9,19 +9,30 @@
 defined ('_JEXEC') or die ('restricted aceess');
 
 JHtml::_('jquery.framework');
+jimport('joomla.application.component.helper');
 
 require_once ( JPATH_COMPONENT .'/parser/addon-parser.php' );
-
 $doc = JFactory::getDocument();
-$doc->addStyleSheet(JUri::base(true).'/components/com_sppagebuilder/assets/css/font-awesome.min.css');
-$doc->addStyleSheet(JUri::base(true).'/components/com_sppagebuilder/assets/css/animate.min.css');
-$doc->addStyleSheet(JUri::base(true).'/components/com_sppagebuilder/assets/css/sppagebuilder.css');
-
-
+$user = JFactory::getUser();
 $app = JFactory::getApplication();
-$menus		= $app->getMenu();
-$menu = $menus->getActive();
+$params = JComponentHelper::getParams('com_sppagebuilder');
 
+if ($params->get('fontawesome',1)) {
+	$doc->addStyleSheet(JUri::base(true).'/components/com_sppagebuilder/assets/css/font-awesome.min.css');
+}
+if (!$params->get('disableanimatecss',0)) {
+	$doc->addStyleSheet(JUri::base(true).'/components/com_sppagebuilder/assets/css/animate.min.css');
+}
+if (!$params->get('disablecss',0)) {
+	$doc->addStyleSheet(JUri::base(true).'/components/com_sppagebuilder/assets/css/sppagebuilder.css');
+}
+
+if ($params->get('addcontainer', 1)) {
+	$doc->addStyleSheet(JUri::base(true) . '/components/com_sppagebuilder/assets/css/sppagecontainer.css');
+}
+
+$menus = $app->getMenu();
+$menu = $menus->getActive();
 $menuClassPrefix = '';
 $showPageHeading = 0;
 
@@ -33,8 +44,16 @@ if ($menu) {
 }
 
 $page = $this->data;
+
+require_once JPATH_COMPONENT_ADMINISTRATOR . '/builder/classes/addon.php';
+$page->text = SpPageBuilderAddonHelper::__($page->text);
 $content = json_decode($page->text);
-$fullwidth = $page->page_layout;
+
+// Add page css
+if(isset($page->css) && $page->css) {
+	$doc->addStyledeclaration($page->css);
+}
+
 ?>
 
 <div id="sp-page-builder" class="sp-page-builder <?php echo $menuClassPrefix; ?> page-<?php echo $page->id; ?>">
@@ -52,9 +71,9 @@ $fullwidth = $page->page_layout;
 		</h1>
 	</div>
 	<?php } ?>
-	
+
 	<div class="page-content">
-		<?php echo AddonParser::viewAddons($content,$fullwidth); ?>
+		<?php echo AddonParser::viewAddons( $content ); ?>
 	</div>
 </div>
 

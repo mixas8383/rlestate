@@ -17,7 +17,7 @@ class SpTypeSeparator{
 			$attr['title'] = '';
 		}
 
-		$output  = '<div class="sppb-admin-separtor">';
+		$output  = '<div class="sp-pagebuilder-admin-separtor">';
 		if($attr['title']) $output .= '<span>'.$attr['title'].'</span>';
 		$output .= '</div>';
 

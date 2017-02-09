@@ -2,7 +2,7 @@
 /**
  * @package SP Page Builder
  * @author JoomShaper http://www.joomshaper.com
- * @copyright Copyright (c) 2010 - 2016 JoomShaper
+ * @copyright Copyright (c) 2010 - 2015 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 //no direct accees
@@ -16,7 +16,7 @@ class SppagebuilderModelPage extends JModelItem
 
 	protected $_context = 'com_sppagebuilder.page';
 
-	
+
 	protected function populateState()
 	{
 		$app = JFactory::getApplication('site');
@@ -42,7 +42,7 @@ class SppagebuilderModelPage extends JModelItem
 
 		if ( $this->_item == null )
 		{
-			$this->_item = array();	
+			$this->_item = array();
 		}
 
 		if (!isset($this->_item[$pageId]))
@@ -59,7 +59,7 @@ class SppagebuilderModelPage extends JModelItem
 					->leftJoin( $db->quoteName('#__languages') . ' AS l ON l.lang_code = a.language');
 
 				$query->select('ua.name AS author_name')
-					->leftJoin('#__users AS ua ON ua.id = a.created_user_id');
+					->leftJoin('#__users AS ua ON ua.id = a.created_by');
 
 				// Filter by published state.
 				$published = $this->getState('filter.published');
@@ -129,4 +129,5 @@ class SppagebuilderModelPage extends JModelItem
 
 		return true;
 	}
+
 }

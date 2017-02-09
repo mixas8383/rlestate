@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
 	<fieldset name="component">
+		<field name="addcontainer"
+			type="radio"
+			class="btn-group btn-group-yesno"
+			default="1"
+			label="COM_SPPAGEBUILDER_ADD_CONTAINER"
+			description="COM_SPPAGEBUILDER_ADD_CONTAINER_DESC">
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
+		
 		<field
 			name="fontawesome"
 			type="radio"

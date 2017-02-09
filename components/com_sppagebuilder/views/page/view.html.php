@@ -2,7 +2,7 @@
 /**
  * @package SP Page Builder
  * @author JoomShaper http://www.joomshaper.com
- * @copyright Copyright (c) 2010 - 2016 JoomShaper
+ * @copyright Copyright (c) 2010 - 2015 JoomShaper
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
 */
 //no direct accees
@@ -11,10 +11,14 @@ defined ('_JEXEC') or die ('restricted aceess');
 // import Joomla view library
 jimport('joomla.application.component.view');
 
+if(!class_exists('SppagebuilderHelperSite')) {
+	require_once JPATH_ROOT . '/components/com_sppagebuilder/helpers/helper.php';
+}
+
 class SppagebuilderViewPage extends JViewLegacy
 {
 	protected $page;
-	
+
 	function display( $tpl = null )
 	{
 		$this->data = $this->get('Item');
@@ -35,6 +39,7 @@ class SppagebuilderViewPage extends JViewLegacy
 		$model->hit();
 
 		$this->_prepareDocument();
+		SppagebuilderHelperSite::loadLanguage();
 		parent::display($tpl);
 	}
 
@@ -71,7 +76,6 @@ class SppagebuilderViewPage extends JViewLegacy
 		}
 
 		$doc->setTitle($sitetitle);
-		$doc->addCustomTag('<meta content="' . $title . '" property="og:title" />');
 
 		$this->document->addCustomTag('<meta content="website" property="og:type"/>');
 		$this->document->addCustomTag('<meta content="'.JURI::current().'" property="og:url" />');
@@ -79,11 +83,15 @@ class SppagebuilderViewPage extends JViewLegacy
 		$og_title = $this->page->og_title;
 		if ($og_title) {
 			$this->document->addCustomTag('<meta content="'.$og_title.'" property="og:title" />');
+		} else {
+			$doc->addCustomTag('<meta content="' . $title . '" property="og:title" />');
 		}
 
 		$og_image = $this->page->og_image;
 		if ($og_image) {
 			$this->document->addCustomTag('<meta content="'.JURI::root().$og_image.'" property="og:image" />');
+			$this->document->addCustomTag('<meta content="1200" property="og:image:width" />');
+			$this->document->addCustomTag('<meta content="630" property="og:image:height" />');
 		}
 
 		$og_description = $this->page->og_description;
@@ -105,7 +113,7 @@ class SppagebuilderViewPage extends JViewLegacy
 			{
 				$this->document->setMetadata('robots', $menu->params->get('robots'));
 			}
-	
+
 		}
 	}
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5" client="site" method="upgrade">
+	<name>Featured agents</name>
+	<author>Dang Thuc Dam</author>
+	<creationDate>July 2013</creationDate>
+	<copyright>Copyright (C) 2005 - 2013 Ossolution. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>damdt@joomservices.org</authorEmail>
+	<authorUrl>www.joomdonation.com</authorUrl>
+	<version>1.0.0</version>
+	<description>List featured agents</description>
+	<files>
+		<filename module="mod_featuredagents">mod_featuredagents.php</filename>
+		<folder>tmpl</folder>
+		<folder>style</folder>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+		<filename>mod_featuredagents.xml</filename>
+	</files>
+	<languages>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="moduleclass_sfx" type="text"
+					label="Module class suffix"
+					description="Pleasse enter module class suffix" />
+				<field name="number_agents" type="text" class="input-mini" default="5"
+					label="Number agents/ owners" description="Please enter number of agents/ owners that will be shown at frontend of module." />
+				<field name="user_type" type="list" default="0" label="User type" description="Please select User type">
+                    <option value="-1">All user types</option>
+                    <option value="0">Agent</option>
+					<option value="1">Owner</option>
+                </field>
+				<field name="show_featured" type="list" default="0" label="Show Featured agent only" description="Show featured or all agents">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+				<field name="sort_by" type="list" default="0" label="Sort by" description="Please select sort by">
+                    <option value="name">Agent/ Owner name</option>
+                    <option value="rand()">Random</option>
+                </field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
