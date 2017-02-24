@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\GraphNodes;
 
 /**
@@ -28,9 +30,9 @@ namespace Facebook\GraphNodes;
  *
  * @package Facebook
  */
-
 class GraphAchievement extends GraphNode
 {
+
     /**
      * @var array Maps object key names to Graph object types.
      */
@@ -110,4 +112,5 @@ class GraphAchievement extends GraphNode
     {
         return $this->getField('no_feed_story');
     }
+
 }

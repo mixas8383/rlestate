@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\FileUpload;
 
 /**
@@ -30,4 +32,5 @@ namespace Facebook\FileUpload;
  */
 class FacebookVideo extends FacebookFile
 {
+    
 }

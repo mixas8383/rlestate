@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\Helpers;
 
 /**
@@ -30,6 +32,7 @@ namespace Facebook\Helpers;
  */
 class FacebookCanvasHelper extends FacebookSignedRequestFromInputHelper
 {
+
     /**
      * Returns the app data value.
      *
@@ -47,6 +50,7 @@ class FacebookCanvasHelper extends FacebookSignedRequestFromInputHelper
      */
     public function getRawSignedRequest()
     {
-        return $this->getRawSignedRequestFromPost() ?: null;
+        return $this->getRawSignedRequestFromPost() ? : null;
     }
+
 }

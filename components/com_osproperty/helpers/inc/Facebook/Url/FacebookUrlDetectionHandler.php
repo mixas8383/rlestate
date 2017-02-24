@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\Url;
 
 /**
@@ -30,6 +32,7 @@ namespace Facebook\Url;
  */
 class FacebookUrlDetectionHandler implements UrlDetectionInterface
 {
+
     /**
      * @inheritdoc
      */
@@ -57,16 +60,18 @@ class FacebookUrlDetectionHandler implements UrlDetectionInterface
     {
         // Check for proxy first
         $protocol = $this->getHeader('X_FORWARDED_PROTO');
-        if ($protocol) {
+        if ($protocol)
+        {
             return $this->protocolWithActiveSsl($protocol);
         }
 
         $protocol = $this->getServerVar('HTTPS');
-        if ($protocol) {
+        if ($protocol)
+        {
             return $this->protocolWithActiveSsl($protocol);
         }
 
-        return (string)$this->getServerVar('SERVER_PORT') === '443';
+        return (string) $this->getServerVar('SERVER_PORT') === '443';
     }
 
     /**
@@ -78,7 +83,7 @@ class FacebookUrlDetectionHandler implements UrlDetectionInterface
      */
     protected function protocolWithActiveSsl($protocol)
     {
-        $protocol = strtolower((string)$protocol);
+        $protocol = strtolower((string) $protocol);
 
         return in_array($protocol, ['on', '1', 'https', 'ssl'], true);
     }
@@ -95,11 +100,14 @@ class FacebookUrlDetectionHandler implements UrlDetectionInterface
     protected function getHostName()
     {
         // Check for proxy first
-        if ($host = $this->getHeader('X_FORWARDED_HOST')) {
+        if ($host = $this->getHeader('X_FORWARDED_HOST'))
+        {
             $elements = explode(',', $host);
             $host = $elements[count($elements) - 1];
-        } elseif (!$host = $this->getHeader('HOST')) {
-            if (!$host = $this->getServerVar('SERVER_NAME')) {
+        } elseif (!$host = $this->getHeader('HOST'))
+        {
+            if (!$host = $this->getServerVar('SERVER_NAME'))
+            {
                 $host = $this->getServerVar('SERVER_ADDR');
             }
         }
@@ -114,7 +122,8 @@ class FacebookUrlDetectionHandler implements UrlDetectionInterface
         $appendPort = ':' . $port;
 
         // Don't append port number if a normal port.
-        if (($scheme == 'http' && $port == '80') || ($scheme == 'https' && $port == '443')) {
+        if (($scheme == 'http' && $port == '80') || ($scheme == 'https' && $port == '443'))
+        {
             $appendPort = '';
         }
 
@@ -125,16 +134,18 @@ class FacebookUrlDetectionHandler implements UrlDetectionInterface
     {
         // Check for proxy first
         $port = $this->getHeader('X_FORWARDED_PORT');
-        if ($port) {
-            return (string)$port;
+        if ($port)
+        {
+            return (string) $port;
         }
 
-        $protocol = (string)$this->getHeader('X_FORWARDED_PROTO');
-        if ($protocol === 'https') {
+        $protocol = (string) $this->getHeader('X_FORWARDED_PROTO');
+        if ($protocol === 'https')
+        {
             return '443';
         }
 
-        return (string)$this->getServerVar('SERVER_PORT');
+        return (string) $this->getServerVar('SERVER_PORT');
     }
 
     /**
@@ -160,4 +171,5 @@ class FacebookUrlDetectionHandler implements UrlDetectionInterface
     {
         return $this->getServerVar('HTTP_' . $key);
     }
+
 }

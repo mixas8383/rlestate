@@ -1,35 +1,35 @@
 .cpanel div.icon, #cpanel div.icon {
-	text-align: center;
-	margin-right: 15px;
-	float: left;
-	margin-bottom: 15px;
+    text-align: center;
+    margin-right: 15px;
+    float: left;
+    margin-bottom: 15px;
 
 }
 .cpanel div.icon a, #cpanel div.icon a {
-	background-color: #fff;
-	background-position: -30px;
-	display: block;
-	float: left;
-	height: 120px !important;
-	width: 108px;
-	color: #565656;
-	vertical-align: middle;
-	text-decoration: none;
-	border: 1px solid #CCC;
+    background-color: #fff;
+    background-position: -30px;
+    display: block;
+    float: left;
+    height: 120px !important;
+    width: 108px;
+    color: #565656;
+    vertical-align: middle;
+    text-decoration: none;
+    border: 1px solid #CCC;
 
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	-webkit-transition-property:
-		background-position,
-		-webkit-border-bottom-left-radius,
-		-webkit-box-shadow;
-	-moz-transition-property:
-		background-position,
-		-moz-border-radius-bottomleft,
-		-moz-box-shadow;
-	-webkit-transition-duration: 0.8s;
-	-moz-transition-duration: 0.8s;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-transition-property:
+        background-position,
+        -webkit-border-bottom-left-radius,
+        -webkit-box-shadow;
+    -moz-transition-property:
+        background-position,
+        -moz-border-radius-bottomleft,
+        -moz-box-shadow;
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
 }
 
 .admin .header{
@@ -45,27 +45,27 @@
 .cpanel div.icon a:hover,
 .cpanel div.icon a:focus,
 .cpanel div.icon a:active {
-	background-position: 0;
-	-webkit-border-bottom-left-radius: 50% 20px;
-	-moz-border-radius-bottomleft: 50% 20px;
-	border-bottom-left-radius: 50% 20px;
-	-webkit-box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
-	-moz-box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
-	box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
-	position: relative;
-	z-index: 10;
+    background-position: 0;
+    -webkit-border-bottom-left-radius: 50% 20px;
+    -moz-border-radius-bottomleft: 50% 20px;
+    border-bottom-left-radius: 50% 20px;
+    -webkit-box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
+    box-shadow: -5px 10px 15px rgba(0, 0, 0, 0.25);
+    position: relative;
+    z-index: 10;
 }
 
 #cpanel img,
 .cpanel img {
-	padding: 10px 0;
-	margin: 0 auto;
+    padding: 10px 0;
+    margin: 0 auto;
 }
 
 #cpanel span,
 .cpanel span {
-	display: block;
-	text-align: center;
+    display: block;
+    text-align: center;
 }
 
 
@@ -94,22 +94,22 @@ table.admintable td.key.vtop {
     vertical-align: top;
 }
 .required{
-	color:orange;
+    color:orange;
 }
 
 
 .icon-48-logo48{
-	background-image:url("../images/assets/logo48.png");
+    background-image:url("../images/assets/logo48.png");
 }
 
 fieldset#filter-bar {
-	height: 35px;
-	border: 0;
-	border-bottom: 1px solid #d5d5d5;
+    height: 35px;
+    border: 0;
+    border-bottom: 1px solid #d5d5d5;
 }
 
 label.filter-search-lbl {
-	margin-left: 5px;
+    margin-left: 5px;
 }
 
 .clrlft		{clear: left;}
@@ -276,18 +276,18 @@ div.width-100	{width: 100%;}
 }
 
 .td_warning{
-	border:1px solid red;
-	background-color:pink;
-	color:red;
-	padding:10px;
+    border:1px solid red;
+    background-color:pink;
+    color:red;
+    padding:10px;
 }
 
 #result_zipfile ul li{
-	position:relative;
-	float:left;
-	margin:0 0 10px 10px;
-	padding:10px 7px 10px 13px;
-	border: 1px solid #DDDDDD;
+    position:relative;
+    float:left;
+    margin:0 0 10px 10px;
+    padding:10px 7px 10px 13px;
+    border: 1px solid #DDDDDD;
     border-radius: 4px 4px 4px 4px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
     display: block;
@@ -295,166 +295,166 @@ div.width-100	{width: 100%;}
     transition: all 0.2s ease-in-out 0s;
 }
 #result_zipfile .icon-check{
-   position: absolute;
-	   right: 12px;
+    position: absolute;
+    right: 12px;
 }
 #result_zipfile ul li img{
-	margin:0px !important;
+    margin:0px !important;
 }
 .qick-photo-background{
-	cursor: pointer;
-	background:#DDDDDD;
+    cursor: pointer;
+    background:#DDDDDD;
 }
 #result_zipfile ul li.active{
-	background:#DDDDDD;
+    background:#DDDDDD;
 }
 #select_all{
-	margin-left:20px;
+    margin-left:20px;
 }
 #result_zipfile textarea{
-	margin:10px 0 0 0;
+    margin:10px 0 0 0;
 }
 
 #property_open_table, #property_tax_table, #property_history_table , #property_tag_table{
-	border-left:1px solid #CCC;
-	border-right:1px solid #CCC;
+    border-left:1px solid #CCC;
+    border-right:1px solid #CCC;
 }
 
 #property_tag_table tr th,#property_open_table tr th, #property_tax_table tr th, #property_history_table tr th{
-	padding:5px;
-	text-align:center;
-	background-color:gray;
-	color:white;
-	font-weight:bold;
+    padding:5px;
+    text-align:center;
+    background-color:gray;
+    color:white;
+    font-weight:bold;
 }
 #property_tag_table tr td,#property_open_table tr td,#property_tax_table tr td,#property_history_table tr td{
-	padding:5px;
-	text-align:center;
-	border-bottom:1px solid #CCC;
-	color:white;
-	font-weight:bold;
+    padding:5px;
+    text-align:center;
+    border-bottom:1px solid #CCC;
+    color:white;
+    font-weight:bold;
 }
 
 @font-face {
-	font-family: 'IcoMoon';
-	src: url('icomoon/IcoMoon.eot');
-	src: url('icomoon/IcoMoon.eot?#iefix') format('embedded-opentype'), url('icomoon/IcoMoon.svg#IcoMoon') format('svg'), url('icomoon/IcoMoon.woff') format('woff'), url('icomoon/IcoMoon.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
+    font-family: 'IcoMoon';
+    src: url('icomoon/IcoMoon.eot');
+    src: url('icomoon/IcoMoon.eot?#iefix') format('embedded-opentype'), url('icomoon/IcoMoon.svg#IcoMoon') format('svg'), url('icomoon/IcoMoon.woff') format('woff'), url('icomoon/IcoMoon.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 [data-icon]:before {
-	font-family: 'IcoMoon';
-	content: attr(data-icon);
-	speak: none;
+    font-family: 'IcoMoon';
+    content: attr(data-icon);
+    speak: none;
 }
 [class^="osicon-"],
 [class*=" osicon-"] {
-	display: inline-block;
-	width: 14px;
-	height: 14px;
-	*margin-right: .3em;
-	line-height: 14px;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    *margin-right: .3em;
+    line-height: 14px;
 }
 [class^="osicon-"]:before,
 [class*=" osicon-"]:before {
-	font-family: 'IcoMoon';
-	font-style: normal;
-	speak: none;
+    font-family: 'IcoMoon';
+    font-style: normal;
+    speak: none;
 }
 .osicon-star-empty:before {
-	content: "\40" !important;
+    content: "\40" !important;
 }
 .osicon-featured:before,
 .osicon-star:before {
-	content: "\42" !important;
+    content: "\42" !important;
 }
 
 
 .transaction_details_table{
-	border:1px solid #CCC;
-	font-size:12px;
-	width:100%;
+    border:1px solid #CCC;
+    font-size:12px;
+    width:100%;
 }
 
 .transaction_details_table_td1{
-	width:100%;
-	padding:10px;
-	text-align:left;
-	vertical-align:top;
+    width:100%;
+    padding:10px;
+    text-align:left;
+    vertical-align:top;
 }
 
 .transaction_details_table_td1 span{
-	font-weight:bold;
-	display: inline;
-	line-height: 125%;
-	padding: 0;
-	color: #C88039;
-	font-size: 1.33em;
+    font-weight:bold;
+    display: inline;
+    line-height: 125%;
+    padding: 0;
+    color: #C88039;
+    font-size: 1.33em;
 }
 
 .transaction_details_table_td2{
-	padding:10px;
-	background-color:#F9F9CF;
-	font-size:12px;
-	text-align:right;
+    padding:10px;
+    background-color:#F9F9CF;
+    font-size:12px;
+    text-align:right;
 }
 
 .transaction_details_table_td3{
-	padding:10px;
-	border-bottom:1px dotted #CCC;
-	text-align:center;
+    padding:10px;
+    border-bottom:1px dotted #CCC;
+    text-align:center;
 }
 
 .transaction_details_table_td4{
-	padding:10px;
-	border-bottom:1px dotted #CCC;
-	text-align:center;
+    padding:10px;
+    border-bottom:1px dotted #CCC;
+    text-align:center;
 }
 
 .transaction_details_table_td5{
-	padding:10px;border-bottom:1px dotted #CCC;
-	text-align:center;
+    padding:10px;border-bottom:1px dotted #CCC;
+    text-align:center;
 }
 
 .td_header_cart{
-	background-color:#E5E5E5;
-	padding-left:10px;
-	padding:5px;
-	font-size:13px;
-	font-weight:bold;
-	border-right:1px solid white;
-	text-align:left;
+    background-color:#E5E5E5;
+    padding-left:10px;
+    padding:5px;
+    font-size:13px;
+    font-weight:bold;
+    border-right:1px solid white;
+    text-align:left;
 }
 
 .td_header_cart_item{
-	background-color:white;
-	border-bottom:1px solid #E5E5E5;
-	padding:5px;
-	text-align:left;
-	padding-left:10px;
-	border-right:1px solid #E5E5E5;
-	font-size:12px;
+    background-color:white;
+    border-bottom:1px solid #E5E5E5;
+    padding:5px;
+    text-align:left;
+    padding-left:10px;
+    border-right:1px solid #E5E5E5;
+    font-size:12px;
 }
 
 .order_total_label{
-	background-color:#D4DDFB;color:red;
-	width:45%;
+    background-color:#D4DDFB;color:red;
+    width:45%;
 }
 
 .order_total_price{
-	background-color:#D4DDFB;
-	width:15%;
+    background-color:#D4DDFB;
+    width:15%;
 }
 
 .order_info_data_right{
-	padding:5px;
-	width:50%;
-	text-align:right;
+    padding:5px;
+    width:50%;
+    text-align:right;
 }
 .order_info_data_left{
-	padding:5px;
-	width:50%;
-	text-align:left;
+    padding:5px;
+    width:50%;
+    text-align:left;
 }
 
 .js-stools-field-filter{
@@ -470,7 +470,7 @@ div.width-100	{width: 100%;}
 }
 .js-stools-container-filters{
     margin-top:10px;
-	display:block !important;
+    display:block !important;
 }
 
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
@@ -478,35 +478,35 @@ div.width-100	{width: 100%;}
 }
 
 .version-checking{
-	font-size:11px;
-	color:gray;
-	text-align:center;
+    font-size:11px;
+    color:gray;
+    text-align:center;
 }
 
 .version-checking-alert{
-	font-size:14px;
-	color:red;
-	text-align:center;
+    font-size:14px;
+    color:red;
+    text-align:center;
 }
 
 .version-checking-noalert{
-	font-size:13px;
-	color:green;
-	text-align:center;
+    font-size:13px;
+    color:green;
+    text-align:center;
 }
 
 .panel h3 a {
-	font-size:15px !important;
-	text-decoration:none;
-	margin-left:10px;
-	font-style:normal !important;
-	color:#666 !important;
-	text-transform:uppercase;
+    font-size:15px !important;
+    text-decoration:none;
+    margin-left:10px;
+    font-style:normal !important;
+    color:#666 !important;
+    text-transform:uppercase;
 }
 
 .panel h3{
-	margin:1px 0 !important;
-	background-color:#F7F7F7;
-	border:1px solid #CCC;
-	padding:5px;
+    margin:1px 0 !important;
+    background-color:#F7F7F7;
+    border:1px solid #CCC;
+    padding:5px;
 }

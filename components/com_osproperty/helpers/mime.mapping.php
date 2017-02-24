@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @version		$Id: mime.mapping.php 953 2009-10-14 20:38:38Z mathias $
  * @category	DOCman
@@ -7,8 +8,7 @@
  * @license		GNU GPLv2 <http://www.gnu.org/licenses/old-licenses/gpl-2.0.html>
  * @link     	http://www.joomladocman.org
  */
-
-defined('_JEXEC') or die ;
+defined('_JEXEC') or die;
 
 $mime_extension_map = array('__MAXPERIOD__' => '1',
     '3ds' => 'image/x-3ds',
@@ -461,4 +461,4 @@ $mime_extension_map = array('__MAXPERIOD__' => '1',
     'zoo' => 'application/x-zoo',
     '123' => 'application/vnd.lotus-1-2-3',
     '669' => 'audio/x-mod'
-    );
+);

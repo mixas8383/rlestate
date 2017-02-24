@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\Helpers;
 
 use Facebook\FacebookApp;
@@ -33,6 +35,7 @@ use Facebook\FacebookClient;
  */
 class FacebookPageTabHelper extends FacebookCanvasHelper
 {
+
     /**
      * @var array|null
      */
@@ -49,7 +52,8 @@ class FacebookPageTabHelper extends FacebookCanvasHelper
     {
         parent::__construct($app, $client, $graphVersion);
 
-        if (!$this->signedRequest) {
+        if (!$this->signedRequest)
+        {
             return;
         }
 
@@ -66,7 +70,8 @@ class FacebookPageTabHelper extends FacebookCanvasHelper
      */
     public function getPageData($key, $default = null)
     {
-        if (isset($this->pageData[$key])) {
+        if (isset($this->pageData[$key]))
+        {
             return $this->pageData[$key];
         }
 
@@ -92,4 +97,5 @@ class FacebookPageTabHelper extends FacebookCanvasHelper
     {
         return $this->getPageData('id');
     }
+
 }

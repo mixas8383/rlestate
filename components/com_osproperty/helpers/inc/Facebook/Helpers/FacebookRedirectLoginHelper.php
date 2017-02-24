@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\Helpers;
 
 use Facebook\Authentication\AccessToken;
@@ -43,6 +45,7 @@ use Facebook\Exceptions\FacebookSDKException;
  */
 class FacebookRedirectLoginHelper
 {
+
     /**
      * @const int The length of CSRF string to validate the login link.
      */
@@ -53,15 +56,18 @@ class FacebookRedirectLoginHelper
      */
     protected $oAuth2Client;
 
+
     /**
      * @var UrlDetectionInterface The URL detection handler.
      */
     protected $urlDetectionHandler;
 
+
     /**
      * @var PersistentDataInterface The persistent data handler.
      */
     protected $persistentDataHandler;
+
 
     /**
      * @var PseudoRandomStringGeneratorInterface The cryptographically secure pseudo-random string generator.
@@ -77,9 +83,9 @@ class FacebookRedirectLoginHelper
     public function __construct(OAuth2Client $oAuth2Client, PersistentDataInterface $persistentDataHandler = null, UrlDetectionInterface $urlHandler = null, PseudoRandomStringGeneratorInterface $prsg = null)
     {
         $this->oAuth2Client = $oAuth2Client;
-        $this->persistentDataHandler = $persistentDataHandler ?: new FacebookSessionPersistentDataHandler();
-        $this->urlDetectionHandler = $urlHandler ?: new FacebookUrlDetectionHandler();
-        $this->pseudoRandomStringGenerator = $prsg ?: $this->detectPseudoRandomStringGenerator();
+        $this->persistentDataHandler = $persistentDataHandler ? : new FacebookSessionPersistentDataHandler();
+        $this->urlDetectionHandler = $urlHandler ? : new FacebookUrlDetectionHandler();
+        $this->pseudoRandomStringGenerator = $prsg ? : $this->detectPseudoRandomStringGenerator();
     }
 
     /**
@@ -123,15 +129,18 @@ class FacebookRedirectLoginHelper
     {
         // Since openssl_random_pseudo_bytes() can sometimes return non-cryptographically
         // secure pseudo-random strings (in rare cases), we check for mcrypt_create_iv() first.
-        if (function_exists('mcrypt_create_iv')) {
+        if (function_exists('mcrypt_create_iv'))
+        {
             return new McryptPseudoRandomStringGenerator();
         }
 
-        if (function_exists('openssl_random_pseudo_bytes')) {
+        if (function_exists('openssl_random_pseudo_bytes'))
+        {
             return new OpenSslPseudoRandomStringGenerator();
         }
 
-        if (!ini_get('open_basedir') && is_readable('/dev/urandom')) {
+        if (!ini_get('open_basedir') && is_readable('/dev/urandom'))
+        {
             return new UrandomPseudoRandomStringGenerator();
         }
 
@@ -183,11 +192,13 @@ class FacebookRedirectLoginHelper
      */
     public function getLogoutUrl($accessToken, $next, $separator = '&')
     {
-        if (!$accessToken instanceof AccessToken) {
+        if (!$accessToken instanceof AccessToken)
+        {
             $accessToken = new AccessToken($accessToken);
         }
 
-        if ($accessToken->isAppAccessToken()) {
+        if ($accessToken->isAppAccessToken())
+        {
             throw new FacebookSDKException('Cannot generate a logout URL with an app access token.', 722);
         }
 
@@ -242,13 +253,14 @@ class FacebookRedirectLoginHelper
      */
     public function getAccessToken($redirectUrl = null)
     {
-        if (!$code = $this->getCode()) {
+        if (!$code = $this->getCode())
+        {
             return null;
         }
 
         $this->validateCsrf();
 
-        $redirectUrl = $redirectUrl ?: $this->urlDetectionHandler->getCurrentUrl();
+        $redirectUrl = $redirectUrl ? : $this->urlDetectionHandler->getCurrentUrl();
         // At minimum we need to remove the state param
         $redirectUrl = FacebookUrlManipulator::removeParamsFromUrl($redirectUrl, ['state']);
 
@@ -265,23 +277,27 @@ class FacebookRedirectLoginHelper
         $state = $this->getState();
         $savedState = $this->persistentDataHandler->get('state');
 
-        if (!$state || !$savedState) {
+        if (!$state || !$savedState)
+        {
             throw new FacebookSDKException('Cross-site request forgery validation failed. Required param "state" missing.');
         }
 
         $savedLen = strlen($savedState);
         $givenLen = strlen($state);
 
-        if ($savedLen !== $givenLen) {
+        if ($savedLen !== $givenLen)
+        {
             throw new FacebookSDKException('Cross-site request forgery validation failed. The "state" param from the URL and session do not match.');
         }
 
         $result = 0;
-        for ($i = 0; $i < $savedLen; $i++) {
+        for ($i = 0; $i < $savedLen; $i++)
+        {
             $result |= ord($state[$i]) ^ ord($savedState[$i]);
         }
 
-        if ($result !== 0) {
+        if ($result !== 0)
+        {
             throw new FacebookSDKException('Cross-site request forgery validation failed. The "state" param from the URL and session do not match.');
         }
     }
@@ -357,4 +373,5 @@ class FacebookRedirectLoginHelper
     {
         return isset($_GET[$key]) ? $_GET[$key] : null;
     }
+
 }

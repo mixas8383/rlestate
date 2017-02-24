@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook;
 
 use ArrayIterator;
@@ -36,10 +38,12 @@ use Facebook\Exceptions\FacebookSDKException;
  */
 class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate, ArrayAccess
 {
+
     /**
      * @var array An array of FacebookRequest entities to send.
      */
     protected $requests;
+
 
     /**
      * @var array An array of files to upload.
@@ -73,15 +77,18 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
      */
     public function add($request, $name = null)
     {
-        if (is_array($request)) {
-            foreach ($request as $key => $req) {
+        if (is_array($request))
+        {
+            foreach ($request as $key => $req)
+            {
                 $this->add($req, $key);
             }
 
             return $this;
         }
 
-        if (!$request instanceof FacebookRequest) {
+        if (!$request instanceof FacebookRequest)
+        {
             throw new \InvalidArgumentException('Argument for add() must be of type array or FacebookRequest.');
         }
 
@@ -93,7 +100,8 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
 
         // File uploads
         $attachedFiles = $this->extractFileAttachments($request);
-        if ($attachedFiles) {
+        if ($attachedFiles)
+        {
             $requestToAdd['attached_files'] = $attachedFiles;
         }
         $this->requests[] = $requestToAdd;
@@ -110,17 +118,21 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
      */
     public function addFallbackDefaults(FacebookRequest $request)
     {
-        if (!$request->getApp()) {
+        if (!$request->getApp())
+        {
             $app = $this->getApp();
-            if (!$app) {
+            if (!$app)
+            {
                 throw new FacebookSDKException('Missing FacebookApp on FacebookRequest and no fallback detected on FacebookBatchRequest.');
             }
             $request->setApp($app);
         }
 
-        if (!$request->getAccessToken()) {
+        if (!$request->getAccessToken())
+        {
             $accessToken = $this->getAccessToken();
-            if (!$accessToken) {
+            if (!$accessToken)
+            {
                 throw new FacebookSDKException('Missing access token on FacebookRequest and no fallback detected on FacebookBatchRequest.');
             }
             $request->setAccessToken($accessToken);
@@ -138,13 +150,15 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
      */
     public function extractFileAttachments(FacebookRequest $request)
     {
-        if (!$request->containsFileUploads()) {
+        if (!$request->containsFileUploads())
+        {
             return null;
         }
 
         $files = $request->getFiles();
         $fileNames = [];
-        foreach ($files as $file) {
+        foreach ($files as $file)
+        {
             $fileName = uniqid();
             $this->addFile($fileName, $file);
             $fileNames[] = $fileName;
@@ -190,7 +204,8 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
     public function convertRequestsToJson()
     {
         $requests = [];
-        foreach ($this->requests as $request) {
+        foreach ($this->requests as $request)
+        {
             $attachedFiles = isset($request['attached_files']) ? $request['attached_files'] : null;
             $requests[] = $this->requestEntityToBatchArray($request['request'], $request['name'], $attachedFiles);
         }
@@ -206,9 +221,11 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
     public function validateBatchRequestCount()
     {
         $batchCount = count($this->requests);
-        if ($batchCount === 0) {
+        if ($batchCount === 0)
+        {
             throw new FacebookSDKException('There are no batch requests to send.');
-        } elseif ($batchCount > 50) {
+        } elseif ($batchCount > 50)
+        {
             // Per: https://developers.facebook.com/docs/graph-api/making-multiple-requests#limits
             throw new FacebookSDKException('You cannot send more than 50 batch requests at a time.');
         }
@@ -227,7 +244,8 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
     {
         $compiledHeaders = [];
         $headers = $request->getHeaders();
-        foreach ($headers as $name => $value) {
+        foreach ($headers as $name => $value)
+        {
             $compiledHeaders[] = $name . ': ' . $value;
         }
 
@@ -240,15 +258,18 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
         // Since file uploads are moved to the root request of a batch request,
         // the child requests will always be URL-encoded.
         $body = $request->getUrlEncodedBody()->getBody();
-        if ($body) {
+        if ($body)
+        {
             $batch['body'] = $body;
         }
 
-        if (isset($requestName)) {
+        if (isset($requestName))
+        {
             $batch['name'] = $requestName;
         }
 
-        if (isset($attachedFiles)) {
+        if (isset($attachedFiles))
+        {
             $batch['attached_files'] = $attachedFiles;
         }
 
@@ -300,4 +321,5 @@ class FacebookBatchRequest extends FacebookRequest implements IteratorAggregate,
     {
         return isset($this->requests[$offset]) ? $this->requests[$offset] : null;
     }
+
 }

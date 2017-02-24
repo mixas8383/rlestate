@@ -127,7 +127,7 @@
 .navbar-inverse .btn-navbar:active,.navbar-inverse .btn-navbar.active{background-color:#000 \9}
 textarea,input[type="text"],input[type="password"],input[type="datetime"],input[type="datetime-local"],input[type="date"],input[type="month"],input[type="time"],input[type="week"],input[type="number"],input[type="email"],input[type="url"],input[type="search"],input[type="tel"],input[type="color"],.uneditable-input{min-height:20px}
 @media (min-width: 320px) and (max-width: 480px) {
- .navbar .nav > li {
-  float:none;
- }
+    .navbar .nav > li {
+        float:none;
+    }
 }

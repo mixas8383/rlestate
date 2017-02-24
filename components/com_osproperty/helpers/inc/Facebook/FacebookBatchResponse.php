@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook;
 
 use ArrayIterator;
@@ -34,10 +36,12 @@ use ArrayAccess;
  */
 class FacebookBatchResponse extends FacebookResponse implements IteratorAggregate, ArrayAccess
 {
+
     /**
      * @var FacebookBatchRequest The original entity that made the batch request.
      */
     protected $batchRequest;
+
 
     /**
      * @var array An array of FacebookResponse entities.
@@ -84,7 +88,8 @@ class FacebookBatchResponse extends FacebookResponse implements IteratorAggregat
     {
         $this->responses = [];
 
-        foreach ($responses as $key => $graphResponse) {
+        foreach ($responses as $key => $graphResponse)
+        {
             $this->addResponse($key, $graphResponse);
         }
     }
@@ -105,10 +110,7 @@ class FacebookBatchResponse extends FacebookResponse implements IteratorAggregat
         $httpResponseHeaders = isset($response['headers']) ? $response['headers'] : [];
 
         $this->responses[$originalRequestName] = new FacebookResponse(
-            $originalRequest,
-            $httpResponseBody,
-            $httpResponseCode,
-            $httpResponseHeaders
+                $originalRequest, $httpResponseBody, $httpResponseCode, $httpResponseHeaders
         );
     }
 
@@ -151,4 +153,5 @@ class FacebookBatchResponse extends FacebookResponse implements IteratorAggregat
     {
         return isset($this->responses[$offset]) ? $this->responses[$offset] : null;
     }
+
 }

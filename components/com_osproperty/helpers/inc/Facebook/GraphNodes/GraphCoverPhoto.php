@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\GraphNodes;
 
 /**
@@ -30,6 +32,7 @@ namespace Facebook\GraphNodes;
  */
 class GraphCoverPhoto extends GraphNode
 {
+
     /**
      * Returns the id of cover if it exists
      *
@@ -39,7 +42,7 @@ class GraphCoverPhoto extends GraphNode
     {
         return $this->getField('id');
     }
-    
+
     /**
      * Returns the source of cover if it exists
      *
@@ -69,4 +72,5 @@ class GraphCoverPhoto extends GraphNode
     {
         return $this->getField('offset_y');
     }
+
 }

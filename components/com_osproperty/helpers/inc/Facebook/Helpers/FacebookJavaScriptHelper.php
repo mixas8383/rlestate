@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\Helpers;
 
 /**
@@ -30,6 +32,7 @@ namespace Facebook\Helpers;
  */
 class FacebookJavaScriptHelper extends FacebookSignedRequestFromInputHelper
 {
+
     /**
      * Get raw signed request from the cookie.
      *
@@ -39,4 +42,5 @@ class FacebookJavaScriptHelper extends FacebookSignedRequestFromInputHelper
     {
         return $this->getRawSignedRequestFromCookie();
     }
+
 }

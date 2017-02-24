@@ -41,7 +41,7 @@ html[xmlns] .favs{display:block}
 .fav-control-thumbs .fav-active{opacity:1;cursor:default;filter:alpha(opacity=100)}
 #carousel1 li:active img{opacity:1}
 @media screen and (max-width: 860px) {
-.fav-direction-nav .fav-prev{opacity:1;filter:alpha(opacity=100);left:0}
-.fav-direction-nav .fav-next{opacity:1;filter:alpha(opacity=100);right:0}
+    .fav-direction-nav .fav-prev{opacity:1;filter:alpha(opacity=100);left:0}
+    .fav-direction-nav .fav-next{opacity:1;filter:alpha(opacity=100);right:0}
 }
 .favslider1 li:before{display:none}

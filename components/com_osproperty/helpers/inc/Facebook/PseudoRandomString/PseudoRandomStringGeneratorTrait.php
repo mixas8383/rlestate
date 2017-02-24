@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,10 +22,12 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\PseudoRandomString;
 
 trait PseudoRandomStringGeneratorTrait
 {
+
     /**
      * Validates the length argument of a random string.
      *
@@ -34,11 +37,13 @@ trait PseudoRandomStringGeneratorTrait
      */
     public function validateLength($length)
     {
-        if (!is_int($length)) {
+        if (!is_int($length))
+        {
             throw new \InvalidArgumentException('getPseudoRandomString() expects an integer for the string length');
         }
 
-        if ($length < 1) {
+        if ($length < 1)
+        {
             throw new \InvalidArgumentException('getPseudoRandomString() expects a length greater than 1');
         }
     }
@@ -55,4 +60,5 @@ trait PseudoRandomStringGeneratorTrait
     {
         return mb_substr(bin2hex($binaryData), 0, $length);
     }
+
 }

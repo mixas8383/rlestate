@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,16 +22,19 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook;
 
 use Facebook\Authentication\AccessToken;
 
 class FacebookApp implements \Serializable
 {
+
     /**
      * @var string The app ID.
      */
     protected $id;
+
 
     /**
      * @var string The app secret.
@@ -98,4 +102,5 @@ class FacebookApp implements \Serializable
 
         $this->__construct($id, $secret);
     }
+
 }

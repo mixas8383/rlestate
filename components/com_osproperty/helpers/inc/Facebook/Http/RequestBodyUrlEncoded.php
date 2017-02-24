@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\Http;
 
 /**
@@ -30,6 +32,7 @@ namespace Facebook\Http;
  */
 class RequestBodyUrlEncoded implements RequestBodyInterface
 {
+
     /**
      * @var array The parameters to send with this request.
      */
@@ -52,4 +55,5 @@ class RequestBodyUrlEncoded implements RequestBodyInterface
     {
         return http_build_query($this->params, null, '&');
     }
+
 }

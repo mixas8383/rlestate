@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\HttpClients;
 
 /**
@@ -126,4 +128,5 @@ class FacebookCurl
     {
         curl_close($this->curl);
     }
+
 }

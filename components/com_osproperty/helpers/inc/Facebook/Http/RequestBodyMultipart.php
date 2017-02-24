@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\Http;
 
 use Facebook\FileUpload\FacebookFile;
@@ -36,15 +38,18 @@ use Facebook\FileUpload\FacebookFile;
  */
 class RequestBodyMultipart implements RequestBodyInterface
 {
+
     /**
      * @var string The boundary.
      */
     private $boundary;
 
+
     /**
      * @var array The parameters to send with this request.
      */
     private $params;
+
 
     /**
      * @var array The files to send with this request.
@@ -60,7 +65,7 @@ class RequestBodyMultipart implements RequestBodyInterface
     {
         $this->params = $params;
         $this->files = $files;
-        $this->boundary = $boundary ?: uniqid();
+        $this->boundary = $boundary ? : uniqid();
     }
 
     /**
@@ -72,12 +77,14 @@ class RequestBodyMultipart implements RequestBodyInterface
 
         // Compile normal params
         $params = $this->getNestedParams($this->params);
-        foreach ($params as $k => $v) {
+        foreach ($params as $k => $v)
+        {
             $body .= $this->getParamString($k, $v);
         }
 
         // Compile files
-        foreach ($this->files as $k => $v) {
+        foreach ($this->files as $k => $v)
+        {
             $body .= $this->getFileString($k, $v);
         }
 
@@ -108,12 +115,7 @@ class RequestBodyMultipart implements RequestBodyInterface
     private function getFileString($name, FacebookFile $file)
     {
         return sprintf(
-            "--%s\r\nContent-Disposition: form-data; name=\"%s\"; filename=\"%s\"%s\r\n\r\n%s\r\n",
-            $this->boundary,
-            $name,
-            $file->getFileName(),
-            $this->getFileHeaders($file),
-            $file->getContents()
+                "--%s\r\nContent-Disposition: form-data; name=\"%s\"; filename=\"%s\"%s\r\n\r\n%s\r\n", $this->boundary, $name, $file->getFileName(), $this->getFileHeaders($file), $file->getContents()
         );
     }
 
@@ -128,10 +130,7 @@ class RequestBodyMultipart implements RequestBodyInterface
     private function getParamString($name, $value)
     {
         return sprintf(
-            "--%s\r\nContent-Disposition: form-data; name=\"%s\"\r\n\r\n%s\r\n",
-            $this->boundary,
-            $name,
-            $value
+                "--%s\r\nContent-Disposition: form-data; name=\"%s\"\r\n\r\n%s\r\n", $this->boundary, $name, $value
         );
     }
 
@@ -148,7 +147,8 @@ class RequestBodyMultipart implements RequestBodyInterface
         $params = explode('&', $query);
         $result = [];
 
-        foreach ($params as $param) {
+        foreach ($params as $param)
+        {
             list($key, $value) = explode('=', $param, 2);
             $result[urldecode($key)] = urldecode($value);
         }
@@ -167,4 +167,5 @@ class RequestBodyMultipart implements RequestBodyInterface
     {
         return "\r\nContent-Type: {$file->getMimetype()}";
     }
+
 }

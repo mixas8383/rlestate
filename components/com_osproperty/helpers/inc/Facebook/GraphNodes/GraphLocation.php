@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\GraphNodes;
 
 /**
@@ -30,6 +32,7 @@ namespace Facebook\GraphNodes;
  */
 class GraphLocation extends GraphNode
 {
+
     /**
      * Returns the street component of the location
      *
@@ -99,4 +102,5 @@ class GraphLocation extends GraphNode
     {
         return $this->getField('longitude');
     }
+
 }

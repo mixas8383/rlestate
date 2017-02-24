@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\Authentication;
 
 /**
@@ -30,12 +32,14 @@ namespace Facebook\Authentication;
  */
 class AccessToken
 {
+
     /**
      * The access token value.
      *
      * @var string
      */
     protected $value = '';
+
 
     /**
      * Date when token expires.
@@ -53,7 +57,8 @@ class AccessToken
     public function __construct($accessToken, $expiresAt = 0)
     {
         $this->value = $accessToken;
-        if ($expiresAt) {
+        if ($expiresAt)
+        {
             $this->setExpiresAtFromTimeStamp($expiresAt);
         }
     }
@@ -97,11 +102,13 @@ class AccessToken
      */
     public function isLongLived()
     {
-        if ($this->expiresAt) {
+        if ($this->expiresAt)
+        {
             return $this->expiresAt->getTimestamp() > time() + (60 * 60 * 2);
         }
 
-        if ($this->isAppAccessToken()) {
+        if ($this->isAppAccessToken())
+        {
             return true;
         }
 
@@ -115,11 +122,13 @@ class AccessToken
      */
     public function isExpired()
     {
-        if ($this->getExpiresAt() instanceof \DateTime) {
+        if ($this->getExpiresAt() instanceof \DateTime)
+        {
             return $this->getExpiresAt()->getTimestamp() < time();
         }
 
-        if ($this->isAppAccessToken()) {
+        if ($this->isAppAccessToken())
+        {
             return false;
         }
 
@@ -157,4 +166,5 @@ class AccessToken
         $dt->setTimestamp($timeStamp);
         $this->expiresAt = $dt;
     }
+
 }

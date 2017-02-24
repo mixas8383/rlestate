@@ -1,100 +1,114 @@
 <div class="componentheading">
-    <?php echo $company->company_name?>
+    <?php echo $company->company_name ?>
     <?php
-    if($configClass['enable_report'] == 1){
-        JHTML::_('behavior.modal','a.osmodal');
+    if ($configClass['enable_report'] == 1)
+    {
+        JHTML::_('behavior.modal', 'a.osmodal');
         $translatable = JLanguageMultilang::isEnabled() && count($languages);
-        if($translatable){
+        if ($translatable)
+        {
             //$langfolder = str_replace("_","",$lang_suffix);
             $language = Jfactory::getLanguage();
             $language = $language->getTag();
-            $language = explode("-",$language);
+            $language = explode("-", $language);
             $langfolder = $language[0];
-            if(file_exists(JPATH_ROOT."/components/com_osproperty/images/assets/".$langfolder."/report.png")){
-                $report_image = JURI::root()."components/com_osproperty/images/assets/".$langfolder."/report.png";
-            }else{
-                $report_image = JURI::root()."components/com_osproperty/images/assets/report.png";
+            if (file_exists(JPATH_ROOT . "/components/com_osproperty/images/assets/" . $langfolder . "/report.png"))
+            {
+                $report_image = JURI::root() . "components/com_osproperty/images/assets/" . $langfolder . "/report.png";
+            } else
+            {
+                $report_image = JURI::root() . "components/com_osproperty/images/assets/report.png";
             }
-        }else{
-            $report_image = JURI::root()."components/com_osproperty/images/assets/report.png";
+        } else
+        {
+            $report_image = JURI::root() . "components/com_osproperty/images/assets/report.png";
         }
         ?>
-        <a href="<?php echo JURI::root()?>index.php?option=com_osproperty&tmpl=component&task=property_reportForm&item_type=2&id=<?php echo $company->id?>" class="osmodal" rel="{handler: 'iframe', size: {x: 350, y: 600}}" title="<?php echo JText::_('OS_REPORT_COMPANY');?>">
-            <img src="<?php echo $report_image?>" border="0">
+        <a href="<?php echo JURI::root() ?>index.php?option=com_osproperty&tmpl=component&task=property_reportForm&item_type=2&id=<?php echo $company->id ?>" class="osmodal" rel="{handler: 'iframe', size: {x: 350, y: 600}}" title="<?php echo JText::_('OS_REPORT_COMPANY'); ?>">
+            <img src="<?php echo $report_image ?>" border="0">
         </a>
-    <?php
+        <?php
     }
     ?>
 </div>
 <div class="row-fluid">
-	<div class="span3">
-		<?php
-		if($company->photo != ""){
-			if(file_exists(JPATH_ROOT.'/images/osproperty/company/'.$company->photo)){
-			?>
-				<img src='<?php echo JURI::root()?>images/osproperty/company/<?php echo $company->photo?>' border="0"  />
-			<?php
-			}else{
-				?>
-				<img src='<?php echo JURI::root()?>components/com_osproperty/images/assets/noimage.png' border="0"  />
-				<?php
-			}
-		}else{
-			?>
-			<img src='<?php echo JURI::root()?>components/com_osproperty/images/assets/noimage.png' class="img-polaroid"/>
-			<?php
-		}
-		?>
-	</div>
-	<div class="span5">
-		<?php
-		if($company->phone != ""){
-		?>
-		<div class="agent_phone">
-			</strong> <?php echo $company->phone;?>
-		</div>
-		<BR />
-		<?php
-		}
-		if($company->fax != ""){
-		?>
-		<div class="agent_fax">
-			<?php echo $company->fax;?></a>
-		</div>
-		<BR />
-		<?php
-		}
-		if($company->email != ""){
-		?>
-		<div class="agent_email">
-			<a href="mailto:<?php echo $company->email;?>"><?php echo $company->email;?></a>
-		</div>
-		<BR />
-		<?php
-		}
-		if($company->website != ""){
-		?>
-		
-		<div class="agent_website">
-			<a href="<?php echo "http://".str_replace("http://","",$company->website);?>" target="_blank"><?php echo $company->website;?></a>
-		</div>
-		<?php } ?>
-	</div>
-	<div class="span3">
-		<?php echo OSPHelper::generateAddress($company);?>
-	</div>
+    <div class="span3">
+        <?php
+        if ($company->photo != "")
+        {
+            if (file_exists(JPATH_ROOT . '/images/osproperty/company/' . $company->photo))
+            {
+                ?>
+                <img src='<?php echo JURI::root() ?>images/osproperty/company/<?php echo $company->photo ?>' border="0"  />
+                <?php
+            } else
+            {
+                ?>
+                <img src='<?php echo JURI::root() ?>components/com_osproperty/images/assets/noimage.png' border="0"  />
+                <?php
+            }
+        } else
+        {
+            ?>
+            <img src='<?php echo JURI::root() ?>components/com_osproperty/images/assets/noimage.png' class="img-polaroid"/>
+            <?php
+        }
+        ?>
+    </div>
+    <div class="span5">
+        <?php
+        if ($company->phone != "")
+        {
+            ?>
+            <div class="agent_phone">
+                </strong> <?php echo $company->phone; ?>
+            </div>
+            <BR />
+            <?php
+        }
+        if ($company->fax != "")
+        {
+            ?>
+            <div class="agent_fax">
+                <?php echo $company->fax; ?></a>
+            </div>
+            <BR />
+            <?php
+        }
+        if ($company->email != "")
+        {
+            ?>
+            <div class="agent_email">
+                <a href="mailto:<?php echo $company->email; ?>"><?php echo $company->email; ?></a>
+            </div>
+            <BR />
+            <?php
+        }
+        if ($company->website != "")
+        {
+            ?>
+
+            <div class="agent_website">
+                <a href="<?php echo "http://" . str_replace("http://", "", $company->website); ?>" target="_blank"><?php echo $company->website; ?></a>
+            </div>
+        <?php } ?>
+    </div>
+    <div class="span3">
+        <?php echo OSPHelper::generateAddress($company); ?>
+    </div>
 </div>
 <?php
-if($company->company_description != ""){
+if ($company->company_description != "")
+{
     ?>
     <div class="row-fluid">
         <div class="span12">
-        <?php
-            echo JHtml::_('content.prepare',stripslashes($company->{'company_description'.$lang_suffix}));
-        ?>
+            <?php
+            echo JHtml::_('content.prepare', stripslashes($company->{'company_description' . $lang_suffix}));
+            ?>
         </div>
     </div>
-<?php
+    <?php
 }
 ?>
 <div class="clearfix"></div>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\GraphNodes;
 
 /**
@@ -30,7 +32,6 @@ namespace Facebook\GraphNodes;
  *
  * @package Facebook
  */
-
 use ArrayAccess;
 use ArrayIterator;
 use Countable;
@@ -38,6 +39,7 @@ use IteratorAggregate;
 
 class Collection implements ArrayAccess, Countable, IteratorAggregate
 {
+
     /**
      * The items contained in the collection.
      *
@@ -65,11 +67,12 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
      */
     public function getField($name, $default = null)
     {
-        if (isset($this->items[$name])) {
+        if (isset($this->items[$name]))
+        {
             return $this->items[$name];
         }
 
-        return $default ?: null;
+        return $default ? : null;
     }
 
     /**
@@ -128,7 +131,8 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
      */
     public function asArray()
     {
-        return array_map(function ($value) {
+        return array_map(function ($value)
+        {
             return $value instanceof Collection ? $value->asArray() : $value;
         }, $this->items);
     }
@@ -211,9 +215,11 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
      */
     public function offsetSet($key, $value)
     {
-        if (is_null($key)) {
+        if (is_null($key))
+        {
             $this->items[] = $value;
-        } else {
+        } else
+        {
             $this->items[$key] = $value;
         }
     }
@@ -239,4 +245,5 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
     {
         return $this->asJson();
     }
+
 }

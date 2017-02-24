@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\HttpClients;
 
 /**
@@ -33,10 +35,12 @@ namespace Facebook\HttpClients;
  */
 class FacebookStream
 {
+
     /**
      * @var resource Context stream resource instance
      */
     protected $stream;
+
 
     /**
      * @var array Response headers from the stream wrapper
@@ -77,4 +81,5 @@ class FacebookStream
 
         return $rawResponse;
     }
+
 }

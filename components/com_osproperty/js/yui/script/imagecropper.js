@@ -1,9 +1,9 @@
 /*
-Copyright (c) 2009, Yahoo! Inc. All rights reserved.
-Code licensed under the BSD License:
-http://developer.yahoo.net/yui/license.txt
-version: 2.8.0r4
-*/
+ Copyright (c) 2009, Yahoo! Inc. All rights reserved.
+ Code licensed under the BSD License:
+ http://developer.yahoo.net/yui/license.txt
+ version: 2.8.0r4
+ */
 /**
  * @description <p>Creates a Image Cropper control.</p>
  * @namespace YAHOO.widget
@@ -11,10 +11,10 @@ version: 2.8.0r4
  * @module imagecropper
  * @beta
  */
-(function() {
-var Dom = YAHOO.util.Dom,
-    Event = YAHOO.util.Event,
-    Lang = YAHOO.lang;
+(function () {
+    var Dom = YAHOO.util.Dom,
+            Event = YAHOO.util.Event,
+            Lang = YAHOO.lang;
 
     /**
      * @constructor
@@ -23,31 +23,31 @@ var Dom = YAHOO.util.Dom,
      * @extends YAHOO.util.Element
      * @param {String/HTMLElement} el The image element to make croppable.
      * @param {Object} attrs Object liternal containing configuration parameters.
-    */
-    var Crop = function(el, config) {
+     */
+    var Crop = function (el, config) {
         var oConfig = {
             element: el,
             attributes: config || {}
         };
 
-        Crop.superclass.constructor.call(this, oConfig.element, oConfig.attributes);    
+        Crop.superclass.constructor.call(this, oConfig.element, oConfig.attributes);
     };
 
     /**
-    * @private
-    * @static
-    * @property _instances
-    * @description Internal hash table for all ImageCropper instances
-    * @type Object
-    */ 
+     * @private
+     * @static
+     * @property _instances
+     * @description Internal hash table for all ImageCropper instances
+     * @type Object
+     */
     Crop._instances = {};
     /**
-    * @static
-    * @method getCropperById 
-    * @description Get's an ImageCropper object by the HTML id of the image associated with the ImageCropper object.
-    * @return {Object} The ImageCropper Object
-    */ 
-    Crop.getCropperById = function(id) {
+     * @static
+     * @method getCropperById 
+     * @description Get's an ImageCropper object by the HTML id of the image associated with the ImageCropper object.
+     * @return {Object} The ImageCropper Object
+     */
+    Crop.getCropperById = function (id) {
         if (Crop._instances[id]) {
             return Crop._instances[id];
         }
@@ -56,89 +56,88 @@ var Dom = YAHOO.util.Dom,
 
     YAHOO.extend(Crop, YAHOO.util.Element, {
         /**
-        * @private
-        * @property CSS_MAIN
-        * @description The CSS class used to wrap the element 
-        * @type String
-        */
+         * @private
+         * @property CSS_MAIN
+         * @description The CSS class used to wrap the element 
+         * @type String
+         */
         CSS_MAIN: 'yui-crop',
         /**
-        * @private
-        * @property CSS_MASK
-        * @description The CSS class for the mask element
-        * @type String
-        */
+         * @private
+         * @property CSS_MASK
+         * @description The CSS class for the mask element
+         * @type String
+         */
         CSS_MASK: 'yui-crop-mask',
         /**
-        * @private
-        * @property CSS_RESIZE_MASK
-        * @description The CSS class for the mask inside the resize element
-        * @type String
-        */
+         * @private
+         * @property CSS_RESIZE_MASK
+         * @description The CSS class for the mask inside the resize element
+         * @type String
+         */
         CSS_RESIZE_MASK: 'yui-crop-resize-mask',
-
         /**
-        * @private
-        * @property _image
-        * @description The url of the image we are cropping
-        * @type String
-        */
+         * @private
+         * @property _image
+         * @description The url of the image we are cropping
+         * @type String
+         */
         _image: null,
         /**
-        * @private
-        * @property _active
-        * @description Flag to determine if the crop region is active
-        * @type Boolean
-        */
+         * @private
+         * @property _active
+         * @description Flag to determine if the crop region is active
+         * @type Boolean
+         */
         _active: null,
         /**
-        * @private
-        * @property _resize
-        * @description A reference to the Resize Utility used in this Cropper Instance
-        * @type Object
-        */
+         * @private
+         * @property _resize
+         * @description A reference to the Resize Utility used in this Cropper Instance
+         * @type Object
+         */
         _resize: null,
         /**
-        * @private
-        * @property _resizeEl
-        * @description The HTML Element used to create the Resize Oject
-        * @type HTMLElement
-        */
+         * @private
+         * @property _resizeEl
+         * @description The HTML Element used to create the Resize Oject
+         * @type HTMLElement
+         */
         _resizeEl: null,
         /**
-        * @private
-        * @property _resizeMaskEl
-        * @description The HTML Element used to create the Resize mask
-        * @type HTMLElement
-        */
+         * @private
+         * @property _resizeMaskEl
+         * @description The HTML Element used to create the Resize mask
+         * @type HTMLElement
+         */
         _resizeMaskEl: null,
         /**
-        * @private
-        * @property _wrap
-        * @description The HTML Element created to wrap the image
-        * @type HTMLElement
-        */
+         * @private
+         * @property _wrap
+         * @description The HTML Element created to wrap the image
+         * @type HTMLElement
+         */
         _wrap: null,
         /**
-        * @private
-        * @property _mask
-        * @description The HTML Element created to "mask" the image being cropped
-        * @type HTMLElement
-        */
+         * @private
+         * @property _mask
+         * @description The HTML Element created to "mask" the image being cropped
+         * @type HTMLElement
+         */
         _mask: null,
         /**
-        * @private
-        * @method _createWrap
-        * @description Creates the wrapper element used to wrap the image
-        */
-        _createWrap: function() {
+         * @private
+         * @method _createWrap
+         * @description Creates the wrapper element used to wrap the image
+         */
+        _createWrap: function () {
             this._wrap = document.createElement('div');
             this._wrap.id = this.get('element').id + '_wrap';
             this._wrap.className = this.CSS_MAIN;
             var el = this.get('element');
             this._wrap.style.width = el.width ? el.width + 'px' : Dom.getStyle(el, 'width');
             this._wrap.style.height = el.height ? el.height + 'px' : Dom.getStyle(el, 'height');
-            
+
             var par = this.get('element').parentNode;
             par.replaceChild(this._wrap, this.get('element'));
             this._wrap.appendChild(this.get('element'));
@@ -146,30 +145,30 @@ var Dom = YAHOO.util.Dom,
             Event.on(this._wrap, 'mouseover', this._handleMouseOver, this, true);
             Event.on(this._wrap, 'mouseout', this._handleMouseOut, this, true);
 
-            Event.on(this._wrap, 'click', function(ev) { Event.stopEvent(ev); }, this, true);
+            Event.on(this._wrap, 'click', function (ev) {
+                Event.stopEvent(ev);
+            }, this, true);
         },
-
         /**
-        * @private
-        * @method _createMask
-        * @description Creates the mask element used to mask the image
-        */
-        _createMask: function() {
+         * @private
+         * @method _createMask
+         * @description Creates the mask element used to mask the image
+         */
+        _createMask: function () {
             this._mask = document.createElement('div');
             this._mask.className = this.CSS_MASK;
             this._wrap.appendChild(this._mask);
         },
-
         /**
-        * @private
-        * @method _createResize
-        * @description Creates the resize element and the instance of the Resize Utility
-        */
-        _createResize: function() {
+         * @private
+         * @method _createResize
+         * @description Creates the resize element and the instance of the Resize Utility
+         */
+        _createResize: function () {
             this._resizeEl = document.createElement('div');
             this._resizeEl.className = YAHOO.util.Resize.prototype.CSS_RESIZE;
             this._resizeEl.style.position = 'absolute';
-            
+
             this._resizeEl.innerHTML = '<div class="' + this.CSS_RESIZE_MASK + '"></div>';
             this._resizeMaskEl = this._resizeEl.firstChild;
             this._wrap.appendChild(this._resizeEl);
@@ -192,7 +191,7 @@ var Dom = YAHOO.util.Dom,
             });
 
             this._setBackgroundImage(this.get('element').getAttribute('src', 2));
-            this._setBackgroundPosition(-(this.get('initialXY')[0]),  -(this.get('initialXY')[1]));
+            this._setBackgroundPosition(-(this.get('initialXY')[0]), -(this.get('initialXY')[1]));
 
             this._resize.on('startResize', this._handleStartResizeEvent, this, true);
             this._resize.on('endResize', this._handleEndResizeEvent, this, true);
@@ -201,13 +200,12 @@ var Dom = YAHOO.util.Dom,
             this._resize.on('resize', this._handleResizeEvent, this, true);
             this._resize.dd.on('b4StartDragEvent', this._handleB4DragEvent, this, true);
         },
-
         /**
-        * @private
-        * @method _handleMouseOver
-        * @description Handles the mouseover event
-        */
-        _handleMouseOver: function(ev) {
+         * @private
+         * @method _handleMouseOver
+         * @description Handles the mouseover event
+         */
+        _handleMouseOver: function (ev) {
             var evType = 'keydown';
             if (YAHOO.env.ua.gecko || YAHOO.env.ua.opera) {
                 evType = 'keypress';
@@ -220,11 +218,11 @@ var Dom = YAHOO.util.Dom,
             }
         },
         /**
-        * @private
-        * @method _handleMouseOut
-        * @description Handles the mouseout event
-        */
-        _handleMouseOut: function(ev) {
+         * @private
+         * @method _handleMouseOut
+         * @description Handles the mouseout event
+         */
+        _handleMouseOut: function (ev) {
             var evType = 'keydown';
             if (YAHOO.env.ua.gecko || YAHOO.env.ua.opera) {
                 evType = 'keypress';
@@ -234,16 +232,15 @@ var Dom = YAHOO.util.Dom,
                 Event.removeListener(document, evType, this._handleKeyPress);
             }
         },
-
         /**
-        * @private
-        * @method _moveEl
-        * @description Moves the resize element based on the arrow keys
-        */
-        _moveEl: function(dir, inc) {
+         * @private
+         * @method _moveEl
+         * @description Moves the resize element based on the arrow keys
+         */
+        _moveEl: function (dir, inc) {
             var t = 0, l = 0,
-                region = this._setConstraints(),
-                resize = true;
+                    region = this._setConstraints(),
+                    resize = true;
 
             switch (dir) {
                 case 'down':
@@ -279,22 +276,21 @@ var Dom = YAHOO.util.Dom,
             if (resize) {
                 this._resizeEl.style.left = (parseInt(this._resizeEl.style.left, 10) - l) + 'px';
                 this._resizeEl.style.top = (parseInt(this._resizeEl.style.top, 10) - t) + 'px';
-                this.fireEvent('moveEvent', { target: 'keypress' });
+                this.fireEvent('moveEvent', {target: 'keypress'});
             } else {
                 this._setConstraints();
             }
             this._syncBackgroundPosition();
         },
-
         /**
-        * @private
-        * @method _handleKeyPress
-        * @description Handles the keypress event
-        */
-        _handleKeyPress: function(ev) {
+         * @private
+         * @method _handleKeyPress
+         * @description Handles the keypress event
+         */
+        _handleKeyPress: function (ev) {
             var kc = Event.getCharCode(ev),
-                stopEvent = false,
-                inc = ((ev.shiftKey) ? this.get('shiftKeyTick') : this.get('keyTick'));
+                    stopEvent = false,
+                    inc = ((ev.shiftKey) ? this.get('shiftKeyTick') : this.get('keyTick'));
 
             switch (kc) {
                 case 0x25: // left
@@ -319,36 +315,33 @@ var Dom = YAHOO.util.Dom,
                 Event.preventDefault(ev);
             }
         },
-
         /**
-        * @private
-        * @method _handleB4DragEvent
-        * @description Handles the DragDrop b4DragEvent event
-        */
-        _handleB4DragEvent: function() {
+         * @private
+         * @method _handleB4DragEvent
+         * @description Handles the DragDrop b4DragEvent event
+         */
+        _handleB4DragEvent: function () {
             this._setConstraints();
         },
-
         /**
-        * @private
-        * @method _handleDragEvent
-        * @description Handles the DragDrop DragEvent event
-        */
-        _handleDragEvent: function() {
+         * @private
+         * @method _handleDragEvent
+         * @description Handles the DragDrop DragEvent event
+         */
+        _handleDragEvent: function () {
             this._syncBackgroundPosition();
             this.fireEvent('dragEvent', arguments);
-            this.fireEvent('moveEvent', { target: 'dragevent' });
+            this.fireEvent('moveEvent', {target: 'dragevent'});
         },
-
         /**
-        * @private
-        * @method _handleBeforeResizeEvent
-        * @description Handles the Resize Utilitys beforeResize event
-        */
-        _handleBeforeResizeEvent: function(args) {
+         * @private
+         * @method _handleBeforeResizeEvent
+         * @description Handles the Resize Utilitys beforeResize event
+         */
+        _handleBeforeResizeEvent: function (args) {
             var region = Dom.getRegion(this.get('element')),
-                c = this._resize._cache,
-                ch = this._resize._currentHandle, h = 0, w = 0;
+                    c = this._resize._cache,
+                    ch = this._resize._currentHandle, h = 0, w = 0;
 
             if (args.top && (args.top < region.top)) {
                 h = (c.height + c.top) - region.top;
@@ -392,46 +385,44 @@ var Dom = YAHOO.util.Dom,
             }
         },
         /**
-        * @private
-        * @method _handleResizeMaskEl
-        * @description Resizes the inner mask element
-        */
-        _handleResizeMaskEl: function() {
+         * @private
+         * @method _handleResizeMaskEl
+         * @description Resizes the inner mask element
+         */
+        _handleResizeMaskEl: function () {
             var a = this._resize._cache;
             this._resizeMaskEl.style.height = Math.floor(a.height) + 'px';
             this._resizeMaskEl.style.width = Math.floor(a.width) + 'px';
         },
         /**
-        * @private
-        * @method _handleResizeEvent
-        * @param Event ev The Resize Utilitys resize event.
-        * @description Handles the Resize Utilitys Resize event
-        */
-        _handleResizeEvent: function(ev) {
+         * @private
+         * @method _handleResizeEvent
+         * @param Event ev The Resize Utilitys resize event.
+         * @description Handles the Resize Utilitys Resize event
+         */
+        _handleResizeEvent: function (ev) {
             this._setConstraints(true);
             this._syncBackgroundPosition();
             this.fireEvent('resizeEvent', arguments);
-            this.fireEvent('moveEvent', { target: 'resizeevent' });
+            this.fireEvent('moveEvent', {target: 'resizeevent'});
         },
-
         /**
-        * @private
-        * @method _syncBackgroundPosition
-        * @description Syncs the packground position of the resize element with the resize elements top and left style position
-        */
-        _syncBackgroundPosition: function() {
+         * @private
+         * @method _syncBackgroundPosition
+         * @description Syncs the packground position of the resize element with the resize elements top and left style position
+         */
+        _syncBackgroundPosition: function () {
             this._handleResizeMaskEl();
             this._setBackgroundPosition(-(parseInt(this._resizeEl.style.left, 10)), -(parseInt(this._resizeEl.style.top, 10)));
         },
-
         /**
-        * @private
-        * @method _setBackgroundPosition
-        * @param Number l The left position
-        * @param Number t The top position
-        * @description Sets the background image position to the top and left position
-        */
-        _setBackgroundPosition: function(l, t) {
+         * @private
+         * @method _setBackgroundPosition
+         * @param Number l The left position
+         * @param Number t The top position
+         * @description Sets the background image position to the top and left position
+         */
+        _setBackgroundPosition: function (l, t) {
             var bl = parseInt(Dom.getStyle(this._resize.get('element'), 'borderLeftWidth'), 10);
             var bt = parseInt(Dom.getStyle(this._resize.get('element'), 'borderTopWidth'), 10);
             if (isNaN(bl)) {
@@ -444,41 +435,39 @@ var Dom = YAHOO.util.Dom,
             var pos = (l - bl) + 'px ' + (t - bt) + 'px';
             this._resizeMaskEl.style.backgroundPosition = pos;
         },
-
         /**
-        * @private
-        * @method _setBackgroundImage
-        * @param String url The url of the image
-        * @description Sets the background image of the resize element
-        */
-        _setBackgroundImage: function(url) {
+         * @private
+         * @method _setBackgroundImage
+         * @param String url The url of the image
+         * @description Sets the background image of the resize element
+         */
+        _setBackgroundImage: function (url) {
             var mask = this._resize.getWrapEl().firstChild;
             this._image = url;
             mask.style.backgroundImage = 'url(' + url + '#)';
         },
-        
         /**
-        * @private
-        * @method _handleEndResizeEvent
-        * @description Handles the Resize Utilitys endResize event
-        */
-        _handleEndResizeEvent: function() {
+         * @private
+         * @method _handleEndResizeEvent
+         * @description Handles the Resize Utilitys endResize event
+         */
+        _handleEndResizeEvent: function () {
             this._setConstraints(true);
         },
         /**
-        * @private
-        * @method _handleStartResizeEvent
-        * @description Handles the Resize Utilitys startResize event
-        */
-        _handleStartResizeEvent: function() {
+         * @private
+         * @method _handleStartResizeEvent
+         * @description Handles the Resize Utilitys startResize event
+         */
+        _handleStartResizeEvent: function () {
             this._setConstraints(true);
 
             var h = this._resize._cache.height,
-                 w = this._resize._cache.width,
-                 t = parseInt(this._resize.getWrapEl().style.top, 10),
-                 l = parseInt(this._resize.getWrapEl().style.left, 10),
-                 maxH = 0, maxW = 0;
- 
+                    w = this._resize._cache.width,
+                    t = parseInt(this._resize.getWrapEl().style.top, 10),
+                    l = parseInt(this._resize.getWrapEl().style.left, 10),
+                    maxH = 0, maxW = 0;
+
             switch (this._resize._currentHandle) {
                 case 'b':
                     maxH = (h + this._resize.dd.bottomConstraint);
@@ -490,39 +479,38 @@ var Dom = YAHOO.util.Dom,
                     maxH = (h + t);
                     maxW = (w + this._resize.dd.rightConstraint);
                     break;
-                 case 'br':
-                     maxH = (h + this._resize.dd.bottomConstraint);
-                     maxW = (w + this._resize.dd.rightConstraint);
-                     break;
-                 case 'tr':
-                     maxH = (h + t);
-                     maxW = (w + this._resize.dd.rightConstraint);
-                     break;
+                case 'br':
+                    maxH = (h + this._resize.dd.bottomConstraint);
+                    maxW = (w + this._resize.dd.rightConstraint);
+                    break;
+                case 'tr':
+                    maxH = (h + t);
+                    maxW = (w + this._resize.dd.rightConstraint);
+                    break;
 
-             }
-            
-             if (maxH) {
-                 //this._resize.set('maxHeight', maxH);
-             }
-             if (maxW) {
-                 //this._resize.set('maxWidth', maxW);
-             }
+            }
+
+            if (maxH) {
+                //this._resize.set('maxHeight', maxH);
+            }
+            if (maxW) {
+                //this._resize.set('maxWidth', maxW);
+            }
 
             this.fireEvent('startResizeEvent', arguments);
         },
-        
         /**
-        * @private
-        * @method _setConstraints
-        * @param Boolean inside Used when called from inside a resize event, false by default (dragging)
-        * @description Set the DragDrop constraints to keep the element inside the crop area.
-        * @return {Object} Object containing Top, Right, Bottom and Left constraints
-        */
-        _setConstraints: function(inside) {
+         * @private
+         * @method _setConstraints
+         * @param Boolean inside Used when called from inside a resize event, false by default (dragging)
+         * @description Set the DragDrop constraints to keep the element inside the crop area.
+         * @return {Object} Object containing Top, Right, Bottom and Left constraints
+         */
+        _setConstraints: function (inside) {
             var resize = this._resize;
             resize.dd.resetConstraints();
             var height = parseInt(resize.get('height'), 10),
-                width = parseInt(resize.get('width'), 10);
+                    width = parseInt(resize.get('width'), 10);
             if (inside) {
                 //Called from inside the resize callback
                 height = resize._cache.height;
@@ -552,8 +540,8 @@ var Dom = YAHOO.util.Dom,
             if (top < 0) {
                 top = 0;
             }
-            
-            resize.dd.setXConstraint(left, right); 
+
+            resize.dd.setXConstraint(left, right);
             resize.dd.setYConstraint(top, bottom);
 
             return {
@@ -563,15 +551,15 @@ var Dom = YAHOO.util.Dom,
                 left: left
             };
 
-            
-            
+
+
         },
         /**
-        * @method getCropCoords
-        * @description Returns the coordinates needed to crop the image
-        * @return {Object} The top, left, height, width and image url of the image being cropped
-        */
-        getCropCoords: function() {
+         * @method getCropCoords
+         * @description Returns the coordinates needed to crop the image
+         * @return {Object} The top, left, height, width and image url of the image being cropped
+         */
+        getCropCoords: function () {
             var coords = {
                 top: parseInt(this._resize.getWrapEl().style.top, 10),
                 left: parseInt(this._resize.getWrapEl().style.left, 10),
@@ -582,83 +570,78 @@ var Dom = YAHOO.util.Dom,
             return coords;
         },
         /**
-        * @method reset
-        * @description Resets the crop element back to it's original position
-        * @return {<a href="YAHOO.widget.ImageCropper.html">YAHOO.widget.ImageCropper</a>} The ImageCropper instance
-        */
-        reset: function() {
+         * @method reset
+         * @description Resets the crop element back to it's original position
+         * @return {<a href="YAHOO.widget.ImageCropper.html">YAHOO.widget.ImageCropper</a>} The ImageCropper instance
+         */
+        reset: function () {
             this._resize.resize(null, this.get('initHeight'), this.get('initWidth'), 0, 0, true);
             this._resizeEl.style.top = this.get('initialXY')[1] + 'px';
             this._resizeEl.style.left = this.get('initialXY')[0] + 'px';
             this._syncBackgroundPosition();
             return this;
         },
-
         /**
-        * @method getEl
-        * @description Get the HTML reference for the image element.
-        * @return {HTMLElement} The image element
-        */      
-        getEl: function() {
+         * @method getEl
+         * @description Get the HTML reference for the image element.
+         * @return {HTMLElement} The image element
+         */
+        getEl: function () {
             return this.get('element');
         },
         /**
-        * @method getResizeEl
-        * @description Get the HTML reference for the resize element.
-        * @return {HTMLElement} The resize element
-        */      
-        getResizeEl: function() {
+         * @method getResizeEl
+         * @description Get the HTML reference for the resize element.
+         * @return {HTMLElement} The resize element
+         */
+        getResizeEl: function () {
             return this._resizeEl;
         },
         /**
-        * @method getWrapEl
-        * @description Get the HTML reference for the wrap element.
-        * @return {HTMLElement} The wrap element
-        */      
-        getWrapEl: function() {
+         * @method getWrapEl
+         * @description Get the HTML reference for the wrap element.
+         * @return {HTMLElement} The wrap element
+         */
+        getWrapEl: function () {
             return this._wrap;
         },
-
         /**
-        * @method getMaskEl
-        * @description Get the HTML reference for the mask element.
-        * @return {HTMLElement} The mask element
-        */      
-        getMaskEl: function() {
+         * @method getMaskEl
+         * @description Get the HTML reference for the mask element.
+         * @return {HTMLElement} The mask element
+         */
+        getMaskEl: function () {
             return this._mask;
         },
-
         /**
-        * @method getResizeMaskEl
-        * @description Get the HTML reference for the resizable object's mask element.
-        * @return {HTMLElement} The resize objects mask element.
-        */      
-        getResizeMaskEl: function() {
+         * @method getResizeMaskEl
+         * @description Get the HTML reference for the resizable object's mask element.
+         * @return {HTMLElement} The resize objects mask element.
+         */
+        getResizeMaskEl: function () {
             return this._resizeMaskEl;
         },
-
         /**
-        * @method getResizeObject
-        * @description Get the Resize Utility object.
-        * @return {<a href="YAHOO.util.Resize.html">YAHOO.util.Resize</a>} The Resize instance
-        */      
-        getResizeObject: function() {
+         * @method getResizeObject
+         * @description Get the Resize Utility object.
+         * @return {<a href="YAHOO.util.Resize.html">YAHOO.util.Resize</a>} The Resize instance
+         */
+        getResizeObject: function () {
             return this._resize;
         },
-
         /** 
-        * @private
-        * @method init
-        * @description The ImageCropper class's initialization method
-        */        
-        init: function(p_oElement, p_oAttributes) {
+         * @private
+         * @method init
+         * @description The ImageCropper class's initialization method
+         */
+        init: function (p_oElement, p_oAttributes) {
             Crop.superclass.init.call(this, p_oElement, p_oAttributes);
 
             var id = p_oElement;
 
             if (!Lang.isString(id)) {
                 if (id.tagName && (id.tagName.toLowerCase() == 'img')) {
-                    id = Dom.generateId(id);                    
+                    id = Dom.generateId(id);
                 } else {
                     return false;
                 }
@@ -670,7 +653,7 @@ var Dom = YAHOO.util.Dom,
                     return false;
                 }
             }
-            
+
 
 
             Crop._instances[id] = this;
@@ -681,65 +664,65 @@ var Dom = YAHOO.util.Dom,
 
         },
         /**
-        * @private
-        * @method initAttributes
-        * @description Initializes all of the configuration attributes used to create a croppable element.
-        * @param {Object} attr Object literal specifying a set of 
-        * configuration attributes used to create the widget.
-        */      
+         * @private
+         * @method initAttributes
+         * @description Initializes all of the configuration attributes used to create a croppable element.
+         * @param {Object} attr Object literal specifying a set of 
+         * configuration attributes used to create the widget.
+         */
 
-        initAttributes: function(attr) {
+        initAttributes: function (attr) {
             Crop.superclass.initAttributes.call(this, attr);
 
             /**
-            * @attribute initialXY
-            * @description Array of the XY position that we need to set the crop element to when we build it. Defaults to [10, 10]
-            * @type Array
-            */
+             * @attribute initialXY
+             * @description Array of the XY position that we need to set the crop element to when we build it. Defaults to [10, 10]
+             * @type Array
+             */
             this.setAttributeConfig('initialXY', {
                 writeOnce: true,
                 validator: YAHOO.lang.isArray,
                 value: attr.initialXY || [10, 10]
             });
             /**
-            * @attribute keyTick
-            * @description The pixel tick for the arrow keys, defaults to 1
-            * @type Number
-            */
+             * @attribute keyTick
+             * @description The pixel tick for the arrow keys, defaults to 1
+             * @type Number
+             */
             this.setAttributeConfig('keyTick', {
                 validator: YAHOO.lang.isNumber,
                 value: attr.keyTick || 1
             });
 
             /**
-            * @attribute shiftKeyTick
-            * @description The pixel tick for shift + the arrow keys, defaults to 10
-            * @type Number
-            */
+             * @attribute shiftKeyTick
+             * @description The pixel tick for shift + the arrow keys, defaults to 10
+             * @type Number
+             */
             this.setAttributeConfig('shiftKeyTick', {
                 validator: YAHOO.lang.isNumber,
                 value: attr.shiftKeyTick || 10
             });
 
             /**
-            * @attribute useKeys
-            * @description Should we use the Arrow keys to position the crop element, defaults to true
-            * @type Boolean
-            */
+             * @attribute useKeys
+             * @description Should we use the Arrow keys to position the crop element, defaults to true
+             * @type Boolean
+             */
             this.setAttributeConfig('useKeys', {
                 validator: YAHOO.lang.isBoolean,
                 value: ((attr.useKeys === false) ? false : true)
             });
 
             /**
-            * @attribute status
-            * @description Show the Resize Utility status, defaults to true
-            * @type Boolean
-            */
+             * @attribute status
+             * @description Show the Resize Utility status, defaults to true
+             * @type Boolean
+             */
             this.setAttributeConfig('status', {
                 validator: YAHOO.lang.isBoolean,
                 value: ((attr.status === false) ? false : true),
-                method: function(status) {
+                method: function (status) {
                     if (this._resize) {
                         this._resize.set('status', status);
                     }
@@ -747,14 +730,14 @@ var Dom = YAHOO.util.Dom,
             });
 
             /**
-            * @attribute minHeight
-            * @description MinHeight of the crop area, default 50
-            * @type Number
-            */
+             * @attribute minHeight
+             * @description MinHeight of the crop area, default 50
+             * @type Number
+             */
             this.setAttributeConfig('minHeight', {
                 validator: YAHOO.lang.isNumber,
                 value: attr.minHeight || 50,
-                method: function(h) {
+                method: function (h) {
                     if (this._resize) {
                         this._resize.set('minHeight', h);
                     }
@@ -762,14 +745,14 @@ var Dom = YAHOO.util.Dom,
             });
 
             /**
-            * @attribute minWidth
-            * @description MinWidth of the crop area, default 50.
-            * @type Number
-            */
+             * @attribute minWidth
+             * @description MinWidth of the crop area, default 50.
+             * @type Number
+             */
             this.setAttributeConfig('minWidth', {
                 validator: YAHOO.lang.isNumber,
                 value: attr.minWidth || 50,
-                method: function(w) {
+                method: function (w) {
                     if (this._resize) {
                         this._resize.set('minWidth', w);
                     }
@@ -777,14 +760,14 @@ var Dom = YAHOO.util.Dom,
             });
 
             /**
-            * @attribute ratio
-            * @description Set the ratio config option of the Resize Utlility, default false
-            * @type Boolean
-            */
+             * @attribute ratio
+             * @description Set the ratio config option of the Resize Utlility, default false
+             * @type Boolean
+             */
             this.setAttributeConfig('ratio', {
                 validator: YAHOO.lang.isBoolean,
                 value: attr.ratio || false,
-                method: function(r) {
+                method: function (r) {
                     if (this._resize) {
                         this._resize.set('ratio', r);
                     }
@@ -792,14 +775,14 @@ var Dom = YAHOO.util.Dom,
             });
 
             /**
-            * @attribute ratio
-            * @description Set the autoRatio config option of the Resize Utlility, default true
-            * @type Boolean
-            */
+             * @attribute ratio
+             * @description Set the autoRatio config option of the Resize Utlility, default true
+             * @type Boolean
+             */
             this.setAttributeConfig('autoRatio', {
                 validator: YAHOO.lang.isBoolean,
                 value: ((attr.autoRatio === false) ? false : true),
-                method: function(a) {
+                method: function (a) {
                     if (this._resize) {
                         this._resize.set('autoRatio', a);
                     }
@@ -807,10 +790,10 @@ var Dom = YAHOO.util.Dom,
             });
 
             /**
-            * @attribute initHeight
-            * @description Set the initlal height of the crop area, defaults to 1/4 of the image height
-            * @type Number
-            */
+             * @attribute initHeight
+             * @description Set the initlal height of the crop area, defaults to 1/4 of the image height
+             * @type Number
+             */
             this.setAttributeConfig('initHeight', {
                 writeOnce: true,
                 validator: YAHOO.lang.isNumber,
@@ -818,10 +801,10 @@ var Dom = YAHOO.util.Dom,
             });
 
             /**
-            * @attribute initWidth
-            * @description Set the initlal width of the crop area, defaults to 1/4 of the image width
-            * @type Number
-            */
+             * @attribute initWidth
+             * @description Set the initlal width of the crop area, defaults to 1/4 of the image width
+             * @type Number
+             */
             this.setAttributeConfig('initWidth', {
                 validator: YAHOO.lang.isNumber,
                 writeOnce: true,
@@ -830,30 +813,30 @@ var Dom = YAHOO.util.Dom,
 
         },
         /**
-        * @method destroy
-        * @description Destroys the ImageCropper object and all of it's elements & listeners.
-        */        
-        destroy: function() {
+         * @method destroy
+         * @description Destroys the ImageCropper object and all of it's elements & listeners.
+         */
+        destroy: function () {
             this._resize.destroy();
             this._resizeEl.parentNode.removeChild(this._resizeEl);
             this._mask.parentNode.removeChild(this._mask);
             Event.purgeElement(this._wrap);
             this._wrap.parentNode.replaceChild(this.get('element'), this._wrap);
-            
+
             //Brutal Object Destroy
             for (var i in this) {
                 if (Lang.hasOwnProperty(this, i)) {
                     this[i] = null;
                 }
             }
-                       
+
         },
         /**
-        * @method toString
-        * @description Returns a string representing the ImageCropper Object.
-        * @return {String}
-        */        
-        toString: function() {
+         * @method toString
+         * @description Returns a string representing the ImageCropper Object.
+         * @return {String}
+         */
+        toString: function () {
             if (this.get) {
                 return 'ImageCropper (#' + this.get('id') + ')';
             }
@@ -863,26 +846,26 @@ var Dom = YAHOO.util.Dom,
 
     YAHOO.widget.ImageCropper = Crop;
 
-/**
-* @event dragEvent
-* @description Fires when the DragDrop dragEvent
-* @type YAHOO.util.CustomEvent
-*/
-/**
-* @event startResizeEvent
-* @description Fires when when a resize action is started.
-* @type YAHOO.util.CustomEvent
-*/
-/**
-* @event resizeEvent
-* @description Fires on every element resize.
-* @type YAHOO.util.CustomEvent
-*/
-/**
-* @event moveEvent
-* @description Fires on every element move. Inside these methods: _handleKeyPress, _handleDragEvent, _handleResizeEvent
-* @type YAHOO.util.CustomEvent
-*/
+    /**
+     * @event dragEvent
+     * @description Fires when the DragDrop dragEvent
+     * @type YAHOO.util.CustomEvent
+     */
+    /**
+     * @event startResizeEvent
+     * @description Fires when when a resize action is started.
+     * @type YAHOO.util.CustomEvent
+     */
+    /**
+     * @event resizeEvent
+     * @description Fires on every element resize.
+     * @type YAHOO.util.CustomEvent
+     */
+    /**
+     * @event moveEvent
+     * @description Fires on every element move. Inside these methods: _handleKeyPress, _handleDragEvent, _handleResizeEvent
+     * @type YAHOO.util.CustomEvent
+     */
 
 })();
 

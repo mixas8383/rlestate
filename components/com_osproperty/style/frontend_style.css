@@ -394,7 +394,7 @@ table.tablelistproperties td{color:#000}
 .osnavigation-right .osnavigation-osheader-text,.osnavigation-right .osnavigation-ostype_name{text-align:right}
 .property_type_name{font-weight:700}
 @media (max-width: 500px) {
-#tabvideo iframe{position:absolute;top:0;left:0;width:100%!important}
+    #tabvideo iframe{position:absolute;top:0;left:0;width:100%!important}
 }
 #quicksearchform .control-group{width:60%;margin-left:8px}
 #mapDiv{position:relative}
@@ -556,19 +556,19 @@ table.tablelistproperties td{color:#000}
 .content .ranking-proname a:hover{text-decoration:underline!important}
 .relate_property{text-align:left;}
 @media only screen and (max-width: 980px) {
-	.statistic-page .property-info .property-data .pro-name{font-size:20px;text-align:center}
-	.statistic-page .property-info .property-data .information-pro .price-property .property-type{font-size:20px;text-align:center}
-	.statistic-page .property-info .property-data .information-pro .price-property,.statistic-page .property-info .property-data .information-pro .price-property .property-type{font-size:20px;text-align:center}
-	.statistic-page .property-info .property-data .information-pro .border{border-right:none}
-	.statistic-page .property-info .property-data .information-pro .pro-numberbed{font-size:20px;text-align:center}
-	.pro-graphical .background-hit,.pro-graphical .background-view{margin-left:auto;margin-right:auto}
+    .statistic-page .property-info .property-data .pro-name{font-size:20px;text-align:center}
+    .statistic-page .property-info .property-data .information-pro .price-property .property-type{font-size:20px;text-align:center}
+    .statistic-page .property-info .property-data .information-pro .price-property,.statistic-page .property-info .property-data .information-pro .price-property .property-type{font-size:20px;text-align:center}
+    .statistic-page .property-info .property-data .information-pro .border{border-right:none}
+    .statistic-page .property-info .property-data .information-pro .pro-numberbed{font-size:20px;text-align:center}
+    .pro-graphical .background-hit,.pro-graphical .background-view{margin-left:auto;margin-right:auto}
 }
 .scrollon{border:1px solid #3C90BE}
 @media screen and (max-width: 600px) {
-#propertyList,#compare_table{width:100%}
-#propertyList td:before,#compare_table td:before{content:attr(data-label);float:left;text-transform:uppercase;font-weight:700}
-#propertyList thead,#compare_table thead{display:none}
-#propertyList tr,#compare_table tr{margin-bottom:10px;display:block;border-bottom:2px solid #ddd}
-#propertyList td,#compare_table td{display:block;text-align:right!important;font-size:13px;border-bottom:1px dotted #ccc;width:100%}
-#propertyList td:last-child,#compare_table td:last-child{border-bottom:0}
+    #propertyList,#compare_table{width:100%}
+    #propertyList td:before,#compare_table td:before{content:attr(data-label);float:left;text-transform:uppercase;font-weight:700}
+    #propertyList thead,#compare_table thead{display:none}
+    #propertyList tr,#compare_table tr{margin-bottom:10px;display:block;border-bottom:2px solid #ddd}
+    #propertyList td,#compare_table td{display:block;text-align:right!important;font-size:13px;border-bottom:1px dotted #ccc;width:100%}
+    #propertyList td:last-child,#compare_table td:last-child{border-bottom:0}
 }

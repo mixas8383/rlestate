@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,14 +22,13 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
-
 /**
  * You only need this file if you are not using composer.
  * Why are you not using composer?
  * https://getcomposer.org/
  */
-
-if (version_compare(PHP_VERSION, '5.4.0', '<')) {
+if (version_compare(PHP_VERSION, '5.4.0', '<'))
+{
     throw new Exception('The Facebook SDK requires PHP version 5.4 or higher.');
 }
 
@@ -42,24 +42,28 @@ if (version_compare(PHP_VERSION, '5.4.0', '<')) {
  *
  * @return void
  */
-spl_autoload_register(function ($class) {
+spl_autoload_register(function ($class)
+{
     // project-specific namespace prefix
     $prefix = 'Facebook\\';
 
     // For backwards compatibility
     $customBaseDir = '';
     // @todo v6: Remove support for 'FACEBOOK_SDK_V4_SRC_DIR'
-    if (defined('FACEBOOK_SDK_V4_SRC_DIR')) {
+    if (defined('FACEBOOK_SDK_V4_SRC_DIR'))
+    {
         $customBaseDir = FACEBOOK_SDK_V4_SRC_DIR;
-    } elseif (defined('FACEBOOK_SDK_SRC_DIR')) {
+    } elseif (defined('FACEBOOK_SDK_SRC_DIR'))
+    {
         $customBaseDir = FACEBOOK_SDK_SRC_DIR;
     }
     // base directory for the namespace prefix
-    $baseDir = $customBaseDir ?: __DIR__ . '/';
+    $baseDir = $customBaseDir ? : __DIR__ . '/';
 
     // does the class use the namespace prefix?
     $len = strlen($prefix);
-    if (strncmp($prefix, $class, $len) !== 0) {
+    if (strncmp($prefix, $class, $len) !== 0)
+    {
         // no, move to the next registered autoloader
         return;
     }
@@ -73,7 +77,8 @@ spl_autoload_register(function ($class) {
     $file = rtrim($baseDir, '/') . '/' . str_replace('\\', '/', $relativeClass) . '.php';
 
     // if the file exists, require it
-    if (file_exists($file)) {
+    if (file_exists($file))
+    {
         require $file;
     }
 });

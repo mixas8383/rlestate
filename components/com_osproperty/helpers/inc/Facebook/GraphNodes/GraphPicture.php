@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\GraphNodes;
 
 /**
@@ -30,6 +32,7 @@ namespace Facebook\GraphNodes;
  */
 class GraphPicture extends GraphNode
 {
+
     /**
      * Returns true if user picture is silhouette.
      *
@@ -69,4 +72,5 @@ class GraphPicture extends GraphNode
     {
         return $this->getField('height');
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook;
 
 use Facebook\Authentication\AccessToken;
@@ -38,45 +40,54 @@ use Facebook\Exceptions\FacebookSDKException;
  */
 class FacebookRequest
 {
+
     /**
      * @var FacebookApp The Facebook app entity.
      */
     protected $app;
+
 
     /**
      * @var string|null The access token to use for this request.
      */
     protected $accessToken;
 
+
     /**
      * @var string The HTTP method for this request.
      */
     protected $method;
+
 
     /**
      * @var string The Graph endpoint for this request.
      */
     protected $endpoint;
 
+
     /**
      * @var array The headers to send with this request.
      */
     protected $headers = [];
+
 
     /**
      * @var array The parameters to send with this request.
      */
     protected $params = [];
 
+
     /**
      * @var array The files to send with this request.
      */
     protected $files = [];
 
+
     /**
      * @var string ETag to send with this request.
      */
     protected $eTag;
+
 
     /**
      * @var string Graph version to use for this request.
@@ -102,7 +113,7 @@ class FacebookRequest
         $this->setEndpoint($endpoint);
         $this->setParams($params);
         $this->setETag($eTag);
-        $this->graphVersion = $graphVersion ?: Facebook::DEFAULT_GRAPH_VERSION;
+        $this->graphVersion = $graphVersion ? : Facebook::DEFAULT_GRAPH_VERSION;
     }
 
     /**
@@ -115,7 +126,8 @@ class FacebookRequest
     public function setAccessToken($accessToken)
     {
         $this->accessToken = $accessToken;
-        if ($accessToken instanceof AccessToken) {
+        if ($accessToken instanceof AccessToken)
+        {
             $this->accessToken = $accessToken->getValue();
         }
 
@@ -134,9 +146,11 @@ class FacebookRequest
     public function setAccessTokenFromParams($accessToken)
     {
         $existingAccessToken = $this->getAccessToken();
-        if (!$existingAccessToken) {
+        if (!$existingAccessToken)
+        {
             $this->setAccessToken($accessToken);
-        } elseif ($accessToken !== $existingAccessToken) {
+        } elseif ($accessToken !== $existingAccessToken)
+        {
             throw new FacebookSDKException('Access token mismatch. The access token provided in the FacebookRequest and the one provided in the URL or POST params do not match.');
         }
 
@@ -190,7 +204,8 @@ class FacebookRequest
      */
     public function getAppSecretProof()
     {
-        if (!$accessTokenEntity = $this->getAccessTokenEntity()) {
+        if (!$accessTokenEntity = $this->getAccessTokenEntity())
+        {
             return null;
         }
 
@@ -205,7 +220,8 @@ class FacebookRequest
     public function validateAccessToken()
     {
         $accessToken = $this->getAccessToken();
-        if (!$accessToken) {
+        if (!$accessToken)
+        {
             throw new FacebookSDKException('You must provide an access token.');
         }
     }
@@ -239,11 +255,13 @@ class FacebookRequest
      */
     public function validateMethod()
     {
-        if (!$this->method) {
+        if (!$this->method)
+        {
             throw new FacebookSDKException('HTTP method not specified.');
         }
 
-        if (!in_array($this->method, ['GET', 'POST', 'DELETE'])) {
+        if (!in_array($this->method, ['GET', 'POST', 'DELETE']))
+        {
             throw new FacebookSDKException('Invalid HTTP method specified.');
         }
     }
@@ -261,7 +279,8 @@ class FacebookRequest
     {
         // Harvest the access token from the endpoint to keep things in sync
         $params = FacebookUrlManipulator::getParamsAsArray($endpoint);
-        if (isset($params['access_token'])) {
+        if (isset($params['access_token']))
+        {
             $this->setAccessTokenFromParams($params['access_token']);
         }
 
@@ -292,7 +311,8 @@ class FacebookRequest
     {
         $headers = static::getDefaultHeaders();
 
-        if ($this->eTag) {
+        if ($this->eTag)
+        {
             $headers['If-None-Match'] = $this->eTag;
         }
 
@@ -330,7 +350,8 @@ class FacebookRequest
      */
     public function setParams(array $params = [])
     {
-        if (isset($params['access_token'])) {
+        if (isset($params['access_token']))
+        {
             $this->setAccessTokenFromParams($params['access_token']);
         }
 
@@ -368,8 +389,10 @@ class FacebookRequest
      */
     public function sanitizeFileParams(array $params)
     {
-        foreach ($params as $key => $value) {
-            if ($value instanceof FacebookFile) {
+        foreach ($params as $key => $value)
+        {
+            if ($value instanceof FacebookFile)
+            {
                 $this->addFile($key, $value);
                 unset($params[$key]);
             }
@@ -424,8 +447,10 @@ class FacebookRequest
      */
     public function containsVideoUploads()
     {
-        foreach ($this->files as $file) {
-            if ($file instanceof FacebookVideo) {
+        foreach ($this->files as $file)
+        {
+            if ($file instanceof FacebookVideo)
+            {
                 return true;
             }
         }
@@ -467,7 +492,8 @@ class FacebookRequest
         $params = $this->params;
 
         $accessToken = $this->getAccessToken();
-        if ($accessToken) {
+        if ($accessToken)
+        {
             $params['access_token'] = $accessToken;
             $params['appsecret_proof'] = $this->getAppSecretProof();
         }
@@ -482,7 +508,8 @@ class FacebookRequest
      */
     public function getPostParams()
     {
-        if ($this->getMethod() === 'POST') {
+        if ($this->getMethod() === 'POST')
+        {
             return $this->getParams();
         }
 
@@ -513,7 +540,8 @@ class FacebookRequest
 
         $url = $graphVersion . $endpoint;
 
-        if ($this->getMethod() !== 'POST') {
+        if ($this->getMethod() !== 'POST')
+        {
             $params = $this->getParams();
             $url = FacebookUrlManipulator::appendParamsToUrl($url, $params);
         }
@@ -533,4 +561,5 @@ class FacebookRequest
             'Accept-Encoding' => '*',
         ];
     }
+
 }

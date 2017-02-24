@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\GraphNodes;
 
 use Facebook\Exceptions\FacebookSDKException;
@@ -35,10 +37,12 @@ use Facebook\Exceptions\FacebookSDKException;
  */
 class GraphObjectFactory extends GraphNodeFactory
 {
+
     /**
      * @const string The base graph object class.
      */
     const BASE_GRAPH_NODE_CLASS = '\Facebook\GraphNodes\GraphObject';
+
 
     /**
      * @const string The base graph edge class.
@@ -85,4 +89,5 @@ class GraphObjectFactory extends GraphNodeFactory
     {
         return $this->makeGraphEdge($subclassName, $auto_prefix);
     }
+
 }

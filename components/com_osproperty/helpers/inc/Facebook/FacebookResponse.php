@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook;
 
 use Facebook\GraphNodes\GraphNodeFactory;
@@ -34,30 +36,36 @@ use Facebook\Exceptions\FacebookSDKException;
  */
 class FacebookResponse
 {
+
     /**
      * @var int The HTTP status code response from Graph.
      */
     protected $httpStatusCode;
+
 
     /**
      * @var array The headers returned from Graph.
      */
     protected $headers;
 
+
     /**
      * @var string The raw body of the response from Graph.
      */
     protected $body;
+
 
     /**
      * @var array The decoded body of the Graph response.
      */
     protected $decodedBody = [];
 
+
     /**
      * @var FacebookRequest The original request that returned this response.
      */
     protected $request;
+
 
     /**
      * @var FacebookSDKException The exception thrown by this request.
@@ -235,23 +243,28 @@ class FacebookResponse
     {
         $this->decodedBody = json_decode($this->body, true);
 
-        if ($this->decodedBody === null) {
+        if ($this->decodedBody === null)
+        {
             $this->decodedBody = [];
             parse_str($this->body, $this->decodedBody);
-        } elseif (is_bool($this->decodedBody)) {
+        } elseif (is_bool($this->decodedBody))
+        {
             // Backwards compatibility for Graph < 2.1.
             // Mimics 2.1 responses.
             // @TODO Remove this after Graph 2.0 is no longer supported
             $this->decodedBody = ['success' => $this->decodedBody];
-        } elseif (is_numeric($this->decodedBody)) {
+        } elseif (is_numeric($this->decodedBody))
+        {
             $this->decodedBody = ['id' => $this->decodedBody];
         }
 
-        if (!is_array($this->decodedBody)) {
+        if (!is_array($this->decodedBody))
+        {
             $this->decodedBody = [];
         }
 
-        if ($this->isError()) {
+        if ($this->isError())
+        {
             $this->makeException();
         }
     }
@@ -407,4 +420,5 @@ class FacebookResponse
 
         return $factory->makeGraphEdge($subclassName, $auto_prefix);
     }
+
 }

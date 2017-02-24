@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\Url;
 
 /**
@@ -30,6 +32,7 @@ namespace Facebook\Url;
  */
 class FacebookUrlManipulator
 {
+
     /**
      * Remove params from a URL.
      *
@@ -43,16 +46,19 @@ class FacebookUrlManipulator
         $parts = parse_url($url);
 
         $query = '';
-        if (isset($parts['query'])) {
+        if (isset($parts['query']))
+        {
             $params = [];
             parse_str($parts['query'], $params);
 
             // Remove query params
-            foreach ($paramsToFilter as $paramName) {
+            foreach ($paramsToFilter as $paramName)
+            {
                 unset($params[$paramName]);
             }
 
-            if (count($params) > 0) {
+            if (count($params) > 0)
+            {
                 $query = '?' . http_build_query($params, null, '&');
             }
         }
@@ -76,11 +82,13 @@ class FacebookUrlManipulator
      */
     public static function appendParamsToUrl($url, array $newParams = [])
     {
-        if (!$newParams) {
+        if (!$newParams)
+        {
             return $url;
         }
 
-        if (strpos($url, '?') === false) {
+        if (strpos($url, '?') === false)
+        {
             return $url . '?' . http_build_query($newParams, null, '&');
         }
 
@@ -107,7 +115,8 @@ class FacebookUrlManipulator
     public static function getParamsAsArray($url)
     {
         $query = parse_url($url, PHP_URL_QUERY);
-        if (!$query) {
+        if (!$query)
+        {
             return [];
         }
         $params = [];
@@ -130,7 +139,8 @@ class FacebookUrlManipulator
     {
         $newParams = static::getParamsAsArray($urlToStealFrom);
         // Nothing new to add, return as-is
-        if (!$newParams) {
+        if (!$newParams)
+        {
             return $urlToAddTo;
         }
 
@@ -146,7 +156,8 @@ class FacebookUrlManipulator
      */
     public static function forceSlashPrefix($string)
     {
-        if (!$string) {
+        if (!$string)
+        {
             return $string;
         }
 
@@ -164,4 +175,5 @@ class FacebookUrlManipulator
     {
         return '/' . preg_replace('/^https:\/\/.+\.facebook\.com(\/v.+?)?\//', '', $urlToTrim);
     }
+
 }

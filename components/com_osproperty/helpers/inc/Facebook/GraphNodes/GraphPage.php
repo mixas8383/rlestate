@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\GraphNodes;
 
 /**
@@ -30,6 +32,7 @@ namespace Facebook\GraphNodes;
  */
 class GraphPage extends GraphNode
 {
+
     /**
      * @var array Maps object key names to Graph object types.
      */
@@ -122,4 +125,5 @@ class GraphPage extends GraphNode
     {
         return $this->getField('perms');
     }
+
 }

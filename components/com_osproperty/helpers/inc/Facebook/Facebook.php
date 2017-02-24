@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook;
 
 use Facebook\Authentication\AccessToken;
@@ -54,20 +56,24 @@ use Facebook\Exceptions\FacebookSDKException;
  */
 class Facebook
 {
+
     /**
      * @const string Version number of the Facebook PHP SDK.
      */
     const VERSION = '5.0.0';
+
 
     /**
      * @const string Default Graph API version for requests.
      */
     const DEFAULT_GRAPH_VERSION = 'v2.4';
 
+
     /**
      * @const string The name of the environment variable that contains the app ID.
      */
     const APP_ID_ENV_NAME = 'FACEBOOK_APP_ID';
+
 
     /**
      * @const string The name of the environment variable that contains the app secret.
@@ -79,40 +85,48 @@ class Facebook
      */
     protected $app;
 
+
     /**
      * @var FacebookClient The Facebook client service.
      */
     protected $client;
+
 
     /**
      * @var OAuth2Client The OAuth 2.0 client service.
      */
     protected $oAuth2Client;
 
+
     /**
      * @var UrlDetectionInterface|null The URL detection handler.
      */
     protected $urlDetectionHandler;
+
 
     /**
      * @var PseudoRandomStringGeneratorInterface|null The cryptographically secure pseudo-random string generator.
      */
     protected $pseudoRandomStringGenerator;
 
+
     /**
      * @var AccessToken|null The default access token to use with requests.
      */
     protected $defaultAccessToken;
+
 
     /**
      * @var string|null The default Graph version we want to use.
      */
     protected $defaultGraphVersion;
 
+
     /**
      * @var PersistentDataInterface|null The persistent data handler.
      */
     protected $persistentDataHandler;
+
 
     /**
      * @var FacebookResponse|FacebookBatchResponse|null Stores the last request made to Graph.
@@ -129,28 +143,36 @@ class Facebook
     public function __construct(array $config = [])
     {
         $appId = isset($config['app_id']) ? $config['app_id'] : getenv(static::APP_ID_ENV_NAME);
-        if (!$appId) {
+        if (!$appId)
+        {
             throw new FacebookSDKException('Required "app_id" key not supplied in config and could not find fallback environment variable "' . static::APP_ID_ENV_NAME . '"');
         }
 
         $appSecret = isset($config['app_secret']) ? $config['app_secret'] : getenv(static::APP_SECRET_ENV_NAME);
-        if (!$appSecret) {
+        if (!$appSecret)
+        {
             throw new FacebookSDKException('Required "app_secret" key not supplied in config and could not find fallback environment variable "' . static::APP_SECRET_ENV_NAME . '"');
         }
 
         $this->app = new FacebookApp($appId, $appSecret);
 
         $httpClientHandler = null;
-        if (isset($config['http_client_handler'])) {
-            if ($config['http_client_handler'] instanceof FacebookHttpClientInterface) {
+        if (isset($config['http_client_handler']))
+        {
+            if ($config['http_client_handler'] instanceof FacebookHttpClientInterface)
+            {
                 $httpClientHandler = $config['http_client_handler'];
-            } elseif ($config['http_client_handler'] === 'curl') {
+            } elseif ($config['http_client_handler'] === 'curl')
+            {
                 $httpClientHandler = new FacebookCurlHttpClient();
-            } elseif ($config['http_client_handler'] === 'stream') {
+            } elseif ($config['http_client_handler'] === 'stream')
+            {
                 $httpClientHandler = new FacebookStreamHttpClient();
-            } elseif ($config['http_client_handler'] === 'guzzle') {
+            } elseif ($config['http_client_handler'] === 'guzzle')
+            {
                 $httpClientHandler = new FacebookGuzzleHttpClient();
-            } else {
+            } else
+            {
                 throw new \InvalidArgumentException('The http_client_handler must be set to "curl", "stream", "guzzle", or be an instance of Facebook\HttpClients\FacebookHttpClientInterface');
             }
         }
@@ -158,47 +180,64 @@ class Facebook
         $enableBeta = isset($config['enable_beta_mode']) && $config['enable_beta_mode'] === true;
         $this->client = new FacebookClient($httpClientHandler, $enableBeta);
 
-        if (isset($config['url_detection_handler'])) {
-            if ($config['url_detection_handler'] instanceof UrlDetectionInterface) {
+        if (isset($config['url_detection_handler']))
+        {
+            if ($config['url_detection_handler'] instanceof UrlDetectionInterface)
+            {
                 $this->urlDetectionHandler = $config['url_detection_handler'];
-            } else {
+            } else
+            {
                 throw new \InvalidArgumentException('The url_detection_handler must be an instance of Facebook\Url\UrlDetectionInterface');
             }
         }
 
-        if (isset($config['pseudo_random_string_generator'])) {
-            if ($config['pseudo_random_string_generator'] instanceof PseudoRandomStringGeneratorInterface) {
+        if (isset($config['pseudo_random_string_generator']))
+        {
+            if ($config['pseudo_random_string_generator'] instanceof PseudoRandomStringGeneratorInterface)
+            {
                 $this->pseudoRandomStringGenerator = $config['pseudo_random_string_generator'];
-            } elseif ($config['pseudo_random_string_generator'] === 'mcrypt') {
+            } elseif ($config['pseudo_random_string_generator'] === 'mcrypt')
+            {
                 $this->pseudoRandomStringGenerator = new McryptPseudoRandomStringGenerator();
-            } elseif ($config['pseudo_random_string_generator'] === 'openssl') {
+            } elseif ($config['pseudo_random_string_generator'] === 'openssl')
+            {
                 $this->pseudoRandomStringGenerator = new OpenSslPseudoRandomStringGenerator();
-            } elseif ($config['pseudo_random_string_generator'] === 'urandom') {
+            } elseif ($config['pseudo_random_string_generator'] === 'urandom')
+            {
                 $this->pseudoRandomStringGenerator = new UrandomPseudoRandomStringGenerator();
-            } else {
+            } else
+            {
                 throw new \InvalidArgumentException('The pseudo_random_string_generator must be set to "mcrypt", "openssl", or "urandom", or be an instance of Facebook\PseudoRandomString\PseudoRandomStringGeneratorInterface');
             }
         }
 
-        if (isset($config['persistent_data_handler'])) {
-            if ($config['persistent_data_handler'] instanceof PersistentDataInterface) {
+        if (isset($config['persistent_data_handler']))
+        {
+            if ($config['persistent_data_handler'] instanceof PersistentDataInterface)
+            {
                 $this->persistentDataHandler = $config['persistent_data_handler'];
-            } elseif ($config['persistent_data_handler'] === 'session') {
+            } elseif ($config['persistent_data_handler'] === 'session')
+            {
                 $this->persistentDataHandler = new FacebookSessionPersistentDataHandler();
-            } elseif ($config['persistent_data_handler'] === 'memory') {
+            } elseif ($config['persistent_data_handler'] === 'memory')
+            {
                 $this->persistentDataHandler = new FacebookMemoryPersistentDataHandler();
-            } else {
+            } else
+            {
                 throw new \InvalidArgumentException('The persistent_data_handler must be set to "session", "memory", or be an instance of Facebook\PersistentData\PersistentDataInterface');
             }
         }
 
-        if (isset($config['default_access_token'])) {
+        if (isset($config['default_access_token']))
+        {
             $this->setDefaultAccessToken($config['default_access_token']);
         }
 
-        if (isset($config['default_graph_version'])) {
+        if (isset($config['default_graph_version']))
+        {
             $this->defaultGraphVersion = $config['default_graph_version'];
-        } else {
+        } else
+        {
             // @todo v6: Throw an InvalidArgumentException if "default_graph_version" is not set
             $this->defaultGraphVersion = static::DEFAULT_GRAPH_VERSION;
         }
@@ -231,7 +270,8 @@ class Facebook
      */
     public function getOAuth2Client()
     {
-        if (!$this->oAuth2Client instanceof OAuth2Client) {
+        if (!$this->oAuth2Client instanceof OAuth2Client)
+        {
             $app = $this->getApp();
             $client = $this->getClient();
             $this->oAuth2Client = new OAuth2Client($app, $client, $this->defaultGraphVersion);
@@ -257,7 +297,8 @@ class Facebook
      */
     public function getUrlDetectionHandler()
     {
-        if (!$this->urlDetectionHandler instanceof UrlDetectionInterface) {
+        if (!$this->urlDetectionHandler instanceof UrlDetectionInterface)
+        {
             $this->urlDetectionHandler = new FacebookUrlDetectionHandler();
         }
 
@@ -283,13 +324,15 @@ class Facebook
      */
     public function setDefaultAccessToken($accessToken)
     {
-        if (is_string($accessToken)) {
+        if (is_string($accessToken))
+        {
             $this->defaultAccessToken = new AccessToken($accessToken);
 
             return;
         }
 
-        if ($accessToken instanceof AccessToken) {
+        if ($accessToken instanceof AccessToken)
+        {
             $this->defaultAccessToken = $accessToken;
 
             return;
@@ -316,10 +359,7 @@ class Facebook
     public function getRedirectLoginHelper()
     {
         return new FacebookRedirectLoginHelper(
-            $this->getOAuth2Client(),
-            $this->persistentDataHandler,
-            $this->urlDetectionHandler,
-            $this->pseudoRandomStringGenerator
+                $this->getOAuth2Client(), $this->persistentDataHandler, $this->urlDetectionHandler, $this->pseudoRandomStringGenerator
         );
     }
 
@@ -368,12 +408,7 @@ class Facebook
     public function get($endpoint, $accessToken = null, $eTag = null, $graphVersion = null)
     {
         return $this->sendRequest(
-            'GET',
-            $endpoint,
-            $params = [],
-            $accessToken,
-            $eTag,
-            $graphVersion
+                        'GET', $endpoint, $params = [], $accessToken, $eTag, $graphVersion
         );
     }
 
@@ -393,12 +428,7 @@ class Facebook
     public function post($endpoint, array $params = [], $accessToken = null, $eTag = null, $graphVersion = null)
     {
         return $this->sendRequest(
-            'POST',
-            $endpoint,
-            $params,
-            $accessToken,
-            $eTag,
-            $graphVersion
+                        'POST', $endpoint, $params, $accessToken, $eTag, $graphVersion
         );
     }
 
@@ -418,12 +448,7 @@ class Facebook
     public function delete($endpoint, array $params = [], $accessToken = null, $eTag = null, $graphVersion = null)
     {
         return $this->sendRequest(
-            'DELETE',
-            $endpoint,
-            $params,
-            $accessToken,
-            $eTag,
-            $graphVersion
+                        'DELETE', $endpoint, $params, $accessToken, $eTag, $graphVersion
         );
     }
 
@@ -468,7 +493,8 @@ class Facebook
     public function getPaginationResults(GraphEdge $graphEdge, $direction)
     {
         $paginationRequest = $graphEdge->getPaginationRequest($direction);
-        if (!$paginationRequest) {
+        if (!$paginationRequest)
+        {
             return null;
         }
 
@@ -497,8 +523,8 @@ class Facebook
      */
     public function sendRequest($method, $endpoint, array $params = [], $accessToken = null, $eTag = null, $graphVersion = null)
     {
-        $accessToken = $accessToken ?: $this->defaultAccessToken;
-        $graphVersion = $graphVersion ?: $this->defaultGraphVersion;
+        $accessToken = $accessToken ? : $this->defaultAccessToken;
+        $graphVersion = $graphVersion ? : $this->defaultGraphVersion;
         $request = $this->request($method, $endpoint, $params, $accessToken, $eTag, $graphVersion);
 
         return $this->lastResponse = $this->client->sendRequest($request);
@@ -517,13 +543,10 @@ class Facebook
      */
     public function sendBatchRequest(array $requests, $accessToken = null, $graphVersion = null)
     {
-        $accessToken = $accessToken ?: $this->defaultAccessToken;
-        $graphVersion = $graphVersion ?: $this->defaultGraphVersion;
+        $accessToken = $accessToken ? : $this->defaultAccessToken;
+        $graphVersion = $graphVersion ? : $this->defaultGraphVersion;
         $batchRequest = new FacebookBatchRequest(
-            $this->app,
-            $requests,
-            $accessToken,
-            $graphVersion
+                $this->app, $requests, $accessToken, $graphVersion
         );
 
         return $this->lastResponse = $this->client->sendBatchRequest($batchRequest);
@@ -545,17 +568,11 @@ class Facebook
      */
     public function request($method, $endpoint, array $params = [], $accessToken = null, $eTag = null, $graphVersion = null)
     {
-        $accessToken = $accessToken ?: $this->defaultAccessToken;
-        $graphVersion = $graphVersion ?: $this->defaultGraphVersion;
+        $accessToken = $accessToken ? : $this->defaultAccessToken;
+        $graphVersion = $graphVersion ? : $this->defaultGraphVersion;
 
         return new FacebookRequest(
-            $this->app,
-            $accessToken,
-            $method,
-            $endpoint,
-            $params,
-            $eTag,
-            $graphVersion
+                $this->app, $accessToken, $method, $endpoint, $params, $eTag, $graphVersion
         );
     }
 
@@ -586,4 +603,5 @@ class Facebook
     {
         return new FacebookVideo($pathToFile);
     }
+
 }

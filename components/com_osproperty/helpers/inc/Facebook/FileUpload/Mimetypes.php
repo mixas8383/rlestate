@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\FileUpload;
 
 /**
@@ -34,8 +36,10 @@ namespace Facebook\FileUpload;
  */
 class Mimetypes
 {
+
     /** @var self */
     protected static $instance;
+
 
     /** @var array Mapping of extension to mimetype */
     protected $mimetypes = [
@@ -952,7 +956,8 @@ class Mimetypes
      */
     public static function getInstance()
     {
-        if (!self::$instance) {
+        if (!self::$instance)
+        {
             self::$instance = new self();
         }
 
@@ -984,4 +989,5 @@ class Mimetypes
     {
         return $this->fromExtension(pathinfo($filename, PATHINFO_EXTENSION));
     }
+
 }

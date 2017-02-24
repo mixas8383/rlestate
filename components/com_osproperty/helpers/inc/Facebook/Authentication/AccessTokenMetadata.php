@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\Authentication;
 
 use Facebook\Exceptions\FacebookSDKException;
@@ -35,12 +37,14 @@ use Facebook\Exceptions\FacebookSDKException;
  */
 class AccessTokenMetadata
 {
+
     /**
      * The access token metadata.
      *
      * @var array
      */
     protected $metadata = [];
+
 
     /**
      * Properties that should be cast as DateTime objects.
@@ -56,7 +60,8 @@ class AccessTokenMetadata
      */
     public function __construct(array $metadata)
     {
-        if (!isset($metadata['data'])) {
+        if (!isset($metadata['data']))
+        {
             throw new FacebookSDKException('Unexpected debug token response data.', 401);
         }
 
@@ -75,7 +80,8 @@ class AccessTokenMetadata
      */
     public function getField($field, $default = null)
     {
-        if (isset($this->metadata[$field])) {
+        if (isset($this->metadata[$field]))
+        {
             return $this->metadata[$field];
         }
 
@@ -109,11 +115,13 @@ class AccessTokenMetadata
      */
     public function getChildProperty($parentField, $field, $default = null)
     {
-        if (!isset($this->metadata[$parentField])) {
+        if (!isset($this->metadata[$parentField]))
+        {
             return $default;
         }
 
-        if (!isset($this->metadata[$parentField][$field])) {
+        if (!isset($this->metadata[$parentField][$field]))
+        {
             return $default;
         }
 
@@ -325,7 +333,8 @@ class AccessTokenMetadata
      */
     public function validateAppId($appId)
     {
-        if ($this->getAppId() !== $appId) {
+        if ($this->getAppId() !== $appId)
+        {
             throw new FacebookSDKException('Access token metadata contains unexpected app ID.', 401);
         }
     }
@@ -340,7 +349,8 @@ class AccessTokenMetadata
      */
     public function validateUserId($userId)
     {
-        if ($this->getUserId() !== $userId) {
+        if ($this->getUserId() !== $userId)
+        {
             throw new FacebookSDKException('Access token metadata contains unexpected user ID.', 401);
         }
     }
@@ -352,11 +362,13 @@ class AccessTokenMetadata
      */
     public function validateExpiration()
     {
-        if (!$this->getExpiresAt() instanceof \DateTime) {
+        if (!$this->getExpiresAt() instanceof \DateTime)
+        {
             return;
         }
 
-        if ($this->getExpiresAt()->getTimestamp() < time()) {
+        if ($this->getExpiresAt()->getTimestamp() < time())
+        {
             throw new FacebookSDKException('Inspection of access token metadata shows that the access token has expired.', 401);
         }
     }
@@ -381,10 +393,13 @@ class AccessTokenMetadata
      */
     private function castTimestampsToDateTime()
     {
-        foreach (static::$dateProperties as $key) {
-            if (isset($this->metadata[$key])) {
+        foreach (static::$dateProperties as $key)
+        {
+            if (isset($this->metadata[$key]))
+            {
                 $this->metadata[$key] = $this->convertTimestampToDateTime($this->metadata[$key]);
             }
         }
     }
+
 }

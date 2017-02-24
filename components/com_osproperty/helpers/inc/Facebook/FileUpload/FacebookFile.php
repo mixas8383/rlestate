@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\FileUpload;
 
 use Facebook\Exceptions\FacebookSDKException;
@@ -32,10 +34,12 @@ use Facebook\Exceptions\FacebookSDKException;
  */
 class FacebookFile
 {
+
     /**
      * @var string The path to the file on the system.
      */
     protected $path;
+
 
     /**
      * @var resource The stream pointing to the file.
@@ -70,13 +74,15 @@ class FacebookFile
      */
     public function open()
     {
-        if (!$this->isRemoteFile($this->path) && !is_readable($this->path)) {
+        if (!$this->isRemoteFile($this->path) && !is_readable($this->path))
+        {
             throw new FacebookSDKException('Failed to create FacebookFile entity. Unable to read resource: ' . $this->path . '.');
         }
 
         $this->stream = fopen($this->path, 'r');
 
-        if (!$this->stream) {
+        if (!$this->stream)
+        {
             throw new FacebookSDKException('Failed to create FacebookFile entity. Unable to open resource: ' . $this->path . '.');
         }
     }
@@ -86,7 +92,8 @@ class FacebookFile
      */
     public function close()
     {
-        if (is_resource($this->stream)) {
+        if (is_resource($this->stream))
+        {
             fclose($this->stream);
         }
     }
@@ -118,7 +125,7 @@ class FacebookFile
      */
     public function getMimetype()
     {
-        return Mimetypes::getInstance()->fromFilename($this->path) ?: 'text/plain';
+        return Mimetypes::getInstance()->fromFilename($this->path) ? : 'text/plain';
     }
 
     /**
@@ -132,4 +139,5 @@ class FacebookFile
     {
         return preg_match('/^(https?|ftp):\/\/.*/', $pathToFile) === 1;
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\Http;
 
 /**
@@ -30,15 +32,18 @@ namespace Facebook\Http;
  */
 class GraphRawResponse
 {
+
     /**
      * @var array The response headers in the form of an associative array.
      */
     protected $headers;
 
+
     /**
      * @var string The raw response body.
      */
     protected $body;
+
 
     /**
      * @var int The HTTP status response code.
@@ -54,13 +59,16 @@ class GraphRawResponse
      */
     public function __construct($headers, $body, $httpStatusCode = null)
     {
-        if (is_numeric($httpStatusCode)) {
-            $this->httpResponseCode = (int)$httpStatusCode;
+        if (is_numeric($httpStatusCode))
+        {
+            $this->httpResponseCode = (int) $httpStatusCode;
         }
 
-        if (is_array($headers)) {
+        if (is_array($headers))
+        {
             $this->headers = $headers;
-        } else {
+        } else
+        {
             $this->setHeadersFromString($headers);
         }
 
@@ -105,7 +113,7 @@ class GraphRawResponse
     public function setHttpResponseCodeFromHeader($rawResponseHeader)
     {
         preg_match('|HTTP/\d\.\d\s+(\d+)\s+.*|', $rawResponseHeader, $match);
-        $this->httpResponseCode = (int)$match[1];
+        $this->httpResponseCode = (int) $match[1];
     }
 
     /**
@@ -125,13 +133,17 @@ class GraphRawResponse
         $rawHeader = array_pop($headerCollection);
 
         $headerComponents = explode("\n", $rawHeader);
-        foreach ($headerComponents as $line) {
-            if (strpos($line, ': ') === false) {
+        foreach ($headerComponents as $line)
+        {
+            if (strpos($line, ': ') === false)
+            {
                 $this->setHttpResponseCodeFromHeader($line);
-            } else {
+            } else
+            {
                 list($key, $value) = explode(': ', $line);
                 $this->headers[$key] = $value;
             }
         }
     }
+
 }

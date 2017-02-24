@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\PseudoRandomString;
 
 /**
@@ -30,6 +32,7 @@ namespace Facebook\PseudoRandomString;
  */
 interface PseudoRandomStringGeneratorInterface
 {
+
     /**
      * Get a cryptographically secure pseudo-random string of arbitrary length.
      *

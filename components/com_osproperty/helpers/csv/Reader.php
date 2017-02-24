@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author Nicolas BUI <nbui@wanadoo.fr>
  * 
@@ -16,20 +17,42 @@
  */
 class Reader
 {
-	function Reader()
-	{
-		
-	}
-	
-	function read(){}
-	function ready(){}
-	function close(){}
-	function skip($counter=1){}
-	function reset(){}
-   
-   	function is( &$object )
-   	{
-   		return is_subclass_of( $object, __CLASS__ );
-   	}
+
+    function Reader()
+    {
+        
+    }
+
+    function read()
+    {
+        
+    }
+
+    function ready()
+    {
+        
+    }
+
+    function close()
+    {
+        
+    }
+
+    function skip($counter = 1)
+    {
+        
+    }
+
+    function reset()
+    {
+        
+    }
+
+    function is(&$object)
+    {
+        return is_subclass_of($object, __CLASS__);
+    }
+
 }
+
 ?>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook;
 
 use Facebook\HttpClients\FacebookHttpClientInterface;
@@ -35,35 +37,42 @@ use Facebook\Exceptions\FacebookSDKException;
  */
 class FacebookClient
 {
+
     /**
      * @const string Production Graph API URL.
      */
     const BASE_GRAPH_URL = 'https://graph.facebook.com';
+
 
     /**
      * @const string Graph API URL for video uploads.
      */
     const BASE_GRAPH_VIDEO_URL = 'https://graph-video.facebook.com';
 
+
     /**
      * @const string Beta Graph API URL.
      */
     const BASE_GRAPH_URL_BETA = 'https://graph.beta.facebook.com';
+
 
     /**
      * @const string Beta Graph API URL for video uploads.
      */
     const BASE_GRAPH_VIDEO_URL_BETA = 'https://graph-video.beta.facebook.com';
 
+
     /**
      * @const int The timeout in seconds for a normal request.
      */
     const DEFAULT_REQUEST_TIMEOUT = 60;
 
+
     /**
      * @const int The timeout in seconds for a request that contains file uploads.
      */
     const DEFAULT_FILE_UPLOAD_REQUEST_TIMEOUT = 3600;
+
 
     /**
      * @const int The timeout in seconds for a request that contains video uploads.
@@ -75,10 +84,12 @@ class FacebookClient
      */
     protected $enableBetaMode = false;
 
+
     /**
      * @var FacebookHttpClientInterface HTTP client handler.
      */
     protected $httpClientHandler;
+
 
     /**
      * @var int The number of calls that have been made to Graph.
@@ -93,7 +104,7 @@ class FacebookClient
      */
     public function __construct(FacebookHttpClientInterface $httpClientHandler = null, $enableBeta = false)
     {
-        $this->httpClientHandler = $httpClientHandler ?: $this->detectHttpClientHandler();
+        $this->httpClientHandler = $httpClientHandler ? : $this->detectHttpClientHandler();
         $this->enableBetaMode = $enableBeta;
     }
 
@@ -146,7 +157,8 @@ class FacebookClient
      */
     public function getBaseGraphUrl($postToVideoUrl = false)
     {
-        if ($postToVideoUrl) {
+        if ($postToVideoUrl)
+        {
             return $this->enableBetaMode ? static::BASE_GRAPH_VIDEO_URL_BETA : static::BASE_GRAPH_VIDEO_URL;
         }
 
@@ -166,12 +178,14 @@ class FacebookClient
         $url = $this->getBaseGraphUrl($postToVideoUrl) . $request->getUrl();
 
         // If we're sending files they should be sent as multipart/form-data
-        if ($request->containsFileUploads()) {
+        if ($request->containsFileUploads())
+        {
             $requestBody = $request->getMultipartBody();
             $request->setHeaders([
                 'Content-Type' => 'multipart/form-data; boundary=' . $requestBody->getBoundary(),
             ]);
-        } else {
+        } else
+        {
             $requestBody = $request->getUrlEncodedBody();
             $request->setHeaders([
                 'Content-Type' => 'application/x-www-form-urlencoded',
@@ -197,7 +211,8 @@ class FacebookClient
      */
     public function sendRequest(FacebookRequest $request)
     {
-        if (get_class($request) === 'FacebookRequest') {
+        if (get_class($request) === 'FacebookRequest')
+        {
             $request->validateAccessToken();
         }
 
@@ -205,9 +220,11 @@ class FacebookClient
 
         // Since file uploads can take a while, we need to give more time for uploads
         $timeOut = static::DEFAULT_REQUEST_TIMEOUT;
-        if ($request->containsFileUploads()) {
+        if ($request->containsFileUploads())
+        {
             $timeOut = static::DEFAULT_FILE_UPLOAD_REQUEST_TIMEOUT;
-        } elseif ($request->containsVideoUploads()) {
+        } elseif ($request->containsVideoUploads())
+        {
             $timeOut = static::DEFAULT_VIDEO_UPLOAD_REQUEST_TIMEOUT;
         }
 
@@ -218,13 +235,11 @@ class FacebookClient
         static::$requestCount++;
 
         $returnResponse = new FacebookResponse(
-            $request,
-            $rawResponse->getBody(),
-            $rawResponse->getHttpResponseCode(),
-            $rawResponse->getHeaders()
+                $request, $rawResponse->getBody(), $rawResponse->getHttpResponseCode(), $rawResponse->getHeaders()
         );
 
-        if ($returnResponse->isError()) {
+        if ($returnResponse->isError())
+        {
             throw $returnResponse->getThrownException();
         }
 
@@ -247,4 +262,5 @@ class FacebookClient
 
         return new FacebookBatchResponse($request, $facebookResponse);
     }
+
 }

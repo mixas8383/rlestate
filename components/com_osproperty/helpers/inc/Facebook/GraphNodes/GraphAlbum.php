@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\GraphNodes;
 
 /**
@@ -28,9 +30,9 @@ namespace Facebook\GraphNodes;
  *
  * @package Facebook
  */
-
 class GraphAlbum extends GraphNode
 {
+
     /**
      * @var array Maps object key names to Graph object types.
      */
@@ -180,4 +182,5 @@ class GraphAlbum extends GraphNode
     {
         return $this->getField('type');
     }
+
 }

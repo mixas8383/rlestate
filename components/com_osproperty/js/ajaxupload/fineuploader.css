@@ -100,7 +100,7 @@
     color: #000000;
 }
 .qq-upload-cancel, .qq-upload-delete {
-	/* JG color: #000000; */
+    /* JG color: #000000; */
 }
 .qq-upload-retryable .qq-upload-retry {
     display: inline;
@@ -151,5 +151,5 @@
     display: none;
 }
 .qq-upload-debug-text {
-  display: block;
+    display: block;
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,11 +22,11 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\HttpClients;
 
 use Facebook\Http\GraphRawResponse;
 use Facebook\Exceptions\FacebookSDKException;
-
 use GuzzleHttp\Client;
 use GuzzleHttp\Message\ResponseInterface;
 use GuzzleHttp\Ring\Exception\RingException;
@@ -33,6 +34,7 @@ use GuzzleHttp\Exception\RequestException;
 
 class FacebookGuzzleHttpClient implements FacebookHttpClientInterface
 {
+
     /**
      * @var \GuzzleHttp\Client The Guzzle client.
      */
@@ -43,7 +45,7 @@ class FacebookGuzzleHttpClient implements FacebookHttpClientInterface
      */
     public function __construct(Client $guzzleClient = null)
     {
-        $this->guzzleClient = $guzzleClient ?: new Client();
+        $this->guzzleClient = $guzzleClient ? : new Client();
     }
 
     /**
@@ -60,12 +62,15 @@ class FacebookGuzzleHttpClient implements FacebookHttpClientInterface
         ];
         $request = $this->guzzleClient->createRequest($method, $url, $options);
 
-        try {
+        try
+        {
             $rawResponse = $this->guzzleClient->send($request);
-        } catch (RequestException $e) {
+        } catch (RequestException $e)
+        {
             $rawResponse = $e->getResponse();
 
-            if ($e->getPrevious() instanceof RingException || !$rawResponse instanceof ResponseInterface) {
+            if ($e->getPrevious() instanceof RingException || !$rawResponse instanceof ResponseInterface)
+            {
                 throw new FacebookSDKException($e->getMessage(), $e->getCode());
             }
         }
@@ -88,10 +93,12 @@ class FacebookGuzzleHttpClient implements FacebookHttpClientInterface
     {
         $headers = $response->getHeaders();
         $rawHeaders = [];
-        foreach ($headers as $name => $values) {
+        foreach ($headers as $name => $values)
+        {
             $rawHeaders[] = $name . ": " . implode(", ", $values);
         }
 
         return implode("\r\n", $rawHeaders);
     }
+
 }

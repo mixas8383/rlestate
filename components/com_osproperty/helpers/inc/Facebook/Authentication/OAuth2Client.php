@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\Authentication;
 
 use Facebook\Facebook;
@@ -38,6 +40,7 @@ use Facebook\Exceptions\FacebookSDKException;
  */
 class OAuth2Client
 {
+
     /**
      * @const string The base authorization URL.
      */
@@ -50,6 +53,7 @@ class OAuth2Client
      */
     protected $app;
 
+
     /**
      * The Facebook client.
      *
@@ -57,12 +61,14 @@ class OAuth2Client
      */
     protected $client;
 
+
     /**
      * The version of the Graph API to use.
      *
      * @var string
      */
     protected $graphVersion;
+
 
     /**
      * The last request sent to Graph.
@@ -80,7 +86,7 @@ class OAuth2Client
     {
         $this->app = $app;
         $this->client = $client;
-        $this->graphVersion = $graphVersion ?: Facebook::DEFAULT_GRAPH_VERSION;
+        $this->graphVersion = $graphVersion ? : Facebook::DEFAULT_GRAPH_VERSION;
     }
 
     /**
@@ -107,13 +113,7 @@ class OAuth2Client
         $params = ['input_token' => $accessToken];
 
         $this->lastRequest = new FacebookRequest(
-            $this->app,
-            $this->app->getAccessToken(),
-            'GET',
-            '/debug_token',
-            $params,
-            null,
-            $this->graphVersion
+                $this->app, $this->app->getAccessToken(), 'GET', '/debug_token', $params, null, $this->graphVersion
         );
         $response = $this->client->sendRequest($this->lastRequest);
         $metadata = $response->getDecodedBody();
@@ -205,7 +205,8 @@ class OAuth2Client
         $response = $this->sendRequestWithClientParams('/oauth/client_code', $params, $accessToken);
         $data = $response->getDecodedBody();
 
-        if (!isset($data['code'])) {
+        if (!isset($data['code']))
+        {
             throw new FacebookSDKException('Code was not returned from Graph.', 401);
         }
 
@@ -226,18 +227,21 @@ class OAuth2Client
         $response = $this->sendRequestWithClientParams('/oauth/access_token', $params);
         $data = $response->getDecodedBody();
 
-        if (!isset($data['access_token'])) {
+        if (!isset($data['access_token']))
+        {
             throw new FacebookSDKException('Access token was not returned from Graph.', 401);
         }
 
         // Graph returns two different key names for expiration time
         // on the same endpoint. Doh! :/
         $expiresAt = 0;
-        if (isset($data['expires'])) {
+        if (isset($data['expires']))
+        {
             // For exchanging a short lived token with a long lived token.
             // The expiration time in seconds will be returned as "expires".
             $expiresAt = time() + $data['expires'];
-        } elseif (isset($data['expires_in'])) {
+        } elseif (isset($data['expires_in']))
+        {
             // For exchanging a code for a short lived access token.
             // The expiration time in seconds will be returned as "expires_in".
             // See: https://developers.facebook.com/docs/facebook-login/access-tokens#long-via-code
@@ -262,16 +266,10 @@ class OAuth2Client
     {
         $params += $this->getClientParams();
 
-        $accessToken = $accessToken ?: $this->app->getAccessToken();
+        $accessToken = $accessToken ? : $this->app->getAccessToken();
 
         $this->lastRequest = new FacebookRequest(
-            $this->app,
-            $accessToken,
-            'GET',
-            $endpoint,
-            $params,
-            null,
-            $this->graphVersion
+                $this->app, $accessToken, 'GET', $endpoint, $params, null, $this->graphVersion
         );
 
         return $this->client->sendRequest($this->lastRequest);
@@ -289,4 +287,5 @@ class OAuth2Client
             'client_secret' => $this->app->getSecret(),
         ];
     }
+
 }

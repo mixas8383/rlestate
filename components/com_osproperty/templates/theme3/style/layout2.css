@@ -6,15 +6,15 @@
 .property-mask { position:relative; }
 
 .property-mask h4, .feat-thumb h4 { 
-	position:absolute; bottom:0; left:0; font-size:14px; font-weight:500; text-transform:uppercase; color:#FFF; background:#445064; padding:6px 10px; margin-bottom:0; 
+    position:absolute; bottom:0; left:0; font-size:14px; font-weight:500; text-transform:uppercase; color:#FFF; background:#445064; padding:6px 10px; margin-bottom:0; 
 }
 .property-mask h4.os-featured , .feat-thumb h4.os-featured { 
-	position:absolute; bottom:28px; left:0; font-size:14px; font-weight:500; text-transform:uppercase; color:#FFF; 
-	background:#FF0000; padding:6px 10px; margin-bottom:0; 
+    position:absolute; bottom:28px; left:0; font-size:14px; font-weight:500; text-transform:uppercase; color:#FFF; 
+    background:#FF0000; padding:6px 10px; margin-bottom:0; 
 }
 .property-mask h4.os-sold , .feat-thumb h4.os-sold { 
-	position:absolute; bottom:56px; left:0; font-size:14px; font-weight:500; text-transform:uppercase; color:#FFF; 
-	background:#FF0000; padding:6px 10px; margin-bottom:0; 
+    position:absolute; bottom:56px; left:0; font-size:14px; font-weight:500; text-transform:uppercase; color:#FFF; 
+    background:#FF0000; padding:6px 10px; margin-bottom:0; 
 }
 .property-mask h4 a:link, .property-mask h4 a:visited, 
 .feat-thumb h4 a:link, .feat-thumb h4 a:visited,
@@ -51,8 +51,8 @@
 }
 .property-desc h4, .property-desc h4 a:link, .property-desc h4 a:visited {
     font-size: 18px;
-	text-decoration:none;
-	margin:0;
+    text-decoration:none;
+    margin:0;
 }
 .property-info i, .property-info-agent i {
     font-size: 14px;
@@ -77,8 +77,8 @@ a.view-profile {
     right: 0;
 }
 a.view-profile:hover {
-	background:#aaa;
-	color:#fff;
+    background:#aaa;
+    color:#fff;
 }
 .agent-info label {
     color: #88C354;
@@ -91,26 +91,26 @@ a.view-profile:hover {
 LAYOUT Two
 ****************************/
 .cs-style-3 li:nth-child(3n +3) {
-	margin:0;
+    margin:0;
 }
 .grid-two-cols li {
-	width:50%;
-	float:left;
+    width:50%;
+    float:left;
 }
 .grid-two-cols .property-image {
-	float:none;
+    float:none;
 }
 .property-two-cols .property-image ,.property-two-cols .property-info , .property-two-cols .property-desc {
-	margin-right: 30px;
+    margin-right: 30px;
     width: 320px;
 }
 
 
 .WebRupee{
-	display:inline !important;
+    display:inline !important;
 }
 .property-info .ospico-square, .property-info .ospico-bed, .property-info .ospico-bath, .property-info .ospico-parking{
-	background:url(../img/osp_icon.svg) no-repeat;
+    background:url(../img/osp_icon.svg) no-repeat;
     display: inline-block;
     height: 16px;
     line-height: 16px;
@@ -121,7 +121,7 @@ LAYOUT Two
     background-position: 0 -32px;
 }
 .property-info .ospico-bath {
-    
+
     background-position: 0 -16px;
 }
 .property-info .ospico-parking {
@@ -131,7 +131,7 @@ LAYOUT Two
     background-position: 0 -64px;
 }
 .grid li:hover .property-info .ospico-bed {
-    
+
     background-position: 0 -96px;
 }
 .grid li:hover .property-info .ospico-bath {
@@ -141,30 +141,30 @@ LAYOUT Two
     background-position: 0 -112px;
 }
 .grid li {
-	width:100%;
+    width:100%;
 }
 .grid li li {
-	float:left;
-	text-align:center;
+    float:left;
+    text-align:center;
 }
 .grid li .property-info .property-icon-square , .grid li .property-info .property-icon-parking{ 
-	width:30%;
-	
+    width:30%;
+
 }
 .grid li .property-info .property-icon-bed , .grid li .property-info .property-icon-bath{ 
-	width:20%;
-	
+    width:20%;
+
 }
 .grid li .property-info {
-	overflow:hidden;
+    overflow:hidden;
 }
 .grid li .property-info .property-icon-parking span {
-	margin:0;
+    margin:0;
 }
 @media (min-width: 320px) and (max-width:980px) {
-.grid li .property-info .property-icon-square, .grid li .property-info .property-icon-parking , .grid li .property-info .property-icon-bed , .grid li .property-info .property-icon-bath {
-		width:auto;
-	}
+    .grid li .property-info .property-icon-square, .grid li .property-info .property-icon-parking , .grid li .property-info .property-icon-bed , .grid li .property-info .property-icon-bath {
+        width:auto;
+    }
 }
 
 @media only screen

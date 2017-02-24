@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\Exceptions;
 
 use Facebook\FacebookResponse;
@@ -32,10 +34,12 @@ use Facebook\FacebookResponse;
  */
 class FacebookResponseException extends FacebookSDKException
 {
+
     /**
      * @var FacebookResponse The response that threw the exception.
      */
     protected $response;
+
 
     /**
      * @var array Decoded response.
@@ -70,7 +74,8 @@ class FacebookResponseException extends FacebookSDKException
     {
         $data = $response->getDecodedBody();
 
-        if (!isset($data['error']['code']) && isset($data['code'])) {
+        if (!isset($data['error']['code']) && isset($data['code']))
+        {
             $data = ['error' => $data];
         }
 
@@ -79,8 +84,10 @@ class FacebookResponseException extends FacebookSDKException
 
         $previousException = null;
 
-        if (isset($data['error']['error_subcode'])) {
-            switch ($data['error']['error_subcode']) {
+        if (isset($data['error']['error_subcode']))
+        {
+            switch ($data['error']['error_subcode'])
+            {
                 // Other authentication issues
                 case 458:
                 case 459:
@@ -92,7 +99,8 @@ class FacebookResponseException extends FacebookSDKException
             }
         }
 
-        switch ($code) {
+        switch ($code)
+        {
             // Login status or token expired, revoked, or invalid
             case 100:
             case 102:
@@ -116,12 +124,14 @@ class FacebookResponseException extends FacebookSDKException
         }
 
         // Missing Permissions
-        if ($code == 10 || ($code >= 200 && $code <= 299)) {
+        if ($code == 10 || ($code >= 200 && $code <= 299))
+        {
             return new static($response, new FacebookAuthorizationException($message, $code));
         }
 
         // OAuth authentication error
-        if (isset($data['error']['type']) && $data['error']['type'] === 'OAuthException') {
+        if (isset($data['error']['type']) && $data['error']['type'] === 'OAuthException')
+        {
             return new static($response, new FacebookAuthenticationException($message, $code));
         }
 
@@ -139,7 +149,8 @@ class FacebookResponseException extends FacebookSDKException
      */
     private function get($key, $default = null)
     {
-        if (isset($this->responseData['error'][$key])) {
+        if (isset($this->responseData['error'][$key]))
+        {
             return $this->responseData['error'][$key];
         }
 
@@ -205,4 +216,5 @@ class FacebookResponseException extends FacebookSDKException
     {
         return $this->response;
     }
+
 }

@@ -105,33 +105,33 @@
 .calendar-detail .row-fluid .span12 .property-calendar .calendar-label{font-size:16px;font-weight:700;padding:6px 17px 8px 14px;color:#fff;background-color:#586162;display:inline-block}
 .favslider1{margin:0!important}
 @media (min-width: 320px) and (max-width: 480px) {
-.descriptionWrap{border-left:1px solid #dedede;border-right:1px solid #dedede}
-.os_property-item .price{float:none;display:block;padding:0;margin:0 15px}
-.os_property-item .status-type,.os_property-item .status-price{display:block;padding:0 20px}
-.os_property-item .property-meta li,.os_property-meta li{float:none;border:none}
-.os_property-item .property-meta li,.os_property-meta li:hover{background:#DDD!important}
-.os_property-item .title{line-height:26px;margin:10px 18px;float:none;padding:0}
-.os_property-item .wrap{background:none}
-.attribute-list{margin:0}
-.attribute-list .meta-block{padding:6px 0}
-.tabbable{padding-bottom:10px}
-.tabbable .nav-tabs{border-bottom:none}
-.tabbable .nav-tabs li{float:none}
-.tabbable .nav-tabs li a{border:1px solid #ddd;border-radius:inherit}
-.tabbable .nav-tabs li:first-child a{border-radius:4px 4px 0 0}
-.tabbable .nav-tabs li:last-child a{border-radius:0 0 4px 4px}
-#comments .form-horizontal .control-group .controls,#tellafriend .form-horizontal .control-group .controls{margin:0}
-#comments .form-horizontal .control-group .controls .input-large,#tellafriend .form-horizontal .control-group .controls .input-large{width:100%!important}
+    .descriptionWrap{border-left:1px solid #dedede;border-right:1px solid #dedede}
+    .os_property-item .price{float:none;display:block;padding:0;margin:0 15px}
+    .os_property-item .status-type,.os_property-item .status-price{display:block;padding:0 20px}
+    .os_property-item .property-meta li,.os_property-meta li{float:none;border:none}
+    .os_property-item .property-meta li,.os_property-meta li:hover{background:#DDD!important}
+    .os_property-item .title{line-height:26px;margin:10px 18px;float:none;padding:0}
+    .os_property-item .wrap{background:none}
+    .attribute-list{margin:0}
+    .attribute-list .meta-block{padding:6px 0}
+    .tabbable{padding-bottom:10px}
+    .tabbable .nav-tabs{border-bottom:none}
+    .tabbable .nav-tabs li{float:none}
+    .tabbable .nav-tabs li a{border:1px solid #ddd;border-radius:inherit}
+    .tabbable .nav-tabs li:first-child a{border-radius:4px 4px 0 0}
+    .tabbable .nav-tabs li:last-child a{border-radius:0 0 4px 4px}
+    #comments .form-horizontal .control-group .controls,#tellafriend .form-horizontal .control-group .controls{margin:0}
+    #comments .form-horizontal .control-group .controls .input-large,#tellafriend .form-horizontal .control-group .controls .input-large{width:100%!important}
 }
 @media (min-width: 768px) and (max-width: 1024px) {
-.agent-detail [class*="span"]{box-sizing:border-box;display:block;float:left;margin-left:0;min-height:30px;width:100%}
-.os_property-item .property-meta li{float:none;border:none}
-.attribute-list{margin:0}
-.attribute-list .meta-block{padding:6px 0}
+    .agent-detail [class*="span"]{box-sizing:border-box;display:block;float:left;margin-left:0;min-height:30px;width:100%}
+    .os_property-item .property-meta li{float:none;border:none}
+    .attribute-list{margin:0}
+    .attribute-list .meta-block{padding:6px 0}
 }
 @media (min-width: 1280px) {
-.os_property-item .status-type:after{border-bottom:19px solid transparent;border-right:9px solid #4dc7ec;border-top:19px solid transparent;content:"";position:absolute;right:0;top:0;z-index:1}
-.os_property-item .status-type:before{border-bottom:19px solid transparent;border-right:9px solid #292d2d;border-top:19px solid transparent;content:"";left:-9px;position:absolute;top:0}
+    .os_property-item .status-type:after{border-bottom:19px solid transparent;border-right:9px solid #4dc7ec;border-top:19px solid transparent;content:"";position:absolute;right:0;top:0;z-index:1}
+    .os_property-item .status-type:before{border-bottom:19px solid transparent;border-right:9px solid #292d2d;border-top:19px solid transparent;content:"";left:-9px;position:absolute;top:0}
 }
 #googlemapdiv img{max-width:none!important}
 .shell{margin-top:10px}
@@ -186,8 +186,8 @@ html[xmlns] .favs{display:block}
 .fav-control-thumbs .fav-active{opacity:1;cursor:default;filter:alpha(opacity=100)}
 #carousel1 li:active img{opacity:1}
 @media screen and (max-width: 860px) {
-.fav-direction-nav .fav-prev{opacity:1;filter:alpha(opacity=100);left:0}
-.fav-direction-nav .fav-next{opacity:1;filter:alpha(opacity=100);right:0}
+    .fav-direction-nav .fav-prev{opacity:1;filter:alpha(opacity=100);left:0}
+    .fav-direction-nav .fav-next{opacity:1;filter:alpha(opacity=100);right:0}
 }
 .favslider1 li:before{display:none}
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\Helpers;
 
 use Facebook\Facebook;
@@ -37,15 +39,18 @@ use Facebook\Authentication\OAuth2Client;
  */
 abstract class FacebookSignedRequestFromInputHelper
 {
+
     /**
      * @var SignedRequest|null The SignedRequest entity.
      */
     protected $signedRequest;
 
+
     /**
      * @var FacebookApp The FacebookApp entity.
      */
     protected $app;
+
 
     /**
      * @var OAuth2Client The OAuth 2.0 client service.
@@ -62,7 +67,7 @@ abstract class FacebookSignedRequestFromInputHelper
     public function __construct(FacebookApp $app, FacebookClient $client, $graphVersion = null)
     {
         $this->app = $app;
-        $graphVersion = $graphVersion ?: Facebook::DEFAULT_GRAPH_VERSION;
+        $graphVersion = $graphVersion ? : Facebook::DEFAULT_GRAPH_VERSION;
         $this->oAuth2Client = new OAuth2Client($this->app, $client, $graphVersion);
 
         $this->instantiateSignedRequest();
@@ -75,9 +80,10 @@ abstract class FacebookSignedRequestFromInputHelper
      */
     public function instantiateSignedRequest($rawSignedRequest = null)
     {
-        $rawSignedRequest = $rawSignedRequest ?: $this->getRawSignedRequest();
+        $rawSignedRequest = $rawSignedRequest ? : $this->getRawSignedRequest();
 
-        if (!$rawSignedRequest) {
+        if (!$rawSignedRequest)
+        {
             return;
         }
 
@@ -93,11 +99,13 @@ abstract class FacebookSignedRequestFromInputHelper
      */
     public function getAccessToken()
     {
-        if ($this->signedRequest && $this->signedRequest->hasOAuthData()) {
+        if ($this->signedRequest && $this->signedRequest->hasOAuthData())
+        {
             $code = $this->signedRequest->get('code');
             $accessToken = $this->signedRequest->get('oauth_token');
 
-            if ($code && !$accessToken) {
+            if ($code && !$accessToken)
+            {
                 return $this->oAuth2Client->getAccessTokenFromCode($code);
             }
 
@@ -143,7 +151,8 @@ abstract class FacebookSignedRequestFromInputHelper
      */
     public function getRawSignedRequestFromPost()
     {
-        if (isset($_POST['signed_request'])) {
+        if (isset($_POST['signed_request']))
+        {
             return $_POST['signed_request'];
         }
 
@@ -157,10 +166,12 @@ abstract class FacebookSignedRequestFromInputHelper
      */
     public function getRawSignedRequestFromCookie()
     {
-        if (isset($_COOKIE['fbsr_' . $this->app->getId()])) {
+        if (isset($_COOKIE['fbsr_' . $this->app->getId()]))
+        {
             return $_COOKIE['fbsr_' . $this->app->getId()];
         }
 
         return null;
     }
+
 }

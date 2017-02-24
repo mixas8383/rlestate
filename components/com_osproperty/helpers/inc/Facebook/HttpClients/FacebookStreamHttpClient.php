@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\HttpClients;
 
 use Facebook\Http\GraphRawResponse;
@@ -28,6 +30,7 @@ use Facebook\Exceptions\FacebookSDKException;
 
 class FacebookStreamHttpClient implements FacebookHttpClientInterface
 {
+
     /**
      * @var FacebookStream Procedural stream wrapper as object.
      */
@@ -38,7 +41,7 @@ class FacebookStreamHttpClient implements FacebookHttpClientInterface
      */
     public function __construct(FacebookStream $facebookStream = null)
     {
-        $this->facebookStream = $facebookStream ?: new FacebookStream();
+        $this->facebookStream = $facebookStream ? : new FacebookStream();
     }
 
     /**
@@ -66,7 +69,8 @@ class FacebookStreamHttpClient implements FacebookHttpClientInterface
         $rawBody = $this->facebookStream->fileGetContents($url);
         $rawHeaders = $this->facebookStream->getResponseHeaders();
 
-        if ($rawBody === false || !$rawHeaders) {
+        if ($rawBody === false || !$rawHeaders)
+        {
             throw new FacebookSDKException('Stream returned an empty response', 660);
         }
 
@@ -85,10 +89,12 @@ class FacebookStreamHttpClient implements FacebookHttpClientInterface
     public function compileHeader(array $headers)
     {
         $header = [];
-        foreach ($headers as $k => $v) {
+        foreach ($headers as $k => $v)
+        {
             $header[] = $k . ': ' . $v;
         }
 
         return implode("\r\n", $header);
     }
+
 }

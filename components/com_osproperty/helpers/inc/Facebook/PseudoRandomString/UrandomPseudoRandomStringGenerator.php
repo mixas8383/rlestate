@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\PseudoRandomString;
 
 use Facebook\Exceptions\FacebookSDKException;
@@ -40,17 +42,19 @@ class UrandomPseudoRandomStringGenerator implements PseudoRandomStringGeneratorI
      */
     public function __construct()
     {
-        if (ini_get('open_basedir')) {
+        if (ini_get('open_basedir'))
+        {
             throw new FacebookSDKException(
-                static::ERROR_MESSAGE .
-                'There is an open_basedir constraint that prevents access to /dev/urandom.'
+            static::ERROR_MESSAGE .
+            'There is an open_basedir constraint that prevents access to /dev/urandom.'
             );
         }
 
-        if (!is_readable('/dev/urandom')) {
+        if (!is_readable('/dev/urandom'))
+        {
             throw new FacebookSDKException(
-                static::ERROR_MESSAGE .
-                'Unable to read from /dev/urandom.'
+            static::ERROR_MESSAGE .
+            'Unable to read from /dev/urandom.'
             );
         }
     }
@@ -63,27 +67,31 @@ class UrandomPseudoRandomStringGenerator implements PseudoRandomStringGeneratorI
         $this->validateLength($length);
 
         $stream = fopen('/dev/urandom', 'rb');
-        if (!is_resource($stream)) {
+        if (!is_resource($stream))
+        {
             throw new FacebookSDKException(
-                static::ERROR_MESSAGE .
-                'Unable to open stream to /dev/urandom.'
+            static::ERROR_MESSAGE .
+            'Unable to open stream to /dev/urandom.'
             );
         }
 
-        if (!defined('HHVM_VERSION')) {
+        if (!defined('HHVM_VERSION'))
+        {
             stream_set_read_buffer($stream, 0);
         }
 
         $binaryString = fread($stream, $length);
         fclose($stream);
 
-        if (!$binaryString) {
+        if (!$binaryString)
+        {
             throw new FacebookSDKException(
-                static::ERROR_MESSAGE .
-                'Stream to /dev/urandom returned no data.'
+            static::ERROR_MESSAGE .
+            'Stream to /dev/urandom returned no data.'
             );
         }
 
         return $this->binToHex($binaryString, $length);
     }
+
 }

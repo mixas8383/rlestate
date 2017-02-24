@@ -1,13 +1,2 @@
-/.gitignore
 /.htaccess
-/administrator/cache/*
-/cache/*
-/bin/*
-/cli/*
-/installation/*
-/logs/*
-/tmp/*
-/configuration.php
-/index.php
-/joomla.xml
-/*.txt
+/nbproject/private/

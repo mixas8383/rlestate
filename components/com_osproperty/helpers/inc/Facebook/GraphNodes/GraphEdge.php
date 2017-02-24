@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\GraphNodes;
 
 use Facebook\FacebookRequest;
@@ -34,20 +36,24 @@ use Facebook\Exceptions\FacebookSDKException;
  */
 class GraphEdge extends Collection
 {
+
     /**
      * @var FacebookRequest The original request that generated this data.
      */
     protected $request;
+
 
     /**
      * @var array An array of Graph meta data like pagination, etc.
      */
     protected $metaData = [];
 
+
     /**
      * @var string|null The parent Graph edge endpoint that generated the list.
      */
     protected $parentEdgeEndpoint;
+
 
     /**
      * @var string|null The subclass of the child GraphNode's.
@@ -132,7 +138,8 @@ class GraphEdge extends Collection
      */
     public function getCursor($direction)
     {
-        if (isset($this->metaData['paging']['cursors'][$direction])) {
+        if (isset($this->metaData['paging']['cursors'][$direction]))
+        {
             return $this->metaData['paging']['cursors'][$direction];
         }
 
@@ -153,7 +160,8 @@ class GraphEdge extends Collection
         $this->validateForPagination();
 
         // Do we have a paging URL?
-        if (isset($this->metaData['paging'][$direction])) {
+        if (isset($this->metaData['paging'][$direction]))
+        {
             // Graph returns the full URL with all the original params.
             // We just want the endpoint though.
             $pageUrl = $this->metaData['paging'][$direction];
@@ -164,12 +172,14 @@ class GraphEdge extends Collection
         // Do we have a cursor to work with?
         $cursorDirection = $direction === 'next' ? 'after' : 'before';
         $cursor = $this->getCursor($cursorDirection);
-        if (!$cursor) {
+        if (!$cursor)
+        {
             return null;
         }
 
         // If we don't know the ID of the parent node, this ain't gonna work.
-        if (!$this->parentEdgeEndpoint) {
+        if (!$this->parentEdgeEndpoint)
+        {
             return null;
         }
 
@@ -191,7 +201,8 @@ class GraphEdge extends Collection
      */
     public function validateForPagination()
     {
-        if ($this->request->getMethod() !== 'GET') {
+        if ($this->request->getMethod() !== 'GET')
+        {
             throw new FacebookSDKException('You can only paginate on a GET request.', 720);
         }
     }
@@ -208,7 +219,8 @@ class GraphEdge extends Collection
     public function getPaginationRequest($direction)
     {
         $pageUrl = $this->getPaginationUrl($direction);
-        if (!$pageUrl) {
+        if (!$pageUrl)
+        {
             return null;
         }
 
@@ -251,10 +263,12 @@ class GraphEdge extends Collection
      */
     public function getTotalCount()
     {
-        if (isset($this->metaData['summary']['total_count'])) {
+        if (isset($this->metaData['summary']['total_count']))
+        {
             return $this->metaData['summary']['total_count'];
         }
 
         return null;
     }
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\GraphNodes;
 
 /**
@@ -28,9 +30,9 @@ namespace Facebook\GraphNodes;
  *
  * @package Facebook
  */
-
 class GraphApplication extends GraphNode
 {
+
     /**
      * Returns the ID for the application.
      *
@@ -40,4 +42,5 @@ class GraphApplication extends GraphNode
     {
         return $this->getField('id');
     }
+
 }

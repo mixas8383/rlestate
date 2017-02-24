@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -21,6 +22,7 @@
  * DEALINGS IN THE SOFTWARE.
  *
  */
+
 namespace Facebook\HttpClients;
 
 use Facebook\Http\GraphRawResponse;
@@ -33,20 +35,24 @@ use Facebook\Exceptions\FacebookSDKException;
  */
 class FacebookCurlHttpClient implements FacebookHttpClientInterface
 {
+
     /**
      * @var string The client error message
      */
     protected $curlErrorMessage = '';
+
 
     /**
      * @var int The curl client error code
      */
     protected $curlErrorCode = 0;
 
+
     /**
      * @var string|boolean The raw response from the server
      */
     protected $rawResponse;
+
 
     /**
      * @var FacebookCurl Procedural curl as object
@@ -58,6 +64,7 @@ class FacebookCurlHttpClient implements FacebookHttpClientInterface
      */
     const CURL_PROXY_QUIRK_VER = 0x071E00;
 
+
     /**
      * @const "Connection Established" header text
      */
@@ -68,7 +75,7 @@ class FacebookCurlHttpClient implements FacebookHttpClientInterface
      */
     public function __construct(FacebookCurl $facebookCurl = null)
     {
-        $this->facebookCurl = $facebookCurl ?: new FacebookCurl();
+        $this->facebookCurl = $facebookCurl ? : new FacebookCurl();
     }
 
     /**
@@ -79,7 +86,8 @@ class FacebookCurlHttpClient implements FacebookHttpClientInterface
         $this->openConnection($url, $method, $body, $headers, $timeOut);
         $this->sendRequest();
 
-        if ($curlErrorCode = $this->facebookCurl->errno()) {
+        if ($curlErrorCode = $this->facebookCurl->errno())
+        {
             throw new FacebookSDKException($this->facebookCurl->error(), $curlErrorCode);
         }
 
@@ -115,7 +123,8 @@ class FacebookCurlHttpClient implements FacebookHttpClientInterface
             CURLOPT_CAINFO => __DIR__ . '/certs/DigiCertHighAssuranceEVRootCA.pem',
         ];
 
-        if ($method !== "GET") {
+        if ($method !== "GET")
+        {
             $options[CURLOPT_POSTFIELDS] = $body;
         }
 
@@ -150,7 +159,8 @@ class FacebookCurlHttpClient implements FacebookHttpClientInterface
     {
         $return = [];
 
-        foreach ($headers as $key => $value) {
+        foreach ($headers as $key => $value)
+        {
             $return[] = $key . ': ' . $value;
         }
 
@@ -182,11 +192,14 @@ class FacebookCurlHttpClient implements FacebookHttpClientInterface
         $headerSize = $this->facebookCurl->getinfo(CURLINFO_HEADER_SIZE);
         // This corrects a Curl bug where header size does not account
         // for additional Proxy headers.
-        if ($this->needsCurlProxyFix()) {
+        if ($this->needsCurlProxyFix())
+        {
             // Additional way to calculate the request body size.
-            if (preg_match('/Content-Length: (\d+)/', $this->rawResponse, $m)) {
+            if (preg_match('/Content-Length: (\d+)/', $this->rawResponse, $m))
+            {
                 $headerSize = mb_strlen($this->rawResponse) - $m[1];
-            } elseif (stripos($this->rawResponse, self::CONNECTION_ESTABLISHED) !== false) {
+            } elseif (stripos($this->rawResponse, self::CONNECTION_ESTABLISHED) !== false)
+            {
                 $headerSize += mb_strlen(self::CONNECTION_ESTABLISHED);
             }
         }
@@ -207,4 +220,5 @@ class FacebookCurlHttpClient implements FacebookHttpClientInterface
 
         return $version < self::CURL_PROXY_QUIRK_VER;
     }
+
 }

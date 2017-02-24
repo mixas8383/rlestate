@@ -8,13 +8,13 @@ LAYOUT Default
 .property-mask { position:relative; }
 
 .property-mask h4, .feat-thumb h4 { 
-	position:absolute; bottom:0; left:0; font-size:14px; font-weight:500; text-transform:uppercase; color:#FFF; background:#445064; padding:6px 10px; margin-bottom:0; 
+    position:absolute; bottom:0; left:0; font-size:14px; font-weight:500; text-transform:uppercase; color:#FFF; background:#445064; padding:6px 10px; margin-bottom:0; 
 }
 .property-mask h4.os-featured , .feat-thumb h4.os-featured { 
-	position:absolute; bottom:28px; left:0; font-size:14px; font-weight:500; text-transform:uppercase; color:#FFF; background:#FF0000; padding:6px 10px; margin-bottom:0; 
+    position:absolute; bottom:28px; left:0; font-size:14px; font-weight:500; text-transform:uppercase; color:#FFF; background:#FF0000; padding:6px 10px; margin-bottom:0; 
 }
 .property-mask h4.os-sold , .feat-thumb h4.os-sold { 
-	position:absolute; bottom:56px; left:0; font-size:14px; font-weight:500; text-transform:uppercase; color:#FFF; background:#FF0000; padding:6px 10px; margin-bottom:0; 
+    position:absolute; bottom:56px; left:0; font-size:14px; font-weight:500; text-transform:uppercase; color:#FFF; background:#FF0000; padding:6px 10px; margin-bottom:0; 
 }
 .property-mask h4 a:link, .property-mask h4 a:visited, 
 .feat-thumb h4 a:link, .feat-thumb h4 a:visited,
@@ -51,8 +51,8 @@ LAYOUT Default
 }
 .property-desc h4, .property-desc h4 a:link, .property-desc h4 a:visited {
     font-size: 18px;
-	text-decoration:none;
-	margin:0;
+    text-decoration:none;
+    margin:0;
 }
 
 .agent-info {
@@ -74,8 +74,8 @@ a.view-profile {
     right: 0;
 }
 a.view-profile:hover {
-	background:#aaa;
-	color:#fff;
+    background:#aaa;
+    color:#fff;
 }
 .agent-info label {
     color: #88C354;
@@ -88,14 +88,14 @@ a.view-profile:hover {
 LAYOUT Two
 ****************************/
 .grid-two-cols li {
-	margin-right:12px !important;
-	float:left;
+    margin-right:12px !important;
+    float:left;
 }
 .grid-two-cols .property-image {
-	float:none;
+    float:none;
 }
 .property-two-cols .property-image ,.property-two-cols .property-info , .property-two-cols .property-desc {
-	margin-right: 30px;
+    margin-right: 30px;
     width: 320px;
 }
 /****************************
@@ -103,21 +103,21 @@ LAYOUT Three
 ****************************/
 
 .property-three-cols .property-image ,.property-three-cols .property-info , .property-three-cols .property-desc {
-	margin-right: 30px;
+    margin-right: 30px;
     width: 320px;
 }
 .property-three-cols .property-desc span.price {
-	color: #81D742;
+    color: #81D742;
 }
 .property-three-cols .property-desc span i {
     margin-right: 15px;
 }
 
 .WebRupee{
-	display:inline !important;
+    display:inline !important;
 }
 .property-info .ospico-square, .property-info .ospico-bed, .property-info .ospico-bath, .property-info .ospico-parking{
-	background:url(../img/osp_icon.svg) no-repeat;
+    background:url(../img/osp_icon.svg) no-repeat;
     display: inline-block;
     height: 16px;
     line-height: 16px;
@@ -128,7 +128,7 @@ LAYOUT Three
     background-position: 0 -32px;
 }
 .property-info .ospico-bath {
-    
+
     background-position: 0 -16px;
 }
 .property-info .ospico-parking {
@@ -138,29 +138,29 @@ LAYOUT Three
     background-position: 0 -64px;
 }
 .grid li:hover .property-info .ospico-bed {
-    
-	background-position: 0 -96px;
+
+    background-position: 0 -96px;
 }
 .grid li:hover .property-info .ospico-bath {
     background-position: 0 -80px;
 }
 .grid li:hover .property-info .ospico-parking {
-	background-position: 0 -112px;
+    background-position: 0 -112px;
 }
 .grid li {
-	width:100%;
+    width:100%;
 }
 .grid li li {
-	float:left;
-	text-align:center;
-	width:auto;
+    float:left;
+    text-align:center;
+    width:auto;
 }
 
 .grid li .property-info {
-	overflow:hidden;
+    overflow:hidden;
 }
 .grid li .property-info .property-icon-parking span {
-	margin:0;
+    margin:0;
 }
 
 
