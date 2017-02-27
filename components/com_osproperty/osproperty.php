@@ -134,7 +134,7 @@ if ($configClass['integrate_oscalendar'] == 1)
 
 global $configs;
 $db = JFactory::getDBO();
-$db->setQuery('SELECT * FROM #__osrs_configuration ');
+$db->setQuery('SELECT * FROM #__osrs_configuration '); // double request
 $configs = array();
 foreach ($db->loadObjectList() as $config)
 {
