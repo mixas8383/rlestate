@@ -164,6 +164,14 @@ if ($task == "")
             break;
         case "ldefault":
             $task = "default_page";
+            jimport('joomla.application.component.controller');
+            
+            $controller = JControllerLegacy::getInstance('Osproperty');
+            $controller->execute(JFactory::getApplication()->input->get('task'));
+            $controller->redirect();
+            
+
+
             break;
         case "lsearch":
             $task = "locator_search";
@@ -230,7 +238,7 @@ if (in_array($task, $chosenTasks))
         OSPHelper::chosen();
     }
 }
-       
+
 switch ($maintask)
 {
     case "ajax":
