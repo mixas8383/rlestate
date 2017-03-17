@@ -73,7 +73,7 @@ class OSPRoute
             if ($needs[0] == "property_details")
             {
                 $pid = $needs[1];
-                $find_lang = $needs[2];
+                $find_lang = isset($needs[2]) ? $needs[2] : '';
                 if ($pid > 0)
                 {
                     $db->setQuery("Select agent_id,pro_type,city,state,country,isFeatured from #__osrs_properties where id = '$pid'");
@@ -131,7 +131,7 @@ class OSPRoute
                         }
                     }
 
-                    $jmenu = JSite::getMenu();
+                    $jmenu = JFactory::getApplication()->getMenu();
 
                     if (count($menus_found) > 0)
                     {

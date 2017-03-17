@@ -165,7 +165,6 @@ if ($task == "")
         case "ldefault":
             $task = "default_page";
             jimport('joomla.application.component.controller');
-            
             $controller = JControllerLegacy::getInstance('Osproperty');
             $controller->execute(JFactory::getApplication()->input->get('task'));
             $controller->redirect();
@@ -264,7 +263,7 @@ switch ($maintask)
         break;
     default:
     case "default":
-        OspropertyDefault::display($option, $task);
+        //OspropertyDefault::display($option, $task);
         break;
     case "locator":
         OspropertyLocator::display($option, $task);

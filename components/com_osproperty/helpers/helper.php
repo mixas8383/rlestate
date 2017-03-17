@@ -3030,7 +3030,7 @@ class OSPHelper
             <?php } ?>
                     (<?php echo HelperOspropertyCommon::loadCurrency(0); ?>).
                     <span
-                        id="<?php echo $prefix; ?>price_from_input"><?php echo number_format($min_price, 0, '', ','); ?></span>
+                        id="<?php echo $prefix; ?>price_from_input"><?php echo number_format((float)$min_price, 0, '', ','); ?></span>
                     <input type="hidden" name="min_price" id="<?php echo $prefix; ?>price_from_input1"
                            value="<?php echo $min_price; ?>"/>
                 </div>
@@ -4661,7 +4661,7 @@ class OSPHelper
             $theme_id = 0;
             if ($itemid > 0)
             {
-                $menus = JSite::getMenu();
+                $menus = JFactory::getApplication()->getMenu();
                 $menu = $menus->getActive();
                 if (is_object($menu))
                 {
