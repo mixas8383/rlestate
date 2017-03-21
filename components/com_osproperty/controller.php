@@ -21,7 +21,6 @@ class OspropertyController extends JControllerLegacy{
 		$id    		= $this->input->getInt('id');
 		$vName 		= $this->input->getCmd('view');
 
-		
 
 		$this->input->set('view', $vName);
 		parent::display($cachable,$urlparams);

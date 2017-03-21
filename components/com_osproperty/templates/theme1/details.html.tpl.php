@@ -9,6 +9,7 @@
   # Technical Support:  Forum - http://www.joomdonation.com/forum.html
  */
 // No direct access.
+
 defined('_JEXEC') or die;
 $document = JFactory::getDocument();
 $document->addStyleSheet('//fonts.googleapis.com/css?family=Oswald:700');
@@ -134,13 +135,14 @@ $titleColor = $params->get('titleColor', '#03b4ea');
                         }
                         ?>
                     </span>
-                    <?php if ($row->show_address == 1)
+                    <?php
+                    if ($row->show_address == 1)
                     {
                         ?>
                         <span class="address_details">
-                        <?php echo OSPHelper::generateAddress($row); ?>
+                            <?php echo OSPHelper::generateAddress($row); ?>
                         </span>
-<?php } ?>
+                    <?php } ?>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -262,9 +264,10 @@ $titleColor = $params->get('titleColor', '#03b4ea');
                                         ?>
                                     </ul>
                                 </div>
-    <?php if (count($photos) > 1)
-    {
-        ?>
+                                <?php
+                                if (count($photos) > 1)
+                                {
+                                    ?>
                                     <div id="carousel1" class="favslider1 hidden-phone">
                                         <ul class="favs">
                                             <?php
@@ -275,94 +278,100 @@ $titleColor = $params->get('titleColor', '#03b4ea');
                                                     if (JPATH_ROOT . '/images/osproperty/properties/' . $row->id . '/thumb/' . $photos[$i]->image)
                                                     {
                                                         ?>
-                                                        <li <?php if ($i > 0)
-                                        {
-                                                            ?>style="margin-left: 3px;width:120px !important;;"<?php } else
-                                    {
-                                                            ?>style="width:120px !important;; "<?php } ?>><img class="detailwidth" alt="<?php echo $photos[$i]->image_desc; ?>" title="<?php echo $photos[$i]->image_desc; ?>" src="<?php echo JURI::root() ?>images/osproperty/properties/<?php echo $row->id; ?>/thumb/<?php echo $photos[$i]->image ?>" /></li>
+                                                        <li <?php
+                                                        if ($i > 0)
+                                                        {
+                                                            ?>style="margin-left: 3px;width:120px !important;;"<?php
+                                                            } else
+                                                            {
+                                                                ?>style="width:120px !important;; "<?php } ?>><img class="detailwidth" alt="<?php echo $photos[$i]->image_desc; ?>" title="<?php echo $photos[$i]->image_desc; ?>" src="<?php echo JURI::root() ?>images/osproperty/properties/<?php echo $row->id; ?>/thumb/<?php echo $photos[$i]->image ?>" /></li>
                                                             <?php
                                                         } else
                                                         {
                                                             ?>
-                                                        <li <?php if ($i > 0)
-                                        {
-                                                                ?>style="margin-left: 3px;width:120px !important;;"<?php } else
-                                    {
-                                        ?>style="width:120px; !important;"<?php } ?>><img src="<?php echo JURI::root() ?>components/com_osproperty/images/assets/nopropertyphoto.png" /></li>
+                                                        <li <?php
+                                                        if ($i > 0)
+                                                        {
+                                                            ?>style="margin-left: 3px;width:120px !important;;"<?php
+                                                            } else
+                                                            {
+                                                                ?>style="width:120px; !important;"<?php } ?>><img src="<?php echo JURI::root() ?>components/com_osproperty/images/assets/nopropertyphoto.png" /></li>
                                                             <?php
                                                         }
                                                     } else
                                                     {
                                                         ?>
-                                                    <li <?php if ($i > 0)
-                                        {
-                                            ?>style="margin-left: 3px;width:120px !important;;"<?php } else
-                                        {
+                                                    <li <?php
+                                                    if ($i > 0)
+                                                    {
+                                                        ?>style="margin-left: 3px;width:120px !important;;"<?php
+                                                        } else
+                                                        {
                                                             ?>style="width:120px !important;;"<?php } ?>><img src="<?php echo JURI::root() ?>components/com_osproperty/images/assets/nopropertyphoto.png" /></li>
-                                            <?php
-                                        }
-                                    }
-                                    ?>
+                                                        <?php
+                                                    }
+                                                }
+                                                ?>
                                         </ul>
                                     </div>
-        <?php
-    }
-} else
-{
-    ?>
+                                    <?php
+                                }
+                            } else
+                            {
+                                ?>
                                 <img src="<?php echo JURI::root() ?>components/com_osproperty/images/assets/nopropertyphoto.png"/>
-                                                <?php
-                                            }
-                                            ?>
+                                <?php
+                            }
+                            ?>
                         </div>
                         <div class="span5">
                             <div class="descriptionWrap">
                                 <ul class="attribute-list">
                                     <li class="property-icon-square meta-block">
-                                    <?php echo JText::_('OS_CREATED_ON'); ?>:
+                                        <?php echo JText::_('OS_CREATED_ON'); ?>:
                                         <span>
-                                    <?php
-                                    //echo date("D, jS F Y",$created_on);
-                                    echo JHTML::_('date', $row->created, $configClass['general_date_format']);
-                                    ?>
+                                            <?php
+                                            //echo date("D, jS F Y",$created_on);
+                                            echo JHTML::_('date', $row->created, $configClass['general_date_format']);
+                                            ?>
                                         </span>
                                     </li>
-                                            <?php
-                                            if ($configClass['use_squarefeet'] == 1)
-                                            {
-                                                ?>
+                                    <?php
+                                    if ($configClass['use_squarefeet'] == 1)
+                                    {
+                                        ?>
                                         <li class="property-icon-square meta-block">
-                                        <?php echo OSPHelper::showSquareLabels(); ?>:
+                                            <?php echo OSPHelper::showSquareLabels(); ?>:
                                             <span>
-                                        <?php
-                                        echo OSPHelper::showSquare($row->square_feet);
-                                        echo "&nbsp;";
-                                        echo OSPHelper::showSquareSymbol();
-                                        ?>
+                                                <?php
+                                                echo OSPHelper::showSquare($row->square_feet);
+                                                echo "&nbsp;";
+                                                echo OSPHelper::showSquareSymbol();
+                                                ?>
                                             </span></li>
-                                                <?php
-                                                if ($row->lot_size > 0)
-                                                {
-                                                    ?>
-                                            <li class="property-icon-square meta-block">
-                                            <?php echo JText::_('OS_LOT_SIZE'); ?>:
-                                                <span>
-                                            <?php
-                                            echo $row->lot_size;
-                                            echo "&nbsp;";
-                                            echo OSPHelper::showSquareSymbol();
+                                        <?php
+                                        if ($row->lot_size > 0)
+                                        {
                                             ?>
+                                            <li class="property-icon-square meta-block">
+                                                <?php echo JText::_('OS_LOT_SIZE'); ?>:
+                                                <span>
+                                                    <?php
+                                                    echo $row->lot_size;
+                                                    echo "&nbsp;";
+                                                    echo OSPHelper::showSquareSymbol();
+                                                    ?>
                                                 </span></li>
-                                                <?php
-                                            }
+                                            <?php
                                         }
-                                        ?>
+                                    }
+                                    ?>
                                     <?php
                                     if (($configClass['use_bedrooms'] == 1) and ( $row->bed_room > 0))
                                     {
                                         ?>
                                         <li class="property-icon-bed meta-block">
-                                        <?php echo JText::_('OS_BEDROOM'); ?>:
+                                            <?php echo JText::_('OS_BEDROOM'); ?>:
                                             <span><?php echo $row->bed_room; ?></span></li>
                                         <?php
                                     }
@@ -418,9 +427,9 @@ $titleColor = $params->get('titleColor', '#03b4ea');
                                     {
                                         ?>
                                         <li class="propertyinfoli meta-block"><?php echo JText::_('OS_RATING') ?>: <span><?php echo $row->ratingvalue ?></span></li>
-                                                <?php
-                                            }
-                                            ?>
+                                        <?php
+                                    }
+                                    ?>
                                     <li class="propertyinfoli meta-block"><strong><?php echo JText::_('OS_CATEGORY') ?>: </strong><span><?php echo $row->category_name ?></span></li>
                                     <?php
                                     if (count($tagArr) > 0)
@@ -428,12 +437,12 @@ $titleColor = $params->get('titleColor', '#03b4ea');
                                         ?>
                                         <li class="propertyinfoli meta-block"><strong><?php echo JText::_('OS_TAGS') ?>: </strong>
                                             <span>
-    <?php echo implode(" ", $tagArr); ?>
+                                                <?php echo implode(" ", $tagArr); ?>
                                             </span>
                                         </li>
-    <?php
-}
-?>
+                                        <?php
+                                    }
+                                    ?>
                                 </ul>
                             </div>
                         </div>                    
@@ -442,33 +451,33 @@ $titleColor = $params->get('titleColor', '#03b4ea');
                 <!-- end content -->
             </div>
         </div>
-                    <?php
-                    ?>
+        <?php
+        ?>
         <div class="os_property-item clearfix">
             <div class="wrap clearfix">
                 <h4 class="title">
-<?php
-if ($row->ref != "")
-{
-    echo JText::_('Ref #')
-    ?> : 
-                            <?php
-                            echo $row->ref;
-                        }
-                        ?> 
+                    <?php
+                    if ($row->ref != "")
+                    {
+                        echo JText::_('Ref #')
+                        ?> : 
+                        <?php
+                        echo $row->ref;
+                    }
+                    ?> 
                 </h4>
                 <h5 class="price<?php echo $csssuffix; ?>">
                     <span class="status-type<?php echo $csssuffix; ?>">
                         <?php echo $row->type_name ?>
                     </span>
                     <span class="status-price<?php echo $csssuffix; ?>" id="currency_div">
-<?php echo $row->price_raw; ?>
-<?php
-if ($configClass['show_convert_currency'] == 1)
-{
-    echo $lists['curr_default'];
-}
-?>
+                        <?php echo $row->price_raw; ?>
+                        <?php
+                        if ($configClass['show_convert_currency'] == 1)
+                        {
+                            echo $lists['curr_default'];
+                        }
+                        ?>
                     </span>
                     <input type="hidden" name="live_site" id="live_site" value="<?php echo JUri::root(); ?>" />
                     <input type="hidden" name="currency_item" id="currency_item" value="" />
@@ -477,129 +486,129 @@ if ($configClass['show_convert_currency'] == 1)
             <!--property-meta -->
             <div class="property-meta clearfix">
                 <ul class="listingActions-list">
-<?php
-$user = JFactory::getUser();
-if (HelperOspropertyCommon::isAgent())
-{
-    $my_agent_id = HelperOspropertyCommon::getAgentID();
-    if ($my_agent_id == $row->agent_id)
-    {
-        $link = JURI::root() . "index.php?option=com_osproperty&task=property_edit&id=" . $row->id;
-        ?>
+                    <?php
+                    $user = JFactory::getUser();
+                    if (HelperOspropertyCommon::isAgent())
+                    {
+                        $my_agent_id = HelperOspropertyCommon::getAgentID();
+                        if ($my_agent_id == $row->agent_id)
+                        {
+                            $link = JURI::root() . "index.php?option=com_osproperty&task=property_edit&id=" . $row->id;
+                            ?>
                             <li class="propertyinfoli">
                                 <i class="osicon-edit"></i>
                                 <a href="<?php echo $link ?>" title="<?php echo JText::_('OS_EDIT_PROPERTY') ?>">
-        <?php echo JText::_('OS_EDIT_PROPERTY') ?>
+                                    <?php echo JText::_('OS_EDIT_PROPERTY') ?>
                                 </a>
                             </li>
-                                    <?php
-                                }
-                            }
-                            if (($configClass['show_getdirection'] == 1) and ( $row->show_address == 1))
-                            {
-                                ?>
+                            <?php
+                        }
+                    }
+                    if (($configClass['show_getdirection'] == 1) and ( $row->show_address == 1))
+                    {
+                        ?>
                         <li class="propertyinfoli">
                             <i class="osicon-move"></i>
                             <a href="<?php echo JRoute::_("index.php?option=com_osproperty&task=direction_map&id=" . $row->id) ?>" title="<?php echo JText::_('OS_GET_DIRECTIONS') ?>">
-                        <?php echo JText::_('OS_GET_DIRECTIONS') ?>
+                                <?php echo JText::_('OS_GET_DIRECTIONS') ?>
                             </a>
                         </li>
-                            <?php
-                        }
-                        if ($configClass['show_compare_task'] == 1)
-                        {
+                        <?php
+                    }
+                    if ($configClass['show_compare_task'] == 1)
+                    {
 
-                            if (!OSPHelper::isInCompareList($row->id))
-                            {
-                                ?>
+                        if (!OSPHelper::isInCompareList($row->id))
+                        {
+                            ?>
                             <li class="propertyinfoli">
-        <?php
-        $msg = JText::_('OS_DO_YOU_WANT_TO_ADD_PROPERTY_TO_YOUR_COMPARE_LIST');
-        $msg = str_replace("'", "\'", $msg);
-        ?>
+                                <?php
+                                $msg = JText::_('OS_DO_YOU_WANT_TO_ADD_PROPERTY_TO_YOUR_COMPARE_LIST');
+                                $msg = str_replace("'", "\'", $msg);
+                                ?>
                                 <i class="osicon-list"></i>
                                 <span id="compare<?php echo $row->id; ?>">
                                     <a onclick="javascript:osConfirmExtend('<?php echo $msg; ?>', 'ajax_addCompare', '<?php echo $row->id ?>', '<?php echo JURI::root() ?>', 'compare<?php echo $row->id ?>', 'theme1', 'details')" href="javascript:void(0)">
-                                <?php echo JText::_('OS_ADD_TO_COMPARE_LIST') ?>
+                                        <?php echo JText::_('OS_ADD_TO_COMPARE_LIST') ?>
                                     </a>
                                 </span>
                             </li>
-        <?php
-    } else
-    {
-        ?>
+                            <?php
+                        } else
+                        {
+                            ?>
                             <li class="propertyinfoli">
-        <?php
-        $msg = JText::_('OS_DO_YOU_WANT_TO_REMOVE_PROPERTY_OUT_OF_COMPARE_LIST');
-        $msg = str_replace("'", "\'", $msg);
-        ?>
+                                <?php
+                                $msg = JText::_('OS_DO_YOU_WANT_TO_REMOVE_PROPERTY_OUT_OF_COMPARE_LIST');
+                                $msg = str_replace("'", "\'", $msg);
+                                ?>
                                 <i class="osicon-list"></i>
                                 <span id="compare<?php echo $row->id; ?>">
                                     <a onclick="javascript:osConfirmExtend('<?php echo $msg; ?>', 'ajax_removeCompare', '<?php echo $row->id ?>', '<?php echo JURI::root() ?>', 'compare<?php echo $row->id ?>', 'theme1', 'details')" href="javascript:void(0)">
-                            <?php echo JText::_('OS_REMOVE_FROM_COMPARE_LIST') ?>
+                                        <?php echo JText::_('OS_REMOVE_FROM_COMPARE_LIST') ?>
                                     </a>
                                 </span>
                             </li>
-                                <?php
-                            }
+                            <?php
                         }
-                        if (($configClass['property_save_to_favories'] == 1) and ( $user->id > 0))
-                        {
+                    }
+                    if (($configClass['property_save_to_favories'] == 1) and ( $user->id > 0))
+                    {
 
-                            if ($inFav == 0)
-                            {
-                                ?>
+                        if ($inFav == 0)
+                        {
+                            ?>
                             <li class="propertyinfoli">
-        <?php
-        $msg = JText::_('OS_DO_YOU_WANT_TO_ADD_PROPERTY_TO_YOUR_FAVORITE_LISTS');
-        $msg = str_replace("'", "\'", $msg);
-        ?>
+                                <?php
+                                $msg = JText::_('OS_DO_YOU_WANT_TO_ADD_PROPERTY_TO_YOUR_FAVORITE_LISTS');
+                                $msg = str_replace("'", "\'", $msg);
+                                ?>
 
                                 <i class="osicon-star"></i>
                                 <span id="fav<?php echo $row->id; ?>">
                                     <a onclick="javascript:osConfirmExtend('<?php echo $msg; ?>', 'ajax_addFavorites', '<?php echo $row->id ?>', '<?php echo JURI::root() ?>', 'fav<?php echo $row->id; ?>', 'theme1', 'details')" href="javascript:void(0)" class="_saveListingLink save has icon s_16">
-                                <?php echo JText::_('OS_ADD_TO_FAVORITES'); ?>
+                                        <?php echo JText::_('OS_ADD_TO_FAVORITES'); ?>
                                     </a>
                                 </span>
                             </li class="propertyinfoli">
-        <?php
-    } else
-    {
-        ?>
+                            <?php
+                        } else
+                        {
+                            ?>
                             <li class="propertyinfoli">
-        <?php
-        $msg = JText::_('OS_DO_YOU_WANT_TO_ADD_PROPERTY_TO_YOUR_FAVORITE_LISTS');
-        $msg = str_replace("'", "\'", $msg);
-        ?>
+                                <?php
+                                $msg = JText::_('OS_DO_YOU_WANT_TO_ADD_PROPERTY_TO_YOUR_FAVORITE_LISTS');
+                                $msg = str_replace("'", "\'", $msg);
+                                ?>
 
                                 <i class="osicon-star"></i>
                                 <span id="fav<?php echo $row->id; ?>">
                                     <a onclick="javascript:osConfirmExtend('<?php echo $msg; ?>', 'ajax_removeFavorites', '<?php echo $row->id ?>', '<?php echo JURI::root() ?>', 'fav<?php echo $row->id; ?>', 'theme1', 'details')" href="javascript:void(0)" class="_saveListingLink save has icon s_16">
-                            <?php echo JText::_('OS_REMOVE_FAVORITES'); ?>
+                                        <?php echo JText::_('OS_REMOVE_FAVORITES'); ?>
                                     </a>
                                 </span>
                             </li class="propertyinfoli">
-        <?php
-    }
-}
-if ($configClass['property_pdf_layout'] == 1)
-{
-    ?>
+                            <?php
+                        }
+                    }
+                    if ($configClass['property_pdf_layout'] == 1)
+                    {
+                        ?>
                         <li class="propertyinfoli">
                             <img src="<?php echo JUri::root() ?>components/com_osproperty/images/assets/pdf16.png" />
                             <a href="<?php echo JURI::root() ?>index.php?option=com_osproperty&no_html=1&task=property_pdf&id=<?php echo $row->id ?>" title="<?php echo JText::_('OS_EXPORT_PDF') ?>"  rel="nofollow" target="_blank">
                                 PDF
                             </a>
                         </li>
-    <?php
-}
-if ($configClass['property_show_print'] == 1)
-{
-    ?>
+                        <?php
+                    }
+                    if ($configClass['property_show_print'] == 1)
+                    {
+                        ?>
                         <li class="propertyinfoli">
                             <i class="osicon-print"></i>
                             <a target="_blank" href="<?php echo JURI::root() ?>index.php?option=com_osproperty&tmpl=component&no_html=1&task=property_print&id=<?php echo $row->id ?>">
-    <?php echo JText::_(OS_PRINT_THIS_PAGE) ?>
+                                <?php echo JText::_('OS_PRINT_THIS_PAGE') ?>
                             </a>
                         </li>
                         <?php
@@ -617,24 +626,24 @@ if ($configClass['property_show_print'] == 1)
                     {
                         ?>
                         <div style="float:right;">
-                        <?php echo $row->open_hours; ?>
+                            <?php echo $row->open_hours; ?>
                         </div>
                         <?php
                     }
                     ?>
-                <?php echo OSPHelper::getLanguageFieldValue($row, 'pro_small_desc'); ?>
-                <?php
-                if (OSPHelper::getLanguageFieldValue($row, 'pro_full_desc') != "")
-                {
-                    echo OSPHelper::getLanguageFieldValue($row, 'pro_full_desc');
-                }
-                ?>
+                    <?php echo OSPHelper::getLanguageFieldValue($row, 'pro_small_desc'); ?>
+                    <?php
+                    if (OSPHelper::getLanguageFieldValue($row, 'pro_full_desc') != "")
+                    {
+                        echo OSPHelper::getLanguageFieldValue($row, 'pro_full_desc');
+                    }
+                    ?>
                 </div>
-                            <?php
-                            if (count($row->extra_field_groups) > 0)
-                            {
-                                $extra_field_groups = $row->extra_field_groups;
-                                ?>
+                <?php
+                if (count($row->extra_field_groups) > 0)
+                {
+                    $extra_field_groups = $row->extra_field_groups;
+                    ?>
                     <div class="clearfix"></div>
                     <div class="row-fluid">
                         <div class="span12">
@@ -650,54 +659,55 @@ if ($configClass['property_show_print'] == 1)
                                     {
                                         ?>  
                                         <li><strong><?php echo $group_name; ?></strong></li>
-                                                <?php
-                                                $k = 0;
-                                                for ($j = 0; $j < count($fields); $j++)
-                                                {
-                                                    $field = $fields[$j];
-                                                    if ($field->value != "")
-                                                    {
-                                                        ?> 
+                                        <?php
+                                        $k = 0;
+                                        for ($j = 0; $j < count($fields); $j++)
+                                        {
+                                            $field = $fields[$j];
+                                            if ($field->value != "")
+                                            {
+                                                ?> 
                                                 <li>
                                                     <strong>
                                                         <?php
                                                         if (($field->displaytitle == 1) or ( $field->displaytitle == 2))
                                                         {
                                                             ?>
-                                                        <?php echo $field->field_label; ?>
-                                                    <?php } ?>
-                    <?php
-                    if ($field->displaytitle == 1)
-                    {
-                        ?>
+                                                            <?php echo $field->field_label; ?>
+                                                        <?php } ?>
+                                                        <?php
+                                                        if ($field->displaytitle == 1)
+                                                        {
+                                                            ?>
                                                             :
-                                                <?php } ?>
+                                                        <?php } ?>
                                                     </strong>
-                                                <?php if (($field->displaytitle == 1) or ( $field->displaytitle == 3))
-                                                {
-                                                    ?>
+                                                    <?php
+                                                    if (($field->displaytitle == 1) or ( $field->displaytitle == 3))
+                                                    {
+                                                        ?>
                                                         <span><?php echo $field->value; ?></span> <?php } ?>
                                                 </li>
-                                    <?php
+                                                <?php
+                                            }
+                                        }
+                                    }
                                 }
-                            }
-                        }
-                    }
-                    ?>
+                                ?>
                             </ul>
                         </div>
                     </div>
                 <?php } ?>
-<?php
-$db = JFactory::getDbo();
-$query = "Select count(a.id)from #__osrs_neighborhood as a"
-        . " inner join #__osrs_neighborhoodname as b on b.id = a.neighbor_id"
-        . " where a.pid = '$row->id'";
-$db->setQuery($query);
-$count_neighborhood = $db->loadResult();
-if ($count_neighborhood > 0)
-{
-    ?>
+                <?php
+                $db = JFactory::getDbo();
+                $query = "Select count(a.id)from #__osrs_neighborhood as a"
+                        . " inner join #__osrs_neighborhoodname as b on b.id = a.neighbor_id"
+                        . " where a.pid = '$row->id'";
+                $db->setQuery($query);
+                $count_neighborhood = $db->loadResult();
+                if ($count_neighborhood > 0)
+                {
+                    ?>
                     <div class="clearfix"></div>
                     <div class="row-fluid">
                         <div class="span12" style="margin-top:20px;">
@@ -732,43 +742,43 @@ if ($count_neighborhood > 0)
                                             }
                                             ?></span>
                                     </li>
-                <?php }
-                ?>
+                                <?php }
+                                ?>
                             </ul>
                         </div>
                     </div>
-    <?php
-}
-?>
+                    <?php
+                }
+                ?>
             </div>
             <!-- end os_property_content-->
             <!-- features-->
-                        <?php
-                        if ((($configClass['show_amenity_group'] == 1) and ( $row->amens_str1 != "")) || ($row->core_fields != ""))
-                        {
-                            ?>
+            <?php
+            if ((($configClass['show_amenity_group'] == 1) and ( $row->amens_str1 != "")) || ($row->core_fields != ""))
+            {
+                ?>
                 <div class="features">
                     <h4 class="title"><?php echo JText::_('OS_FEATURES') ?></h4>
                     <div class="arrow-bullet-list">
                         <div class="listing-features">
-                                        <?php
-                                        echo $row->core_fields;
-                                        ?>
-    <?php
-    if (($configClass['show_amenity_group'] == 1) and ( $row->amens_str1 != ""))
-    {
-        ?>
+                            <?php
+                            echo $row->core_fields;
+                            ?>
+                            <?php
+                            if (($configClass['show_amenity_group'] == 1) and ( $row->amens_str1 != ""))
+                            {
+                                ?>
                                 <div class="row-fluid">
                                     <div class="span12">
                                         <div class="row-fluid">
-                    <?php echo $row->amens_str1; ?>
+                                            <?php echo $row->amens_str1; ?>
                                         </div>
 
                                     </div>
                                 </div>
-                    <?php
-                }
-                ?>
+                                <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -787,61 +797,62 @@ if ($count_neighborhood > 0)
             ?>
 
             <!-- end des -->
-                        <?php
-                        if (($configClass['goole_use_map'] == 1) and ( $row->lat_add != "") and ( $row->long_add != ""))
-                        {
-                            $address = OSPHelper::generateAddress($row);
-                            ?>
+            <?php
+            if (($configClass['goole_use_map'] == 1) and ( $row->lat_add != "") and ( $row->long_add != ""))
+            {
+                $address = OSPHelper::generateAddress($row);
+                ?>
                 <div class="row-fluid">
                     <div class="span12">
                         <div class="features">
                             <h4 class="title"><?php echo JText::_('OS_LOCATION') ?></h4>
-                <?php
-                if ($show_location == 1)
-                {
-                    OSPHelper::showLocationAboveGoogle($address);
-                }
-                HelperOspropertyGoogleMap::loadGoogleMapDetails($row, $configClass);
-                ?>
+                            <?php
+                            if ($show_location == 1)
+                            {
+                                OSPHelper::showLocationAboveGoogle($address);
+                            }
+
+                            HelperOspropertyGoogleMap::loadGoogleMapDetails($row, $configClass);
+                            ?>
                         </div>
                     </div>
                 </div>
-                        <?php
-                    }
-                    ?>
+                <?php
+            }
+            ?>
             <div class="property-meta clearfix" style="margin-top:15px;">
                 <ul class="listingActions-list">
                     <li class="propertyinfoli" style="background-color:#586162;">
                         <span><?php echo JText::_('OS_SHARE_THIS'); ?></span>
                     </li>
-                            <?php
-                            if ($configClass['social_sharing'] == 1)
-                            {
+                    <?php
+                    if ($configClass['social_sharing'] == 1)
+                    {
 
-                                $url = JRoute::_("index.php?option=com_osproperty&task=property_details&id=$row->id");
-                                $url = JUri::getInstance()->toString(array('scheme', 'user', 'pass', 'host')) . $url;
-                                ?>
+                        $url = JRoute::_("index.php?option=com_osproperty&task=property_details&id=$row->id");
+                        $url = JUri::getInstance()->toString(array('scheme', 'user', 'pass', 'host')) . $url;
+                        ?>
                         <li class="propertyinfoli">
                             <img src="<?php echo JUri::root() ?>components/com_osproperty/images/assets/facebook_icon.png" />
                             <a href="http://www.facebook.com/share.php?u=<?php echo $url; ?>" target="_blank"  title="<?php echo JText::_('OS_ASK_YOUR_FACEBOOK_FRIENDS'); ?>" id="link2Listing" rel="canonical">
-                        <?php echo JText::_('OS_FACEBOOK') ?>
+                                <?php echo JText::_('OS_FACEBOOK') ?>
                             </a>
                         </li>
                         <li class="propertyinfoli">
                             <img src="<?php echo JUri::root() ?>components/com_osproperty/images/assets/twitter_icon.png" />
                             <a href="https://twitter.com/intent/tweet?original_referer=<?php echo $url; ?>&tw_p=tweetbutton&url=<?php echo $url; ?>" target="_blank"  title="<?php echo JText::_('OS_ASK_YOUR_TWITTER_FRIENDS'); ?>" id="link2Listing" rel="canonical">
-                <?php echo JText::_('OS_TWEET') ?>
+                                <?php echo JText::_('OS_TWEET') ?>
                             </a>
                         </li>
-    <?php
-}
-?>
+                        <?php
+                    }
+                    ?>
                 </ul> 
             </div>
-                    <?php
-                    if (($row->pro_pdf != "") or ( $row->pro_pdf_file != ""))
-                    {
-                        ?>
+            <?php
+            if (($row->pro_pdf != "") or ( $row->pro_pdf_file != ""))
+            {
+                ?>
                 <div class="property-attachment clearfix">
                     <span class="attachment-label"><?php echo JText::_('OS_PROPERTY_ATTACHMENT'); ?></span>            
                     <div class="row-fluid">
@@ -852,57 +863,59 @@ if ($count_neighborhood > 0)
                             <div class="span6">
                                 <img src="<?php echo JUri::root() ?>components/com_osproperty/images/assets/link.png" />
                                 <a href="<?php echo $row->pro_pdf ?>" title="<?php echo JText::_('OS_PROPERTY_DOCUMENT') ?>" alt="<?php echo JText::_('OS_PROPERTY_DOCUMENT') ?>" target="_blank">
-        <?php echo $row->pro_pdf ?>
+                                    <?php echo $row->pro_pdf ?>
                                 </a>
                             </div>
-        <?php
-    }
+                            <?php
+                        }
 
-    if ($row->pro_pdf_file != "")
-    {
-        ?>
+                        if ($row->pro_pdf_file != "")
+                        {
+                            ?>
                             <div class="span6">
                                 <img src="<?php echo JUri::root() ?>components/com_osproperty/images/assets/attach.png" />
                                 <a href="<?php echo JURI::root() . "components/com_osproperty/document/"; ?><?php echo $row->pro_pdf_file ?>" title="<?php echo JText::_('OS_PROPERTY_DOCUMENT') ?>" alt="<?php echo JText::_('OS_PROPERTY_DOCUMENT') ?>" target="_blank">
-                    <?php echo $row->pro_pdf_file ?>
+                                    <?php echo $row->pro_pdf_file ?>
                                 </a>
                             </div>
-                <?php }
-                ?>
+                        <?php }
+                        ?>
                     </div>
                 </div>
             <?php } ?>
 
             <!-- agent-detail -->
-<?php
-if ($configClass['show_agent_details'] == 1)
-{
+            <?php
+            if ($configClass['show_agent_details'] == 1)
+            {
 
-    $link = Jroute::_('index.php?option=com_osproperty&task=agent_info&id=' . $row->agent_id . '&Itemid=' . OSPRoute::getAgentItemid());
-    $db->setQuery("Select * from #__osrs_agents where id = '$row->agent_id'");
-    $agentdetails = $db->loadObject();
-    ?>
+                $link = Jroute::_('index.php?option=com_osproperty&task=agent_info&id=' . $row->agent_id . '&Itemid=' . OSPRoute::getAgentItemid());
+                $db->setQuery("Select * from #__osrs_agents where id = '$row->agent_id'");
+                $agentdetails = $db->loadObject();
+                ?>
                 <div class="agent-detail row-fluid clearfix">
                     <div class="span7">
                         <div class="row-fluid">
                             <div class="agent-name">
                                 <a href="<?php echo $link; ?>">
-    <?php echo $row->agent_name; ?>
+                                    <?php echo $row->agent_name; ?>
                                 </a>
                             </div>
-                            <?php if ($configClass['show_agent_address'] == 1)
+                            <?php
+                            if ($configClass['show_agent_address'] == 1)
                             {
                                 ?>
                                 <div class="clearfix"></div>
                                 <div class="agent-address">
                                     <?php echo OSPHelper::generateAddress($agentdetails); ?>
                                 </div>
-                                <?php } ?>
+                            <?php } ?>
                         </div>
                         <div class="row-fluid">
-    <?php if ($configClass['show_agent_image'] == 1)
-    {
-        ?>
+                            <?php
+                            if ($configClass['show_agent_image'] == 1)
+                            {
+                                ?>
                                 <div class="span5">
                                     <?php
                                     $agent_photo = $agentdetails->photo;
@@ -914,16 +927,16 @@ if ($configClass['show_agent_details'] == 1)
                                         <a href="<?php echo $link; ?>">
                                             <img src="<?php echo JURI::root() ?>images/osproperty/agent/<?php echo $agent_photo; ?>" />
                                         </a>
-                                            <?php
-                                        } else
-                                        {
-                                            ?>
+                                        <?php
+                                    } else
+                                    {
+                                        ?>
                                         <img src="<?php echo JURI::root() ?>components/com_osproperty/images/assets/user.jpg" style="border:1px solid #CCC;" />
-                                                <?php
-                                            }
-                                            ?>
+                                        <?php
+                                    }
+                                    ?>
                                 </div>
-                                    <?php } ?>
+                            <?php } ?>
                             <div class="span7">
                                 <ul class="attribute-list">
                                     <?php
@@ -1027,14 +1040,14 @@ if ($configClass['show_agent_details'] == 1)
                                     {
                                         ?>
                                         <li class="property-icon-square meta-block">
-        <?php echo JText::_('OS_LICENSE'); ?>:
+                                            <?php echo JText::_('OS_LICENSE'); ?>:
                                             <span>
-        <?php echo $agentdetails->license; ?>
+                                                <?php echo $agentdetails->license; ?>
                                             </span>
                                         </li>
-        <?php
-    }
-    ?>
+                                        <?php
+                                    }
+                                    ?>
                                 </ul>
                             </div>
                         </div>
@@ -1050,7 +1063,7 @@ if ($configClass['show_agent_details'] == 1)
                                 </div>
                                 <div class="accordion-body collapse in">
                                     <div class="accordion-inner">
-    <?php HelperOspropertyCommon::requestMoreDetailsTop($row, $itemid, 'input-large'); ?>
+                                        <?php HelperOspropertyCommon::requestMoreDetailsTop($row, $itemid, 'input-large'); ?>
                                     </div>
                                 </div>
                             </div>
@@ -1058,7 +1071,7 @@ if ($configClass['show_agent_details'] == 1)
                         <!-- end request -->
                     </div>
                 </div>
-                                            <?php } ?>
+            <?php } ?>
         </div>
         <div class="detailsBar clearfix">
             <div class="row-fluid">
@@ -1169,18 +1182,18 @@ if ($configClass['show_agent_details'] == 1)
                                                 <?php
                                             }
                                             ?>
-<?php
-if (($configClass['use_property_history'] == 1) and ( ($row->price_history != "") or ( $row->tax != "")))
-{
-    ?>
+                                            <?php
+                                            if (($configClass['use_property_history'] == 1) and ( ($row->price_history != "") or ( $row->tax != "")))
+                                            {
+                                                ?>
                                                 <li class="<?php echo $history_div ?>">
                                                     <a href="#historytab" data-toggle="tab">
-                                            <?php echo JText::_('OS_HISTORY_TAX'); ?>
+                                                        <?php echo JText::_('OS_HISTORY_TAX'); ?>
                                                     </a>
                                                 </li>
-                                            <?php
-                                        }
-                                        ?>
+                                                <?php
+                                            }
+                                            ?>
                                         </ul>            
                                     </div>
                                     <div class="tab-content">
@@ -1249,19 +1262,19 @@ if (($configClass['use_property_history'] == 1) and ( ($row->price_history != ""
                                                 HelperOspropertyCommon::slimboxGallery($row->id, $photos);
                                                 ?>
                                             </div>
-                                                <?php
-                                            }
-                                            if ($configClass['comment_active_comment'] == 1)
-                                            {
-                                                ?>
-                                            <div class="tab-pane<?php echo $comment_div ?>" id="comments">
                                             <?php
-                                            echo $row->comments;
-                                            if (($owner == 0) and ( $can_add_cmt == 1))
-                                            {
-                                                HelperOspropertyCommon::reviewForm($row, $itemid, $configClass);
-                                            }
+                                        }
+                                        if ($configClass['comment_active_comment'] == 1)
+                                        {
                                             ?>
+                                            <div class="tab-pane<?php echo $comment_div ?>" id="comments">
+                                                <?php
+                                                echo $row->comments;
+                                                if (($owner == 0) and ( $can_add_cmt == 1))
+                                                {
+                                                    HelperOspropertyCommon::reviewForm($row, $itemid, $configClass);
+                                                }
+                                                ?>
                                             </div>
                                             <?php
                                         }
@@ -1281,9 +1294,9 @@ if (($configClass['use_property_history'] == 1) and ( ($row->price_history != ""
                                         {
                                             ?>
                                             <div class="tab-pane<?php echo $energy_div ?>" id="epc">
-                                            <?php
-                                            echo HelperOspropertyCommon::drawGraph($row->energy, $row->climate);
-                                            ?>
+                                                <?php
+                                                echo HelperOspropertyCommon::drawGraph($row->energy, $row->climate);
+                                                ?>
                                             </div>
                                             <?php
                                         }
@@ -1291,7 +1304,7 @@ if (($configClass['use_property_history'] == 1) and ( ($row->price_history != ""
                                         {
                                             ?>
                                             <div class="tab-pane<?php echo $sharing_div ?>" id="tellafriend">
-                                            <?php echo HelperOspropertyCommon::sharingForm($row, $itemid); ?>
+                                                <?php echo HelperOspropertyCommon::sharingForm($row, $itemid); ?>
                                             </div>
                                             <?php
                                         }
@@ -1300,7 +1313,7 @@ if (($configClass['use_property_history'] == 1) and ( ($row->price_history != ""
                                         {
                                             ?>
                                             <div class="tab-pane<?php echo $request_div ?>" id="requestmoredetailsform">
-                                            <?php echo HelperOspropertyCommon::requestMoreDetails($row, $itemid); ?>
+                                                <?php echo HelperOspropertyCommon::requestMoreDetails($row, $itemid); ?>
                                             </div>
                                             <?php
                                         }
@@ -1312,27 +1325,27 @@ if (($configClass['use_property_history'] == 1) and ( ($row->price_history != ""
                                                 echo stripslashes($row->education);
                                                 ?>
                                             </div>
-                                                <?php
-                                            }
-                                            if (($configClass['use_property_history'] == 1) and ( ($row->price_history != "") or ( $row->tax != "")))
-                                            {
-                                                ?>
-                                            <div class="tab-pane<?php echo $history_div ?>" id="historytab">
                                             <?php
-                                            if ($row->price_history != "")
-                                            {
-                                                echo $row->price_history;
-                                                echo "<BR />";
-                                            }
-                                            if ($row->tax != "")
-                                            {
-                                                echo $row->tax;
-                                            }
+                                        }
+                                        if (($configClass['use_property_history'] == 1) and ( ($row->price_history != "") or ( $row->tax != "")))
+                                        {
                                             ?>
+                                            <div class="tab-pane<?php echo $history_div ?>" id="historytab">
+                                                <?php
+                                                if ($row->price_history != "")
+                                                {
+                                                    echo $row->price_history;
+                                                    echo "<BR />";
+                                                }
+                                                if ($row->tax != "")
+                                                {
+                                                    echo $row->tax;
+                                                }
+                                                ?>
                                             </div>
-            <?php
-        }
-        ?>
+                                            <?php
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -1342,97 +1355,97 @@ if (($configClass['use_property_history'] == 1) and ( ($row->price_history != ""
             </div>
         </div>
         <!-- tabs bottom -->
-                        <?php
-                        if (file_exists(JPATH_ROOT . DS . "components" . DS . "com_oscalendar" . DS . "oscalendar.php"))
-                        {
-                            if (($configClass['integrate_oscalendar'] == 1) and ( in_array($row->pro_type, explode("|", $configClass['show_date_search_in']))))
-                            {
-                                ?>
+        <?php
+        if (file_exists(JPATH_ROOT . DS . "components" . DS . "com_oscalendar" . DS . "oscalendar.php"))
+        {
+            if (($configClass['integrate_oscalendar'] == 1) and ( in_array($row->pro_type, explode("|", $configClass['show_date_search_in']))))
+            {
+                ?>
                 <div class="detailsBar clearfix row-fluid calendar-detail">
                     <div class="row-fluid">
                         <div class="span12">
                             <div class="property-calendar">
-                <?php
-                require_once(JPATH_ROOT . DS . "components" . DS . "com_oscalendar" . DS . "classes" . DS . "default.php");
-                require_once(JPATH_ROOT . DS . "components" . DS . "com_oscalendar" . DS . "classes" . DS . "default.html.php");
-                $otherlanguage = & JFactory::getLanguage();
-                $otherlanguage->load('com_oscalendar', JPATH_SITE);
-                OsCalendarDefault::calendarForm($row->id);
-                ?>
+                                <?php
+                                require_once(JPATH_ROOT . DS . "components" . DS . "com_oscalendar" . DS . "classes" . DS . "default.php");
+                                require_once(JPATH_ROOT . DS . "components" . DS . "com_oscalendar" . DS . "classes" . DS . "default.html.php");
+                                $otherlanguage = & JFactory::getLanguage();
+                                $otherlanguage->load('com_oscalendar', JPATH_SITE);
+                                OsCalendarDefault::calendarForm($row->id);
+                                ?>
                             </div>
                         </div>
                     </div>
                 </div>
-                                <?php
-                            }
-                        }
-                        ?>
-<?php
-if (($configClass['relate_properties'] == 1) and ( $row->relate != ""))
-{
-    ?>
+                <?php
+            }
+        }
+        ?>
+        <?php
+        if (($configClass['relate_properties'] == 1) and ( $row->relate != ""))
+        {
+            ?>
             <div class="detailsBar clearfix">
                 <div class="row-fluid">
                     <div class="span12">
                         <div class="shell">
                             <fieldset><legend><span><?php echo JText::_('OS_RELATE_PROPERTY') ?></span></legend></fieldset>
-            <?php
-            echo $row->relate;
-            ?>
+                            <?php
+                            echo $row->relate;
+                            ?>
                         </div>
                     </div>
                 </div>
             </div>
-                            <?php
-                        }
-                        ?>
-                        <?php
-                        if ($integrateJComments == 1)
-                        {
-                            ?>
+            <?php
+        }
+        ?>
+        <?php
+        if ($integrateJComments == 1)
+        {
+            ?>
             <div class="detailsBar clearfix">
                 <div class="row-fluid">
                     <div class="span12">
                         <div class="shell">
                             <fieldset><legend><span><?php echo JText::_('OS_JCOMMENTS') ?></span></legend></fieldset>
-            <?php
-            $comments = JPATH_SITE . DS . 'components' . DS . 'com_jcomments' . DS . 'jcomments.php';
-            if (file_exists($comments))
-            {
-                require_once($comments);
-                echo JComments::showComments($row->id, 'com_osproperty', $row->pro_name);
-            }
-            ?>
+                            <?php
+                            $comments = JPATH_SITE . DS . 'components' . DS . 'com_jcomments' . DS . 'jcomments.php';
+                            if (file_exists($comments))
+                            {
+                                require_once($comments);
+                                echo JComments::showComments($row->id, 'com_osproperty', $row->pro_name);
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
             </div>
-    <?php
-}
-?>
+            <?php
+        }
+        ?>
         <?php
         if (($configClass['show_twitter'] == 1) or ( $configClass['google_plus'] == 1) or ( $configClass['pinterest'] == 1))
         {
             ?>
             <div class="row-fluid">
                 <div class="span12">
-            <?php echo $row->tweet_div; ?>
-            <?php echo $row->gplus_div; ?>
-            <?php echo $row->pinterest; ?>
+                    <?php echo $row->tweet_div; ?>
+                    <?php echo $row->gplus_div; ?>
+                    <?php echo $row->pinterest; ?>
                 </div>
             </div>
-    <?php
-}
-?>
-<?php
-if (count($bottomPlugin) > 0)
-{
-    for ($i = 0; $i < count($bottomPlugin); $i++)
-    {
-        echo $bottomPlugin[$i];
-    }
-}
-?>
+            <?php
+        }
+        ?>
+        <?php
+        if (count($bottomPlugin) > 0)
+        {
+            for ($i = 0; $i < count($bottomPlugin); $i++)
+            {
+                echo $bottomPlugin[$i];
+            }
+        }
+        ?>
         <!-- end tabs bottom -->
 
         <!-- end wrap content -->

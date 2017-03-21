@@ -231,7 +231,7 @@ class HelperOspropertyFields{
 	 * @param unknown_type $gid
 	 * @param unknown_type $access_sql
 	 */
-	function checkFieldData($pid, $gid){
+	public static function checkFieldData($pid, $gid){
 		global $mainframe;
 		$db = JFactory::getDbo();
 		$user = JFactory::getUser();
@@ -280,7 +280,7 @@ class HelperOspropertyFields{
 	 * @param unknown_type $pid
 	 * @param unknown_type $gid
 	 */
-	function getFieldsData($pid,$gid){
+	public static function getFieldsData($pid,$gid){
 		global $mainframe;
 		$db = JFactory::getDbo();
 		$user = JFactory::getUser();
@@ -301,6 +301,7 @@ class HelperOspropertyFields{
 						if(HelperOspropertyFields::checkDateFieldValue($pid,$field->id)){
 							$value = HelperOspropertyFields::getDateFieldValue($pid,$field->id);
 							$count = count($returnArr);
+                            $returnArr[$count] = new stdClass;
 							$returnArr[$count]->id = $field->id;
 							$returnArr[$count]->field_label = OSPHelper::getLanguageFieldValue($field,'field_label');
 							$returnArr[$count]->displaytitle = $field->displaytitle;
@@ -313,6 +314,7 @@ class HelperOspropertyFields{
 						if(HelperOspropertyFields::checkTextareaFieldValue($pid,$field->id)){
 							$value = HelperOspropertyFields::getTextFieldValue($pid,$field->id);
 							$count = count($returnArr);
+                            $returnArr[$count] = new stdClass;
 							$returnArr[$count]->id = $field->id;
 							$returnArr[$count]->field_label = OSPHelper::getLanguageFieldValue($field,'field_label');
 							$returnArr[$count]->displaytitle = $field->displaytitle;
@@ -325,6 +327,7 @@ class HelperOspropertyFields{
 						if(HelperOspropertyFields::checkTextFieldValue($pid,$field->id)){
 							$value = HelperOspropertyFields::getTextFieldValue($pid,$field->id);
 							$count = count($returnArr);
+                            $returnArr[$count] = new stdClass;
 							$returnArr[$count]->id = $field->id;
 							$returnArr[$count]->field_label = OSPHelper::getLanguageFieldValue($field,'field_label');
 							$returnArr[$count]->displaytitle = $field->displaytitle;
@@ -340,6 +343,7 @@ class HelperOspropertyFields{
 						if(HelperOspropertyFields::checkOptionsFieldValue($pid,$field->id)){
 							$value = HelperOspropertyFields::getOptionsFieldValue($pid,$field->id);
 							$count = count($returnArr);
+                            $returnArr[$count] = new stdClass; 
 							$returnArr[$count]->id = $field->id;
 							$returnArr[$count]->field_label = OSPHelper::getLanguageFieldValue($field,'field_label');
 							$returnArr[$count]->displaytitle = $field->displaytitle;
@@ -356,7 +360,7 @@ class HelperOspropertyFields{
 		return $returnArr;
 	}
 
-	function checkDateFieldValue($pid,$fid){
+	public static function checkDateFieldValue($pid,$fid){
 		$db = JFactory::getDbo();
 		$db->setQuery("Select `value_date` from #__osrs_property_field_value where pro_id = '$pid' and field_id = '$fid'");
 		$value = $db->loadResult();
@@ -392,7 +396,7 @@ class HelperOspropertyFields{
 	 * @param unknown_type $fid
 	 * @return unknown
 	 */
-	function checkTextFieldValue($pid,$fid)	{
+	public static function checkTextFieldValue($pid,$fid)	{
 		$db = JFactory::getDbo();
 		$db->setQuery("Select pro_type from #__osrs_properties where id = '$pid'");
 		$pro_type = $db->loadResult();
@@ -441,7 +445,7 @@ class HelperOspropertyFields{
 	 * @param unknown_type $fid
 	 * @return unknown
 	 */
-	function checkOptionsFieldValue($pid,$fid){
+	public static function checkOptionsFieldValue($pid,$fid){
 		$db = JFactory::getDbo();
 		$db->setQuery("Select pro_type from #__osrs_properties where id = '$pid'");
 		$pro_type = $db->loadResult();
@@ -477,7 +481,7 @@ class HelperOspropertyFields{
 	 * @param unknown_type $fid
 	 * @return unknown
 	 */
-	function getTextFieldValue($pid,$fid){
+	public static function getTextFieldValue($pid,$fid){
 		$db = JFactory::getDbo();
 		$db->setQuery("Select * from #__osrs_extra_fields where id = '$fid'");
 		$field = $db->loadObject();
@@ -501,7 +505,7 @@ class HelperOspropertyFields{
 	 * @param unknown_type $fid
 	 * @return unknown
 	 */
-	function getOptionsFieldValue($pid,$fid){
+	public static function getOptionsFieldValue($pid,$fid){
 		$db = JFactory::getDbo();
 		$query = "Select a.* from #__osrs_extra_field_options as a inner join #__osrs_property_field_opt_value as b on b.oid = a.id where b.pid = '$pid' and b.fid = '$fid' order by a.ordering";
 		$db->setQuery($query);

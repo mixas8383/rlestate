@@ -24,7 +24,8 @@ class OSPHelper
         if ($configClass == null)
         {
             $db = Jfactory::getDbo();
-            $db->setQuery("Select * from #__osrs_configuration");
+            $db->setQuery("#loadConfig
+                Select * from #__osrs_configuration");
             $configs = $db->loadObjectList();
             $configClass = array();
             foreach ($configs as $config)
@@ -419,6 +420,8 @@ class OSPHelper
         global $languages;
         $lgs = self::getLanguages();
         $translatable = JLanguageMultilang::isEnabled() && count($lgs);
+           
+        
         if ($translatable)
         {
             $suffix = self::getFieldSuffix();
@@ -1064,7 +1067,7 @@ class OSPHelper
         {
             if ($loadJs)
             {
-                $document->addScript($rootUrl . '/components/com_osproperty/js/bootstrap/js/jquery.min.js');
+                //$document->addScript($rootUrl . '/components/com_osproperty/js/bootstrap/js/jquery.min.js');
                 $document->addScript($rootUrl . '/components/com_osproperty/js/bootstrap/js/jquery-noconflict.js');
                 $document->addScript($rootUrl . '/components/com_osproperty/js/bootstrap/js/bootstrap.min.js');
             }
@@ -5255,7 +5258,8 @@ class OSPHelper
     public static function checkFieldWithPropertType($fid, $pid)
     {
         $db = JFactory::getDbo();
-        $db->setQuery("Select pro_type from #__osrs_properties where id = '$pid'");
+        $db->setQuery("#checkFieldWithPropertType
+            Select pro_type from #__osrs_properties where id = '$pid'");
         $pro_type = $db->loadResult();
 
         $db->setQuery("Select count(id) from #__osrs_extra_field_types where fid = '$fid' and type_id = '$pro_type'");

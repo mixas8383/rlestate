@@ -57,7 +57,8 @@ $document = JFactory::getDocument();
 
 global $_jversion, $configs, $configClass, $symbol, $jinput;
 $db = JFactory::getDBO();
-$db->setQuery("Select * from #__osrs_configuration");
+$db->setQuery("#ospropertu
+    Select * from #__osrs_configuration");
 $configs = $db->loadObjectList();
 $configClass = array();
 foreach ($configs as $config)
@@ -134,17 +135,19 @@ if ($configClass['integrate_oscalendar'] == 1)
 
 global $configs;
 $db = JFactory::getDBO();
-$db->setQuery('SELECT * FROM #__osrs_configuration '); // double request
+$db->setQuery('#osProperi2
+    SELECT * FROM #__osrs_configuration '); // double request
 $configs = array();
 foreach ($db->loadObjectList() as $config)
 {
     $configs[$config->fieldname] = $config->fieldvalue;
 }
-
+        
 $jinput = JFactory::getApplication()->input;
 $option = $jinput->getString('option', 'com_osproperty');
 
 $task = $jinput->getString('task', '');
+
 if ($task == "")
 {
     $view = $jinput->getString('view', '');
@@ -168,7 +171,7 @@ if ($task == "")
             $controller = JControllerLegacy::getInstance('Osproperty');
             $controller->execute(JFactory::getApplication()->input->get('task'));
             $controller->redirect();
-            
+
 
 
             break;
@@ -213,9 +216,16 @@ if ($task == "")
             break;
         case "ldetails":
             $task = "property_details";
+            jimport('joomla.application.component.controller');
+
+            $controller = JControllerLegacy::getInstance('Osproperty');
+            $controller->execute(JFactory::getApplication()->input->get('task'));
+            $controller->redirect();
             break;
     }
 }
+
+
 if ($task != "")
 {
     $taskArr = explode("_", $task);
@@ -247,7 +257,13 @@ switch ($maintask)
         OspropertyCategories::display($option, $task);
         break;
     case "property":
-        OspropertyListing::display($option, $task);
+        //OspropertyListing::display($option, $task);
+        JFactory::getApplication()->input->set('view', 'ldetails');
+        $controller = JControllerLegacy::getInstance('Osproperty');
+        $controller->execute(JFactory::getApplication()->input->get('task'));
+        $controller->redirect();
+
+
         break;
     case "payment":
         OspropertyPayment::display($option, $task);

@@ -441,7 +441,8 @@ class OspropertyPayment
         $db->setQuery("Select * from #__osrs_orders where id = '$order_id'");
         $order = $db->loadObject();
 
-        $db->setQuery("Select * from #__osrs_configuration");
+        $db->setQuery("#orderDetales
+            Select * from #__osrs_configuration");
         $configs = $db->loadObjectList();
 
         $coupon = array();

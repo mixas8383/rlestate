@@ -1183,6 +1183,7 @@ class HelperOspropertyGoogleMap
      */
     public static function loadGoogleMapDetails($property, $configClass, $style = "position:relative;width: 100%; height: 300px", $toggleposition = 0)
     {
+        $row = $property;
         $db = JFactory::getDbo();
         $google_map_overlay = $configClass['goole_map_overlay'];
         if ($google_map_overlay == "")

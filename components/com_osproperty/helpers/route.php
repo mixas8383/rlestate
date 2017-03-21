@@ -33,7 +33,8 @@ class OSPRoute
         $db = JFactory::getDBO();
         if ($default_itemid == null)
         {
-            $db->setQuery("Select fieldvalue from #__osrs_configuration where fieldname like 'default_itemid'");
+            $db->setQuery("#getItemid
+                Select fieldvalue from #__osrs_configuration where fieldname like 'default_itemid'");
             $default_itemid = $db->loadResult();
         }
         $app = JFactory::getApplication();
@@ -426,7 +427,8 @@ class OSPRoute
         } else
         {
             //return 0;
-            $db->setQuery("Select fieldvalue from #__osrs_configuration where fieldname like 'default_itemid'");
+            $db->setQuery("#confirmItemid
+                Select fieldvalue from #__osrs_configuration where fieldname like 'default_itemid'");
             $default_itemid = $db->loadResult();
             return intval($default_itemid);
         }
@@ -461,7 +463,8 @@ class OSPRoute
         } else
         {
             //return 0;
-            $db->setQuery("Select fieldvalue from #__osrs_configuration where fieldname like 'default_itemid'");
+            $db->setQuery("#confirmItemidArr
+                Select fieldvalue from #__osrs_configuration where fieldname like 'default_itemid'");
             $default_itemid = $db->loadResult();
             return intval($default_itemid);
         }

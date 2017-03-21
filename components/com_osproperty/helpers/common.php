@@ -623,7 +623,8 @@ class HelperOspropertyCommon
     static function loadTime($time, $input_format)
     {
         $db = JFactory::getDbo();
-        $db->setQuery("Select fieldvalue from #__osrs_configuration where id = '37'");
+        $db->setQuery("#loadTime
+            Select fieldvalue from #__osrs_configuration where id = '37'");
         $time_format = $db->loadResult();
         $time_format = str_replace("%", "", $time_format);
         if ($input_format == 1)
@@ -650,7 +651,8 @@ class HelperOspropertyCommon
         $db = JFactory::getDBO();
         if ($money_format == null)
         {
-            $db->setQuery("Select fieldvalue from #__osrs_configuration where fieldname like 'general_currency_money_format'");
+            $db->setQuery("#showPrice
+                Select fieldvalue from #__osrs_configuration where fieldname like 'general_currency_money_format'");
             $money_format = $db->loadResult();
         }
         switch ($money_format)
@@ -2219,6 +2221,7 @@ class HelperOspropertyCommon
         {
             $category = $category[0];
             $count = count($catArr);
+            $catArr[$count] = new stdClass;
             $catArr[$count]->id = $category->id;
             $catArr[$count]->cat_name = $category->category_name;
             $parent_id = $category->parent_id;

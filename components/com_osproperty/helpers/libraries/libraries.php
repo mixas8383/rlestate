@@ -23,11 +23,14 @@ class OSLibraries
         jimport('joomla.filesystem.folder');
         if (!JFolder::exists(JPATH_ROOT . DS . "components" . DS . "com_osmembership"))
         {
-            $db->setQuery("Select count(id) from #__osrs_configuration where fieldname like 'integrate_membership'");
+            $db->setQuery("#checkMembership
+                Select count(id) from #__osrs_configuration where fieldname like 'integrate_membership'");
             $count = $db->loadResult();
             if ($count > 0)
             {
-                $db->setQuery("UPDATE #__osrs_configuration SET fieldvalue = '0' WHERE fieldname LIKE 'integrate_membership'");
+                
+                $db->setQuery("#checkMembership
+                    UPDATE #__osrs_configuration SET fieldvalue = '0' WHERE fieldname LIKE 'integrate_membership'");
                 $db->query();
             }
         }
