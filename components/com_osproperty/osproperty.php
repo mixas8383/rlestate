@@ -70,8 +70,14 @@ $curr = $configClass['general_currency_default'];
 $arrCode = array();
 $arrSymbol = array();
 
-$db->setQuery("Select * from #__osrs_currencies where id = '$curr'");
-$currency = $db->loadObject();
+$allCurrencies = HelperOspropertyCommon::loadAllCurrencies();
+$key1 = new stdClass;
+$key1->key = 'id';
+$key1->value = $curr;
+$key1->condition = '=';
+$currency =HelperOspropertyFields::getOne(HelperOspropertyFields::filterArray($allCurrencies, array($key1))) ;
+
+
 $symbol = $currency->currency_symbol;
 $index = -1;
 if ($symbol == "")
@@ -142,7 +148,7 @@ foreach ($db->loadObjectList() as $config)
 {
     $configs[$config->fieldname] = $config->fieldvalue;
 }
-        
+
 $jinput = JFactory::getApplication()->input;
 $option = $jinput->getString('option', 'com_osproperty');
 

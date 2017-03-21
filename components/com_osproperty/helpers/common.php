@@ -28,6 +28,18 @@ class HelperOspropertyCommon
             
         }
     }
+     public function getOne($array)
+        {
+            if (!empty($array))
+            {
+                usort($array, function($a, $b)
+                {
+                    return true;
+                });
+                return $array[0];
+            }
+            return false;
+        }
 
     /**
      * Get the country_id in the filter page or edit item details page
@@ -323,21 +335,50 @@ class HelperOspropertyCommon
         return JHTML::_('select.genericlist', $cityArr, 'city', 'class="input-medium" ' . $disabled, 'value', 'text', $city_id);
     }
 
+    static function getAllCyties()
+    {
+        static $cities;
+        if (!$cities)
+        {
+            $db = JFactory::getDBO();
+            $db->setQuery("Select * from #__osrs_cities ");
+            $cities = $db->loadObjectList();
+        }
+        return $cities;
+    }
+
     static function loadCityName($city)
     {
         global $jinput, $mainframe, $languages;
         $db = JFactory::getDBO();
         $lgs = OSPHelper::getLanguages();
         $translatable = JLanguageMultilang::isEnabled() && count($lgs);
+        $cities = self::getAllCyties();
         if ($translatable)
         {
             $suffix = OSPHelper::getFieldSuffix();
-            $db->setQuery("Select city" . $suffix . " from #__osrs_cities where id = '$city'");
-            $city_name = $db->loadResult();
+            $key1 = new stdClass;
+            $key1->key = 'id';
+            $key1->value = $city;
+            $key1->condition = '=';
+            $city = HelperOspropertyFields::filterArray($cities, array($key1));
+            usort($city, function()
+            {
+                return true;
+            });
+            $city_name = $city[0]->{'city' . $suffix};
         } else
         {
-            $db->setQuery("Select city from #__osrs_cities where id = '$city'");
-            $city_name = $db->loadResult();
+            $key1 = new stdClass;
+            $key1->key = 'id';
+            $key1->value = $city;
+            $key1->condition = '=';
+            $city = HelperOspropertyFields::filterArray($cities, array($key1));
+            usort($city, function()
+            {
+                return true;
+            });
+            $city_name = $city[0]->city;
         }
         return $city_name;
     }
@@ -1551,10 +1592,24 @@ class HelperOspropertyCommon
      *
      * @param unknown_type $curr
      */
+    public static function loadAllCurrencies()
+    {
+        static $carenciesall;
+        if (!$carenciesall)
+        {
+            $db = JFactory::getDbo();
+            $db->setQuery("Select * from #__osrs_currencies ");
+            $carenciesall = $db->loadObjectList();
+        }
+        return $carenciesall;
+    }
+
     public static function loadCurrency($curr)
     {
         global $jinput, $mainframe, $configClass;
         $configClass = OSPHelper::loadConfig();
+
+        $currensies = self::loadAllCurrencies();
         $db = Jfactory::getDBO();
         if (intval($curr) == 0)
         {
@@ -1564,9 +1619,22 @@ class HelperOspropertyCommon
         }
         $db = JFactory::getDbo();
 
-        $db->setQuery("Select currency_symbol from #__osrs_currencies where id = '$curr'");
-        $curr = $db->loadResult();
-        $curr = str_replace("\r", "", $curr);
+//        $db->setQuery("Select currency_symbol from #__osrs_currencies where id = '$curr'");
+//
+//                  
+//        $curr = $db->loadResult();
+        $key1 = new stdClass;
+        $key1->key = 'id';
+        $key1->value = $curr;
+        $key1->condition = '=';
+        $city = HelperOspropertyFields::filterArray($currensies, array($key1));
+
+        usort($city, function()
+        {
+            return true;
+        });
+        $city_name = $city[0]->{'currency_symbol'};
+        $curr = str_replace("\r", "", $city_name);
         $curr = str_replace("\n", "", $curr);
 
 
@@ -3120,14 +3188,15 @@ class HelperOspropertyCommon
                             <div class="btn-group pull-left">
                                 <input type="submit" class="btn btn-info" value="<?php echo JText::_('OS_FILTER') ?>" />
                                 <input type="reset" class="btn btn-warning" value="<?php echo JText::_('OS_RESET') ?>" />
-                                <?php if ($show_filter_button == 1)
+                                <?php
+                                if ($show_filter_button == 1)
                                 {
                                     ?>
                                     <button class="btn hasTooltip js-stools-btn-filters" id="btn_search_tool" type="button" data-original-title="Filter the list items">
-                    <?php echo JText::_('OS_SEARCH_TOOL'); ?>
+                                        <?php echo JText::_('OS_SEARCH_TOOL'); ?>
                                         <i class="caret"></i>
                                     </button>
-                            <?php } ?>
+                                <?php } ?>
                             </div>
                             <?php
                         }
@@ -3139,14 +3208,15 @@ class HelperOspropertyCommon
                             <div class="btn-group pull-right">
                                 <input type="submit" class="btn btn-info" value="<?php echo JText::_('OS_FILTER') ?>" />
                                 <input type="reset" class="btn btn-warning" value="<?php echo JText::_('OS_RESET') ?>" />
-                                <?php if ($show_filter_button == 1)
+                                <?php
+                                if ($show_filter_button == 1)
                                 {
                                     ?>
                                     <button class="btn hasTooltip js-stools-btn-filters" id="btn_search_tool" type="button" data-original-title="Filter the list items">
-                                    <?php echo JText::_('OS_SEARCH_TOOL'); ?>
+                                        <?php echo JText::_('OS_SEARCH_TOOL'); ?>
                                         <i class="caret"></i>
                                     </button>
-                            <?php } ?>
+                                <?php } ?>
                             </div>
                             <?php
                         }
@@ -3155,7 +3225,7 @@ class HelperOspropertyCommon
                             <?php echo $lists['ordertype']; ?>
                         </div>
                         <div class="btn-group pull-right">
-            <?php echo $lists['sortby']; ?>
+                            <?php echo $lists['sortby']; ?>
                         </div>
                     </div>
                 </div>
@@ -3186,7 +3256,8 @@ class HelperOspropertyCommon
                                         OSPHelper::showPriceFilter($lists['price_value'], $lists['min_price'], $lists['max_price'], $lists['property_type'], '', 'list');
                                         ?></label>
                                 </div>
-                                <?php if ($configClass['price_filter_type'] == 1)
+                                <?php
+                                if ($configClass['price_filter_type'] == 1)
                                 {
                                     ?>
                                     <div class="btn-group pull-right" style="margin-right:15px;margin-right:15px;"><label class="control-label"><strong><?php echo Jtext::_('OS_PRICE'); ?></strong></label></div>
@@ -3197,7 +3268,7 @@ class HelperOspropertyCommon
                             {
                                 ?>
                                 <div class="btn-group pull-right">
-                                <?php echo $lists['type']; ?>
+                                    <?php echo $lists['type']; ?>
                                 </div>
                                 <?php
                                 if ($lists['show_pricefilter'] == 1)
@@ -3275,9 +3346,9 @@ class HelperOspropertyCommon
                             {
                                 ?>
                                 <div class="btn-group pull-right">
-                <?php
-                OSPHelper::loadAgentTypeDropdownFilter($lists['agenttype'], 'input-medium selectpicker', '');
-                ?>
+                                    <?php
+                                    OSPHelper::loadAgentTypeDropdownFilter($lists['agenttype'], 'input-medium selectpicker', '');
+                                    ?>
                                 </div>
 
                                 <?php
@@ -3301,7 +3372,7 @@ class HelperOspropertyCommon
                                     <div class="clearfix"></div>
                                 <?php } ?>
                                 <div class="btn-group pull-right" id="city_div">
-                                <?php echo $lists['city']; ?>
+                                    <?php echo $lists['city']; ?>
                                 </div>
                                 <?php
                                 if (OSPHelper::userOneState())
@@ -3313,7 +3384,7 @@ class HelperOspropertyCommon
                                 {
                                     ?>
                                     <div class="btn-group pull-right" id="div_state">
-                                    <?php echo $lists['state']; ?>
+                                        <?php echo $lists['state']; ?>
                                     </div>
                                     <?php
                                 }
@@ -3321,7 +3392,7 @@ class HelperOspropertyCommon
                                 {
                                     ?>
                                     <div class="btn-group pull-right">
-                                    <?php echo $lists['country']; ?>
+                                        <?php echo $lists['country']; ?>
                                     </div>
                                     <?php
                                 } else
@@ -3362,17 +3433,18 @@ class HelperOspropertyCommon
                                     </div>
                                 </div>
                             </div>
-            <?php } ?>
-            <?php if ($show_submit == 1)
-            {
-                ?>
+                        <?php } ?>
+                        <?php
+                        if ($show_submit == 1)
+                        {
+                            ?>
                             <div id="filter-bar" class="btn-toolbar">
                                 <div class="btn-group pull-right">
                                     <input type="submit" class="btn btn-info" value="<?php echo JText::_('OS_FILTER') ?>" />
                                     <input type="reset" class="btn btn-warning" value="<?php echo JText::_('OS_RESET') ?>" />
                                 </div>
                             </div>
-            <?php } ?>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -3401,51 +3473,51 @@ class HelperOspropertyCommon
                 <div class="span4">
                     <fieldset>
                         <h3>
-                        <?php echo JText::_('OS_GENERAL_INFORMATION'); ?>
+                            <?php echo JText::_('OS_GENERAL_INFORMATION'); ?>
                         </h3>
-        <?php
-        if (OSPHelper::checkOwnerExisting())
-        {
-            ?>
+                        <?php
+                        if (OSPHelper::checkOwnerExisting())
+                        {
+                            ?>
                             <div class="span12">
                                 <strong>
-                            <?php echo JText::_('OS_PROPERTIES_POSTED_BY') ?>:
+                                    <?php echo JText::_('OS_PROPERTIES_POSTED_BY') ?>:
                                 </strong>
                                 <div class="clearfix"></div>
-                            <?php echo $lists['agenttype']; ?>
+                                <?php echo $lists['agenttype']; ?>
                             </div>
-                                    <?php
-                                }
-                                ?>
+                            <?php
+                        }
+                        ?>
                         <div class="span12">
                             <strong>
-                        <?php echo JText::_('OS_CATEGORY') ?>:
+                                <?php echo JText::_('OS_CATEGORY') ?>:
                             </strong>
                             <div class="clearfix"></div>
-                        <?php echo $lists['category']; ?>
+                            <?php echo $lists['category']; ?>
                         </div>
-        <?php
-        if (($configClass['adv_type_ids'] == "0") or ( $configClass['adv_type_ids'] == ""))
-        {
-            ?>
+                        <?php
+                        if (($configClass['adv_type_ids'] == "0") or ( $configClass['adv_type_ids'] == ""))
+                        {
+                            ?>
                             <div class="span12">
                                 <strong>
-                            <?php echo JText::_('OS_PROPERTY_TYPE') ?>:
+                                    <?php echo JText::_('OS_PROPERTY_TYPE') ?>:
                                 </strong>
                                 <div class="clearfix"></div>
-                            <?php echo $lists['type']; ?>
+                                <?php echo $lists['type']; ?>
                             </div>
-                        <?php
+                            <?php
                         } else
                         {
                             ?>
                             <input type="hidden" name="property_type" id="property_type" value="<?php echo $type_id_search ?>" />
-                                <?php }
-                                ?>
+                        <?php }
+                        ?>
 
                         <div class="span12">
                             <strong>
-        <?php echo JText::_('OS_KEYWORD'); ?>
+                                <?php echo JText::_('OS_KEYWORD'); ?>
                             </strong>
                             <div class="clearfix"></div>
                             <input type="text" class="input-large" value="<?php echo htmlspecialchars($lists['keyword_value']) ?>" name="keyword" style="width:180px !important;" />
@@ -3465,7 +3537,7 @@ class HelperOspropertyCommon
                             <input type="checkbox" name="isFeatured" id="isFeatured" value="<?php echo $isFeatured; ?>" <?php echo $checked; ?> onclick="javascript:changeValue('isFeatured')" />
                             &nbsp;
                             <strong>
-                            <?php echo JText::_('OS_FEATURED'); ?> 
+                                <?php echo JText::_('OS_FEATURED'); ?> 
                             </strong>
                         </div>
                         <div class="span12">
@@ -3487,38 +3559,38 @@ class HelperOspropertyCommon
                         </div>
                         <div class="span12">
                             <strong>
-                            <?php echo JText::_('OS_PRICE_RANGE') ?>
+                                <?php echo JText::_('OS_PRICE_RANGE') ?>
                             </strong>
                             <BR />
-        <?php
-        //echo $lists['price']; 
-        OSPHelper::showPriceFilter($lists['price_value'], $lists['min_price'], $lists['max_price'], $lists['adv_type'], '', 'adv');
-        ?>
+                            <?php
+                            //echo $lists['price']; 
+                            OSPHelper::showPriceFilter($lists['price_value'], $lists['min_price'], $lists['max_price'], $lists['adv_type'], '', 'adv');
+                            ?>
                         </div>
                     </fieldset>
                 </div>
                 <div class="span4">
                     <fieldset>
                         <h3>
-        <?php echo JText::_('OS_LOCATION'); ?>
+                            <?php echo JText::_('OS_LOCATION'); ?>
                         </h3>
                         <div class="span12">
                             <strong>
-                        <?php echo JText::_('OS_PLEASE_ENTER_LOCATION'); ?>
+                                <?php echo JText::_('OS_PLEASE_ENTER_LOCATION'); ?>
                             </strong>
                             <div class="clearfix"></div>
                             <input type="text" class="input-large" value="<?php echo htmlspecialchars($lists['address_value']); ?>" name="address" style="width:180px !important;" />
                         </div>
-                                <?php
-                                if (HelperOspropertyCommon::checkCountry())
-                                {
-                                    ?>
+                        <?php
+                        if (HelperOspropertyCommon::checkCountry())
+                        {
+                            ?>
                             <div class="span12">
                                 <strong>
-                            <?php echo JText::_('OS_COUNTRY') ?>
+                                    <?php echo JText::_('OS_COUNTRY') ?>
                                 </strong>
                                 <div class="clearfix"></div>
-                            <?php echo $lists['country'] ?>
+                                <?php echo $lists['country'] ?>
                             </div>
                             <?php
                         }
@@ -3532,128 +3604,128 @@ class HelperOspropertyCommon
                             ?>
                             <div class="span12">
                                 <strong>
-            <?php echo JText::_('OS_STATE') ?>
+                                    <?php echo JText::_('OS_STATE') ?>
                                 </strong>
                                 <div class="clearfix"></div>
                                 <div id="country_state">
                                     <?php echo $lists['state'] ?>
                                 </div>
                             </div>
-        <?php } ?>
+                        <?php } ?>
                         <div class="span12">
                             <strong>
-        <?php echo JText::_('OS_CITY') ?>
+                                <?php echo JText::_('OS_CITY') ?>
                             </strong>
                             <div class="clearfix"></div>
                             <div id="city_div">
-                            <?php echo $lists['city'] ?>
+                                <?php echo $lists['city'] ?>
                             </div>
                         </div>
                         <div class="clearfix"></div>
                         <h3>
-                                    <?php echo JText::_('OS_ORDERING'); ?>
+                            <?php echo JText::_('OS_ORDERING'); ?>
                         </h3>
                         <div class="span12">
                             <div class="span6" style="margin-left:0px">
                                 <strong>
-        <?php echo JText::_('OS_SORTBY') ?>:
+                                    <?php echo JText::_('OS_SORTBY') ?>:
                                 </strong>
                             </div>
                             <div class="span6" style="margin-left:0px">
-                                    <?php echo $lists['sortby']; ?>
+                                <?php echo $lists['sortby']; ?>
                             </div>
                         </div>
                         <div class="span12">
                             <div class="span6" style="margin-left:0px">
                                 <strong>
-        <?php echo JText::_('OS_ORDERBY') ?>:
+                                    <?php echo JText::_('OS_ORDERBY') ?>:
                                 </strong>
                             </div>
                             <div class="span6" style="margin-left:0px">
-        <?php echo $lists['orderby']; ?>
+                                <?php echo $lists['orderby']; ?>
                             </div>
                         </div>
                     </fieldset>
                 </div>
                 <div class="span4">
                     <fieldset>
+                        <?php
+                        if (($configClass['use_bathrooms'] == 1) or ( $configClass['use_bedrooms'] == 1) or ( $configClass['use_nfloors'] == 1) or ( $configClass['use_rooms'] == 1) or ( $configClass['use_squarefeet'] == 1))
+                        {
+                            ?>
+                            <h3>
+                                <?php echo JText::_('OS_OTHER_INFORMATION'); ?>
+                            </h3>
                             <?php
-                            if (($configClass['use_bathrooms'] == 1) or ( $configClass['use_bedrooms'] == 1) or ( $configClass['use_nfloors'] == 1) or ( $configClass['use_rooms'] == 1) or ( $configClass['use_squarefeet'] == 1))
+                            if ($configClass['use_bathrooms'] == 1)
                             {
                                 ?>
-                            <h3>
-                            <?php echo JText::_('OS_OTHER_INFORMATION'); ?>
-                            </h3>
-            <?php
-            if ($configClass['use_bathrooms'] == 1)
-            {
-                ?>
                                 <div class="span12">
                                     <div class="span6" style="margin-left:0px">
                                         <strong>
-                <?php echo JText::_('OS_BATHROOMS') ?>:
+                                            <?php echo JText::_('OS_BATHROOMS') ?>:
                                         </strong>
                                     </div>
                                     <div class="span6" style="margin-left:0px">
-                                <?php echo $lists['nbath']; ?>
+                                        <?php echo $lists['nbath']; ?>
                                     </div>
                                 </div>
                                 <?php
                             }
                             ?>
-            <?php
-            if ($configClass['use_bedrooms'] == 1)
-            {
-                ?>
+                            <?php
+                            if ($configClass['use_bedrooms'] == 1)
+                            {
+                                ?>
                                 <div class="span12">
                                     <div class="span6" style="margin-left:0px">
                                         <strong>
-                <?php echo JText::_('OS_BEDROOMS') ?>:
+                                            <?php echo JText::_('OS_BEDROOMS') ?>:
                                         </strong>
                                     </div>
                                     <div class="span6" style="margin-left:0px">
-                                <?php echo $lists['nbed']; ?>
+                                        <?php echo $lists['nbed']; ?>
                                     </div>
                                 </div>
                                 <?php
                             }
                             ?>
-            <?php
-            if ($configClass['use_nfloors'] == 1)
-            {
-                ?>
+                            <?php
+                            if ($configClass['use_nfloors'] == 1)
+                            {
+                                ?>
                                 <div class="span12">
                                     <div class="span6" style="margin-left:0px">
                                         <strong>
-                <?php echo JText::_('OS_FLOORS') ?>:
+                                            <?php echo JText::_('OS_FLOORS') ?>:
                                         </strong>
                                     </div>
                                     <div class="span6" style="margin-left:0px">
-                                <?php echo $lists['nfloor']; ?>
+                                        <?php echo $lists['nfloor']; ?>
                                     </div>
                                 </div>
                                 <?php
                             }
                             ?>
-            <?php
-            if ($configClass['use_rooms'] == 1)
-            {
-                ?>
+                            <?php
+                            if ($configClass['use_rooms'] == 1)
+                            {
+                                ?>
                                 <div class="span12">
                                     <div class="span6" style="margin-left:0px">
                                         <strong>
-                <?php echo JText::_('OS_ROOMS') ?>:
+                                            <?php echo JText::_('OS_ROOMS') ?>:
                                         </strong>
                                     </div>
                                     <div class="span6" style="margin-left:0px">
-                                <?php echo $lists['nroom']; ?>
+                                        <?php echo $lists['nroom']; ?>
                                     </div>
                                 </div>
-                <?php
-            }
-            if ($configClass['use_squarefeet'] == 1)
-            {
-                ?>
+                                <?php
+                            }
+                            if ($configClass['use_squarefeet'] == 1)
+                            {
+                                ?>
                                 <div class="span12">
                                     <strong>
                                         <?php
@@ -3685,9 +3757,9 @@ class HelperOspropertyCommon
                                 </div>
                                 <div class="span12">
                                     <strong>
-                <?php
-                echo JText::_('OS_LOT_SIZE');
-                ?>
+                                        <?php
+                                        echo JText::_('OS_LOT_SIZE');
+                                        ?>
                                         (<?php echo OSPHelper::showSquareSymbol(); ?>)
                                         :
                                     </strong>
@@ -3696,10 +3768,10 @@ class HelperOspropertyCommon
                                     &nbsp;-&nbsp;
                                     <input type="text" class="input-mini" name="lotsize_max" id="lotsize_max" placeholder="<?php echo JText::_('OS_MAX') ?>" value="<?php echo isset($lists['lotsize_max']) ? $lists['lotsize_max'] : ""; ?>"/>
                                 </div>
-                <?php
-            }
-        }
-        ?>
+                                <?php
+                            }
+                        }
+                        ?>
 
                     </fieldset>
                 </div>
@@ -3717,12 +3789,12 @@ class HelperOspropertyCommon
                 <span class="more_option" id="more_option_span"><?php echo JText::_('OS_MORE_OPTION') ?>&nbsp; <i class="osicon-chevron-down"></i></span>
 
                 <div id="more_option_div" style="display:none;">
-                        <?php
-                        if ($amenities > 0)
-                        {
-                            ?>
+                    <?php
+                    if ($amenities > 0)
+                    {
+                        ?>
                         <div class="block_caption">
-                                <?php echo JText::_('OS_AMENITIES') ?>
+                            <?php echo JText::_('OS_AMENITIES') ?>
                         </div>
                         <div class="row-fluid">
                             <div class="span12">
@@ -3750,7 +3822,7 @@ class HelperOspropertyCommon
                                         ?>
                                         <div class="span4" style="float:left;padding-right:5px;margin-left:0px;">
                                             <strong>
-                                            <?php echo $optionArr[$k]; ?>
+                                                <?php echo $optionArr[$k]; ?>
                                             </strong>
                                             <BR />
                                             <?php
@@ -3772,8 +3844,8 @@ class HelperOspropertyCommon
                                                 ?>
                                                 <input type="checkbox" name="amenities[]" <?php echo $checked ?> value="<?php echo $amenities[$i]->id; ?>" /> <?php echo OSPHelper::getLanguageFieldValue($amenities[$i], 'amenities'); ?>
                                                 <BR />
-                                        <?php }
-                                        ?>
+                                            <?php }
+                                            ?>
                                         </div>
                                         <?php
                                         if ($j == 3)
@@ -3798,7 +3870,7 @@ class HelperOspropertyCommon
                             ?>
                             <div class="span12" style="margin-left:0px;">
                                 <div class="block_caption">
-                                <?php echo OSPHelper::getLanguageFieldValue($group, 'group_name'); ?>
+                                    <?php echo OSPHelper::getLanguageFieldValue($group, 'group_name'); ?>
                                 </div>
                                 <?php
                                 $fields = $group->fields;
@@ -3808,22 +3880,22 @@ class HelperOspropertyCommon
                                     $fieldLists[] = $field->id;
                                     ?>
                                     <div class="row-fluid" style="" id="advextrafield_<?php echo $field->id; ?>">
-                                    <?php
-                                    HelperOspropertyFields::showFieldinAdvSearch($field, 1);
-                                    ?>
+                                        <?php
+                                        HelperOspropertyFields::showFieldinAdvSearch($field, 1);
+                                        ?>
                                     </div>
                                     <div class="clearfix"></div>
-                                <?php
-                            }
-                            ?>
+                                    <?php
+                                }
+                                ?>
                             </div>		
                             <div class="clearfix"></div>
-                        <?php
+                            <?php
+                        }
                     }
-                }
-                ?>
+                    ?>
                 </div>
-                <?php } ?>
+            <?php } ?>
             <input type="hidden" name="advfieldLists" id="advfieldLists" value="<?php echo implode(",", $fieldLists) ?>" />
             <div class="clearfix"></div>
             <div class="span12" style="text-align:right;margin-left:0px;">
@@ -3844,11 +3916,11 @@ class HelperOspropertyCommon
                     {
                         ?>
                         <input type="button" class="btn btn-success" value="<?php echo JText::_('OS_SAVE_TO_SEARCH_LIST_UPDATE') ?>" onclick="javascript:updateSearchList();" />
-                <?php
-            }
-        }
-        //}
-        ?>
+                        <?php
+                    }
+                }
+                //}
+                ?>
             </div>
         </div>
         <script type="text/javascript">
@@ -3974,53 +4046,53 @@ class HelperOspropertyCommon
                                 <input type="text" name="location" id="location" class="input-large" value="<?php echo stripslashes($lists['location']); ?>" placeholder="<?php echo JText::_('OS_SEARCH_ADDRESS_EXPLAIN') ?>" />
                             </li>
                             <li class="active"><?php echo $lists['radius']; ?></li>
-        <?php
-        if ($configClass['locator_show_category'] == 1)
-        {
-            ?>
+                            <?php
+                            if ($configClass['locator_show_category'] == 1)
+                            {
+                                ?>
                                 <li class="divider-vertical  hidden-phone"></li>
                                 <li class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown">
                                         <?php echo JText::_('OS_CATEGORIES'); ?><b class="caret"></b>
                                     </a>
                                     <ul class="dropdown-menu">
-                                <?php
-                                echo $lists['category'];
-                                ?>
+                                        <?php
+                                        echo $lists['category'];
+                                        ?>
                                     </ul>
                                 </li>
-            <?php
-            $locator_type_idArrs = $lists['locator_type_idArrs'];
-            if (($locator_type_idArrs[0] == 0) and ( $configClass['locator_show_type'] == 1))
-            {
-                ?>
+                                <?php
+                                $locator_type_idArrs = $lists['locator_type_idArrs'];
+                                if (($locator_type_idArrs[0] == 0) and ( $configClass['locator_show_type'] == 1))
+                                {
+                                    ?>
                                     <li class="divider-vertical  hidden-phone"></li>
                                     <li class="dropdown">
                                         <a class="dropdown-toggle" data-toggle="dropdown">
                                             <?php echo JText::_('OS_TYPE'); ?><b class="caret"></b>
                                         </a>
                                         <ul class="dropdown-menu">
-                                    <?php
-                                    echo $lists['type'];
-                                    ?>
+                                            <?php
+                                            echo $lists['type'];
+                                            ?>
                                         </ul>
                                     </li>
-                <?php
-            }
-            ?>
-        <?php } ?>
+                                    <?php
+                                }
+                                ?>
+                            <?php } ?>
                             <li class="divider-vertical hidden-phone"></li>
                             <li class="dropdown hidden-phone">
                                 <a class="dropdown-toggle" data-toggle="dropdown">
-                                            <?php echo JText::_('OS_MORE_OPTION'); ?><b class="caret"></b>
+                                    <?php echo JText::_('OS_MORE_OPTION'); ?><b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <div class="control-group">
                                         <label class="control-label"><?php echo JText::_('OS_PRICE') ?>:</label>
                                         <div class="controls">
-        <?php
-        OSPHelper::showPriceFilter($lists['price_value'], $lists['min_price'], $lists['max_price'], $lists['locator_type'], '', 'adv');
-        ?>
+                                            <?php
+                                            OSPHelper::showPriceFilter($lists['price_value'], $lists['min_price'], $lists['max_price'], $lists['locator_type'], '', 'adv');
+                                            ?>
                                         </div>
                                     </div>
                                     <div class="control-group">
@@ -4038,46 +4110,46 @@ class HelperOspropertyCommon
                                     <div class="control-group">
                                         <label class="control-label"><?php echo JText::_('OS_ORDERBY') ?>:</label>
                                         <div class="controls">
-                                    <?php echo $lists['order']; ?>
+                                            <?php echo $lists['order']; ?>
                                         </div>
                                     </div>
-        <?php
-        if (($configClass['use_bedrooms'] == 1) and ( $configClass['locator_showbedrooms'] == 1))
-        {
-            ?>
+                                    <?php
+                                    if (($configClass['use_bedrooms'] == 1) and ( $configClass['locator_showbedrooms'] == 1))
+                                    {
+                                        ?>
                                         <div class="control-group">
                                             <label class="control-label"><?php echo JText::_('OS_BEDS') ?>:</label>
                                             <div class="controls">
-                                        <?php echo $lists['nbed']; ?>
+                                                <?php echo $lists['nbed']; ?>
                                             </div>
                                         </div>
-        <?php } ?>
-        <?php
-        if (($configClass['use_bedrooms'] == 1) and ( $configClass['locator_showbathrooms'] == 1))
-        {
-            ?>
+                                    <?php } ?>
+                                    <?php
+                                    if (($configClass['use_bedrooms'] == 1) and ( $configClass['locator_showbathrooms'] == 1))
+                                    {
+                                        ?>
                                         <div class="control-group">
                                             <label class="control-label"><?php echo JText::_('OS_BATHS') ?>:</label>
                                             <div class="controls">
-                                        <?php echo $lists['nbath']; ?>
+                                                <?php echo $lists['nbath']; ?>
                                             </div>
                                         </div>
-        <?php } ?>
-        <?php
-        if (($configClass['use_rooms'] == 1) and ( $configClass['locator_showrooms'] == 1))
-        {
-            ?>
+                                    <?php } ?>
+                                    <?php
+                                    if (($configClass['use_rooms'] == 1) and ( $configClass['locator_showrooms'] == 1))
+                                    {
+                                        ?>
                                         <div class="control-group">
                                             <label class="control-label"><?php echo JText::_('OS_ROOMS') ?>:</label>
                                             <div class="controls">
-                                        <?php echo $lists['nroom']; ?>
+                                                <?php echo $lists['nroom']; ?>
                                             </div>
                                         </div>
-        <?php } ?>
-                                            <?php
-                                            if (($configClass['use_squarefeet'] == 1) and ( $configClass['locator_showsquarefeet'] == 1))
-                                            {
-                                                ?>
+                                    <?php } ?>
+                                    <?php
+                                    if (($configClass['use_squarefeet'] == 1) and ( $configClass['locator_showsquarefeet'] == 1))
+                                    {
+                                        ?>
                                         <div class="control-group">
                                             <label class="control-label">
                                                 <?php
@@ -4114,7 +4186,7 @@ class HelperOspropertyCommon
                             <li class="divider-vertical  hidden-phone"></li>
                             <li>
                                 <a href="javascript:updateMyLocation();" title="<?php echo JText::_('OS_SEARCH_AROUND_MY_LOCATION'); ?>">
-        <?php echo JText::_('OS_MY_LOCATION'); ?>
+                                    <?php echo JText::_('OS_MY_LOCATION'); ?>
                                 </a>
                             </li>
                             <li class="divider-vertical  hidden-phone"></li>
@@ -4217,23 +4289,23 @@ class HelperOspropertyCommon
             <thead>
                 <tr>
                     <th width="35%" style="text-align:left;padding-left:10px;background-color:#444;color:white;" class="nowrap">
-        <?php echo JText::_('OS_PLAN'); ?>
+                        <?php echo JText::_('OS_PLAN'); ?>
                     </th>
                     <th width="20%" style="text-align:left;padding-left:10px;background-color:#444;color:white;" class="nowrap">
                         <span class="hasTip" title="<?php echo JText::_('OS_ACCOUNT_REMAINING'); ?>::<?php echo JText::_('OS_ACCOUNT_REMAINING_EXPLAIN'); ?>">
-                    <?php echo JText::_('OS_ACCOUNT_REMAINING'); ?>
+                            <?php echo JText::_('OS_ACCOUNT_REMAINING'); ?>
                         </span>
                     </th>
-                            <?php
-                            if ($configClass['general_use_expiration_management'] == 1)
-                            {
-                                ?>
+                    <?php
+                    if ($configClass['general_use_expiration_management'] == 1)
+                    {
+                        ?>
                         <th width="45%" style="text-align:left;padding-left:10px;background-color:#444;color:white;" class="nowrap hidden-phone">
                             <span class="hasTip" title="<?php echo JText::_('OS_PROPERTY_WILL_EXPIRED_ON'); ?>::<?php echo JText::_('OS_PROPERTY_WILL_EXPIRED_ON_EXPLAIN'); ?>">
-                <?php echo JText::_('OS_PROPERTY_WILL_EXPIRED_ON'); ?>
+                                <?php echo JText::_('OS_PROPERTY_WILL_EXPIRED_ON'); ?>
                             </span>
                         </th>
-            <?php } ?>
+                    <?php } ?>
                 </tr>
             </thead>
             <?php
@@ -4267,20 +4339,20 @@ class HelperOspropertyCommon
                     <tr class="row<?php echo $k; ?>">
                         <td width="35%" style="text-align:left;padding-left:10px;">
                             <input type="radio" name="membership_sub_id" id="membership_sub_id" value="<?php echo $acc->sub_id ?>" <?php echo $checked ?> />
-                                <?php echo $acc->title ?>
+                            <?php echo $acc->title ?>
                         </td>
                         <td width="20%" style="text-align:left;padding-left:10px;">
-                <?php echo $acc->nproperties ?> 
+                            <?php echo $acc->nproperties ?> 
                             <span style="font-size:11px;font-weight:normal;">
                                 (<?php echo OSPHelper::returnDateformat(strtotime($acc->from_date)); ?> 
-                        <?php echo JText::_('OS_TO') ?> 
-                        <?php echo OSPHelper::returnDateformat(strtotime($acc->to_date)); ?>)
+                                <?php echo JText::_('OS_TO') ?> 
+                                <?php echo OSPHelper::returnDateformat(strtotime($acc->to_date)); ?>)
                             </span>
                         </td>
-                            <?php
-                            if ($configClass['general_use_expiration_management'] == 1)
-                            {
-                                ?>
+                        <?php
+                        if ($configClass['general_use_expiration_management'] == 1)
+                        {
+                            ?>
                             <td width="45%" style="text-align:left;padding-left:10px;">
                                 <?php
                                 //echo OSPHelper::returnDateformat($acc->expired);
@@ -4293,13 +4365,13 @@ class HelperOspropertyCommon
                                 }
                                 ?>
                             </td>
-                    <?php } ?>
+                        <?php } ?>
                     </tr>
-                <?php
-                $k = 1 - $k;
+                    <?php
+                    $k = 1 - $k;
+                }
             }
-        }
-        ?>
+            ?>
         </table>
         <?php
     }
@@ -4337,25 +4409,25 @@ class HelperOspropertyCommon
         <table width="100%">
             <tr>
                 <td width="20%" style="text-align:left;padding-left:20px;border-bottom:1px solid #FFFFFF !important;">
-        <?php echo JText::_('OS_PLAN'); ?>
+                    <?php echo JText::_('OS_PLAN'); ?>
                 </td>
                 <td width="40%" style="text-align:left;padding-left:20px;border-bottom:1px solid #FFFFFF !important;">
                     <span class="hasTip" title="<?php echo JText::_('OS_ACCOUNT_REMAINING'); ?>::<?php echo JText::_('OS_ACCOUNT_REMAINING_EXPLAIN'); ?>">
-                <?php echo JText::_('OS_ACCOUNT_REMAINING'); ?>
+                        <?php echo JText::_('OS_ACCOUNT_REMAINING'); ?>
                     </span>
                 </td>
-                        <?php
-                        if ($configClass['general_use_expiration_management'] == 1)
-                        {
-                            ?>
+                <?php
+                if ($configClass['general_use_expiration_management'] == 1)
+                {
+                    ?>
                     <td width="40%" style="text-align:left;padding-left:20px;border-bottom:1px solid #FFFFFF !important;">
                         <span class="hasTip" title="<?php echo JText::_('OS_PROPERTY_WILL_EXPIRED_ON'); ?>::<?php echo JText::_('OS_PROPERTY_WILL_EXPIRED_ON_EXPLAIN'); ?>">
-                    <?php echo JText::_('OS_PROPERTY_WILL_EXPIRED_ON'); ?>
+                            <?php echo JText::_('OS_PROPERTY_WILL_EXPIRED_ON'); ?>
                         </span>
                     </td>
-                <?php
-            }
-            ?>
+                    <?php
+                }
+                ?>
             </tr>
 
             <?php
@@ -4395,15 +4467,15 @@ class HelperOspropertyCommon
                     <tr>
                         <td width="20%" style="text-align:left;padding-left:20px;background-color:<?php echo $background ?>;">
                             <input type="radio" name="membership_sub_id" id="membership_sub_id" value="<?php echo $acc->sub_id ?>" <?php echo $checked ?> />
-                        <?php echo $acc->title ?>
+                            <?php echo $acc->title ?>
                         </td>
                         <td width="40%" style="text-align:left;padding-left:20px;background-color:<?php echo $background ?>;">
-                        <?php echo $acc->nproperties ?> <span style="font-size:11px;font-weight:normal;">(<?php echo OSPHelper::returnDateformat(strtotime($acc->from_date)); ?> <?php echo JText::_('OS_TO') ?> <?php echo OSPHelper::returnDateformat(strtotime($acc->to_date)); ?>)</span>
+                            <?php echo $acc->nproperties ?> <span style="font-size:11px;font-weight:normal;">(<?php echo OSPHelper::returnDateformat(strtotime($acc->from_date)); ?> <?php echo JText::_('OS_TO') ?> <?php echo OSPHelper::returnDateformat(strtotime($acc->to_date)); ?>)</span>
                         </td>
-                            <?php
-                            if ($configClass['general_use_expiration_management'] == 1)
-                            {
-                                ?>
+                        <?php
+                        if ($configClass['general_use_expiration_management'] == 1)
+                        {
+                            ?>
                             <td width="40%" style="text-align:left;padding-left:20px;background-color:<?php echo $background ?>;">
                                 <?php
                                 //echo OSPHelper::returnDateformat($acc->expired);
@@ -4416,14 +4488,14 @@ class HelperOspropertyCommon
                                 }
                                 ?>
                             </td>
-                        <?php
-                    }
-                    ?>
+                            <?php
+                        }
+                        ?>
                     </tr>
-                <?php
+                    <?php
+                }
             }
-        }
-        ?>
+            ?>
         </table>
         <?php
     }
@@ -4578,7 +4650,7 @@ class HelperOspropertyCommon
                 <div class="_leadError ajax-error"></div>
                 <div class="control-group">
                     <label class="control-label">
-        <?php echo JText::_('OS_SUBJECT'); ?>
+                        <?php echo JText::_('OS_SUBJECT'); ?>
                     </label>
                     <div class="controls">
                         <select name='subject' id='subject' class='input-large' onchange="javascript:updateRequestForm(this.value)">
@@ -4593,7 +4665,7 @@ class HelperOspropertyCommon
                 </div>
                 <div class="control-group">
                     <label class="control-label">
-        <?php echo JText::_('OS_YOUR_NAME'); ?>
+                        <?php echo JText::_('OS_YOUR_NAME'); ?>
                     </label>
                     <div class="controls">
                         <input class="input-large" type="text" id="requestyour_name" name="requestyour_name" size="30" maxlength="50"  value="<?php echo $user->name ?>" placeholder="<?php echo JText::_('OS_YOUR_NAME') ?>"/>
@@ -4601,7 +4673,7 @@ class HelperOspropertyCommon
                 </div>
                 <div class="control-group">
                     <label class="control-label">
-        <?php echo JText::_('OS_PHONE'); ?>
+                        <?php echo JText::_('OS_PHONE'); ?>
                     </label>
                     <div class="controls">
                         <input class="input-large" type="text" id="your_phone" name="your_phone" maxlength="50" placeholder="<?php echo JText::_('OS_PHONE') ?>"/>
@@ -4609,7 +4681,7 @@ class HelperOspropertyCommon
                 </div>
                 <div class="control-group">
                     <label class="control-label">
-        <?php echo JText::_('OS_YOUR_EMAIL'); ?>
+                        <?php echo JText::_('OS_YOUR_EMAIL'); ?>
                     </label>
                     <div class="controls">
                         <input class="input-large" type="text" id="requestyour_email" name="requestyour_email" size="30" maxlength="50"  value="<?php echo $user->email; ?>" placeholder="<?php echo JText::_('OS_YOUR_EMAIL') ?>"/>
@@ -4618,7 +4690,7 @@ class HelperOspropertyCommon
 
                 <div class="control-group">
                     <label class="control-label">
-        <?php echo JText::_('OS_MESSAGE'); ?>
+                        <?php echo JText::_('OS_MESSAGE'); ?>
                     </label>
                     <div class="controls">
                         <textarea class="input-large" id="requestmessage" name="requestmessage" rows="3" cols="60" style="width:250px !important;height:150px !important;"><?php echo JText::_('OS_REQUEST_MSG1') ?> <?php echo ($row->ref != "") ? $row->ref . ", " : "" ?><?php echo $row->pro_name ?></textarea>
@@ -4626,7 +4698,7 @@ class HelperOspropertyCommon
                 </div>
                 <div class="control-group">
                     <label class="control-label">
-        <?php echo JText::_('OS_SECURITY_CODE'); ?>
+                        <?php echo JText::_('OS_SECURITY_CODE'); ?>
                     </label>
                     <div class="controls">
                         <span class="grey_small" style="line-height:16px;"><?php echo JText::_('OS_PLEASE_INSERT_THE_SYMBOL_FROM_THE_INAGE_TO_FIELD_BELOW') ?></span>
@@ -4635,20 +4707,20 @@ class HelperOspropertyCommon
                         <input type="text" class="input-mini" id="request_security_code" name="request_security_code" maxlength="5" style="width: 50px; margin: 0;" />
                     </div>
                 </div>
-        <?php
-        if ($configClass['request_term_condition'] == 1)
-        {
-            JHTML::_("behavior.modal", "a.osmodal");
-            ?>
+                <?php
+                if ($configClass['request_term_condition'] == 1)
+                {
+                    JHTML::_("behavior.modal", "a.osmodal");
+                    ?>
                     <div class="control-group" style="text-align:center;">
                         <input type="checkbox" name="termcondition" id="termcondition" value="1" />
                         &nbsp;
-                    <?php echo JText::_('OS_READ_TERM'); ?> 
+                        <?php echo JText::_('OS_READ_TERM'); ?> 
                         <a href="<?php echo JURI::root() ?>index.php?option=com_content&view=article&id=<?php echo $configClass['request_article_id']; ?>&tmpl=component" class="osmodal" rel="{handler: 'iframe', size: {x: 600, y: 450}}" title="<?php echo JText::_('OS_TERM_AND_CONDITION'); ?>"><?php echo JText::_('OS_TERM_AND_CONDITION'); ?></a>
                     </div>
-            <?php
-        }
-        ?>
+                    <?php
+                }
+                ?>
                 <div class="clearfix"></div>
                 <div class="control-group">
                     <input class="btn btn-info" type="button" id="requestbutton" name="requestbutton" value="<?php echo JText::_("OS_REQUEST_BUTTON1") ?>" onclick="javascript:submitForm('requestdetails_form');"/>
@@ -4734,20 +4806,20 @@ class HelperOspropertyCommon
                 <div class="clearfix"></div>
                 <img src="<?php echo JURI::root() ?>index.php?option=com_osproperty&no_html=1&task=property_captcha&ResultStr=<?php echo $row->ResultStr ?>" />
                 <input type="text" class="input-mini" id="request_security_code" name="request_security_code" maxlength="5" style="width: 50px; margin: 0;" />
-        <?php
-        if ($configClass['request_term_condition'] == 1)
-        {
-            JHTML::_("behavior.modal", "a.osmodal");
-            ?>
+                <?php
+                if ($configClass['request_term_condition'] == 1)
+                {
+                    JHTML::_("behavior.modal", "a.osmodal");
+                    ?>
                     <div class="control-group" style="text-align:left;">
                         <input type="checkbox" name="termcondition" id="termcondition" value="1" />
                         &nbsp;
-                    <?php echo JText::_('OS_READ_TERM'); ?> 
+                        <?php echo JText::_('OS_READ_TERM'); ?> 
                         <a href="<?php echo JURI::root() ?>index.php?option=com_content&view=article&id=<?php echo $configClass['request_article_id']; ?>&tmpl=component" class="osmodal" rel="{handler: 'iframe', size: {x: 600, y: 450}}" title="<?php echo JText::_('OS_TERM_AND_CONDITION'); ?>"><?php echo JText::_('OS_TERM_AND_CONDITION'); ?></a>
                     </div>
-            <?php
-        }
-        ?>
+                    <?php
+                }
+                ?>
                 <div class="clearfix"></div>
                 <input class="btn btn-info" type="button" id="requestbutton" name="requestbutton" value="<?php echo JText::_("OS_REQUEST_BUTTON1") ?>" onclick="javascript:submitForm('requestdetails_form');"/>
                 <input type="hidden" name="csrqt<?php echo intval(date("m", time())) ?>" id="csrqt<?php echo intval(date("m", time())) ?>" value="<?php echo $row->ResultStr ?>" />
@@ -4812,13 +4884,13 @@ class HelperOspropertyCommon
 
             <div class="span12">
                 <form method="POST" action="<?php echo JURI::root() ?>index.php?option=com_osproperty&task=property_submitcomment&Itemid=<?php echo $itemid; ?>" name="commentForm" id="commentForm" class="form-horizontal">
-                            <?php
-                            if ($configClass['show_rating'] == 1)
-                            {
-                                ?>
+                    <?php
+                    if ($configClass['show_rating'] == 1)
+                    {
+                        ?>
                         <div class="control-group">
                             <label class="control-label">
-                                    <?php echo JText::_('OS_RATING'); ?>
+                                <?php echo JText::_('OS_RATING'); ?>
                             </label>
                             <div class="controls">
                                 <i><?php echo JText::_('OS_WORST'); ?>
@@ -4835,18 +4907,18 @@ class HelperOspropertyCommon
                                         }
                                         ?>
                                         <input type="radio" name="rating" id="rating<?php echo $i ?>" value="<?php echo $i ?>" <?php echo $checked ?> />
-                            <?php
-                        }
-                        ?>
+                                        <?php
+                                    }
+                                    ?>
                                     &nbsp;&nbsp;<?php echo JText::_('OS_BEST'); ?></i>
                             </div>
                         </div>
-                                <?php
-                            }
-                            ?>
+                        <?php
+                    }
+                    ?>
                     <div class="control-group">
                         <label class="control-label">
-        <?php echo JText::_('OS_AUTHOR'); ?>
+                            <?php echo JText::_('OS_AUTHOR'); ?>
                         </label>
                         <div class="controls">
                             <input class="input-large" type="text" id="comment_author" name="comment_author" maxlength="50" value="<?php echo $user->name; ?>" />
@@ -4855,7 +4927,7 @@ class HelperOspropertyCommon
 
                     <div class="control-group">
                         <label class="control-label">
-        <?php echo JText::_('OS_TITLE'); ?>
+                            <?php echo JText::_('OS_TITLE'); ?>
                         </label>
                         <div class="controls">
                             <input class="input-large" type="text" id="comment_title" name="comment_title" size="40" placeholder="<?php echo JText::_('OS_TITLE'); ?>" />
@@ -4864,7 +4936,7 @@ class HelperOspropertyCommon
 
                     <div class="control-group">
                         <label class="control-label">
-        <?php echo JText::_('OS_MESSAGE'); ?>
+                            <?php echo JText::_('OS_MESSAGE'); ?>
                         </label>
                         <div class="controls">
                             <textarea id="comment_message" name="comment_message" rows="6" cols="50" class="input-large" style="height:150px !important"></textarea>
@@ -4873,7 +4945,7 @@ class HelperOspropertyCommon
 
                     <div class="control-group">
                         <label class="control-label">
-        <?php echo JText::_('OS_SECURITY_CODE'); ?>
+                            <?php echo JText::_('OS_SECURITY_CODE'); ?>
                         </label>
                         <div class="controls">
                             <span class="grey_small" style="line-height:16px;"><?php echo JText::_('OS_PLEASE_INSERT_THE_SYMBOL_FROM_THE_INAGE_TO_FIELD_BELOW') ?></span>

@@ -37,6 +37,7 @@ class OSPRoute
                 Select fieldvalue from #__osrs_configuration where fieldname like 'default_itemid'");
             $default_itemid = $db->loadResult();
         }
+        return $default_itemid;
         $app = JFactory::getApplication();
         $menus = $app->getMenu('site');
         $component = JComponentHelper::getComponent('com_osproperty');

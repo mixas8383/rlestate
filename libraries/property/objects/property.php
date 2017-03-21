@@ -445,13 +445,13 @@ class Property extends JObject
                 $fieldgroup = $fieldgroups[$i];
 
                 $access_sql = ' and b.access IN (' . implode(',', JFactory::getUser()->getAuthorisedViewLevels()) . ')';
-                $checkgroup = HelperOspropertyFields::checkFieldData($this->_property->id, $fieldgroup->id);
+                $checkgroup = HelperOspropertyFields::checkFieldData($this->_property, $fieldgroup->id);
 
                 if ($checkgroup == 1)
                 {
                     $extra_field_groups[$j] = new stdClass;
                     $extra_field_groups[$j]->group_name = OSPHelper::getLanguageFieldValue($fieldgroup, 'group_name');
-                    $extra_field_groups[$j]->fields = HelperOspropertyFields::getFieldsData($this->_property->id, $fieldgroup->id);
+                    $extra_field_groups[$j]->fields = HelperOspropertyFields::getFieldsData($this->_property, $fieldgroup->id);
                     $j++;
                 }
             }
@@ -481,6 +481,7 @@ class Property extends JObject
 
     public function setAgent()
     {
+       
         global $lang_suffix;
         //agent information
         $this->_db->setQuery('Select * from #__osrs_agents where id = ' . $this->_property->agent_id . '');
