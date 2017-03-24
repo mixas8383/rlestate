@@ -28,18 +28,19 @@ class HelperOspropertyCommon
             
         }
     }
-     public function getOne($array)
+
+    public function getOne($array)
+    {
+        if (!empty($array))
         {
-            if (!empty($array))
+            usort($array, function($a, $b)
             {
-                usort($array, function($a, $b)
-                {
-                    return true;
-                });
-                return $array[0];
-            }
-            return false;
+                return true;
+            });
+            return $array[0];
         }
+        return false;
+    }
 
     /**
      * Get the country_id in the filter page or edit item details page
@@ -1456,14 +1457,44 @@ class HelperOspropertyCommon
         global $jinput, $mainframe, $configClass, $ismobile;
     }
 
+    public static function getNeiborHood($id)
+    {
+        static $ar;
+        if (!$ar)
+        {
+            $ar = array();
+            $db = JFactory::getDbo();
+            $query = "Select a.*,b.neighborhood from #__osrs_neighborhood as a"
+                    . " inner join #__osrs_neighborhoodname as b on b.id = a.neighbor_id"
+                    . ' where a.pid = ' . $id . '';
+            $db->setQuery($query);
+            $ar[$id] = $db->loadObjectList();
+            return $ar[$id];
+        } else
+        {
+            if (is_array($ar))
+            {
+                if (isset($ar[$id]))
+                {
+                    return $ar[$id];
+                } else
+                {
+                    $db = JFactory::getDbo();
+                    $query = "Select a.*,b.neighborhood from #__osrs_neighborhood as a"
+                            . " inner join #__osrs_neighborhoodname as b on b.id = a.neighbor_id"
+                            . ' where a.pid = ' . $id . '';
+                    $db->setQuery($query);
+                    $ar[$id] = $db->loadObjectList();
+                    return $ar[$id];
+                }
+            }
+        }
+    }
+
     static function loadNeighborHood1($pid)
     {
-        $db = JFactory::getDbo();
-        $query = "Select a.*,b.neighborhood from #__osrs_neighborhood as a"
-                . " inner join #__osrs_neighborhoodname as b on b.id = a.neighbor_id"
-                . " where a.pid = '$pid'";
-        $db->setQuery($query);
-        $rows = $db->loadObjectList();
+        $rows = self::getNeiborHood($pid);
+
         if (count($rows) > 0)
         {
             ?>
@@ -1501,12 +1532,7 @@ class HelperOspropertyCommon
 
     static function loadNeighborHood($pid)
     {
-        $db = JFactory::getDbo();
-        $query = "Select a.*,b.neighborhood from #__osrs_neighborhood as a"
-                . " inner join #__osrs_neighborhoodname as b on b.id = a.neighbor_id"
-                . " where a.pid = '$pid'";
-        $db->setQuery($query);
-        $rows = $db->loadObjectList();
+        $rows = self::getNeiborHood($pid);
         $k = 0;
         if (count($rows) > 0)
         {
@@ -1592,24 +1618,14 @@ class HelperOspropertyCommon
      *
      * @param unknown_type $curr
      */
-    public static function loadAllCurrencies()
-    {
-        static $carenciesall;
-        if (!$carenciesall)
-        {
-            $db = JFactory::getDbo();
-            $db->setQuery("Select * from #__osrs_currencies ");
-            $carenciesall = $db->loadObjectList();
-        }
-        return $carenciesall;
-    }
+    
 
     public static function loadCurrency($curr)
     {
         global $jinput, $mainframe, $configClass;
         $configClass = OSPHelper::loadConfig();
 
-        $currensies = self::loadAllCurrencies();
+        $currensies = OSPHelper::loadAllCurrencies();
         $db = Jfactory::getDBO();
         if (intval($curr) == 0)
         {

@@ -57,9 +57,9 @@ $document = JFactory::getDocument();
 
 global $_jversion, $configs, $configClass, $symbol, $jinput;
 $db = JFactory::getDBO();
-$db->setQuery("#ospropertu
-    Select * from #__osrs_configuration");
-$configs = $db->loadObjectList();
+
+$configs = OSPHelper::getGonfigurations();
+
 $configClass = array();
 foreach ($configs as $config)
 {
@@ -70,12 +70,12 @@ $curr = $configClass['general_currency_default'];
 $arrCode = array();
 $arrSymbol = array();
 
-$allCurrencies = HelperOspropertyCommon::loadAllCurrencies();
+$allCurrencies =  OSPHelper::loadAllCurrencies();
 $key1 = new stdClass;
 $key1->key = 'id';
 $key1->value = $curr;
 $key1->condition = '=';
-$currency =HelperOspropertyFields::getOne(HelperOspropertyFields::filterArray($allCurrencies, array($key1))) ;
+$currency = HelperOspropertyFields::getOne(HelperOspropertyFields::filterArray($allCurrencies, array($key1)));
 
 
 $symbol = $currency->currency_symbol;
@@ -140,11 +140,9 @@ if ($configClass['integrate_oscalendar'] == 1)
 }
 
 global $configs;
-$db = JFactory::getDBO();
-$db->setQuery('#osProperi2
-    SELECT * FROM #__osrs_configuration '); // double request
+$cfgs = OSPHelper::getGonfigurations();
 $configs = array();
-foreach ($db->loadObjectList() as $config)
+foreach ($cfgs as $config)
 {
     $configs[$config->fieldname] = $config->fieldvalue;
 }

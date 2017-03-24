@@ -700,11 +700,8 @@ $titleColor = $params->get('titleColor', '#03b4ea');
                 <?php } ?>
                 <?php
                 $db = JFactory::getDbo();
-                $query = "Select count(a.id)from #__osrs_neighborhood as a"
-                        . " inner join #__osrs_neighborhoodname as b on b.id = a.neighbor_id"
-                        . " where a.pid = '$row->id'";
-                $db->setQuery($query);
-                $count_neighborhood = $db->loadResult();
+                $neighbodhoods = HelperOspropertyCommon::getNeiborHood($row->id);
+                $count_neighborhood = count($neighbodhoods);
                 if ($count_neighborhood > 0)
                 {
                     ?>
@@ -714,11 +711,7 @@ $titleColor = $params->get('titleColor', '#03b4ea');
                             <h4 class="additional-title"><?php echo JText::_('OS_NEIGHBORHOOD'); ?></h4>
                             <ul class="additional-details clearfix">
                                 <?php
-                                $query = "Select a.*,b.neighborhood from #__osrs_neighborhood as a"
-                                        . " inner join #__osrs_neighborhoodname as b on b.id = a.neighbor_id"
-                                        . " where a.pid = '$row->id'";
-                                $db->setQuery($query);
-                                $neighbodhoods = $db->loadObjectList();
+                                
                                 for ($j = 0; $j < count($neighbodhoods); $j++)
                                 {
                                     $neighbodhood = $neighbodhoods[$j];

@@ -18,15 +18,27 @@ class OSPHelper
      * This function is used to load Config and return the Configuration Variable
      *
      */
+    public static function loadAllCurrencies()
+    {
+        static $carenciesall;
+        if (!$carenciesall)
+        {
+            $db = JFactory::getDbo();
+            $db->setQuery("Select * from #__osrs_currencies ");
+            $carenciesall = $db->loadObjectList();
+        }
+        return $carenciesall;
+    }
+
     public static function loadConfig()
     {
         static $configClass;
         if ($configClass == null)
         {
             $db = Jfactory::getDbo();
-            $db->setQuery("#loadConfig
-                Select * from #__osrs_configuration");
-            $configs = $db->loadObjectList();
+
+            $configs = OSPHelper::getGonfigurations();
+
             $configClass = array();
             foreach ($configs as $config)
             {
@@ -37,7 +49,7 @@ class OSPHelper
             $arrCode = array();
             $arrSymbol = array();
 
-            $allCurrencies = HelperOspropertyCommon::loadAllCurrencies();
+            $allCurrencies = OSPHelper::loadAllCurrencies();
             $key1 = new stdClass;
             $key1->key = 'id';
             $key1->value = $curr;
@@ -3016,60 +3028,60 @@ class OSPHelper
             <div id="<?php echo $prefix; ?>sliderange"></div>
             <div class="clearfix"></div>
             <script>
-                   jQuery.ui.slider.prototype.widgetEventPrefix = 'slider';
-                   jQuery(function () {
-                       jQuery("#<?php echo $prefix; ?>sliderange")[0].slide = null;
-                       jQuery("#<?php echo $prefix; ?>sliderange").slider({
-                           //isRTL: true,
-                           range: true,
-                           min: <?php echo intval($min_price_value); ?>,
-                           step: <?php echo $price_step_amount; ?>,
-                           max: <?php echo intval($max_price_value); ?>,
-                           values: [<?php echo intval($min_price); ?>, <?php echo intval($max_price); ?>],
-                           slide: function (event, ui) {
-                               var price_from = ui.values[0];
-                               var price_to = ui.values[1];
-                               jQuery("#<?php echo $prefix; ?>price_from_input1").val(price_from);
-                               jQuery("#<?php echo $prefix; ?>price_to_input1").val(price_to);
+                       jQuery.ui.slider.prototype.widgetEventPrefix = 'slider';
+                       jQuery(function () {
+                           jQuery("#<?php echo $prefix; ?>sliderange")[0].slide = null;
+                           jQuery("#<?php echo $prefix; ?>sliderange").slider({
+                               //isRTL: true,
+                               range: true,
+                               min: <?php echo intval($min_price_value); ?>,
+                               step: <?php echo $price_step_amount; ?>,
+                               max: <?php echo intval($max_price_value); ?>,
+                               values: [<?php echo intval($min_price); ?>, <?php echo intval($max_price); ?>],
+                               slide: function (event, ui) {
+                                   var price_from = ui.values[0];
+                                   var price_to = ui.values[1];
+                                   jQuery("#<?php echo $prefix; ?>price_from_input1").val(price_from);
+                                   jQuery("#<?php echo $prefix; ?>price_to_input1").val(price_to);
 
-                               price_from = price_from.formatMoney(0, ',', '.');
-                               price_to = price_to.formatMoney(0, ',', '.');
+                                   price_from = price_from.formatMoney(0, ',', '.');
+                                   price_to = price_to.formatMoney(0, ',', '.');
 
-                               jQuery("#<?php echo $prefix; ?>price_from_input").text(price_from);
-                               jQuery("#<?php echo $prefix; ?>price_to_input").text(price_to);
-                           }
+                                   jQuery("#<?php echo $prefix; ?>price_from_input").text(price_from);
+                                   jQuery("#<?php echo $prefix; ?>price_to_input").text(price_to);
+                               }
+                           });
+
+                           jQuery("#<?php echo $prefix; ?>price_from_input1").change(function () {
+                               var value1 = jQuery("#<?php echo $prefix; ?>price_from_input1").val();
+                               var value2 = jQuery("#<?php echo $prefix; ?>price_to_input1").val();
+                               if (parseInt(value1) > parseInt(value2)) {
+                                   value1 = value2;
+                                   jQuery(".#<?php echo $prefix; ?>price_from_input1").val(value1);
+                               }
+                               jQuery("#<?php echo $prefix; ?>sliderange").slider("values", 0, value1);
+                           });
+
+                           jQuery("#<?php echo $prefix; ?>price_to_input1").change(function () {
+                               var value1 = jQuery("#<?php echo $prefix; ?>price_from_input1").val();
+                               var value2 = jQuery("#<?php echo $prefix; ?>price_to_input1").val();
+                               if (parseInt(value1) > parseInt(value2)) {
+                                   value2 = value1;
+                                   jQuery("#<?php echo $prefix; ?>price_to_input1").val(value2);
+                               }
+                               jQuery("#<?php echo $prefix; ?>sliderange").slider("values", 1, value2);
+                           });
                        });
-
-                       jQuery("#<?php echo $prefix; ?>price_from_input1").change(function () {
-                           var value1 = jQuery("#<?php echo $prefix; ?>price_from_input1").val();
-                           var value2 = jQuery("#<?php echo $prefix; ?>price_to_input1").val();
-                           if (parseInt(value1) > parseInt(value2)) {
-                               value1 = value2;
-                               jQuery(".#<?php echo $prefix; ?>price_from_input1").val(value1);
-                           }
-                           jQuery("#<?php echo $prefix; ?>sliderange").slider("values", 0, value1);
-                       });
-
-                       jQuery("#<?php echo $prefix; ?>price_to_input1").change(function () {
-                           var value1 = jQuery("#<?php echo $prefix; ?>price_from_input1").val();
-                           var value2 = jQuery("#<?php echo $prefix; ?>price_to_input1").val();
-                           if (parseInt(value1) > parseInt(value2)) {
-                               value2 = value1;
-                               jQuery("#<?php echo $prefix; ?>price_to_input1").val(value2);
-                           }
-                           jQuery("#<?php echo $prefix; ?>sliderange").slider("values", 1, value2);
-                       });
-                   });
-                   Number.prototype.formatMoney = function (decPlaces, thouSeparator, decSeparator) {
-                       var n = this,
-                               decPlaces = isNaN(decPlaces = Math.abs(decPlaces)) ? 2 : decPlaces,
-                               decSeparator = decSeparator == undefined ? "." : decSeparator,
-                               thouSeparator = thouSeparator == undefined ? "," : thouSeparator,
-                               sign = n < 0 ? "-" : "",
-                               i = parseInt(n = Math.abs(+n || 0).toFixed(decPlaces)) + "",
-                               j = (j = i.length) > 3 ? j % 3 : 0;
-                       return sign + (j ? i.substr(0, j) + thouSeparator : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thouSeparator) + (decPlaces ? decSeparator + Math.abs(n - i).toFixed(decPlaces).slice(2) : "");
-                   };
+                       Number.prototype.formatMoney = function (decPlaces, thouSeparator, decSeparator) {
+                           var n = this,
+                                   decPlaces = isNaN(decPlaces = Math.abs(decPlaces)) ? 2 : decPlaces,
+                                   decSeparator = decSeparator == undefined ? "." : decSeparator,
+                                   thouSeparator = thouSeparator == undefined ? "," : thouSeparator,
+                                   sign = n < 0 ? "-" : "",
+                                   i = parseInt(n = Math.abs(+n || 0).toFixed(decPlaces)) + "",
+                                   j = (j = i.length) > 3 ? j % 3 : 0;
+                           return sign + (j ? i.substr(0, j) + thouSeparator : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thouSeparator) + (decPlaces ? decSeparator + Math.abs(n - i).toFixed(decPlaces).slice(2) : "");
+                       };
             </script>
 
             <?php
@@ -3096,7 +3108,7 @@ class OSPHelper
                     {
                         ?>
                         <?php echo JText::_('OS_MIN') ?>
-                    <?php } ?>
+            <?php } ?>
                     (<?php echo HelperOspropertyCommon::loadCurrency(0); ?>).
                     <span
                         id="<?php echo $prefix; ?>price_from_input"><?php echo number_format((float) $min_price, 0, '', ','); ?></span>
@@ -3109,7 +3121,7 @@ class OSPHelper
                     {
                         ?>
                         <?php echo JText::_('OS_MAX') ?>
-                    <?php } ?>
+            <?php } ?>
                     (<?php echo HelperOspropertyCommon::loadCurrency(0); ?>).
                     <span
                         id="<?php echo $prefix; ?>price_to_input"><?php echo number_format($max_price, 0, '', ','); ?></span>
@@ -4712,6 +4724,20 @@ class OSPHelper
      */
     public static function loadThemeStyle($task)
     {
+        $themename = '';
+        if (file_exists(JPATH_ROOT . "/components/com_osproperty/templates/" . $themename . "/style/style.css"))
+        {
+            $document->addStyleSheet(JURI::root() . "components/com_osproperty/templates/" . $themename . "/style/style.css");
+        }
+        if (file_exists(JPATH_ROOT . '/media/com_osproperty/style/custom.css'))
+        {
+            if (filesize(JPATH_ROOT . '/media/com_osproperty/style/custom.css') > 0)
+            {
+                $document->addStyleSheet(JUri::root() . "media/com_osproperty/style/custom.css");
+            }
+        }
+return;
+
         global $jinput;
         $document = JFactory::getDocument();
         $db = JFactory::getDbo();
@@ -4778,6 +4804,7 @@ class OSPHelper
     public static function getThemeName()
     {
         static $default_theme, $jinput;
+        return 'theme1';
         $jinput = JFactory::getApplication()->input;
         $db = JFactory::getDbo();
         $itemid = $jinput->getInt('Itemid', 0);
@@ -4831,7 +4858,7 @@ class OSPHelper
             <div class="row-fluid">
                 <div class="span12">
                     <h4>
-                        <?php echo JText::_('OS_BASE_INFORMATION'); ?>
+            <?php echo JText::_('OS_BASE_INFORMATION'); ?>
                     </h4>
                 </div>
             </div>
@@ -4905,7 +4932,7 @@ class OSPHelper
             <div class="row-fluid">
                 <div class="span12">
                     <h4>
-                        <?php echo JText::_('OS_PARKING_INFORMATION'); ?>
+            <?php echo JText::_('OS_PARKING_INFORMATION'); ?>
                     </h4>
                 </div>
             </div>
@@ -4983,7 +5010,7 @@ class OSPHelper
                 <div class="row-fluid">
                     <div class="span12">
                         <h4>
-                            <?php echo JText::_('OS_BUILDING_INFORMATION'); ?>
+                <?php echo JText::_('OS_BUILDING_INFORMATION'); ?>
                         </h4>
                     </div>
                 </div>
@@ -5050,7 +5077,7 @@ class OSPHelper
             <div class="row-fluid">
                 <div class="span12">
                     <h4>
-                        <?php echo JText::_('OS_BASEMENT_FOUNDATION'); ?>
+            <?php echo JText::_('OS_BASEMENT_FOUNDATION'); ?>
                     </h4>
                 </div>
             </div>
@@ -5132,7 +5159,7 @@ class OSPHelper
                 <div class="row-fluid">
                     <div class="span12">
                         <h4>
-                            <?php echo JText::_('OS_LAND_INFORMATION'); ?>
+                <?php echo JText::_('OS_LAND_INFORMATION'); ?>
                         </h4>
                     </div>
                 </div>
@@ -5211,7 +5238,7 @@ class OSPHelper
                 <div class="row-fluid">
                     <div class="span12">
                         <h4>
-                            <?php echo JText::_('OS_BUSINESS_INFORMATION'); ?>
+                <?php echo JText::_('OS_BUSINESS_INFORMATION'); ?>
                         </h4>
                     </div>
                 </div>
@@ -5265,7 +5292,7 @@ class OSPHelper
                 <div class="row-fluid">
                     <div class="span12">
                         <h4>
-                            <?php echo JText::_('OS_RURAL_INFORMATION'); ?>
+                <?php echo JText::_('OS_RURAL_INFORMATION'); ?>
                         </h4>
                     </div>
                 </div>
@@ -5313,7 +5340,7 @@ class OSPHelper
                     $i++;
                     ?>
                     <div class="span6">
-                        <?php echo $tmp; ?>
+                    <?php echo $tmp; ?>
                     </div>
                     <?php
                     if ($i == 2)
@@ -5518,5 +5545,17 @@ class OSPHelper
         return $duplicate;
     }
 
+    public static function getGonfigurations()
+    {
+        static $configs;
+        if (!$configs)
+        {
+            $db = JFactory::getDBO();
+            $db->setQuery('#osProperi2
+    SELECT * FROM #__osrs_configuration '); // double request
+            $configs = $db->loadObjectList();
+        }
+        return $configs;
+    }
+
 }
-?>

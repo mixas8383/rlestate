@@ -402,7 +402,7 @@ if ($row->number_votes > 0)
 }
 //price
 
-$allCurrencies = HelperOspropertyCommon::loadAllCurrencies();
+$allCurrencies =  OSPHelper::loadAllCurrencies();
 $currencies = array();
 if (!empty($allCurrencies))
 {
@@ -1141,8 +1141,7 @@ if ($configClass['registered_user_write_comment'] == 1)
     }
 }
 //add google map
-$db->setQuery("Select type_icon from #__osrs_types where id = '$row->pro_type'");
-$type_icon = $db->loadResult();
+$type_icon = $row->type_icon;
 if ($type_icon == "")
 {
     $type_icon = "1.png";
@@ -1801,7 +1800,7 @@ if ($configClass['use_property_history'] == 1)
         <div class="row-fluid">
             <div class="span12" style="margin-left:0px;">
                 <h3>
-        <?php echo JText::_('OS_PROPERTY_TAX'); ?>
+                    <?php echo JText::_('OS_PROPERTY_TAX'); ?>
                 </h3>
             </div>
             <div class="span12" style="margin-left:0px;">
@@ -1809,39 +1808,39 @@ if ($configClass['use_property_history'] == 1)
                     <thead>
                         <tr>
                             <th>
-        <?php echo JText::_('OS_YEAR'); ?>
+                                <?php echo JText::_('OS_YEAR'); ?>
                             </th>
                             <th>
-        <?php echo JText::_('OS_TAX'); ?>
+                                <?php echo JText::_('OS_TAX'); ?>
                             </th>
                             <th>
-        <?php echo JText::_('OS_CHANGE'); ?>
+                                <?php echo JText::_('OS_CHANGE'); ?>
                             </th>
                             <th>
-        <?php echo JText::_('OS_TAX_ASSESSMENT'); ?>
+                                <?php echo JText::_('OS_TAX_ASSESSMENT'); ?>
                             </th>
                             <th>
-        <?php echo JText::_('OS_TAX_ASSESSMENT_CHANGE'); ?>
+                                <?php echo JText::_('OS_TAX_ASSESSMENT_CHANGE'); ?>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-        <?php
-        foreach ($taxes as $tax)
-        {
-            ?>
+                        <?php
+                        foreach ($taxes as $tax)
+                        {
+                            ?>
                             <tr>
                                 <td>
-            <?php echo $tax->tax_year; ?>
+                                    <?php echo $tax->tax_year; ?>
                                 </td>
                                 <td>
-            <?php echo OSPHelper::generatePrice('', $tax->property_tax); ?>
+                                    <?php echo OSPHelper::generatePrice('', $tax->property_tax); ?>
                                 </td>
                                 <td>
-            <?php
-            if ($tax->tax_change != "")
-            {
-                ?>
+                                    <?php
+                                    if ($tax->tax_change != "")
+                                    {
+                                        ?>
                                         <?php echo $tax->tax_change; ?> %
                                         <?php
                                     } else
@@ -1851,13 +1850,13 @@ if ($configClass['use_property_history'] == 1)
                                     <?php } ?>
                                 </td>
                                 <td>
-            <?php echo OSPHelper::generatePrice('', $tax->tax_assessment); ?>
+                                    <?php echo OSPHelper::generatePrice('', $tax->tax_assessment); ?>
                                 </td>
                                 <td>
-            <?php
-            if ($tax->tax_assessment_change != "")
-            {
-                ?>
+                                    <?php
+                                    if ($tax->tax_assessment_change != "")
+                                    {
+                                        ?>
                                         <?php echo $tax->tax_assessment_change; ?> %
                                         <?php
                                     } else
@@ -1867,9 +1866,9 @@ if ($configClass['use_property_history'] == 1)
                                     <?php } ?>
                                 </td>
                             </tr>
-            <?php
-        }
-        ?>
+                            <?php
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -1893,12 +1892,12 @@ if ($configClass['use_open_house'] == 1)
         <strong><?php echo Jtext::_('OS_OPEN_FOR_INSPECTION_TIMES') ?></strong>
         <div class="clearfix"></div>
         <div class="span12" style="margin-left:0px;font-size:x-small;">
-    <?php
-    if (count($opens) > 0)
-    {
-        foreach ($opens as $info)
-        {
-            ?>
+            <?php
+            if (count($opens) > 0)
+            {
+                foreach ($opens as $info)
+                {
+                    ?>
                     <?php echo JText::_('OS_FROM') ?>: <?php
                     //echo date($configClass['general_date_format'],strtotime($info->start_from));
                     echo date($configClass['general_date_format'], strtotime($info->start_from));
@@ -1919,59 +1918,58 @@ if ($configClass['use_open_house'] == 1)
             ?>
         </div>
     </div>
-            <?php
-            $open_hours = ob_get_contents();
-            ob_end_clean();
-        }
-        $row->open_hours = $open_hours;
+    <?php
+    $open_hours = ob_get_contents();
+    ob_end_clean();
+}
+$row->open_hours = $open_hours;
+$inFav = 0;
+if ($user->id > 0)
+{
+    $db->setQuery("Select count(id) from #__osrs_favorites where user_id = '$user->id' and pro_id = '$row->id'");
+    $count = $db->loadResult();
+    if ($count > 0)
+    {
+        $inFav = 1;
+    } else
+    {
         $inFav = 0;
-        if ($user->id > 0)
-        {
-            $db->setQuery("Select count(id) from #__osrs_favorites where user_id = '$user->id' and pro_id = '$row->id'");
-            $count = $db->loadResult();
-            if ($count > 0)
-            {
-                $inFav = 1;
-            } else
-            {
-                $inFav = 0;
-            }
-        }
+    }
+}
 //echo $themename;
-        $db->setQuery("Select * from #__osrs_themes where name like '$themename'");
-        $themeobj = $db->loadObject();
-        $params = $themeobj->params;
-        $params = new JRegistry($params);
-        $tpl = new OspropertyTemplate();
-        $tpl->set('lists', $lists);
-        $tpl->set('integrateJComments', $integrateJComments);
-        $tpl->set('facebook_like', $fb);
-        $tpl->set('feature_image', $feature_image);
-        $tpl->set('justadd_image', $justadd_image);
-        $tpl->set('justupdate_image', $justupdate_image);
-        $tpl->set('report_image', $report_image);
-        $tpl->set('params', $params);
-        $tpl->set('row', $row);
-        $tpl->set('itemid', $itemid);
-        $tpl->set('configs', $configs);
-        $tpl->set('socialUrl', $socialUrl);
-        $tpl->set('configClass', $configClass);
-        $tpl->set('owner', $owner);
-        $tpl->set('can_add_cmt', $can_add_cmt);
-        $tpl->set('photos', $photos);
-        $tpl->set('ismobile', $ismobile);
-        $tpl->set('topPlugin', $topPlugin);
-        $tpl->set('middlePlugin', $middlePlugin);
-        $tpl->set('bottomPlugin', $bottomPlugin);
-        $tpl->set('tagArr', $tagArr);
-        $tpl->set('themename', $themename);
-        $tpl->set('params', $params);
-        $tpl->set('inFav', $inFav);
-        $tpl->set('jinput', $jinput);
-        $tpl->set('temp_path_img', JURI::root() . "components/com_osproperty/templates/$themename/img");
-        JHTML::_('behavior.modal', 'a.osmodal');
+//$db->setQuery("Select * from #__osrs_themes where name like '$themename'");
+//$themeobj = $db->loadObject();
+$params = $themeobj->params;
+$params = new JRegistry($params);
+$tpl = new OspropertyTemplate();
+$tpl->set('lists', $lists);
+$tpl->set('integrateJComments', $integrateJComments);
+$tpl->set('facebook_like', $fb);
+$tpl->set('feature_image', $feature_image);
+$tpl->set('justadd_image', $justadd_image);
+$tpl->set('justupdate_image', $justupdate_image);
+$tpl->set('report_image', $report_image);
+$tpl->set('params', $params);
+$tpl->set('row', $row);
+$tpl->set('itemid', $itemid);
+$tpl->set('configs', $configs);
+$tpl->set('socialUrl', $socialUrl);
+$tpl->set('configClass', $configClass);
+$tpl->set('owner', $owner);
+$tpl->set('can_add_cmt', $can_add_cmt);
+$tpl->set('photos', $photos);
+$tpl->set('ismobile', $ismobile);
+$tpl->set('topPlugin', $topPlugin);
+$tpl->set('middlePlugin', $middlePlugin);
+$tpl->set('bottomPlugin', $bottomPlugin);
+$tpl->set('tagArr', $tagArr);
+$tpl->set('themename', $themename);
+$tpl->set('params', $params);
+$tpl->set('inFav', $inFav);
+$tpl->set('jinput', $jinput);
+$tpl->set('temp_path_img', JURI::root() . "components/com_osproperty/templates/$themename/img");
+JHTML::_('behavior.modal', 'a.osmodal');
 
 
-        $body = $tpl->fetch("details.html.tpl.php");
-        echo $body;
-        
+$body = $tpl->fetch("details.html.tpl.php");
+echo $body;

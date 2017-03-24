@@ -621,7 +621,7 @@ class HelperOspropertyFields
 
 
             $db->setQuery("Select count(id) from #__osrs_extra_field_types where fid = '$fid' and type_id = '$pro_type'");
-            $count = $db->loadResult();
+            $count = $db->loadResult(); // check if type has 
             if ($count == 0)
             {
                 return false;

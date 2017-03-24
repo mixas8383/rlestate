@@ -37,15 +37,24 @@ class Property extends JObject
 
     public function load($id)
     {
+        global $lang_suffix;
         //#__osrs_properties where id = '$id'"
         $query = $this->_db->getQuery(true);
 
 
         $query->select('p.*')
+                ->select('ty.type_icon')
+                ->select('st.state_name' . $lang_suffix . ' AS state_name')
+                ->select('ot.type_name AS type_name')
                 ->from($this->_db->quoteName('#__osrs_properties') . ' AS p')
+                ->join('INNER', ' #__osrs_types AS ty ON ty.id = p.pro_type')
+                ->join('left', ' #__osrs_states AS st ON st.id = p.state')
+                ->join('left', ' #__osrs_types AS ot ON ot.id = p.pro_type')
                 ->where($this->_db->quoteName('p.id') . ' = ' . $id . '');
         $this->_db->setQuery($query);
         $this->_property = $this->_db->loadObject();
+
+
         return $this->_property;
     }
 
@@ -215,6 +224,10 @@ class Property extends JObject
         $this->_property->pro_small_desc = $pro_small_desc;
         $pro_full_desc = OSPHelper::getLanguageFieldValue($this->_property, 'pro_full_desc');
         $this->_property->pro_full_desc = $pro_full_desc;
+        $this->_property->type_name = OSPHelper::getLanguageFieldValue($this->_property, 'type_name');
+        ;
+
+
         if (($this->_property->published == 0) or ( $this->_property->approved == 0))
         {
             $redirect_link = $configClass['property_not_avaiable'];
@@ -230,6 +243,9 @@ class Property extends JObject
         {
             $this->_property->pro_video = "<div class='video-container'>" . $this->_property->pro_video . "</div>";
         }
+
+
+
         $this->_property->country_name = OSPHelper::getCountryName($this->_property->country);
 
         $this->setStateName();
@@ -247,23 +263,25 @@ class Property extends JObject
 
     public function setStateName()
     {
-        global $lang_suffix;
-        $this->_db->setQuery('select state_name' . $lang_suffix . ' as state_name from #__osrs_states where id = ' . $this->_property->state . '');
-        $this->_property->state_name = $this->_db->loadResult();
+        return;
+        //joined to load function
+//        global $lang_suffix;
+//        $this->_db->setQuery('select state_name' . $lang_suffix . ' as state_name from #__osrs_states where id = ' . $this->_property->state . '');
+//        $this->_property->state_name = $this->_db->loadResult();
     }
 
     public function setCategoryName()
     {
-        $this->_db->setQuery('select * from #__osrs_categories where id = ' . $this->_property->category_id . '');
-        $category = $this->_db->loadObject();
         $this->_property->category_name = OSPHelper::getCategoryNamesOfPropertyWithLinks($this->_property->id);
     }
 
     public function setTypeName()
     {
-        $this->_db->setQuery('select * from #__osrs_types where id = ' . $this->_property->pro_type . '');
-        $property_type = $this->_db->loadObject();
-        $this->_property->type_name = OSPHelper::getLanguageFieldValue($property_type, 'type_name');
+        return;
+//joined to load function
+//        $this->_db->setQuery('select * from #__osrs_types where id = ' . $this->_property->pro_type . '');
+//        $property_type = $this->_db->loadObject();
+//        $this->_property->type_name = OSPHelper::getLanguageFieldValue($property_type, 'type_name');
     }
 
     public function setOgTitles()
@@ -305,17 +323,66 @@ class Property extends JObject
         if ($configClass['show_unselected_amenities'] == 1)
         {
             ob_start();
+
+
+
+            $this->_db->setQuery(''
+                    . 'Select a.*,b.id as rel_id from #__osrs_amenities as a'
+                    . ' LEFT join #__osrs_property_amenities as b on b.amen_id = a.id'
+                    . ' where a.published = "1" and b.pro_id = ' . $this->_property->id . ' '
+                    . ' and a.category_id in (0,1,2,3,4,5,6,7,8) order by a.ordering'
+                    . ''
+                    . ''
+                    . ''
+                    . '');
+            $rows = $this->_db->loadObjectList();
+            $amens = array();
+
+            foreach ($rows as $one)
+            {
+                if (empty($amens[$one->category_id]))
+                {
+                    $amens[$one->category_id] = new stdClass();
+                    $amens[$one->category_id]->items = array();
+                    $amens[$one->category_id]->id = $one->id;
+                    $amens[$one->category_id]->category_id = $one->category_id;
+                    $amens[$one->category_id]->amenities = $one->amenities;
+                }
+                $amens[$one->category_id]->items[] = $one;
+            }
+
+
+
             foreach ($optionArr as $amen_cat)
             {
-                $query = 'Select * from #__osrs_amenities where published = "1" and category_id = ' . $l . ' order by ordering';
-                $this->_db->setQuery($query);
-                $amenities = $this->_db->loadObjectList();
+//                $query = 'Select * from #__osrs_amenities where published = "1" and category_id = ' . $l . ' order by ordering';
+//                $this->_db->setQuery($query);
+//                $amenities = $this->_db->loadObjectList();
 
-                $query = "Select a.id from #__osrs_amenities as a"
-                        . " inner join #__osrs_property_amenities as b on b.amen_id = a.id"
-                        . ' where a.published = "1" and b.pro_id = ' . $this->_property->id . ' and a.category_id = ' . $l . ' order by a.ordering';
-                $this->_db->setQuery($query);
-                $property_amenities = $this->_db->loadColumn(0);
+                $amenities = array();
+                $property_amenities = array();
+                foreach ($amens as $one)
+                {
+                    if ($one->category_id == $l)
+                    {
+                        foreach ($one->items as $two)
+                        {
+                            $amenities[] = $two;
+                            if (!empty($two->rel_id))
+                            {
+                                $property_amenities[] = $two->id;
+                            }
+                        }
+                    }
+                }
+
+//                $query = 'Select a.id from #__osrs_amenities as a'
+//                        . ' inner join #__osrs_property_amenities as b on b.amen_id = a.id'
+//                        . ' where a.published = "1" and b.pro_id = ' . $this->_property->id . ' and a.category_id = ' . $l . ' order by a.ordering';
+//                $this->_db->setQuery($query);
+                //  $property_amenities = $this->_db->loadColumn(0);
+
+
                 $amens_str1 = "";
                 if (count($amenities) > 0)
                 {
@@ -373,13 +440,62 @@ class Property extends JObject
         } else
         {
             ob_start();
+            
+             $this->_db->setQuery(''
+                    . 'Select a.*,b.id as rel_id from #__osrs_amenities as a'
+                    . ' inner join #__osrs_property_amenities as b on b.amen_id = a.id'
+                    . ' where a.published = "1" and b.pro_id = ' . $this->_property->id . ' '
+                    . ''
+                     . ' order by a.ordering'
+                    . ''
+                    . ''
+                    . ''
+                    . '');
+            $rows = $this->_db->loadObjectList();
+            $amenss = array();
+
+            foreach ($rows as $one)
+            {
+                if (empty($amenss[$one->category_id]))
+                {
+                    $amenss[$one->category_id] = new stdClass();
+                    $amenss[$one->category_id]->items = array();
+                    $amenss[$one->category_id]->id = $one->id;
+                    $amenss[$one->category_id]->category_id = $one->category_id;
+                    $amenss[$one->category_id]->amenities = $one->amenities;
+                }
+                $amenss[$one->category_id]->items[] = $one;
+            }
+             
             foreach ($optionArr as $amen_cat)
             {
-                $query = "Select a.* from #__osrs_amenities as a"
-                        . " inner join #__osrs_property_amenities as b on b.amen_id = a.id"
-                        . ' where a.published = "1" and b.pro_id = ' . $this->_property->id . ' and a.category_id = ' . $l . ' order by a.ordering';
-                $this->_db->setQuery($query);
-                $amens = $this->_db->loadObjectList();
+//                $query = "Select a.* from #__osrs_amenities as a"
+//                        . " inner join #__osrs_property_amenities as b on b.amen_id = a.id"
+//                        . ' where a.published = "1" and b.pro_id = ' . $this->_property->id . ' and a.category_id = ' . $l . ' order by a.ordering';
+//                $this->_db->setQuery($query);
+//                
+//                
+//                $amens = $this->_db->loadObjectList();
+               
+                $amens = array();
+                 
+                foreach ($amenss as $one)
+                {
+                    if ($one->category_id == $l)
+                    {
+                        foreach ($one->items as $two)
+                        {
+                            $amenities[] = $two;
+                            if (!empty($two->rel_id))
+                            {
+                                $amens[] = $two;
+                            }
+                        }
+                    }
+                }
+                
+                
+                
                 $amens_str1 = "";
                 if (count($amens) > 0)
                 {
@@ -434,29 +550,143 @@ class Property extends JObject
         $access_sql = ' and `access` IN (' . implode(',', JFactory::getUser()->getAuthorisedViewLevels()) . ')';
 
         $extra_field_groups = array();
-        $this->_db->setQuery("Select * from #__osrs_fieldgroups where published = '1' $access_sql order by ordering");
-        $fieldgroups = $this->_db->loadObjectList();
+//        $this->_db->setQuery("Select * from #__osrs_fieldgroups where published = '1' $access_sql order by ordering");
+//        $fieldgroups = $this->_db->loadObjectList();
         $j = 0;
-       
-        if (count($fieldgroups) > 0)
+
+
+
+
+//        if (count($fieldgroups) > 0)
+//        {
+
+        $this->_db->setQuery('SELECT fg.*,b.field_type,b.field_label,v.value,v.value_integer,v.value_decimal,v.value_date '
+                . ', GROUP_CONCAT(fo.field_option) as foption'
+                . ',b.displaytitle'
+                . ',b.field_description'
+                . ',b.value_type'
+                . ''
+                . ''
+                . ' FROM #__osrs_fieldgroups AS fg'
+                . ' INNER JOIN #__osrs_extra_fields as b on b.group_id=fg.id AND b.published = 1'
+                . ' INNER JOIN #__osrs_extra_field_types as t on t.fid = b.id and t.type_id=' . $this->_property->pro_type // cheking if file tipe is linked 
+                . ' LEFT JOIN #__osrs_property_field_value as v on v.field_id=b.id and v.pro_id =' . $this->_property->id
+                . ' left JOIN #__osrs_property_field_opt_value as ov on ov.fid=b.id and ov.pid =' . $this->_property->id
+                . ' left join #__osrs_extra_field_options AS fo ON fo.id=ov.oid'
+                . ' WHERE fg.published = 1 '
+                . ' AND((v.field_id=b.id AND  v.pro_id =' . $this->_property->id . ')OR(ov.fid=b.id AND ov.pid =' . $this->_property->id . '))'
+                . ' AND fg.`access` IN (' . implode(',', JFactory::getUser()->getAuthorisedViewLevels()) . ')'
+                . ''
+                . ''
+                . ''
+                . ''
+                . ''
+                . ' GROUP BY b.id '
+                . ' ORDER BY fg.ordering');
+
+        $ext = $this->_db->loadObjectList();
+        $extfields = array();
+        if (!empty($ext))
         {
-            for ($i = 0; $i < count($fieldgroups); $i++)
+            $i = 0;
+            foreach ($ext as $one)
             {
-                $fieldgroup = $fieldgroups[$i];
+                $tmp = new stdClass;
+                $tmp->field_label = $one->field_label;
+                $tmp->displaytitle = $one->displaytitle;
+                $tmp->field_type = $one->field_type;
+                $tmp->field_description = $one->field_description;
 
-                $access_sql = ' and b.access IN (' . implode(',', JFactory::getUser()->getAuthorisedViewLevels()) . ')';
-                $checkgroup = HelperOspropertyFields::checkFieldData($this->_property, $fieldgroup->id);
-
-                if ($checkgroup == 1)
+                if ($one->field_type == 'text' || $one->field_type == 'textarea')
                 {
-                    $extra_field_groups[$j] = new stdClass;
-                    $extra_field_groups[$j]->group_name = OSPHelper::getLanguageFieldValue($fieldgroup, 'group_name');
-                    $extra_field_groups[$j]->fields = HelperOspropertyFields::getFieldsData($this->_property, $fieldgroup->id);
-                    $j++;
+
+
+                    if ($one->value_type == 0)
+                    {
+                        if (empty($one->value))
+                        {
+                            continue;
+                        } else
+                        {
+                            $tmp->value = $one->value;
+                        }
+                    } elseif ($one->value_type == 1)
+                    {
+                        if ($one->value_integer > 0)
+                        {
+                            $tmp->value = $one->value_integer;
+                        } else
+                        {
+                            continue;
+                        }
+                    } elseif ($one->value_type == 2)
+                    {
+                        if ($one->value_decimal > 0)
+                        {
+                            $tmp->value = $one->value_decimal;
+                        } else
+                        {
+                            continue;
+                        }
+                    }
+                } elseif ($one->field_type == 'date')
+                {
+                    if (empty(trim($one->value_date)))
+                    {
+                        continue;
+                    } else
+                    {
+                        $tmp->value = $one->value_date;
+                    }
+                } elseif (trim($one->field_type) == 'radio' || trim($one->field_type) == 'singleselect' || trim($one->field_type) == 'checkbox' || trim($one->field_type) == 'multipleselect')
+                {
+
+                    if (empty($one->foption))
+                    {
+                        continue;
+                    } else
+                    {
+                        $tmp->value = $one->foption;
+                    }
+                } else
+                {
+                    continue;
+                }
+
+                if (isset($extfields[$one->id]))
+                {
+                    $extfields[$one->id]->fields[] = $tmp;
+                } else
+                {
+                    $tt = new stdClass();
+                    $tt->group_name = $one->group_name;
+                    $tt->fields = array($tmp);
+                    $extfields[$one->id] = $tt;
                 }
             }
         }
-        $this->_property->extra_field_groups = $extra_field_groups;
+
+
+//            for ($i = 0; $i < count($fieldgroups); $i++)
+//            {
+//                $fieldgroup = $fieldgroups[$i];
+//
+//                $checkgroup = HelperOspropertyFields::checkFieldData($this->_property, $fieldgroup->id);
+//
+//                if ($checkgroup == 1)
+//                {
+//                    $extra_field_groups[$j] = new stdClass;
+//                    $extra_field_groups[$j]->group_name = OSPHelper::getLanguageFieldValue($fieldgroup, 'group_name');
+//                    $extra_field_groups[$j]->fields = HelperOspropertyFields::getFieldsData($this->_property, $fieldgroup->id);
+//                    $j++;
+//                }
+//            }
+        //}
+        usort($extfields, function($a, $b)
+        {
+            return true;
+        });
+        $this->_property->extra_field_groups = $extfields;
     }
 
     public function getPropertyObject()
@@ -481,7 +711,7 @@ class Property extends JObject
 
     public function setAgent()
     {
-       
+
         global $lang_suffix;
         //agent information
         $this->_db->setQuery('Select * from #__osrs_agents where id = ' . $this->_property->agent_id . '');
@@ -586,6 +816,7 @@ class Property extends JObject
                     . "\n, ci.city AS city_name"
                     . "\n, st.state_name"
                     . "\n, co.country_name"
+                    .', (select image from #__osrs_photos as ph where ph.pro_id = pr.id order by ordering  limit 1) as photo'
                     . ' , ty.type_name' . $lang_suffix . ' , ty.id as type_id'
                     . $select
                     . "\n FROM #__osrs_properties pr"
@@ -603,7 +834,7 @@ class Property extends JObject
             //}
             if ($configClass['relate_city'] == 1)
             {
-                $sql .= ' AND 	pr.city		 = '.$this->_property->city.'';
+                $sql .= ' AND 	pr.city		 = ' . $this->_property->city . '';
             }
             if ($configClass['relate_category'] == 1)
             {
@@ -623,8 +854,8 @@ class Property extends JObject
                     $relate = $relates[$i];
                     $type_name = OSPHelper::getLanguageFieldValue($relate, 'type_name');
                     $relate->type_name = $type_name;
-                    $this->_db->setQuery('select image from #__osrs_photos where pro_id = ' . $relate->id . ' order by ordering');
-                    $relate->photo = $this->_db->loadResult();
+//                    $this->_db->setQuery('select image from #__osrs_photos where pro_id = ' . $relate->id . ' order by ordering');
+//                    $relate->photo = $this->_db->loadResult();
                     if ($relate->photo == '')
                     {
                         $relate->photo = JURI::root() . "components/com_osproperty/images/assets/nopropertyphoto.png";
@@ -664,8 +895,8 @@ class Property extends JObject
     {
         global $lang_suffix;
         $configClass = $this->getConfigClass();
-        
-        
+
+
         if (true || $configClass['relate_property_type'] == 1)
         {
             // Search the rows in the table
@@ -674,6 +905,7 @@ class Property extends JObject
                     . "\n, ci.city AS city_name"
                     . "\n, st.state_name"
                     . "\n, co.country_name"
+                    .', (select image from #__osrs_photos as ph where ph.pro_id = pr.id order by ordering limit 1) as photo'
                     . ' , ty.type_name' . $lang_suffix . ', ty.id as type_id'
                     . "\n FROM #__osrs_properties pr"
                     . "\n LEFT JOIN #__osrs_cities AS ci ON ci.id = pr.city "
@@ -695,7 +927,7 @@ class Property extends JObject
             $this->_db->setQuery($sql);
             //secho $db->getQuery();
             $relates = $this->_db->loadObjectList();
-            
+
             if (count($relates))
             {
                 for ($i = 0; $i < count($relates); $i++)
@@ -703,8 +935,8 @@ class Property extends JObject
                     $relate = $relates[$i];
                     $type_name = OSPHelper::getLanguageFieldValue($relate, 'type_name');
                     $relate->type_name = $type_name;
-                    $this->_db->setQuery('select image from #__osrs_photos where pro_id = '.$relate->id.' order by ordering');
-                    $relate->photo = $this->_db->loadResult();
+//                    $this->_db->setQuery('select image from #__osrs_photos where pro_id = ' . $relate->id . ' order by ordering');
+//                    $relate->photo = $this->_db->loadResult();
                     if ($relate->photo == '')
                     {
                         $relate->photo = JURI::root() . "components/com_osproperty/images/assets/nopropertyphoto.png";

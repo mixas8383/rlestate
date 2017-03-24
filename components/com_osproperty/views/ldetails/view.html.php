@@ -32,21 +32,18 @@ class OspropertyViewLdetails extends JViewLegacy
         $option = JFactory::getApplication()->input->getString('option', 'com_osproperty');
 
         $translatable = JLanguageMultilang::isEnabled() && count($languages);
-        $db = JFactory::getDBO();
-        $db->setQuery("Select * from #__osrs_configuration");
-        $configs = $db->loadObjectList();
+        
+        
+        $configs = OSPHelper::getGonfigurations();
+
 
         $id = $jinput->getInt('id', 0);
         if ($id == 0)
         {
             JError::raiseError(404, JText::_('OS_PROPERTY_IS_NOT_AVAILABLE'));
         }
-        $db->setQuery("Select * from #__osrs_properties where id = '$id'");
-        $property = $db->loadObject();
-        if (($property->published == 0) or ( $property->approved == 0))
-        {
-            JError::raiseError(404, JText::_('OS_PROPERTY_IS_NOT_AVAILABLE'));
-        }
+       
+       
 
         $model = $this->getModel();
         $propertyObject = $model->getItem();
@@ -57,6 +54,10 @@ class OspropertyViewLdetails extends JViewLegacy
 
 
         $property = $propertyObject->getPropertyObject();
+          if (($property->published == 0) or ( $property->approved == 0))
+        {
+            JError::raiseError(404, JText::_('OS_PROPERTY_IS_NOT_AVAILABLE'));
+        }
         $document = JFactory::getDocument();
 
         //find Itemid of property

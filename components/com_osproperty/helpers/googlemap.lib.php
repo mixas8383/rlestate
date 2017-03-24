@@ -1208,9 +1208,8 @@ class HelperOspropertyGoogleMap
         {
             $population = 100;
         }
-
-        $db->setQuery("Select type_icon from #__osrs_types where id = '$row->pro_type'");
-        $type_icon = $db->loadResult();
+            
+        $type_icon = $property->type_icon;
         if ($type_icon == "")
         {
             $type_icon = "1.png";
