@@ -260,13 +260,12 @@ switch ($maintask)
     case "category":
         
 
-        
-      //  OspropertyCategories::display($option, $task);
-                JFactory::getApplication()->input->set('view', 'category');
+       //OspropertyCategories::display($option, $task);
+        JFactory::getApplication()->input->set('view', 'category');
         $controller = JControllerLegacy::getInstance('Osproperty');
         $controller->execute(JFactory::getApplication()->input->get('task'));
         $controller->redirect();
-
+    
 
         break;
     case "property":
