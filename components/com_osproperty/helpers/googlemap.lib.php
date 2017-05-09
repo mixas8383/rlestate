@@ -675,7 +675,7 @@ class HelperOspropertyGoogleMap
 
             $item = $duplicate[$i];
             $key = OSPHelper::find_key($item->id, $rows);
-            if (count($item->value) == 0)
+            if (!empty($item->value) && count($item->value) == 0)
             { //having no duplication
                 $row = $rows[$key];
                 $row->mapid = $i;
@@ -791,52 +791,53 @@ class HelperOspropertyGoogleMap
                 }
                 $desc .= htmlspecialchars(str_replace("'", "\"", str_replace("\r", "", str_replace("\n", "", $row->pro_small_desc)))) . '<a href="' . JRoute::_("index.php?option=com_osproperty&task=property_details&id=" . $row->id . "&Itemid=" . $itemid) . '">' . JText::_('OS_DETAILS') . '</a></p></div></div>';
                 $descArr[] = $desc;
-
-                foreach ($item->value as $value)
+                if (!empty($item->value))
                 {
-                    $key = OSPHelper::find_key($value, $rows);
-                    $dupItem = $rows[$key];
-                    $dupItem->mapid = $i;
-                    $needs = array();
-                    $needs[] = "property_details";
-                    $needs[] = $dupItem->id;
-                    $itemid = OSPRoute::getItemid($needs);
-                    $itemIdArr[] = $itemid;
+                    foreach ($item->value as $value)
+                    {
+                        $key = OSPHelper::find_key($value, $rows);
+                        $dupItem = $rows[$key];
+                        $dupItem->mapid = $i;
+                        $needs = array();
+                        $needs[] = "property_details";
+                        $needs[] = $dupItem->id;
+                        $itemid = OSPRoute::getItemid($needs);
+                        $itemIdArr[] = $itemid;
 
-                    $title = "";
-                    if ($dupItem->ref != "")
-                    {
-                        $title .= $dupItem->ref . ",";
-                    }
-                    $title .= $dupItem->pro_name;
-                    $title = str_replace("'", "", $title);
-                    $title = htmlspecialchars($title);
-                    $titleArr[] = $title;
+                        $title = "";
+                        if ($dupItem->ref != "")
+                        {
+                            $title .= $dupItem->ref . ",";
+                        }
+                        $title .= $dupItem->pro_name;
+                        $title = str_replace("'", "", $title);
+                        $title = htmlspecialchars($title);
+                        $titleArr[] = $title;
 
 
 
-                    $addInfo = array();
-                    if ($dupItem->bed_room > 0)
-                    {
-                        $addInfo[] = $dupItem->bed_room . " " . JText::_('OS_BEDROOMS');
+                        $addInfo = array();
+                        if ($dupItem->bed_room > 0)
+                        {
+                            $addInfo[] = $dupItem->bed_room . " " . JText::_('OS_BEDROOMS');
+                        }
+                        if ($dupItem->bath_room > 0)
+                        {
+                            $addInfo[] = OSPHelper::showBath($dupItem->bath_room) . " " . JText::_('OS_BATHROOMS');
+                        }
+                        if ($dupItem->rooms > 0)
+                        {
+                            $addInfo[] = $dupItem->rooms . " " . JText::_('OS_ROOMS');
+                        }
+                        $desc = '<div class="row-fluid"><div class="span4"><a href="' . JRoute::_("index.php?option=com_osproperty&task=property_details&id=" . $dupItem->id . "&Itemid=" . $itemid) . '"><img class="span12 thumbnail" src="' . $dupItem->photo . '" /></a></div><div class="span8 ezitem-smallleftpad"><div class="row-fluid"><div class="span12 ospitem-maptitle title-blue">' . $title . '</div></div>';
+                        if (count($addInfo) > 0)
+                        {
+                            $desc .= '<div class="ospitem-iconbkgr"><span class="ezitem-leftpad">' . implode(" | ", $addInfo) . '</span></div>';
+                        }
+                        $desc .= htmlspecialchars(str_replace("'", "\"", str_replace("\r", "", str_replace("\n", "", $dupItem->pro_small_desc)))) . '<a href="' . JRoute::_("index.php?option=com_osproperty&task=property_details&id=" . $dupItem->id . "&Itemid=" . $itemid) . '">' . JText::_('OS_DETAILS') . '</a></p></div></div>';
+                        $descArr[] = $desc;
                     }
-                    if ($dupItem->bath_room > 0)
-                    {
-                        $addInfo[] = OSPHelper::showBath($dupItem->bath_room) . " " . JText::_('OS_BATHROOMS');
-                    }
-                    if ($dupItem->rooms > 0)
-                    {
-                        $addInfo[] = $dupItem->rooms . " " . JText::_('OS_ROOMS');
-                    }
-                    $desc = '<div class="row-fluid"><div class="span4"><a href="' . JRoute::_("index.php?option=com_osproperty&task=property_details&id=" . $dupItem->id . "&Itemid=" . $itemid) . '"><img class="span12 thumbnail" src="' . $dupItem->photo . '" /></a></div><div class="span8 ezitem-smallleftpad"><div class="row-fluid"><div class="span12 ospitem-maptitle title-blue">' . $title . '</div></div>';
-                    if (count($addInfo) > 0)
-                    {
-                        $desc .= '<div class="ospitem-iconbkgr"><span class="ezitem-leftpad">' . implode(" | ", $addInfo) . '</span></div>';
-                    }
-                    $desc .= htmlspecialchars(str_replace("'", "\"", str_replace("\r", "", str_replace("\n", "", $dupItem->pro_small_desc)))) . '<a href="' . JRoute::_("index.php?option=com_osproperty&task=property_details&id=" . $dupItem->id . "&Itemid=" . $itemid) . '">' . JText::_('OS_DETAILS') . '</a></p></div></div>';
-                    $descArr[] = $desc;
                 }
-
                 $desc = implode('<div class="clearfix" style="height:25px;border-top:1px dotted #efefef;"></div>', $descArr);
                 ?>
 
@@ -1208,7 +1209,7 @@ class HelperOspropertyGoogleMap
         {
             $population = 100;
         }
-            
+
         $type_icon = $property->type_icon;
         if ($type_icon == "")
         {
@@ -1248,7 +1249,8 @@ class HelperOspropertyGoogleMap
                 });
 
                 // Setup the markers on the map
-        <?php if ($property->show_address == 1)
+        <?php
+        if ($property->show_address == 1)
         {
             ?>
                     var propertyListingMarkerImage =
@@ -1260,7 +1262,8 @@ class HelperOspropertyGoogleMap
                                                 icon: propertyListingMarkerImage,
                                                 title: 'Property ID <?php echo $row->id ?>'
                                             });
-        <?php } else
+        <?php
+        } else
         {
             ?>
                                             for (var city in citymap) {

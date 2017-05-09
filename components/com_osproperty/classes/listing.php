@@ -3119,7 +3119,7 @@ class OspropertyListing
         $view_type_cookie = $jinput->getString('listviewtype', '');
         if ($view_type_cookie == "")
         {
-            $view_type_cookie = $_COOKIE['viewtypecookie'];
+            $view_type_cookie =!empty($_COOKIE['viewtypecookie'])? $_COOKIE['viewtypecookie']:false;
         }
         if ($view_type_cookie == 2)
         {

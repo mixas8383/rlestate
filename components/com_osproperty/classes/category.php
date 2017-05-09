@@ -27,6 +27,8 @@ class OspropertyCategories
         {
             echo HelperOspropertyCommon::buildToolbar('category');
         }
+        
+          
         switch ($task)
         {
             case "category_listing":

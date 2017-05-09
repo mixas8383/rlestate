@@ -70,7 +70,7 @@ $curr = $configClass['general_currency_default'];
 $arrCode = array();
 $arrSymbol = array();
 
-$allCurrencies =  OSPHelper::loadAllCurrencies();
+$allCurrencies = OSPHelper::loadAllCurrencies();
 $key1 = new stdClass;
 $key1->key = 'id';
 $key1->value = $curr;
@@ -258,7 +258,16 @@ switch ($maintask)
         OspropertyAjax::display($option, $task);
         break;
     case "category":
-        OspropertyCategories::display($option, $task);
+        
+
+        
+      //  OspropertyCategories::display($option, $task);
+                JFactory::getApplication()->input->set('view', 'category');
+        $controller = JControllerLegacy::getInstance('Osproperty');
+        $controller->execute(JFactory::getApplication()->input->get('task'));
+        $controller->redirect();
+
+
         break;
     case "property":
         //OspropertyListing::display($option, $task);
@@ -312,4 +321,3 @@ if ($configClass['load_lazy'])
     </script>
     <?php
 }
-?>

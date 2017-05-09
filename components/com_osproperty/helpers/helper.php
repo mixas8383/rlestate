@@ -1181,6 +1181,11 @@ class OSPHelper
             {
                 $key = "";
             }
+            // todo wtf 
+            //mixas
+            //
+            $suffix='';
+            //mixas
             if ($suffix != "")
             {
                 $suffix = "&" . $suffix;
@@ -3108,7 +3113,7 @@ class OSPHelper
                     {
                         ?>
                         <?php echo JText::_('OS_MIN') ?>
-            <?php } ?>
+                    <?php } ?>
                     (<?php echo HelperOspropertyCommon::loadCurrency(0); ?>).
                     <span
                         id="<?php echo $prefix; ?>price_from_input"><?php echo number_format((float) $min_price, 0, '', ','); ?></span>
@@ -3121,7 +3126,7 @@ class OSPHelper
                     {
                         ?>
                         <?php echo JText::_('OS_MAX') ?>
-            <?php } ?>
+                    <?php } ?>
                     (<?php echo HelperOspropertyCommon::loadCurrency(0); ?>).
                     <span
                         id="<?php echo $prefix; ?>price_to_input"><?php echo number_format($max_price, 0, '', ','); ?></span>
@@ -4724,7 +4729,8 @@ class OSPHelper
      */
     public static function loadThemeStyle($task)
     {
-        $themename = '';
+        $document = JFactory::getDocument();
+        $themename = 'theme1';
         if (file_exists(JPATH_ROOT . "/components/com_osproperty/templates/" . $themename . "/style/style.css"))
         {
             $document->addStyleSheet(JURI::root() . "components/com_osproperty/templates/" . $themename . "/style/style.css");
@@ -4736,7 +4742,7 @@ class OSPHelper
                 $document->addStyleSheet(JUri::root() . "media/com_osproperty/style/custom.css");
             }
         }
-return;
+        return;
 
         global $jinput;
         $document = JFactory::getDocument();
@@ -4858,7 +4864,7 @@ return;
             <div class="row-fluid">
                 <div class="span12">
                     <h4>
-            <?php echo JText::_('OS_BASE_INFORMATION'); ?>
+                        <?php echo JText::_('OS_BASE_INFORMATION'); ?>
                     </h4>
                 </div>
             </div>
@@ -4932,7 +4938,7 @@ return;
             <div class="row-fluid">
                 <div class="span12">
                     <h4>
-            <?php echo JText::_('OS_PARKING_INFORMATION'); ?>
+                        <?php echo JText::_('OS_PARKING_INFORMATION'); ?>
                     </h4>
                 </div>
             </div>
@@ -5010,7 +5016,7 @@ return;
                 <div class="row-fluid">
                     <div class="span12">
                         <h4>
-                <?php echo JText::_('OS_BUILDING_INFORMATION'); ?>
+                            <?php echo JText::_('OS_BUILDING_INFORMATION'); ?>
                         </h4>
                     </div>
                 </div>
@@ -5077,7 +5083,7 @@ return;
             <div class="row-fluid">
                 <div class="span12">
                     <h4>
-            <?php echo JText::_('OS_BASEMENT_FOUNDATION'); ?>
+                        <?php echo JText::_('OS_BASEMENT_FOUNDATION'); ?>
                     </h4>
                 </div>
             </div>
@@ -5159,7 +5165,7 @@ return;
                 <div class="row-fluid">
                     <div class="span12">
                         <h4>
-                <?php echo JText::_('OS_LAND_INFORMATION'); ?>
+                            <?php echo JText::_('OS_LAND_INFORMATION'); ?>
                         </h4>
                     </div>
                 </div>
@@ -5238,7 +5244,7 @@ return;
                 <div class="row-fluid">
                     <div class="span12">
                         <h4>
-                <?php echo JText::_('OS_BUSINESS_INFORMATION'); ?>
+                            <?php echo JText::_('OS_BUSINESS_INFORMATION'); ?>
                         </h4>
                     </div>
                 </div>
@@ -5292,7 +5298,7 @@ return;
                 <div class="row-fluid">
                     <div class="span12">
                         <h4>
-                <?php echo JText::_('OS_RURAL_INFORMATION'); ?>
+                            <?php echo JText::_('OS_RURAL_INFORMATION'); ?>
                         </h4>
                     </div>
                 </div>
@@ -5340,7 +5346,7 @@ return;
                     $i++;
                     ?>
                     <div class="span6">
-                    <?php echo $tmp; ?>
+                        <?php echo $tmp; ?>
                     </div>
                     <?php
                     if ($i == 2)
@@ -5471,8 +5477,16 @@ return;
 
     static function in_array_sub($needle, $haystack)
     {
+        if (empty($haystack))
+        {
+            return false;
+        }
         foreach ($haystack as $item)
         {
+            if(empty($item->value))
+            {
+                continue;
+            }
             $value = $item->value;
             if (in_array($needle, $value))
             {
@@ -5500,12 +5514,16 @@ return;
     static function findGoogleDuplication($rows)
     {
         //process data
+
+
+
         $tempArr = array();
         $i = 0;
         foreach ($rows as $row)
         {
             if (($row->show_address == 1) and ( $row->lat_add != "") and ( $row->long_add != ""))
             {
+                $tempArr[$i] = new stdClass;
                 $tempArr[$i]->id = $row->id;
                 $tempArr[$i]->lat_add = $row->lat_add;
                 $tempArr[$i]->long_add = $row->long_add;
@@ -5538,6 +5556,7 @@ return;
             $count = count($duplicate);
             if ((!self::in_array_field($tempArr[$i]->id, 'id', $duplicate)) and ( !self::in_array_sub($tempArr[$i]->id, $duplicate)))
             {
+                $duplicate[$count] = new stdClass();
                 $duplicate[$count]->id = $tempArr[$i]->id;
             }
         }

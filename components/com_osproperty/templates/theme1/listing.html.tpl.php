@@ -44,8 +44,9 @@ HelperOspropertyCommon::filterForm($lists);
     {
 
         $db = JFactory::getDbo();
-        $db->setQuery("Select id as value, currency_code as text from #__osrs_currencies where id <> '$row->curr' order by currency_code");
+        $db->setQuery("Select id as value, currency_code as text from #__osrs_currencies where id <> ".$rows[0]->curr." order by currency_code");
         $currencies = $db->loadObjectList();
+         
         $currenyArr[] = JHTML::_('select.option', '', JText::_('OS_SELECT'));
         $currenyArr = array_merge($currenyArr, $currencies);
         ?>
@@ -264,7 +265,7 @@ HelperOspropertyCommon::filterForm($lists);
                                             </div>
 
                                             <?php
-                                            $fieldarr = $row->fieldarr;
+                                            $fieldarr = !empty($row->fieldarr)?$row->fieldarr:array();
                                             if (count($fieldarr) > 0)
                                             {
                                                 ?>

@@ -759,34 +759,34 @@ class HTML_OspropertyListing
         $tpl->set('temp_path_img', OspropertyTemplate::livePath() . "/img");
 
         //$tpl->set('filterParams',$filterParams);
-        $showcat = $filterParams[0];
+        $showcat = !empty($filterParams[0])?$filterParams[0]:'';
         $tpl->set('showcat', $showcat);
-        $showagent = $filterParams[1];
+        $showagent = !empty($filterParams[1])?$filterParams[1]:'';
         $tpl->set('showagent', $showagent);
-        $showkeyword = $filterParams[2];
+        $showkeyword = !empty($filterParams[2])?$filterParams[2]:'';
         $tpl->set('showkeyword', $showkeyword);
-        $showbed = $filterParams[3];
+        $showbed = !empty($filterParams[3])?$filterParams[3]:'';
         $tpl->set('showbed', $showbed);
-        $showbath = $filterParams[4];
+        $showbath = !empty($filterParams[4])?$filterParams[4]:'';
         $tpl->set('showbath', $showbath);
-        $showrooms = $filterParams[5];
+        $showrooms = !empty($filterParams[5])?$filterParams[5]:'';
         $tpl->set('showrooms', $showrooms);
-        $showprice = $filterParams[6];
-        $showtype = $filterParams[7];
+        $showprice = !empty($filterParams[6])?$filterParams[6]:'';
+        $showtype = !empty($filterParams[7])?$filterParams[7]:'';
         $tpl->set('showtype', $showtype);
-        $showstate = $filterParams[8];
+        $showstate = !empty($filterParams[8])?$filterParams[8]:'';
         $tpl->set('showstate', $showstate);
-        $show_categoryfilter = $filterParams[9];
+        $show_categoryfilter = !empty($filterParams[9])?$filterParams[9]:'';
         $tpl->set('show_categoryfilter', $show_categoryfilter);
-        $show_propertytypefilter = $filterParams[10];
+        $show_propertytypefilter = !empty($filterParams[10])?$filterParams[10]:'';
         $tpl->set('show_propertytypefilter', $show_propertytypefilter);
-        $show_locationfilter = $filterParams[11];
+        $show_locationfilter = !empty($filterParams[11])?$filterParams[11]:'';
         $tpl->set('show_locationfilter', $show_locationfilter);
-        $show_keywordfilter = $filterParams[12];
+        $show_keywordfilter = !empty($filterParams[12])?$filterParams[12]:'';
         $tpl->set('show_keywordfilter', $show_keywordfilter);
-        $show_pricefilter = $filterParams[13];
+        $show_pricefilter = !empty($filterParams[13])?$filterParams[13]:'';
         $tpl->set('show_pricefilter', $show_pricefilter);
-        $show_agenttypefilter = $filterParams[14];
+        $show_agenttypefilter = !empty($filterParams[14])?$filterParams[14]:'';
         $tpl->set('show_agenttypefilter', $show_agenttypefilter);
 
         $lists['show_categoryfilter'] = $show_categoryfilter;
@@ -830,13 +830,13 @@ class HTML_OspropertyListing
 
         $view_type_cookie = $jinput->getInt('listviewtype', $listview);
         //echo $view_type_cookie;
-        if ($_COOKIE['viewtypecookie'] == 0)
+        if (!empty($_COOKIE['viewtypecookie']) && $_COOKIE['viewtypecookie'] == 0)
         {
             $_COOKIE['viewtypecookie'] = $listview;
         }
         if ($view_type_cookie == 0)
         {
-            $view_type_cookie = $_COOKIE['viewtypecookie'];
+            $view_type_cookie =!empty($_COOKIE['viewtypecookie'])? $_COOKIE['viewtypecookie']:'';
         }
 
         $tpl->set('params', $params);
