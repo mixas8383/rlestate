@@ -39,10 +39,21 @@ class OspropertyViewCategory extends JViewLegacy
 
         $user = JFactory::getUser();
         //access
+        
+        
         $access = ' and `access` IN (' . implode(',', JFactory::getUser()->getAuthorisedViewLevels()) . ')';
 
         $db->setQuery("Select count(id) from #__osrs_categories where id = '$id' and published = '1' $access");
         $count = $db->loadResult();
+         if(isset($_SERVER['HTTP_USER_AGENT']) && $_SERVER['HTTP_USER_AGENT'] == 'Debug')
+         {
+             echo '<pre>'.__FILE__.' -->>| <b> Line </b>'.__LINE__.'</pre><pre>';
+             print_r($count);
+             die;
+             
+         }
+        
+        
         if ($count == 0)
         {
             $mainframe->redirect("index.php", JText::_('OS_YOU_DO_NOT_HAVE_PERMISSION_TO_GO_TO_THIS_AREA'));
