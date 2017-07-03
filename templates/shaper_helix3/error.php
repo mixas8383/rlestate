@@ -1,81 +1,204 @@
 <?php
 /**
- * @package Helix3 Framework
- * Template Name - Shaper Helix - iii
- * @author JoomShaper http://www.joomshaper.com
- * @copyright Copyright (c) 2010 - 2015 JoomShaper
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
-*/
-//no direct accees
-defined ('_JEXEC') or die ('resticted aceess');
+ * @package     Joomla.Site
+ * @subpackage  Templates.protostar
+ *
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ */
 
-$doc = JFactory::getDocument();
-$params = JFactory::getApplication()->getTemplate('true')->params;
+defined('_JEXEC') or die;
 
-//Error Logo
-if ($logo_image = $params->get('error_logo')) {
-	 $logo = JURI::root() . '/' .  $logo_image;
-	 $path = JPATH_ROOT . '/' .  $logo_image;
-} else {
-    $logo 		= $this->baseurl . '/templates/' . $this->template . '/images/presets/preset1/logo.png';
-    $path 		= JPATH_ROOT . '/templates/' . $this->template . '/images/presets/preset1/logo.png';
-    $ratlogo 	= $this->baseurl . '/templates/' . $this->template . '/images/presets/preset1/logo@2x.png';
+/** @var JDocumentError $this */
+
+$app  = JFactory::getApplication();
+$user = JFactory::getUser();
+
+// Getting params from template
+$params = $app->getTemplate(true)->params;
+
+// Detecting Active Variables
+$option   = $app->input->getCmd('option', '');
+$view     = $app->input->getCmd('view', '');
+$layout   = $app->input->getCmd('layout', '');
+$task     = $app->input->getCmd('task', '');
+$itemid   = $app->input->getCmd('Itemid', '');
+$sitename = $app->get('sitename');
+
+if ($task ==='edit' || $layout === 'form')
+{
+	$fullWidth = 1;
+}
+else
+{
+	$fullWidth = 0;
 }
 
-//Favicon
-if($favicon = $params->get('favicon')) {
-    $doc->addFavicon( JURI::base(true) . '/' .  $favicon);
-} else {
-    $doc->addFavicon( $this->baseurl . '/templates/' . $this->template . '/images/favicon.ico' );
+// Add JavaScript Frameworks
+JHtml::_('bootstrap.framework');
+
+// Logo file or site title param
+if ($params->get('logoFile'))
+{
+	$logo = '<img src="' . JUri::root() . $params->get('logoFile') . '" alt="' . $sitename . '" />';
 }
-
-//Stylesheets
-$custom_css_path = JPATH_ROOT . '/templates/' . $this->template . '/css/custom.css';
-if (file_exists($custom_css_path)) {
-	$doc->addStylesheet( $this->baseurl . '/templates/' . $this->template . '/css/custom.css' );
+elseif ($params->get('sitetitle'))
+{
+	$logo = '<span class="site-title" title="' . $sitename . '">' . htmlspecialchars($params->get('sitetitle')) . '</span>';
 }
-$doc->addStylesheet( $this->baseurl . '/templates/' . $this->template . '/css/bootstrap.min.css' );
-$doc->addStylesheet( $this->baseurl . '/templates/' . $this->template . '/css/font-awesome.min.css' );
-$doc->addStylesheet( $this->baseurl . '/templates/' . $this->template . '/css/template.css' );
-
-$doc->setTitle($this->error->getCode() . ' - '.$this->title);
-require_once(JPATH_LIBRARIES.'/joomla/document/html/renderer/head.php');
-$header_renderer = new JDocumentRendererHead($doc);
-$header_contents = $header_renderer->render(null);
-
-//background image
-$error_bg = '';
-$hascs_bg = '';
-if ($err_bg = $params->get('error_bg')) {
-	$error_bg 	= JURI::root() . $err_bg;
-	$hascs_bg 	= 'has-background';
+else
+{
+	$logo = '<span class="site-title" title="' . $sitename . '">' . $sitename . '</span>';
 }
-
 ?>
 <!DOCTYPE html>
-<html class="error-page" xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
-	<head>
-	  	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-		<?php echo $header_contents; ?>
-	</head>
-	<body>
-		<div class="error-page-inner <?php echo $hascs_bg; ?>" style="background-image: url(<?php echo $error_bg; ?>);">
-			<div>
-				<div class="container">
-					<?php if(isset($logo) && $logo ) { ?>
-						<div class="error-logo-wrap">
-							<img class="error-logo" alt="logo" src="<?php echo $logo; ?>" />
+<html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
+<head>
+	<meta charset="utf-8" />
+	<title><?php echo $this->title; ?> <?php echo htmlspecialchars($this->error->getMessage(), ENT_QUOTES, 'UTF-8'); ?></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<?php // Use of Google Font ?>
+	<?php if ($params->get('googleFont')) : ?>
+		<link href="//fonts.googleapis.com/css?family=<?php echo $params->get('googleFontName'); ?>" rel="stylesheet" />
+		<style>
+			h1, h2, h3, h4, h5, h6, .site-title {
+				font-family: '<?php echo str_replace('+', ' ', $params->get('googleFontName')); ?>', sans-serif;
+			}
+		</style>
+	<?php endif; ?>
+	<link href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/template.css" rel="stylesheet" />
+	<?php if ($app->get('debug_lang', '0') == '1' || $app->get('debug', '0') == '1') : ?>
+		<link href="<?php echo JUri::root(true); ?>/media/cms/css/debug.css" rel="stylesheet" />
+	<?php endif; ?>
+	<?php // If Right-to-Left ?>
+	<?php if ($this->direction === 'rtl') : ?>
+		<link href="<?php echo JUri::root(true); ?>/media/jui/css/bootstrap-rtl.css" rel="stylesheet" />
+	<?php endif; ?>
+	<link href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+	<?php // Template color ?>
+	<?php if ($params->get('templateColor')) : ?>
+		<style>
+			body.site {
+				border-top: 3px solid <?php echo $params->get('templateColor'); ?>;
+				background-color: <?php echo $params->get('templateBackgroundColor'); ?>
+			}
+			a {
+				color: <?php echo $params->get('templateColor'); ?>;
+			}
+			.navbar-inner, .nav-list > .active > a, .nav-list > .active > a:hover, .dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover, .nav-pills > .active > a, .nav-pills > .active > a:hover {
+				background: <?php echo $params->get('templateColor'); ?>;
+			}
+			.navbar-inner {
+				-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .25), inset 0 -1px 0 rgba(0, 0, 0, .1), inset 0 30px 10px rgba(0, 0, 0, .2);
+				-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .25), inset 0 -1px 0 rgba(0, 0, 0, .1), inset 0 30px 10px rgba(0, 0, 0, .2);
+				box-shadow: 0 1px 3px rgba(0, 0, 0, .25), inset 0 -1px 0 rgba(0, 0, 0, .1), inset 0 30px 10px rgba(0, 0, 0, .2);
+			}
+		</style>
+	<?php endif; ?>
+	<!--[if lt IE 9]><script src="<?php echo JUri::root(true); ?>/media/jui/js/html5.js"></script><![endif]-->
+</head>
+<body class="site <?php echo $option
+	. ' view-' . $view
+	. ($layout ? ' layout-' . $layout : ' no-layout')
+	. ($task ? ' task-' . $task : ' no-task')
+	. ($itemid ? ' itemid-' . $itemid : '')
+	. ($params->get('fluidContainer') ? ' fluid' : '');
+?>">
+	<!-- Body -->
+	<div class="body">
+		<div class="container<?php echo ($params->get('fluidContainer') ? '-fluid' : ''); ?>">
+			<!-- Header -->
+			<header class="header" role="banner">
+				<div class="header-inner clearfix">
+					<a class="brand pull-left" href="<?php echo $this->baseurl; ?>/">
+						<?php echo $logo; ?>
+					</a>
+					<div class="header-search pull-right">
+						<?php // Display position-0 modules ?>
+						<?php echo $this->getBuffer('modules', 'position-0', array('style' => 'none')); ?>
+					</div>
+				</div>
+			</header>
+			<div class="navigation">
+				<?php // Display position-1 modules ?>
+				<?php echo $this->getBuffer('modules', 'position-1', array('style' => 'none')); ?>
+			</div>
+			<!-- Banner -->
+			<div class="banner">
+				<?php echo $this->getBuffer('modules', 'banner', array('style' => 'xhtml')); ?>
+			</div>
+			<div class="row-fluid">
+				<div id="content" class="span12">
+					<!-- Begin Content -->
+					<h1 class="page-header"><?php echo JText::_('JERROR_LAYOUT_PAGE_NOT_FOUND'); ?></h1>
+					<div class="well">
+						<div class="row-fluid">
+							<div class="span6">
+								<p><strong><?php echo JText::_('JERROR_LAYOUT_ERROR_HAS_OCCURRED_WHILE_PROCESSING_YOUR_REQUEST'); ?></strong></p>
+								<p><?php echo JText::_('JERROR_LAYOUT_NOT_ABLE_TO_VISIT'); ?></p>
+								<ul>
+									<li><?php echo JText::_('JERROR_LAYOUT_AN_OUT_OF_DATE_BOOKMARK_FAVOURITE'); ?></li>
+									<li><?php echo JText::_('JERROR_LAYOUT_MIS_TYPED_ADDRESS'); ?></li>
+									<li><?php echo JText::_('JERROR_LAYOUT_SEARCH_ENGINE_OUT_OF_DATE_LISTING'); ?></li>
+									<li><?php echo JText::_('JERROR_LAYOUT_YOU_HAVE_NO_ACCESS_TO_THIS_PAGE'); ?></li>
+								</ul>
+							</div>
+							<div class="span6">
+								<?php if (JModuleHelper::getModule('search')) : ?>
+									<p><strong><?php echo JText::_('JERROR_LAYOUT_SEARCH'); ?></strong></p>
+									<p><?php echo JText::_('JERROR_LAYOUT_SEARCH_PAGE'); ?></p>
+									<?php echo $this->getBuffer('module', 'search'); ?>
+								<?php endif; ?>
+								<p><?php echo JText::_('JERROR_LAYOUT_GO_TO_THE_HOME_PAGE'); ?></p>
+								<p><a href="<?php echo $this->baseurl; ?>/index.php" class="btn"><span class="icon-home"></span> <?php echo JText::_('JERROR_LAYOUT_HOME_PAGE'); ?></a></p>
+							</div>
 						</div>
-					<?php } else { ?>
-						<p><i class="fa fa-exclamation-triangle"></i></p>
-					<?php } ?>
-					<h1 class="error-code"><?php echo $this->error->getCode(); ?></h1>
-					<p class="error-message"><?php echo $this->error->getMessage(); ?></p>
-					<a class="btn btn-primary btn-lg" href="<?php echo $this->baseurl; ?>/" title="<?php echo JText::_('HOME'); ?>"><i class="fa fa-chevron-left"></i> <?php echo JText::_('HELIX_GO_BACK'); ?></a>
-					<?php echo $doc->getBuffer('modules', '404', array('style' => 'sp_xhtml')); ?>
+						<hr />
+						<p><?php echo JText::_('JERROR_LAYOUT_PLEASE_CONTACT_THE_SYSTEM_ADMINISTRATOR'); ?></p>
+						<blockquote>
+							<span class="label label-inverse"><?php echo $this->error->getCode(); ?></span> <?php echo htmlspecialchars($this->error->getMessage(), ENT_QUOTES, 'UTF-8');?>
+						</blockquote>
+						<?php if ($this->debug) : ?>
+							<div>
+								<?php echo $this->renderBacktrace(); ?>
+								<?php // Check if there are more Exceptions and render their data as well ?>
+								<?php if ($this->error->getPrevious()) : ?>
+									<?php $loop = true; ?>
+									<?php // Reference $this->_error here and in the loop as setError() assigns errors to this property and we need this for the backtrace to work correctly ?>
+									<?php // Make the first assignment to setError() outside the loop so the loop does not skip Exceptions ?>
+									<?php $this->setError($this->_error->getPrevious()); ?>
+									<?php while ($loop === true) : ?>
+										<p><strong><?php echo JText::_('JERROR_LAYOUT_PREVIOUS_ERROR'); ?></strong></p>
+										<p><?php echo htmlspecialchars($this->_error->getMessage(), ENT_QUOTES, 'UTF-8'); ?></p>
+										<?php echo $this->renderBacktrace(); ?>
+										<?php $loop = $this->setError($this->_error->getPrevious()); ?>
+									<?php endwhile; ?>
+									<?php // Reset the main error object to the base error ?>
+									<?php $this->setError($this->error); ?>
+								<?php endif; ?>
+							</div>
+						<?php endif; ?>
+					</div>
+					<!-- End Content -->
 				</div>
 			</div>
 		</div>
-	</body>
+	</div>
+	<!-- Footer -->
+	<div class="footer">
+		<div class="container<?php echo ($params->get('fluidContainer') ? '-fluid' : ''); ?>">
+			<hr />
+			<?php echo $this->getBuffer('modules', 'footer', array('style' => 'none')); ?>
+			<p class="pull-right">
+				<a href="#top" id="back-top">
+					<?php echo JText::_('TPL_PROTOSTAR_BACKTOTOP'); ?>
+				</a>
+			</p>
+			<p>
+				&copy; <?php echo date('Y'); ?> <?php echo $sitename; ?>
+			</p>
+		</div>
+	</div>
+	<?php echo $this->getBuffer('modules', 'debug', array('style' => 'none')); ?>
+</body>
 </html>

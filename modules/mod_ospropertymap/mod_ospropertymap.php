@@ -16,6 +16,7 @@ $document = JFactory::getDocument();
 $document->addStyleSheet(JUri::root().'modules/mod_ospropertymap/asset/style.css');
 require_once dirname(__FILE__).'/helper.php';
 
+include_once(JPATH_ADMINISTRATOR.'/components/com_osproperty/helpers/extrafields.php');
 include_once(JPATH_ROOT.'/components/com_osproperty/helpers/helper.php');
 include_once(JPATH_ROOT.'/components/com_osproperty/helpers/common.php');
 include_once(JPATH_ROOT.'/components/com_osproperty/helpers/route.php');
