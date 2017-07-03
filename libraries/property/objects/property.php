@@ -65,11 +65,11 @@ class Property extends JObject
         if (intval($user->id) > 0)
         {
             $this->_db->setQuery("Select count(a.id) from #__osrs_agents as a inner join #__users as b on b.id = a.user_id where a.user_id = '$user->id'");
-            $countagent = $db->loadResult();
+            $countagent = $this->_db->loadResult();
             if ($countagent > 0)
             {
                 $this->_db->setQuery("Select id from #__osrs_agents where user_id = '$user->id'");
-                $user_agent_id = $db->loadResult();
+                $user_agent_id =  $this->_db->loadResult();
                 if ($user_agent_id == $agent_id)
                 {
                     $owner = 1;

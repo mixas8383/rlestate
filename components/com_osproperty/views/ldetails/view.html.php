@@ -46,7 +46,11 @@ class OspropertyViewLdetails extends JViewLegacy
        
 
         $model = $this->getModel();
+      
+        
         $propertyObject = $model->getItem();
+        
+        
         $propertyObject->setConfigClass($configClass);
         $propertyObject->remakeData($configClass);
 
@@ -54,6 +58,9 @@ class OspropertyViewLdetails extends JViewLegacy
 
 
         $property = $propertyObject->getPropertyObject();
+       
+        
+        
           if (($property->published == 0) or ( $property->approved == 0))
         {
             JError::raiseError(404, JText::_('OS_PROPERTY_IS_NOT_AVAILABLE'));
@@ -161,6 +168,7 @@ class OspropertyViewLdetails extends JViewLegacy
         }
         $session->set('recent_properties_viewed', implode(",", $recent_properties_viewed));
         $owner = $propertyObject->isOwner();
+        
         $propertyObject->showMeta($show_meta);
 
         $access = $property->access;
