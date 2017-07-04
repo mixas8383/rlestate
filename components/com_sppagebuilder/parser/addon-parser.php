@@ -44,8 +44,7 @@ class AddonParser {
      * @since 1.0.8
      */
     public static function getAddonPath( $addon_name = '') {
-        $app = JFactory::getApplication();
-        $template = $app->getTemplate();
+        $template = self::getTemplateName();
         $template_path = JPATH_ROOT . '/templates/' . $template;
         $plugins = self::getPluginsAddons();
 
@@ -144,8 +143,7 @@ class AddonParser {
 
 
     public static function getAddons() {
-        $app = JFactory::getApplication();
-        $template = $app->getTemplate();
+        $template = self::getTemplateName();
 
         require_once JPATH_ROOT . '/components/com_sppagebuilder/addons/module/site.php';//include module manually
 
@@ -397,6 +395,17 @@ class AddonParser {
         return $elements;
     }
 
+    private static function getTemplateName() {
+      $db = JFactory::getDbo();
+      $query = $db->getQuery(true);
+      $query->select($db->quoteName(array('template')));
+      $query->from($db->quoteName('#__template_styles'));
+      $query->where($db->quoteName('client_id') . ' = 0');
+      $query->where($db->quoteName('home') . ' = 1');
+      $db->setQuery($query);
+
+      return $db->loadObject()->template;
+    }
 }
 
 

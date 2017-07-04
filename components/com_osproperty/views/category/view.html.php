@@ -45,13 +45,7 @@ class OspropertyViewCategory extends JViewLegacy
 
         $db->setQuery("Select count(id) from #__osrs_categories where id = '$id' and published = '1' $access");
         $count = $db->loadResult();
-         if(isset($_SERVER['HTTP_USER_AGENT']) && $_SERVER['HTTP_USER_AGENT'] == 'Debug')
-         {
-             echo '<pre>'.__FILE__.' -->>| <b> Line </b>'.__LINE__.'</pre><pre>';
-             print_r($count);
-             die;
-             
-         }
+        
         
         
         if ($count == 0)
@@ -60,7 +54,7 @@ class OspropertyViewCategory extends JViewLegacy
         }
         $db->setQuery("Select * from #__osrs_categories where id = '$id' and published = '1' $access");
         $cat = $db->loadObject();
-
+  
         //pathway
         $pathway = $mainframe->getPathway();
         if ($cat->parent_id > 0)
@@ -73,7 +67,7 @@ class OspropertyViewCategory extends JViewLegacy
 
         $document = JFactory::getDocument();
         $document->setTitle($configClass['general_bussiness_name'] . " - " . JText::_('OS_CATEGORY') . " - " . OSPHelper::getLanguageFieldValue($cat, 'category_name'));
-
+  
         if ($cat->category_meta != "")
         {
             $document->setMetaData("description", $cat->category_meta);
@@ -101,7 +95,7 @@ class OspropertyViewCategory extends JViewLegacy
         $this->option = $option;
         $this->cat = $cat;
         $this->subcats = $subcats;
-        
+       
         $this->_prepareDocument();
 
         parent::display($tpl);

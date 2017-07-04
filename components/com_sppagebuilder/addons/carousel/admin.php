@@ -36,6 +36,16 @@ SpAddonsConfig::addonConfig(
 					'std'=>1
 				),
 
+				'interval'=>array(
+ 					'type'=>'number',
+ 					'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_CAROUSEL_INTERVAL'),
+ 					'desc'=>JText::_('COM_SPPAGEBUILDER_ADDON_CAROUSEL_INTERVAL_DESC'),
+ 					'std'=> 5,
+ 					'depends'=> array(
+ 						array('autoplay', '=', 1),
+ 					)
+ 				),
+
 				'controllers'=>array(
 					'type'=>'checkbox',
 					'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_CAROUSEL_SHOW_CONTROLLERS'),

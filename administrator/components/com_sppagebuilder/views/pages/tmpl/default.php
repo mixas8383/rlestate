@@ -89,17 +89,39 @@ Joomla.orderTable = function() {
 					</div>
 				</div>
 
-				<?php
-				$app = JFactory::getApplication();
-				$messages = $app->getMessageQueue();
-				if (empty($this->items)) {
-					$messages = array(array('type'=>'warning', 'message'=>JText::_('JGLOBAL_NO_MATCHING_RESULTS')));
-				}
-				?>
+				<div class="sp-pagebuilder-message-container">
+					<div class="sppb-buy-pro-wrap">
+						<div class="row-fluid">
+							<div class="col-sm-12 col-lg-10  sp-pagebuilder-message-text">
+								<div class="row">
+									<div class="col-sm-2 sppb-buypro-logo">
+										<img src="<?php echo JURI::root() . '/administrator/components/com_sppagebuilder/assets/img/logo-white.png' ;?>" alt="SP PageBuilder Logo">
+									</div>
+
+									<div class="col-sm-10 sppb-buypro-content-wrap">
+										<div class="sppb-buypro-content">
+											<h1><?php echo JText::_('COM_SPPAGEBUILDER_BUY_SPPAGEBUILDER_PRO') ?></h1>
+											<p><?php echo JText::_('COM_SPPAGEBUILDER_BUY_SPPAGEBUILDER_PRO_DESC') ?></p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-12 col-lg-2  sp-pagebuilder-pro-button">
+								<a href="<?php echo JRoute::_('https://www.joomshaper.com/join-now#page-builder');?>" target="_blank" class="sp-pagebuilder-btn sp-pagebuilder-btn-success sp-pagebuilder-btn-lg"><?php echo JText::_('COM_SPPAGEBUILDER_BUY_PRO') ?></a>
+							</div>
+						</div>
+					</div>
+				</div>
 
 				<?php
-				if(count($messages)) {
-					?>
+					$app = JFactory::getApplication();
+					$messages = $app->getMessageQueue();
+					if (empty($this->items)) {
+						$messages = array(array('type'=>'warning', 'message'=>JText::_('JGLOBAL_NO_MATCHING_RESULTS')));
+					}
+				?>
+
+				<?php if(count($messages)) { ?>
 					<div class="sp-pagebuilder-message-container">
 						<?php
 						foreach ($messages as $key => $message) {
@@ -114,8 +136,7 @@ Joomla.orderTable = function() {
 						?>
 					</div>
 					<?php
-				}
-				?>
+				} ?>
 
 				<?php
 				if(count($this->items)) {

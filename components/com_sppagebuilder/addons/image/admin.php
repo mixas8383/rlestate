@@ -133,6 +133,7 @@ SpAddonsConfig::addonConfig(
 					'type'=>'media',
 					'title'=>JText::_('COM_SPPAGEBUILDER_ADDON_IMAGE_SELECT'),
 					'desc'=>JText::_('COM_SPPAGEBUILDER_ADDON_IMAGE_SELECT_DESC'),
+					'show_input' => true
 				),
 
 				'alt_text'=>array(

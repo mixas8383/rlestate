@@ -5847,3 +5847,98 @@ fieldset[disabled] .com_sppagebuilder.view-pages .subhead .btn-danger.focus {
   background-color: #1e7ed8;
   border-radius: 3px;
 }
+
+/* Buy Pro */
+
+.sp-pagebuilder-message-container .sppb-buy-pro-wrap{
+  background-color: #4073ff;
+  padding: 0 40px 0 30px;
+  background-image: url("../img/buy-pro-bg.png");
+  background-repeat: no-repeat;
+  background-position: 100% 50%;
+}
+
+.sp-pagebuilder-message-container .sppb-buy-pro-wrap .sp-pagebuilder-message-text{
+  display: flex;
+  color: #fff;
+}
+
+.sp-pagebuilder-message-container .sppb-buy-pro-wrap .sppb-buypro-content-wrap{
+  padding-left: 40px;
+}
+
+.sp-pagebuilder-message-container .sppb-buy-pro-wrap .sppb-buypro-content {
+  margin-top: 15px;
+}
+.sp-pagebuilder-message-container .sppb-buy-pro-wrap .sppb-buypro-content h1{
+  font-size: 34px;
+  font-weight: 500;
+}
+.sp-pagebuilder-message-container .sppb-buy-pro-wrap .sppb-buypro-content p{
+  font-size: 22px;
+  margin-top: 15px;
+}
+
+.sp-pagebuilder-message-container .row-fluid{
+  display: flex;
+}
+.sp-pagebuilder-message-container .sp-pagebuilder-pro-button, .sp-pagebuilder-message-container .sppb-buypro-content-wrap{
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .sp-pagebuilder-message-container .sppb-buy-pro-wrap .sppb-buypro-content{
+    margin-top: 0;
+  }
+  .sp-pagebuilder-message-container .sppb-buy-pro-wrap .sppb-buypro-content h1{
+    font-size: 24px;
+  }
+  .sp-pagebuilder-message-container .sppb-buy-pro-wrap .sppb-buypro-content p{
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 991px) {
+  .sp-pagebuilder-message-container .row-fluid{
+    display: inherit;
+  }
+  .sp-pagebuilder-message-container .sppb-buy-pro-wrap{
+    text-align: center;
+  }
+  .sp-pagebuilder-message-container .sppb-buy-pro-wrap .sp-pagebuilder-message-text, .sp-pagebuilder-message-container .sppb-buy-pro-wrap .sp-pagebuilder-pro-button{
+      margin-bottom: 20px
+  }
+
+  .sp-pagebuilder-message-container .sp-pagebuilder-pro-button, .sp-pagebuilder-message-container .sppb-buypro-content-wrap, .sp-pagebuilder-message-container .sppb-buy-pro-wrap .sp-pagebuilder-message-text{
+    display: block !important;
+    justify-content: inherit;
+    overflow: hidden;
+    width: 100%;
+  }
+  .sp-pagebuilder-message-container .sppb-buy-pro-wrap .sppb-buypro-content{
+    margin-top: 0;
+  }
+  .sp-pagebuilder-message-container .sppb-buy-pro-wrap .sppb-buypro-content h1{
+    font-size: 24px;
+  }
+  .sp-pagebuilder-message-container .sppb-buy-pro-wrap .sppb-buypro-content p{
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sp-pagebuilder-message-container .sppb-buy-pro-wrap{
+    padding: 0;
+  }
+  .sp-pagebuilder-message-container .sppb-buy-pro-wrap .sppb-buypro-content-wrap{
+    padding-left: 15px;
+  }
+  .sp-pagebuilder-message-container .sppb-buy-pro-wrap .sppb-buypro-content h1 {
+      font-size: 18px;
+  }
+  .sp-pagebuilder-message-container .sppb-buy-pro-wrap .sppb-buypro-content p {
+      font-size: 16px;
+  }
+}

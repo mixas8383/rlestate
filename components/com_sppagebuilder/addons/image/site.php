@@ -33,6 +33,14 @@ class SppagebuilderAddonImage extends SppagebuilderAddons{
 			$output .= '<div class="sppb-addon-content">';
 			$output .= '<div class="sppb-addon-single-image-container">';
 
+			if (empty($alt_text)) {
+				if (!empty($title)) {
+					$alt_text = $title;
+				} else {
+					$alt_text = basename($image);
+				}
+			}
+
 			if($image_overlay) {
 				$output .= '<div class="sppb-addon-image-overlay">';
 				$output .= '</div>';
@@ -46,7 +54,7 @@ class SppagebuilderAddonImage extends SppagebuilderAddons{
 				$output .= ($link) ? '<a ' . $target . ' href="' . $link . '">' : '';
 			}
 
-			$output  .= '<img class="sppb-img-responsive" src="' . $image . '" alt="'. $alt_text .'">';
+			$output  .= '<img class="sppb-img-responsive" src="' . $image . '" alt="'. $alt_text .'" title="'.$title.'">';
 
 			if(!$open_lightbox) {
 				$output .= ($link) ? '</a>' : '';

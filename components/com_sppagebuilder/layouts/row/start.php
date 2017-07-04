@@ -53,7 +53,12 @@ if (isset($options->color) && $options->color) $style .= 'color:'.$options->colo
 if (isset($options->background_color) && $options->background_color) $style .= 'background-color:'.$options->background_color.';';
 
 if (isset($options->background_image) && $options->background_image) {
-	$style .= 'background-image:url('. JURI::base(true) . '/' . $options->background_image.');';
+
+	if(strpos($options->background_image, "http://") !== false || strpos($options->background_image, "https://") !== false){
+		$style .= 'background-image:url(' . $options->background_image.');';
+	} else {
+		$style .= 'background-image:url('. JURI::base(true) . '/' . $options->background_image.');';
+	}
 
 	if (isset($options->background_repeat) && $options->background_repeat) $style .= 'background-repeat:'.$options->background_repeat.';';
 	if (isset($options->background_size) && $options->background_size) $style .= 'background-size:'.$options->background_size.';';

@@ -41,7 +41,7 @@ class SpTypeText{
 		}
 
 		// Clean html
-		$attr['std'] = strip_tags($attr['std'], '<strong><b><i>');
+		$attr['std'] = strip_tags($attr['std'], '<strong><b><i><br><span>');
 
 		$output  = '<div class="sp-pagebuilder-form-group"' . $depend_data . '>';
 		$output .= '<label>'.$attr['title'].'</label>';

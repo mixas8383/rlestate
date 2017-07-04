@@ -19,9 +19,10 @@ class SppagebuilderAddonCarousel extends SppagebuilderAddons {
 		$controllers = (isset($this->addon->settings->controllers) && $this->addon->settings->controllers) ? $this->addon->settings->controllers : 0;
 		$arrows = (isset($this->addon->settings->arrows) && $this->addon->settings->arrows) ? $this->addon->settings->arrows : 0;
 		$alignment = (isset($this->addon->settings->alignment) && $this->addon->settings->alignment) ? $this->addon->settings->alignment : 0;
+		$interval = (isset($this->addon->settings->interval) && $this->addon->settings->interval) ? ((int) $this->addon->settings->interval * 1000) : 5000;
 		$carousel_autoplay = ($autoplay) ? ' data-sppb-ride="sppb-carousel"':'';
 
-		$output  = '<div id="sppb-carousel-'. $this->addon->id .'" class="sppb-carousel sppb-slide' . $class . '"'. $carousel_autoplay .'>';
+		$output  = '<div id="sppb-carousel-'. $this->addon->id .'" data-interval="'.$interval.'" class="sppb-carousel sppb-slide' . $class . '"'. $carousel_autoplay .'>';
 
 		if($controllers) {
 			$output .= '<ol class="sppb-carousel-indicators">';
